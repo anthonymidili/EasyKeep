@@ -1,5 +1,7 @@
 HouseKeeping::Application.routes.draw do
 
+  devise_for :users
+
   root to: 'welcome#home'
 
   # The priority is based upon order of creation:
