@@ -1,18 +1,40 @@
-<h2>Sign up</h2>
+<% provide(:title, 'Sign up') %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<div class="hero-unit center-devise-forms">
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <h2 class="heading">Sign up</h2><br>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <%= form_for(resource,
+               :as => resource_name,
+               :url => registration_path(resource_name)) do |f| %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+    <%= devise_error_messages! %>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+    <div class="control-group">
+      <%= f.label :your_name %>
+      <%= f.text_field :your_name, class: 'input-block-level', autofocus: true %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="control-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'input-block-level' %>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'input-block-level' %>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'input-block-level' %>
+    </div>
+
+    <div class="control-group">
+        <%= f.submit 'Sign up', class: 'btn btn-large btn-block btn-primary' %>
+    </div>
+  <% end %>
+
+  <%= render 'devise/shared/links' %>
+
+</div>

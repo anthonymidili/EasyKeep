@@ -1,2 +1,17 @@
-<h1>Welcome#home</h1>
-<p>Find me in app/views/welcome/home.html.erb</p>
+<h1>Welcome to House Keeping</h1>
+<p class="center"><%= link_to "Sign Up", new_user_registration_path, class: "btn sign-up-btn btn-primary" %></p>
+<p>
+  <%= link_to new_user_session_path do %>
+    <i class="icon-user icon-white"></i> Sign in
+  <% end %>
+</p>
+<p>
+  <%= link_to destroy_user_session_path, method: :delete do %>
+    <i class="icon-hand-left"></i> Sign out
+  <% end %>
+</p>
+<p>
+  <%= link_to edit_user_registration_path do %>
+    <i class="icon-wrench"></i> User settings
+  <% end %>
+</p>
