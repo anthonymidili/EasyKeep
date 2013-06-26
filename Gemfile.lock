@@ -127,24 +127,23 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
-    zurb-foundation (2.2.1.2)
-      jquery-rails (>= 1.0)
-      railties (>= 3.1.0, < 4.0)
+    zurb-foundation (4.0.9)
+      sass (>= 3.2.0)
 
 PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  bcrypt-ruby
+  bcrypt-ruby (~> 3.0.1)
   better_errors
   binding_of_caller
-  coffee-rails
-  devise
-  jquery-rails
-  pg
+  coffee-rails (~> 3.2.2)
+  devise (~> 2.2.4)
+  jquery-rails (~> 3.0.1)
+  pg (~> 0.15.1)
   rails (= 3.2.13)
-  rspec-rails
-  sass-rails
-  sqlite3
-  uglifier
-  zurb-foundation (~> 2.2)
+  rspec-rails (~> 2.13.2)
+  sass-rails (~> 3.2.6)
+  sqlite3 (~> 1.3.7)
+  uglifier (~> 2.1.1)
+  zurb-foundation (~> 4.0.9)

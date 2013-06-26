@@ -16,14 +16,6 @@ ActiveRecord::Schema.define(:version => 20130622014815) do
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "your_name",              :default => "", :null => false
-    t.string   "company_name",           :default => "", :null => false
-    t.string   "company_street",         :default => "", :null => false
-    t.string   "company_city",           :default => "", :null => false
-    t.string   "company_state",          :default => "", :null => false
-    t.string   "company_zip",            :default => "", :null => false
-    t.string   "company_phone",          :default => "", :null => false
-    t.string   "company_fax",            :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

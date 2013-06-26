@@ -5,15 +5,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :email,              :null => false, :default => ""
       t.string :encrypted_password, :null => false, :default => ""
 
-      t.string :your_name, null: false, default: ""
-      t.string :company_name, null: false, default: ""
-      t.string :company_street, null: false, default: ""
-      t.string :company_city, null: false, default: ""
-      t.string :company_state, null: false, default: ""
-      t.string :company_zip, null: false, default: ""
-      t.string :company_phone, null: false, default: ""
-      t.string :company_fax, null: false, default: ""
-
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
