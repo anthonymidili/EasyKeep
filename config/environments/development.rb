@@ -34,4 +34,19 @@ HouseKeeping::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Devise mailer
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.action_mailer.delivery_method = :smtp
+
+  ActionMailer::Base.smtp_settings = {
+      :address        => "smtp.gmail.com",
+      :port           => 587,
+      :authentication => :plain,
+      :user_name      => "tonywinslow13@gmail.com",
+      :password       => "1taylorguitar",
+      :enable_starttls_auto => true
+  }
+
 end
