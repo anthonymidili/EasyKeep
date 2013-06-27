@@ -6,23 +6,14 @@
 
 .alert {
   @include alert;
-
-  .close {
-    font-size: 1.375em;
-    padding: 5px 4px 4px;
-    line-height: 0;
-    position: absolute;
-    top: 0.6em;
-    right: 0.3125em;
-    color: #333333;
-  }
 }
 
 #error_explanation {
-  @extend .alert;
-
+  @include alert-base;
+  @include alert-style;
   ul {
     margin-left: 1em;
     margin-right: 1em;
   }
+  .close { @include alert-close; }
 }
