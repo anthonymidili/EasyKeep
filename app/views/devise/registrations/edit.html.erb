@@ -1,58 +1,48 @@
 <% provide(:title, 'User settings') %>
 
-<div class="hero-unit center-devise-forms">
+<div class="row">
+  <div class="small-4 small-centered columns">
 
-  <h2 class="heading">Edit <%= resource_name.to_s.humanize %></h2><br>
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-  <%= form_for(resource,
-               :as => resource_name,
-               :url => registration_path(resource_name),
-               :html => { :method => :put }) do |f| %>
+    <%= form_for(resource,
+                 :as => resource_name,
+                 :url => registration_path(resource_name),
+                 :html => { :method => :put }) do |f| %>
 
-    <%= devise_error_messages! %>
+      <%= devise_error_messages! %>
 
-    <div class="control-group">
       <%= f.label :email %>
       <%= f.text_field :email, class: 'input-block-level' %>
-    </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
 
-    <div class="control-group">
+      <small><i>(we need your current password to confirm your changes)</i></small>
       <%= f.label :current_password %>
-      <i class="help-block">(we need your current password to confirm your changes)</i>
       <%= f.password_field :current_password, class: 'input-block-level' %>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :password, "New password" %>
-      <i class="help-block">(leave blank if you don't want to change it)</i>
+      <small><i>(leave blank if you don't want to change it)</i></small>
+      <%= f.label :password, 'New password' %>
       <%= f.password_field :password, class: 'input-block-level', :autocomplete => 'off' %>
-    </div>
 
-    <div class="control-group">
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, class: 'input-block-level' %>
-    </div>
+
+      <br>
+
+      <%= f.submit 'Update', class: 'button radius expand' %>
+      <%= link_to 'Back', root_path, class: 'small button secondary radius expand' %>
+    <% end %>
 
     <br>
 
-    <div class="control-group">
-      <p><%= f.submit 'Update', class: 'btn btn-large btn-block btn-primary' %></p><br>
-      <p><%= link_to 'Back', root_path, class: 'btn btn-block' %></p>
-    </div>
-  <% end %>
-
-  <br>
-
-  <section>
-    <h3>Cancel my account</h3>
+    <h4>Cancel my account</h4>
     <%= button_to 'Cancel my account', registration_path(resource_name),
-                  class: 'btn btn-small btn-danger',
+                  class: 'tiny button alert',
                   :data => { :confirm => 'Are you sure? This will permanently delete your account and all of your personal information will be lost!' },
                   :method => :delete %>
-  </section>
 
+  </div>
 </div>
