@@ -15,12 +15,12 @@
       <%= f.label :password %>
       <%= f.password_field :password, class: 'input-block-level' %>
 
-      <label>
-        <% if devise_mapping.rememberable? -%>
+      <% if devise_mapping.rememberable? -%>
+        <label for="user_remember_me">
           <%= f.check_box :remember_me %>
           Remember me
-        <% end -%>
-      </label>
+        </label>
+      <% end -%>
 
       <br>
 
