@@ -6,14 +6,14 @@
     <h2>Sign in</h2>
 
     <%= form_for(resource,
-                 :as => resource_name,
-                 :url => session_path(resource_name)) do |f| %>
+                 as: resource_name,
+                 url: session_path(resource_name)) do |f| %>
 
       <%= f.label :email %>
-      <%= f.text_field :email, class: 'input-block-level', :autofocus => true %>
+      <%= f.text_field :email, autofocus: true %>
 
       <%= f.label :password %>
-      <%= f.password_field :password, class: 'input-block-level' %>
+      <%= f.password_field :password %>
 
       <% if devise_mapping.rememberable? -%>
         <label for="user_remember_me">
