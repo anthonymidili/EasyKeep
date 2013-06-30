@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @account.name %>
+</p>
+
+<p>
+  <b>Address 1:</b>
+  <%= @account.address_1 %>
+</p>
+
+<p>
+  <b>Address 2:</b>
+  <%= @account.address_2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @account.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @account.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%= @account.zip %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @account.phone %>
+</p>
+
+<p>
+  <b>Fax:</b>
+  <%= @account.fax %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @account.email %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>
