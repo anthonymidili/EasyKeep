@@ -1,50 +1,25 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "#{@account.name}'s Account") %>
 
-<p>
-  <b>Name:</b>
-  <%= @account.name %>
-</p>
+<div class="row">
+  <div class="small-12 columns">
 
-<p>
-  <b>Address 1:</b>
-  <%= @account.address_1 %>
-</p>
+    <h1><%= "#{@account.name}'s Account" %></h1>
 
-<p>
-  <b>Address 2:</b>
-  <%= @account.address_2 %>
-</p>
+    <ul class="vcard">
+      <li class="fn"><%= @account.name %></li>
+      <li><%= mail_to @account.email %></li>
+      <li><%= @account.address_1 %></li>
+      <li><%= @account.address_2 %></li>
+      <li><%= @account.city %></li>
+      <li><span><%= @account.state %></span>, <span><%= @account.zip %></span></li>
+      <li><%= @account.phone %></li>
+      <li><%= @account.fax %></li>
+    </ul>
 
-<p>
-  <b>City:</b>
-  <%= @account.city %>
-</p>
+    <br>
 
-<p>
-  <b>State:</b>
-  <%= @account.state %>
-</p>
+    <%= link_to 'Edit', edit_account_path(@account) %> |
+    <%= link_to 'Back', accounts_path %>
 
-<p>
-  <b>Zip:</b>
-  <%= @account.zip %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @account.phone %>
-</p>
-
-<p>
-  <b>Fax:</b>
-  <%= @account.fax %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @account.email %>
-</p>
-
-
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+  </div>
+</div>

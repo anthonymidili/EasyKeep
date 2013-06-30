@@ -1,5 +1,13 @@
-<h1>New account</h1>
+<% provide(:title, 'New account') %>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="small-12 large-8 small-centered columns">
 
-<%= link_to 'Back', accounts_path %>
+    <h1>New account</h1>
+
+    <%= render 'form' %>
+
+    <%= link_to 'Back', accounts_path %>
+
+  </div>
+</div>

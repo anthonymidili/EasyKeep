@@ -1,39 +1,55 @@
-<h1>Listing accounts</h1>
+<% provide(:title, 'Accounts listing') %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Address 1</th>
-    <th>Address 2</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Zip</th>
-    <th>Phone</th>
-    <th>Fax</th>
-    <th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row">
+  <div class="small-12 small-centered columns">
 
-  <% @accounts.each do |account| %>
-    <tr>
-      <td><%= account.name %></td>
-      <td><%= account.address_1 %></td>
-      <td><%= account.address_2 %></td>
-      <td><%= account.city %></td>
-      <td><%= account.state %></td>
-      <td><%= account.zip %></td>
-      <td><%= account.phone %></td>
-      <td><%= account.fax %></td>
-      <td><%= account.email %></td>
-      <td><%= link_to 'Show', account %></td>
-      <td><%= link_to 'Edit', edit_account_path(account) %></td>
-      <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
+    <h1>Accounts listing</h1>
 
-<br />
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip</th>
+          <th>Phone</th>
+          <th>Fax</th>
+          <th>Email</th>
+          <th>Edit</th>
+          <th>Destroy</th>
+        </tr>
+      </thead>
 
-<%= link_to 'New Account', new_account_path %>
+      <% @accounts.each do |account| %>
+        <tbody>
+          <tr>
+            <td><%= link_to account.name, account %></td>
+            <td><%= account.full_address %></td>
+            <td><%= account.city %></td>
+            <td><%= account.state %></td>
+            <td><%= account.zip %></td>
+            <td><%= account.phone %></td>
+            <td><%= account.fax %></td>
+            <td><%= account.email %></td>
+            <td class="center_cell">
+              <%= link_to edit_account_path(account) do %>
+                <i class="fi-edit"></i>
+              <% end %>
+            </td>
+            <td class="center_cell">
+              <%= link_to account, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <b>X</b>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Account', new_account_path %>
+
+  </div>
+</div>

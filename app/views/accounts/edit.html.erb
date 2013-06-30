@@ -1,6 +1,14 @@
-<h1>Editing account</h1>
+<% provide(:title, 'Edit account') %>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="small-12 large-8 small-centered columns">
 
-<%= link_to 'Show', @account %> |
-<%= link_to 'Back', accounts_path %>
+    <h1>Editing account</h1>
+
+    <%= render 'form' %>
+
+    <%= link_to 'Show', @account %> |
+    <%= link_to 'Back', accounts_path %>
+
+  </div>
+</div>
