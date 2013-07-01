@@ -4,35 +4,29 @@
 <!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8" />
+  <head>
+  	<meta charset="utf-8" />
 
-  <!-- Uncomment to make IE8 render like IE7 -->
-  <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
-  <!-- Set the viewport width to device width for mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title><%= content_for?(:title) ? "House Keeping | #{yield(:title)}" : 'House Keeping' %></title>
+  	<title><%= content_for?(:title) ? "House Keeping | #{yield(:title)}" : "House Keeping" %></title>
 
-  <%= stylesheet_link_tag    'application' %>
-  <%= javascript_include_tag 'vendor/custom.modernizr' %>
-  <%= csrf_meta_tags %>
-</head>
+  	<%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
 
-<body>
+  <body>
 
-  <%= render 'layouts/header' %>
+    <%= render 'layouts/header' %>
 
-  <% flash.each do |key, value| %>
-    <div data-alert class="alert-box">
-      <%= content_tag(:div, value, class: "alert-#{key}") %>
-      <a href="#" class="close">&times;</a>
-    </div>
-  <% end %>
+    <%= yield %>
 
-  <%= yield %>
-
-  <%= javascript_include_tag 'application' %>
-</body>
+    
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>
