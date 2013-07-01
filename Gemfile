@@ -15,11 +15,11 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'sass-rails',       '~> 3.2.6'
-  gem 'zurb-foundation',  '~> 4.2.3'
-  gem 'foundicons-rails', '~> 0.1.0'
-  gem 'coffee-rails',     '~> 3.2.2'
-  gem 'uglifier',         '~> 2.1.1'
+  gem 'sass-rails',                  '~> 3.2.6'
+  gem 'zurb-foundation',             '~> 4.2.3'
+  gem 'foundation-icons-sass-rails', '~> 2.0.0'
+  gem 'coffee-rails',                '~> 3.2.2'
+  gem 'uglifier',                    '~> 2.1.1'
 end
 
 group :production do
