@@ -1,5 +1,8 @@
 HouseKeeping::Application.routes.draw do
 
+  resources :companies
+
+
   devise_for :admins, :skip => [:registrations]
 
   as :admin do
