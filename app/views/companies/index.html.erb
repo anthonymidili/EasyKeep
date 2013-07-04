@@ -15,19 +15,19 @@
     <th></th>
   </tr>
 
-<% @companies.each do |company| %>
+<% if @company %>
   <tr>
-    <td><%= company.company_name %></td>
-    <td><%= company.address_1 %></td>
-    <td><%= company.address_2 %></td>
-    <td><%= company.city %></td>
-    <td><%= company.state %></td>
-    <td><%= company.zip %></td>
-    <td><%= company.phone %></td>
-    <td><%= company.fax %></td>
-    <td><%= link_to 'Show', company %></td>
-    <td><%= link_to 'Edit', edit_company_path(company) %></td>
-    <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= @company.company_name %></td>
+    <td><%= @company.address_1 %></td>
+    <td><%= @company.address_2 %></td>
+    <td><%= @company.city %></td>
+    <td><%= @company.state %></td>
+    <td><%= @company.zip %></td>
+    <td><%= @company.phone %></td>
+    <td><%= @company.fax %></td>
+    <td><%= link_to 'Show', @company %></td>
+    <td><%= link_to 'Edit', edit_company_path(@company) %></td>
+    <td><%= link_to 'Destroy', @company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
