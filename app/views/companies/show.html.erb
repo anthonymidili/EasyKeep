@@ -1,46 +1,25 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @company.company_name) %>
 
-<p>
-  <b>Company name:</b>
-  <%= @company.company_name %>
-</p>
+<div class="row">
+  <div class="small-12 columns">
 
-<p>
-  <b>Address 1:</b>
-  <%= @company.address_1 %>
-</p>
+    <h1><%= @company.company_name %></h1>
 
-<p>
-  <b>Address 2:</b>
-  <%= @company.address_2 %>
-</p>
+    <ul class="vcard">
+      <li class="fn"><%= @company.company_name %></li>
+      <li><%= @company.address_1 %></li>
+      <li><%= @company.address_2 %></li>
+      <li><%= @company.city %></li>
+      <li><span><%= @company.state %></span>, <span><%= @company.zip %></span></li>
+      <li><%= @company.phone %></li>
+      <li><%= @company.fax %></li>
+    </ul>
 
-<p>
-  <b>City:</b>
-  <%= @company.city %>
-</p>
+    <br>
 
-<p>
-  <b>State:</b>
-  <%= @company.state %>
-</p>
+    <%= link_to 'Accounts', accounts_path %> |
+    <%= link_to 'Edit', edit_company_path(@company) %> |
+    <%= link_to 'Destroy', @company, method: :delete, data: { confirm: 'Are you sure?' } %>
 
-<p>
-  <b>Zip:</b>
-  <%= @company.zip %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @company.phone %>
-</p>
-
-<p>
-  <b>Fax:</b>
-  <%= @company.fax %>
-</p>
-
-
-<%= link_to 'Accounts', accounts_path %> |
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Destroy', @company, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>
