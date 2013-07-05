@@ -24,9 +24,15 @@
 
     <%= render 'layouts/header' %>
 
+    <% flash.each do |key, value| %>
+      <div data-alert class="alert-box">
+        <%= content_tag(:div, value, class: "alert-#{key}") %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+
     <%= yield %>
 
-    
     <%= javascript_include_tag "application" %>
   </body>
 </html>

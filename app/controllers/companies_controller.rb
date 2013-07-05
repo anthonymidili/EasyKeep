@@ -1,17 +1,6 @@
 class CompaniesController < ApplicationController
-  # GET /companies
-  # GET /companies.json
-  def index
-    @company = current_admin.company
+  before_filter :authenticate_admin!
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @companies }
-    end
-  end
-
-  # GET /companies/1
-  # GET /companies/1.json
   def show
     @company = current_admin.company
 
@@ -21,24 +10,24 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # GET /companies/new
-  # GET /companies/new.json
   def new
-    @company = current_admin.build_company
+    if current_admin.company.nil?
+      @company = current_admin.build_company
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @company }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @company }
+      end
+    else
+      @company = current_admin.company
+      redirect_to edit_company_path(@company)
     end
   end
 
-  # GET /companies/1/edit
   def edit
     @company = current_admin.company
   end
 
-  # POST /companies
-  # POST /companies.json
   def create
     @company = current_admin.build_company(params[:company])
 
@@ -53,8 +42,6 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # PUT /companies/1
-  # PUT /companies/1.json
   def update
     @company = current_admin.company
 
@@ -69,14 +56,12 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # DELETE /companies/1
-  # DELETE /companies/1.json
   def destroy
     @company = current_admin.company
     @company.destroy
 
     respond_to do |format|
-      format.html { redirect_to companies_url }
+      format.html { redirect_to new_company_path }
       format.json { head :no_content }
     end
   end

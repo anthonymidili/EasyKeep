@@ -7,7 +7,7 @@ HouseKeeping::Application.routes.draw do
     put 'admins' => 'devise/registrations#update', as: 'admin_registration'
   end
 
-  resources :companies
+  resources :companies, except: [:index]
 
   resources :accounts
 
