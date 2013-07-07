@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   before_filter :authenticate_admin!
 
   def show
-    @company = current_admin.company
+    @company = current_user.company
 
     respond_to do |format|
       format.html # show.html.erb
@@ -11,7 +11,7 @@ class CompaniesController < ApplicationController
   end
 
   def new
-    if current_admin.company.nil?
+    if current_user.company.nil?
       @company = current_admin.build_company
 
       respond_to do |format|
@@ -19,17 +19,17 @@ class CompaniesController < ApplicationController
         format.json { render json: @company }
       end
     else
-      @company = current_admin.company
+      @company = current_user.company
       redirect_to edit_company_path(@company)
     end
   end
 
   def edit
-    @company = current_admin.company
+    @company = current_user.company
   end
 
   def create
-    @company = current_admin.build_company(params[:company])
+    @company = current_user.build_company(params[:company])
 
     respond_to do |format|
       if @company.save
@@ -43,7 +43,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company = current_admin.company
+    @company = current_user.company
 
     respond_to do |format|
       if @company.update_attributes(params[:company])
@@ -57,7 +57,7 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    @company = current_admin.company
+    @company = current_user.company
     @company.destroy
 
     respond_to do |format|

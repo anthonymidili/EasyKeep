@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   before_filter :authenticate_admin!
 
   def index
-    @accounts = current_admin.company.accounts.all
+    @accounts = current_user.company.accounts.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @accounts }
@@ -10,7 +10,7 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @account = current_admin.company.accounts.find(params[:id])
+    @account = current_user.company.accounts.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,7 +19,7 @@ class AccountsController < ApplicationController
   end
 
   def new
-    @account = current_admin.company.accounts.new
+    @account = current_user.company.accounts.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -28,11 +28,11 @@ class AccountsController < ApplicationController
   end
 
   def edit
-    @account = current_admin.company.accounts.find(params[:id])
+    @account = current_user.company.accounts.find(params[:id])
   end
 
   def create
-    @account = current_admin.company.accounts.new(params[:account])
+    @account = current_user.company.accounts.new(params[:account])
 
     respond_to do |format|
       if @account.save
@@ -46,7 +46,7 @@ class AccountsController < ApplicationController
   end
 
   def update
-    @account = current_admin.company.accounts.find(params[:id])
+    @account = current_user.company.accounts.find(params[:id])
 
     respond_to do |format|
       if @account.update_attributes(params[:account])
@@ -60,7 +60,7 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    @account = current_admin.company.accounts.find(params[:id])
+    @account = current_user.company.accounts.find(params[:id])
     @account.destroy
 
     respond_to do |format|

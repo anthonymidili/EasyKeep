@@ -6,12 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admin = Admin.find_or_create_by_email(email: 'tonywinslow@yahoo.com')
+admin = User.find_or_create_by_email(email: 'tonywinslow@yahoo.com')
 if admin.encrypted_password.blank?
   admin.update_attributes(password: 'password')
 end
 
-admin = Admin.find_or_create_by_email(email: 'gibbs183@yahoo.com')
+admin = User.find_or_create_by_email(email: 'gibbs183@yahoo.com')
 if admin.encrypted_password.blank?
   admin.update_attributes(password: 'password')
 end

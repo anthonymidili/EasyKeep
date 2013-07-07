@@ -1,10 +1,10 @@
 class WelcomeController < ApplicationController
   def home
-    if admin_signed_in?
-      if current_admin.company.nil?
+    if user_signed_in?
+      if current_user.company.nil?
         redirect_to new_company_path
       else
-        @company = current_admin.company
+        @company = current_user.company
         redirect_to company_path(@company)
       end
     end
