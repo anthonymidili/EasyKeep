@@ -3,6 +3,8 @@ class Company < ActiveRecord::Base
 
   belongs_to :admin
 
+  has_many :accounts, dependent: :destroy
+
   validates :company_name, presence: true
   validates :address_1, presence: true
   validates :city, presence: true

@@ -1,6 +1,8 @@
 class Account < ActiveRecord::Base
   attr_accessible :address_1, :address_2, :city, :email, :fax, :name, :phone, :state, :zip
 
+  belongs_to :company
+
   validates :name, presence: true
   validates :email, presence: true
   validates :address_1, presence: true
