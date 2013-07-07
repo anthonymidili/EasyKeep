@@ -1,15 +1,7 @@
-@import "foundation_and_overrides";
-
-.alert {
-  @include alert;
-}
-
 #error_explanation {
-  @include alert-base;
-  @include alert-style;
+  @include alert;
   ul {
     margin-left: 1em;
     margin-right: 1em;
   }
-  .close { @include alert-close; }
 }
