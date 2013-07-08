@@ -10,8 +10,3 @@ admin = User.find_or_create_by_email(email: 'tonywinslow@yahoo.com')
 if admin.encrypted_password.blank?
   admin.update_attributes(password: 'password')
 end
-
-admin = User.find_or_create_by_email(email: 'gibbs183@yahoo.com')
-if admin.encrypted_password.blank?
-  admin.update_attributes(password: 'password')
-end

@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
-  before_filter :authenticate_admin!
+  before_filter :authenticate_user!
+  before_filter :redirect_if_company?, only: [ :new, :create ]
 
   def show
     @company = current_user.company
@@ -11,16 +12,11 @@ class CompaniesController < ApplicationController
   end
 
   def new
-    if current_user.company.nil?
-      @company = current_admin.build_company
+    @company = current_user.build_company
 
-      respond_to do |format|
-        format.html # new.html.erb
-        format.json { render json: @company }
-      end
-    else
-      @company = current_user.company
-      redirect_to edit_company_path(@company)
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @company }
     end
   end
 
@@ -32,7 +28,7 @@ class CompaniesController < ApplicationController
     @company = current_user.build_company(params[:company])
 
     respond_to do |format|
-      if @company.save
+      if @company.save && current_user.save
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render json: @company, status: :created, location: @company }
       else
@@ -63,6 +59,15 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to new_company_path }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def redirect_if_company?
+    if current_user.company
+      @company = current_user.company
+      redirect_to edit_company_path(@company)
     end
   end
 end

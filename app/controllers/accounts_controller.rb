@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_filter :authenticate_admin!
+  before_filter :authenticate_user!
 
   def index
     @accounts = current_user.company.accounts.all
