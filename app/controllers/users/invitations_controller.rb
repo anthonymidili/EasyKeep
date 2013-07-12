@@ -1,4 +1,4 @@
-class Devise::InvitationsController < DeviseController
+class Users::InvitationsController < Devise::InvitationsController
 
   prepend_before_filter :authenticate_inviter!, :only => [:new, :create]
   prepend_before_filter :has_invitations_left?, :only => [:create]
@@ -14,7 +14,10 @@ class Devise::InvitationsController < DeviseController
 
   # POST /resource/invitation
   def create
-    self.resource = resource_class.invite!(invite_params, current_inviter)
+    self.resource = resource_class.invite!(invite_params, current_inviter) do |invitable|
+      invitable.company_id = current_user.company_id
+      invitable.save
+    end
 
     if resource.errors.empty?
       set_flash_message :notice, :send_instructions, :email => self.resource.email
