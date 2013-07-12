@@ -8,8 +8,6 @@ HouseKeeping::Application.routes.draw do
     delete 'users' => 'users/registrations#destroy'
   end
 
-  resources :users
-
   resources :companies, except: [:index]
 
   resources :accounts

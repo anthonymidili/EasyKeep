@@ -12,8 +12,11 @@
 
       <%= devise_error_messages! %>
 
+      <%= f.label :name, 'Full name' %>
+      <%= f.text_field :name, autofocus: true %>
+
       <%= f.label :email %>
-      <%= f.text_field :email, autofocus: true %>
+      <%= f.text_field :email %>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
