@@ -1,6 +1,6 @@
 <p>Hello <%= @resource.email %>!</p>
 
-<p>Someone has invited you to <%= link_to current_user.company, root_url %>, to view your account history. You can accept this invitaion through the link below.</p>
+<p>House Keeping has invited you to <%= root_url %>, to view your account history. You can accept this invitation through the link below.</p>
 
 <p><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>
 
