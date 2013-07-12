@@ -1,11 +1,14 @@
 HouseKeeping::Application.routes.draw do
 
-  devise_for :users, :skip => [:registrations]
+  devise_for :users, :skip => [:registrations], :controllers => { :invitations => 'devise/invitations' }
 
   as :user do
     get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
     put 'users' => 'devise/registrations#update', as: 'user_registration'
+    delete 'users' => 'devise/registrations#destroy'
   end
+
+  resources :users
 
   resources :companies, except: [:index]
 
