@@ -1,13 +1,13 @@
-<% provide(:title, @company.company_name) %>
+<% provide(:title, @company.name) %>
 
 <div class="row">
   <div class="small-12 columns">
 
-    <h1><%= @company.company_name %></h1>
+    <h1><%= @company.name %></h1>
     <h2><%= current_user.email %></h2>
 
     <ul class="vcard">
-      <li class="fn"><%= @company.company_name %></li>
+      <li class="fn"><%= @company.name %></li>
       <li><%= @company.address_1 %></li>
       <li><%= @company.address_2 %></li>
       <li><%= @company.city %></li>
