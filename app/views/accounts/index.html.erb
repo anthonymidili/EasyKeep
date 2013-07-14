@@ -31,16 +31,14 @@
             <td><%= account.zip %></td>
             <td><%= account.phone %></td>
             <td><%= account.fax %></td>
-            <td><%= mail_to account.email %></td>
+            <td><%= mail_to account.user.email %></td>
             <td class="center_cell">
               <%= link_to edit_account_path(account) do %>
                 <i class="general foundicon-edit"></i>
               <% end %>
             </td>
             <td class="center_cell">
-              <%= link_to account, method: :delete,
-                          data: { confirm: "Are you sure? This will permanently delete your
-              user's account." } do%>
+              <%= link_to account, method: :delete, confirm: "Are you sure? This will permanently delete your user's account."  do %>
                 <b><i class="general foundicon-remove"></i></b>
               <% end %>
             </td>
