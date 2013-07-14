@@ -1,7 +1,14 @@
 HouseKeeping::Application.routes.draw do
 
-  devise_for :users, :skip => [:registrations], :controllers => { :invitations => 'users/invitations' }
+  devise_for :accounts, :skip => [:registrations]
+  as :user do
+    get 'accounts/edit' => 'devise/registrations#edit', as: 'edit_account_registration'
+    put 'accounts' => 'devise/registrations#update', as: 'account_registration'
+    delete 'accounts' => 'devise/registrations#destroy'
+  end
 
+
+  devise_for :users, :skip => [:registrations], :controllers => { :invitations => 'users/invitations' }
   as :user do
     get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
     put 'users' => 'devise/registrations#update', as: 'user_registration'
