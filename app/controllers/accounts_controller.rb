@@ -32,7 +32,9 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @account = current_user.company.accounts.new(params[:account])
+    @account = current_company.accounts.build(params[:account])
+    @account.skip_password!
+    @account.skip_email!
 
     respond_to do |format|
       if @account.save
@@ -47,6 +49,8 @@ class AccountsController < ApplicationController
 
   def update
     @account = current_user.company.accounts.find(params[:id])
+    @account.skip_password!
+    @account.skip_email!
 
     respond_to do |format|
       if @account.update_attributes(params[:account])

@@ -1,7 +1,7 @@
 HouseKeeping::Application.routes.draw do
 
   devise_for :accounts, :skip => [:registrations]
-  as :user do
+  as :account do
     get 'accounts/edit' => 'devise/registrations#edit', as: 'edit_account_registration'
     put 'accounts' => 'devise/registrations#update', as: 'account_registration'
     delete 'accounts' => 'devise/registrations#destroy'
