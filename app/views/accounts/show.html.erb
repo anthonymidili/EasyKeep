@@ -7,7 +7,8 @@
 
     <ul class="vcard">
       <li class="fn"><%= @account.name %></li>
-      <li><%= mail_to @account.email %></li>
+      <li><%= @account.user.name %></li>
+      <li><%= mail_to @account.user.email %></li>
       <li><%= @account.address_1 %></li>
       <li><%= @account.address_2 %></li>
       <li><%= @account.city %></li>
