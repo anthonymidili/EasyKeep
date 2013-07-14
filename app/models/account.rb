@@ -5,7 +5,7 @@ class Account < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable
-  attr_accessible :address_1, :address_2, :city, :email, :fax, :name, :phone, :state, :zip
+  attr_accessible :address_1, :address_2, :city, :email, :password, :password_confirmation, :fax, :name, :phone, :state, :zip
 
   belongs_to :company
 
