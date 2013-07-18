@@ -56,8 +56,7 @@ class Users::InvitationsController < Devise::InvitationsController
   def invite_user
     @account = current_company.accounts.find(params[:account_id])
     @account.user.invite!(current_user)  # current user is optional to set the invited_by attribute
-    set_flash_message  :notice, 'Successfully sent invitation.'
-    redirect_to root_path
+    redirect_to account_path(@account), notice: 'Successfully sent invitation.'
   end
 
 protected
