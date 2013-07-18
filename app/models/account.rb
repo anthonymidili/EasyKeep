@@ -15,4 +15,8 @@ class Account < ActiveRecord::Base
   def full_address
     [ address_1, address_2 ].select(&:present?).join(', ')
   end
+
+  def state_zip
+    [ state, zip ].select(&:present?).join(', ')
+  end
 end

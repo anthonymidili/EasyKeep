@@ -8,7 +8,8 @@
     <table>
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Account name</th>
+          <th>Contact name</th>
           <th>Address</th>
           <th>City</th>
           <th>State</th>
@@ -25,6 +26,7 @@
         <tbody>
           <tr>
             <td><%= link_to account.name, account %></td>
+            <td><%= account.user.name %></td>
             <td><%= account.full_address %></td>
             <td><%= account.city %></td>
             <td><%= account.state %></td>

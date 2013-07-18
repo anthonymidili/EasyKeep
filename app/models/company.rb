@@ -11,5 +11,4 @@ class Company < ActiveRecord::Base
   validates :state, presence: true
   validates :zip, presence: true
   validates :phone, presence: true
-
 end
