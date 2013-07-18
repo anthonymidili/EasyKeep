@@ -14,18 +14,19 @@ class AccountsController < ApplicationController
     @account.build_user
   end
 
-  def edit
-    @account = current_company.accounts.find(params[:id])
-  end
-
   def create
     @account = current_company.accounts.build(params[:account])
+    @account.user.company_id = current_company.id
 
     if @account.save
       redirect_to @account, notice: 'Account was successfully created.'
     else
       render action: 'new'
     end
+  end
+
+  def edit
+    @account = current_company.accounts.find(params[:id])
   end
 
   def update

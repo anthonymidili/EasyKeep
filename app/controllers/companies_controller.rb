@@ -20,10 +20,6 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def edit
-    @company = current_user.company
-  end
-
   def create
     @company = current_user.build_company(params[:company])
 
@@ -36,6 +32,10 @@ class CompaniesController < ApplicationController
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def edit
+    @company = current_user.company
   end
 
   def update
