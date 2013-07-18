@@ -17,8 +17,6 @@ class AccountsController < ApplicationController
   def create
     @account = current_company.accounts.build(params[:account])
     @account.user.company_id = current_company.id
-    @account.skip_password!
-    @account.skip_email!
 
     if @account.save
       redirect_to @account, notice: 'Account was successfully created.'
@@ -33,8 +31,6 @@ class AccountsController < ApplicationController
 
   def update
     @account = current_company.accounts.find(params[:id])
-    @account.skip_password!
-    @account.skip_email!
 
     if @account.update_attributes(params[:account])
       redirect_to @account, notice: 'Account was successfully updated.'
