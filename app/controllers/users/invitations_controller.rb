@@ -53,7 +53,15 @@ class Users::InvitationsController < Devise::InvitationsController
     redirect_to after_sign_out_path_for(resource_name)
   end
 
-  protected
+  def invite_user
+    @account = current_company.accounts.find(params[:account_id])
+    @account.user.invite!(current_user)  # current user is optional to set the invited_by attribute
+    set_flash_message  :notice, 'Successfully sent invitation.'
+    redirect_to root_path
+  end
+
+protected
+
   def current_inviter
     @current_inviter ||= authenticate_inviter!
   end
