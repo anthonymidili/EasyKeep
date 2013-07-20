@@ -17,6 +17,7 @@ class AccountsController < ApplicationController
   def create
     @account = current_company.accounts.build(params[:account])
     @account.user.company_id = current_company.id
+    @account.user.skip_validation = true
 
     if @account.save
       redirect_to @account, notice: 'Account was successfully created.'
@@ -31,6 +32,7 @@ class AccountsController < ApplicationController
 
   def update
     @account = current_company.accounts.find(params[:id])
+    @account.user.skip_validation = true
 
     if @account.update_attributes(params[:account])
       redirect_to @account, notice: 'Account was successfully updated.'

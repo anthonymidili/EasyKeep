@@ -1,12 +1,14 @@
 <%= form_for(@account) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="row">
-    <div class="small-12 large-6 columns">
-      <%= f.label :account_name %>
-      <%= f.text_field :name, autofocus: true %>
+  <% unless @account.user == current_user %>
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        <%= f.label :account_name %>
+        <%= f.text_field :name, autofocus: true %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <%= f.fields_for(:user) do |user_f| %>
     <div class="row">
@@ -14,11 +16,12 @@
         <%= user_f.label :contact_name %>
         <%= user_f.text_field :name %>
       </div>
-
-      <div class="small-12 large-6 columns">
-        <%= user_f.label :email %>
-        <%= user_f.text_field :email %>
-      </div>
+      <% unless @account.user == current_user %>
+        <div class="small-12 large-6 columns">
+          <%= user_f.label :email %>
+          <%= user_f.text_field :email %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 
