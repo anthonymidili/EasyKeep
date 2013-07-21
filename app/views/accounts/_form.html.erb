@@ -1,16 +1,28 @@
 <%= form_for(@account) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="row">
-    <div class="small-12 large-6 columns">
-      <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true %>
+  <% if current_user.is_admin? %>
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        <%= f.label :account_name %>
+        <%= f.text_field :name, autofocus: true %>
+      </div>
     </div>
-    <div class="small-12 large-6 columns">
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+  <% end %>
+
+  <%= f.fields_for(:user) do |user_f| %>
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        <%= user_f.label :contact_name %>
+        <%= user_f.text_field :name %>
+      </div>
+        <div class="small-12 large-6 columns">
+          <%= user_f.label :email %>
+          <%= user_f.text_field :email,
+                  disabled: @account.user.encrypted_password.present? %>
+        </div>
     </div>
-  </div>
+  <% end %>
 
   <%= render 'shared/address_fields', f: f %>
 <% end %>

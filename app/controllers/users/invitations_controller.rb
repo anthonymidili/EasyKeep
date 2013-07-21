@@ -17,6 +17,7 @@ class Users::InvitationsController < Devise::InvitationsController
     self.resource = resource_class.invite!(invite_params, current_inviter) do |invitable|
       invitable.company_id = current_user.company_id
       invitable.save
+      invitable.update_attribute(:is_admin, true)
     end
 
     if resource.errors.empty?
@@ -53,7 +54,14 @@ class Users::InvitationsController < Devise::InvitationsController
     redirect_to after_sign_out_path_for(resource_name)
   end
 
-  protected
+  def invite_user
+    @account = current_company.accounts.find(params[:account_id])
+    @account.user.invite!(current_user)  # current user is optional to set the invited_by attribute
+    redirect_to account_path(@account), notice: 'Successfully sent invitation.'
+  end
+
+protected
+
   def current_inviter
     @current_inviter ||= authenticate_inviter!
   end

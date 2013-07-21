@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
 gem 'rails', '3.2.13'
 
 gem 'jquery-rails',     '~> 3.0.1'
@@ -13,6 +12,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.13.2'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'hirb'
 end
 
 group :assets do

@@ -7,11 +7,12 @@
 
     <ul class="vcard">
       <li class="fn"><%= @account.name %></li>
-      <li><%= mail_to @account.email %></li>
+      <li><%= @account.user.name %></li>
+      <li><%= mail_to @account.user.email %></li>
       <li><%= @account.address_1 %></li>
       <li><%= @account.address_2 %></li>
       <li><%= @account.city %></li>
-      <li><span><%= @account.state %></span>, <span><%= @account.zip %></span></li>
+      <li><%= @account.state_zip %></li>
       <li><%= @account.phone %></li>
       <li><%= @account.fax %></li>
     </ul>
@@ -20,6 +21,16 @@
 
     <%= link_to 'Edit', edit_account_path(@account) %> |
     <%= link_to 'Back', accounts_path %>
+    <% if @account.user.email.present? %> |
+      <% if @account.user.invited_by_id %>
+        user is invited
+      <% else %>
+        <%= link_to 'Invite user',
+                    invite_user_path(account_id: @account),
+                    method: :post,
+                    title: 'to view there account information' %>
+      <% end %>
+    <% end %>
 
   </div>
 </div>
