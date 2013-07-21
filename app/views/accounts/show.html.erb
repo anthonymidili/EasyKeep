@@ -20,10 +20,17 @@
     <br>
 
     <%= link_to 'Edit', edit_account_path(@account) %> |
-    <%= link_to 'Invite user to view there account information',
-                invite_user_path(account_id: @account),
-                method: :post %> |
     <%= link_to 'Back', accounts_path %>
+    <% if @account.user.email.present? %> |
+      <% if @account.user.invited_by_id %>
+        user is invited
+      <% else %>
+        <%= link_to 'Invite user',
+                    invite_user_path(account_id: @account),
+                    method: :post,
+                    title: 'to view there account information' %>
+      <% end %>
+    <% end %>
 
   </div>
 </div>
