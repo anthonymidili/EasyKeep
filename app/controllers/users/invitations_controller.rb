@@ -17,6 +17,7 @@ class Users::InvitationsController < Devise::InvitationsController
     self.resource = resource_class.invite!(invite_params, current_inviter) do |invitable|
       invitable.company_id = current_user.company_id
       invitable.save
+      invitable.update_attribute(:is_admin, true)
     end
 
     if resource.errors.empty?

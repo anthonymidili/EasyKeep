@@ -6,7 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admin = User.find_or_create_by_email(email: 'tonywinslow@yahoo.com')
-if admin.encrypted_password.blank?
-  admin.update_attributes(password: 'password', name: 'Anthony Midili')
+user = User.find_or_create_by_email(email: 'tonywinslow@yahoo.com')
+if user.encrypted_password.blank?
+  user.update_attributes(password: 'password', name: 'Anthony Midili')
+  user.update_attribute(:is_admin, true)
 end
