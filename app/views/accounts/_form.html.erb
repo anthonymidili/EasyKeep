@@ -1,7 +1,7 @@
 <%= form_for(@account) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <% unless @account.user == current_user %>
+  <% if current_user.is_admin? %>
     <div class="row">
       <div class="small-12 large-6 columns">
         <%= f.label :account_name %>
