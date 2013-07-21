@@ -22,8 +22,10 @@
     <%= link_to 'Edit', edit_account_path(@account) %> |
     <%= link_to 'Back', accounts_path %>
     <% if @account.user.email.present? %> |
-      <% if @account.user.invited_by_id %>
+      <% if @account.user.invitation_token.present? %>
         user is invited
+      <% elsif @account.user.encrypted_password.present? %>
+        active user
       <% else %>
         <%= link_to 'Invite user',
                     invite_user_path(account_id: @account),

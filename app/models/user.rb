@@ -19,6 +19,6 @@ class User < ActiveRecord::Base
   end
   
   def email_required?
-    self.encrypted_password.present?
+    self.encrypted_password.present? || self.invitation_token.present?
   end
 end
