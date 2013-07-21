@@ -16,12 +16,11 @@
         <%= user_f.label :contact_name %>
         <%= user_f.text_field :name %>
       </div>
-      <% unless @account.user == current_user %>
         <div class="small-12 large-6 columns">
           <%= user_f.label :email %>
-          <%= user_f.text_field :email %>
+          <%= user_f.text_field :email,
+                  disabled: @account.user.encrypted_password.present? %>
         </div>
-      <% end %>
     </div>
   <% end %>
 
