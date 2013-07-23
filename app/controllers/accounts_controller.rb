@@ -1,5 +1,7 @@
 class AccountsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :user_is_admin?, except: [:show, :edit, :update]
+  before_filter :correct_user?, only: [:show, :edit, :update]
 
   def index
     @accounts = current_company.accounts.all
@@ -45,5 +47,20 @@ class AccountsController < ApplicationController
     @account = current_company.accounts.find(params[:id])
     @account.user.destroy
     redirect_to accounts_url, alert: 'Account and all account information was successfully deleted.'
+  end
+
+private
+
+  def user_is_admin?
+    @account = current_user.account
+    redirect_to account_path(@account), alert: 'You must have permission to access!' unless current_user.is_admin?
+  end
+
+  def correct_user?
+    @account = current_company.accounts.find(params[:id])
+    if @account.user != current_user
+      @account = current_user.account
+      redirect_to account_path(@account), alert: 'You can only view your own account information!' unless current_user.is_admin?
+    end
   end
 end

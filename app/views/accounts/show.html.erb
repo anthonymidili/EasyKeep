@@ -20,7 +20,9 @@
     <br>
 
     <%= link_to 'Edit', edit_account_path(@account) %> |
-    <%= link_to 'Back', accounts_path %> |
+    <% if current_user.is_admin? %>
+      <%= link_to 'Back', accounts_path %> |
+    <% end %>
     <%= render 'user_status', account: @account %>
 
   </div>

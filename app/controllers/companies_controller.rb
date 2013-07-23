@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :user_is_admin?
   before_filter :redirect_if_company?, only: [ :new, :create ]
 
   def show
@@ -28,7 +29,7 @@ class CompaniesController < ApplicationController
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render json: @company, status: :created, location: @company }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
@@ -46,7 +47,7 @@ class CompaniesController < ApplicationController
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
@@ -62,12 +63,17 @@ class CompaniesController < ApplicationController
     end
   end
 
-  private
+private
 
   def redirect_if_company?
     if current_user.company
       @company = current_user.company
       redirect_to edit_company_path(@company)
     end
+  end
+
+  def user_is_admin?
+    @account = current_user.account
+    redirect_to account_path(@account), alert: 'You must have permission to access.' unless current_user.is_admin?
   end
 end
