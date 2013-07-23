@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_is_admin?
+  before_filter :require_admin
   before_filter :redirect_if_company?, only: [ :new, :create ]
 
   def show
@@ -72,8 +72,7 @@ private
     end
   end
 
-  def user_is_admin?
-    @account = current_user.account
-    redirect_to account_path(@account), alert: 'You must have permission to access.' unless current_user.is_admin?
+  def require_admin
+    redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
 end

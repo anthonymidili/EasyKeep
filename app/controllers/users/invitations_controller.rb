@@ -1,5 +1,5 @@
 class Users::InvitationsController < Devise::InvitationsController
-  before_filter :user_is_admin?
+  before_filter :require_admin, except: [:edit, :update]
   prepend_before_filter :authenticate_inviter!, :only => [:new, :create]
   prepend_before_filter :has_invitations_left?, :only => [:create]
   prepend_before_filter :require_no_authentication, :only => [:edit, :update, :destroy]
@@ -89,8 +89,7 @@ protected
     devise_parameter_sanitizer.for(:accept_invitation)
   end
 
-  def user_is_admin?
-    @account = current_user.account
-    redirect_to account_path(@account), alert: 'You must have permission to access.' unless current_user.is_admin?
+  def require_admin
+    redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
 end

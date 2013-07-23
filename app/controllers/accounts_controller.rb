@@ -1,14 +1,13 @@
 class AccountsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_is_admin?, except: [:show, :edit, :update]
-  before_filter :correct_user?, only: [:show, :edit, :update]
+  before_filter :require_admin, except: [:show, :edit, :update]
+  before_filter :load_and_authorize_account, only: [:show, :edit, :update]
 
   def index
     @accounts = current_company.accounts.all
   end
 
   def show
-    @account = current_company.accounts.find(params[:id])
   end
 
   def new
@@ -29,11 +28,9 @@ class AccountsController < ApplicationController
   end
 
   def edit
-    @account = current_company.accounts.find(params[:id])
   end
 
   def update
-    @account = current_company.accounts.find(params[:id])
     @account.user.skip_validation = true
 
     if @account.update_attributes(params[:account])
@@ -51,16 +48,17 @@ class AccountsController < ApplicationController
 
 private
 
-  def user_is_admin?
-    @account = current_user.account
-    redirect_to account_path(@account), alert: 'You must have permission to access!' unless current_user.is_admin?
+  def require_admin
+    redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
 
-  def correct_user?
-    @account = current_company.accounts.find(params[:id])
-    if @account.user != current_user
-      @account = current_user.account
-      redirect_to account_path(@account), alert: 'You can only view your own account information!' unless current_user.is_admin?
-    end
+  def load_and_authorize_account
+    @account = if current_user.is_admin?
+                 current_company.accounts.find(params[:id])
+               elsif current_user.account.to_param == params[:id]
+                 current_user.account
+               else
+                 redirect_to account_path(current_user.account)
+               end
   end
 end
