@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.14'
 
 gem 'jquery-rails',     '~> 3.0.1'
 gem 'devise',           '~> 3.0.0.rc'
