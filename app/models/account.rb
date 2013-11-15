@@ -5,7 +5,7 @@ class Account < ActiveRecord::Base
   
   # Keeping belongs_to, accepts_nested_attrubtes_for and attr_accessible all
   # in one place because they are all related to the User.
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   accepts_nested_attributes_for :user
   attr_accessible :user_attributes
 

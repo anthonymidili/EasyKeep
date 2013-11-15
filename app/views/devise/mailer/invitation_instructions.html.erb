@@ -1,6 +1,6 @@
 <p>Hello <%= @resource.email %>!</p>
 
-<p>House Keeping has invited you to <%= root_url %>, to view your account history. You can accept this invitation through the link below.</p>
+<p>House Keeping has invited you to <%= link_to 'www.house-keeping.herokuapp.com', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %>, to view your account history. You can accept this invitation through the link below.</p>
 
 <p><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>
 

@@ -16,11 +16,25 @@
         <li class="active"><%= link_to 'Home', root_path %></li>
         <% if user_signed_in? %>
           <li class="divider"></li>
+
+          <!-- Company drop-down -->
+          <% if current_user.company.persisted? && current_user.is_admin? %>
+            <li class="has-dropdown"><a href="#">Company settings</a>
+              <ul class="dropdown">
+                <li><%= link_to 'Edit', edit_company_path(current_user.company) %></li>
+                <li><%= link_to 'Invite Admin', new_user_invitation_path %></li>
+                <li><%= link_to 'Destroy', current_user.company,
+                                method: :delete,
+                                data: { confirm: 'Are you sure? This will PERMANENTLY DELETE your COMPANY and all the ACCOUNTS attached to your company!' } %></li>
+              </ul>
+            </li>
+          <% end %>
+
+          <li class="divider"></li>
           <li><%= link_to 'User settings', edit_user_registration_path %></li>
           <li class="divider"></li>
           <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <li class="divider"></li>
           <li><%= link_to 'Sign in', new_user_session_path %></li>
         <% end %>
       </ul>
