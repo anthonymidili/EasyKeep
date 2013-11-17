@@ -6,9 +6,8 @@ class WelcomeController < ApplicationController
       elsif current_user.account
         @account = current_user.account
         redirect_to account_path(@account)
-      else
-        @company = current_user.company
-        redirect_to company_path(@company)
+      elsif current_user.is_admin?
+        redirect_to accounts_path
       end
     end
   end

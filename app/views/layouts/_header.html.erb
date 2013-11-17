@@ -21,6 +21,7 @@
           <% if current_user.company.persisted? && current_user.is_admin? %>
             <li class="has-dropdown"><a href="#">Company settings</a>
               <ul class="dropdown">
+                <li><%= link_to 'Company', company_path(current_user.company) %></li>
                 <li><%= link_to 'Edit', edit_company_path(current_user.company) %></li>
                 <li><%= link_to 'Invite Admin', new_user_invitation_path %></li>
                 <li><%= link_to 'Destroy', current_user.company,
