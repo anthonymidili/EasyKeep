@@ -9,6 +9,8 @@ class Account < ActiveRecord::Base
   accepts_nested_attributes_for :user
   attr_accessible :user_attributes
 
+  has_many :services, dependent: :destroy
+
   validates :name, presence: true
   
   def full_address

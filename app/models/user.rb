@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  before_save { |account| account.email = nil if account.email.blank? }  # Include default users modules. Others available are:
+  before_save { |account| account.email = nil if account.email.blank? }
+  # Include default users modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
