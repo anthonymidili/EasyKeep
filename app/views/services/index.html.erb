@@ -15,13 +15,12 @@
     <td><%= service.performed_on %></td>
     <td><%= service.money_received %></td>
     <td><%= service.note %></td>
-    <td><%= link_to 'Show', [@account, service] %></td>
+    <td><%= link_to 'Show', account_service_path(@account, service) %></td>
     <td><%= link_to 'Edit', edit_account_service_path(@account, service) %></td>
     <td><%= link_to 'Destroy', [@account, service], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Service', new_account_service_path %>
+<%= link_to 'New Service', new_account_service_path %> |
+<%= link_to 'Back', accounts_path %>

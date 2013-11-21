@@ -8,6 +8,8 @@ class WelcomeController < ApplicationController
         redirect_to account_path(@account)
       elsif current_user.is_admin?
         redirect_to accounts_path
+      else
+        redirect_to root_path
       end
     end
   end

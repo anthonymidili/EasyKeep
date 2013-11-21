@@ -25,5 +25,8 @@
     <% end %>
     <%= render 'user_status', account: @account %>
 
+    <br><br>
+
+    <%= link_to 'View services', account_services_path(@account) %>
   </div>
 </div>
