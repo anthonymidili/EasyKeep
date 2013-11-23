@@ -4,17 +4,17 @@
   <div class="small-12 columns">
 
     <h1><%= @company.name %></h1>
-    <h2><%= current_user.email %></h2>
 
-    <ul class="vcard">
-      <li class="fn"><%= @company.name %></li>
-      <li><%= @company.address_1 %></li>
-      <li><%= @company.address_2 %></li>
-      <li><%= @company.city %></li>
-      <li><span><%= @company.state %></span>, <span><%= @company.zip %></span></li>
-      <li><%= @company.phone %></li>
-      <li><%= @company.fax %></li>
-    </ul>
+    <dl>
+      <dt>Address:</dt>
+      <dd><%= @company.full_address %></dd>
+      <dt>Phone:</dt>
+      <dd><%= @company.phone %></dd>
+      <% if @company.fax.present? %>
+        <dt>Fax:</dt>
+        <dd><%= @company.fax %></dd>
+      <% end %>
+    </dl>
 
     <br>
 

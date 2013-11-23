@@ -11,4 +11,8 @@ class Company < ActiveRecord::Base
   validates :state, presence: true
   validates :zip, presence: true
   validates :phone, presence: true
+
+  def full_address
+    [ address_1, address_2, city, state, zip ].select(&:present?).join(', ')
+  end
 end
