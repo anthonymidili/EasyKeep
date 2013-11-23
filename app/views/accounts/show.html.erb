@@ -5,25 +5,31 @@
 
     <h1><%= "#{@account.name} Account" %></h1>
 
-    <ul class="vcard">
-      <li class="fn"><%= @account.name %></li>
-      <li><%= @account.user.name %></li>
-      <li><%= mail_to @account.user.email %></li>
-      <li><%= @account.address_1 %></li>
-      <li><%= @account.address_2 %></li>
-      <li><%= @account.city %></li>
-      <li><%= @account.state_zip %></li>
-      <li><%= @account.phone %></li>
-      <li><%= @account.fax %></li>
+    <ul class="inline-list panel">
+      <% if @account.user.name.present? %>
+        <li><b>Contact name: </b><%= @account.user.name %></li>
+      <% end %>
+      <% if @account.full_address.present? %>
+        <li><b>Address: </b><%= @account.full_address %></li>
+      <% end %>
+      <% if @account.phone.present? %>
+        <li><b>Phone: </b><%= @account.phone %></li>
+      <% end %>
+      <% if @account.fax.present? %>
+        <li><b>Fax: </b><%= @account.fax %></li>
+      <% end %>
+      <% if @account.user.email.present? %>
+        <li><b>Email: </b><%= mail_to @account.user.email %></li>
+      <% end %>
+      <li><b>User status: </b><%= render 'user_status', account: @account %></li>
     </ul>
 
     <br>
 
-    <%= link_to 'Edit', edit_account_path(@account) %> |
+    <%= link_to 'Edit', edit_account_path(@account) %>
     <% if current_user.is_admin? %>
-      <%= link_to 'Back', accounts_path %> |
+      | <%= link_to 'Back', accounts_path %>
     <% end %>
-    <%= render 'user_status', account: @account %>
 
     <br><br>
 
