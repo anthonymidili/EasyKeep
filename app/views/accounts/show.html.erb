@@ -1,28 +1,30 @@
 <% provide(:title, "#{@account.name} account") %>
 
 <div class="row">
-  <div class="small-12 columns">
+  <div class="small-12 small-centered columns">
 
     <h1><%= "#{@account.name} Account" %></h1>
 
-    <ul class="inline-list panel">
-      <% if @account.user.name.present? %>
-        <li><b>Contact name: </b><%= @account.user.name %></li>
-      <% end %>
-      <% if @account.full_address.present? %>
-        <li><b>Address: </b><%= @account.full_address %></li>
-      <% end %>
-      <% if @account.phone.present? %>
-        <li><b>Phone: </b><%= @account.phone %></li>
-      <% end %>
-      <% if @account.fax.present? %>
-        <li><b>Fax: </b><%= @account.fax %></li>
-      <% end %>
-      <% if @account.user.email.present? %>
-        <li><b>Email: </b><%= mail_to @account.user.email %></li>
-      <% end %>
-      <li><b>User status: </b><%= render 'user_status', account: @account %></li>
-    </ul>
+    <div class="panel">
+      <ul class="inline-list">
+        <% if @account.user.name.present? %>
+          <li><b>Contact name: </b><%= @account.user.name %></li>
+        <% end %>
+        <% if @account.full_address.present? %>
+          <li><b>Address: </b><%= @account.full_address %></li>
+        <% end %>
+        <% if @account.phone.present? %>
+          <li><b>Phone: </b><%= @account.phone %></li>
+        <% end %>
+        <% if @account.fax.present? %>
+          <li><b>Fax: </b><%= @account.fax %></li>
+        <% end %>
+        <% if @account.user.email.present? %>
+          <li><b>Email: </b><%= mail_to @account.user.email %></li>
+        <% end %>
+        <li><b>User status: </b><%= render 'user_status', account: @account %></li>
+      </ul>
+    </div>
 
     <br>
 
@@ -34,5 +36,6 @@
     <br><br>
 
     <%= link_to 'View services', account_services_path(@account) %>
+
   </div>
 </div>
