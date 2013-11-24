@@ -22,20 +22,26 @@
         <% if @account.user.email.present? %>
           <li><b>Email: </b><%= mail_to @account.user.email %></li>
         <% end %>
-        <li><b>User status: </b><%= render 'user_status', account: @account %></li>
+        <li><b>User status: </b><%= render 'accounts/user_status', account: @account %></li>
       </ul>
     </div>
 
+    <h4>New Service</h4>
+
+    <%= render 'services/form' %>
+
+    <%= render 'services/index' if @services.present? %>
+
     <br>
 
-    <%= link_to 'Edit', edit_account_path(@account) %>
-    <% if current_user.is_admin? %>
-      | <%= link_to 'Back', accounts_path %>
-    <% end %>
-
-    <br><br>
-
-    <%= link_to 'View services', account_services_path(@account) %>
+    <ul class="inline-list">
+      <li><%= link_to 'Edit Account Info', edit_account_path(@account),
+                      class: 'small button radius' %></li>
+      <% if current_user.is_admin? %>
+        <li><%= link_to 'Accounts Listing', accounts_path,
+                        class: 'small button radius' %></li>
+      <% end %>
+    </ul>
 
   </div>
 </div>

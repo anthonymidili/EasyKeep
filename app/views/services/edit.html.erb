@@ -1,6 +1,11 @@
-<h1>Editing service</h1>
+<div class="row">
+  <div class="small-12 columns">
 
-<%= render 'form' %>
+    <h1>Editing service</h1>
 
-<%= link_to 'Show', [@account, @service] %> |
-<%= link_to 'Back', account_services_path %>
+    <%= render 'form' %>
+
+    <%= link_to 'Back', account_path(@account) %>
+
+  </div>
+</div>

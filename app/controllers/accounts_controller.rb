@@ -8,6 +8,8 @@ class AccountsController < ApplicationController
   end
 
   def show
+    @services = @account.services.all
+    @service = @account.services.build
   end
 
   def new

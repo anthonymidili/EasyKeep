@@ -10,7 +10,7 @@ HouseKeeping::Application.routes.draw do
   resources :companies, except: [:index]
 
   resources :accounts do
-    resources :services
+    resources :services, except: [:index, :show, :new]
   end
 
   root to: 'welcome#home'
