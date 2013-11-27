@@ -1,7 +1,11 @@
 class ServicesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_admin
+  before_filter :require_admin, except: [:show]
   before_filter :set_account
+
+  def show
+    @service = @account.services.find(params[:id])
+  end
 
   def edit
     @service = @account.services.find(params[:id])

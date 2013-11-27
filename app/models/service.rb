@@ -5,5 +5,7 @@ class Service < ActiveRecord::Base
 
   belongs_to :account
 
+  default_scope order: 'performed_on DESC'
+
   validates :performed_on, presence: true
 end

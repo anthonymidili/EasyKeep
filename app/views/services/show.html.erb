@@ -1,0 +1,22 @@
+<% provide(:title, 'Note') %>
+
+<br>
+
+<div class="row">
+  <div class="small-12 large-8 small-centered columns panel" >
+
+    <h1>Note <small><%= @service.performed_on %></small></h1>
+
+    <%= @service.note %>
+
+    <br><br>
+
+    <ul class="inline-list">
+      <li><%= link_to 'Back', @account %></li>
+      <% if current_user.is_admin? %>
+        <li><%= link_to 'Edit', edit_account_service_path(@account, @service) %></li>
+      <% end %>
+    </ul>
+
+  </div>
+</div>

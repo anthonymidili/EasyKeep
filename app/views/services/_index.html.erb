@@ -16,8 +16,16 @@
     <tbody>
       <tr>
         <td><%= service.performed_on %></td>
-        <td><%= number_to_currency(service.money_received, unit: "$") %></td>
-        <td><%= service.note %></td>
+        <td><%= number_to_currency(service.money_received, unit: '$') %></td>
+        <td>
+          <% if service.note.length > 10 %>
+            <%= link_to account_service_path(@account, service) do %>
+              <%= service.note.truncate(10, :omission => '... (continued)') %>
+            <% end %>
+          <% else %>
+            <%= service.note %>
+          <% end %>
+        </td>
         <td><%= link_to 'Edit', edit_account_service_path(@account, service) %></td>
         <td><%= link_to 'Destroy', [@account, service],
                         method: :delete,
