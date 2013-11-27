@@ -4,4 +4,6 @@ class Service < ActiveRecord::Base
   attr_accessible :money_received, :note, :performed_on
 
   belongs_to :account
+
+  validates :performed_on, presence: true
 end

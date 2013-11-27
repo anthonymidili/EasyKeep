@@ -18,7 +18,10 @@
 
     <br>
 
-    <%= link_to 'Accounts listing', accounts_path %>
+    <ul class="inline-list">
+      <li><%= link_to 'Edit', edit_company_path(@company) %></li>
+      <li><%= link_to 'Accounts listing', accounts_path %></li>
+    </ul>
 
   </div>
 </div>
