@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
   def show
     @services = @account.services.all
     @service = @account.services.build
+    @service.performed_on ||= Date.current
   end
 
   def new

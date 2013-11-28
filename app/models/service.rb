@@ -5,7 +5,9 @@ class Service < ActiveRecord::Base
 
   belongs_to :account
 
-  default_scope order: 'performed_on DESC'
+  validates :performed_on,
+            format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
+                      message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
-  validates :performed_on, presence: true
+  default_scope order: 'performed_on DESC'
 end
