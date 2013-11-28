@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_one :account, dependent: :destroy
 
   belongs_to :company
-  
+
   def password_required?
     super unless @skip_validation
   end
