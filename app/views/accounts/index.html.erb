@@ -45,6 +45,10 @@
       <% end %>
     </table>
 
+    <%= paginate @accounts %>
+
+    <br>
+
     <%= link_to 'Create new account', new_account_path %>
 
   </div>

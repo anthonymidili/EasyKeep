@@ -6,6 +6,7 @@ gem 'jquery-rails',     '~> 3.0.1'
 gem 'devise',           '~> 3.0.0.rc'
 gem 'devise_invitable', '~> 1.1.8'
 gem 'bcrypt-ruby',      '~> 3.0.1'
+gem 'kaminari',         '~> 0.14.1'
 
 group :development, :test do
   gem 'sqlite3',     '~> 1.3.7'
