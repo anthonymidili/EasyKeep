@@ -36,7 +36,7 @@ class ServicesController < ApplicationController
     @service = @account.services.find(params[:id])
     @service.destroy
 
-    redirect_to @account
+    redirect_to @account, alert: 'Service history item successfully deleted.'
   end
 
 private

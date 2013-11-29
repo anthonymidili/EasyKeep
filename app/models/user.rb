@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
 
   belongs_to :company
 
+  alias_attribute :contact_name, :name
+  validates :contact_name, presence: true
+
   def password_required?
     super unless @skip_validation
   end
