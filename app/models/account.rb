@@ -11,8 +11,7 @@ class Account < ActiveRecord::Base
 
   has_many :services, dependent: :destroy
 
-  alias_attribute :account_name, :name
-  validates :account_name, presence: true
+  validates :name, presence: true
 
   def full_address
     [ address_1, address_2, city, state, zip ].select(&:present?).join(', ')
