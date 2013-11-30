@@ -6,8 +6,10 @@
       <th>Performed on</th>
       <th>Amount received</th>
       <th>Note</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <% if current_user.is_admin? %>
+        <th>Edit</th>
+        <th>Delete</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -26,18 +28,20 @@
             <%= service.note %>
           <% end %>
         </td>
-        <td class="center_cell">
-          <%= link_to edit_account_service_path(@account, service) do %>
-            <i class="general foundicon-edit"></i>
-          <% end %>
-        </td>
-        <td class="center_cell">
-          <%= link_to [@account, service],
-                      method: :delete,
-                      confirm: 'Are you sure? This will permanently delete your service history record.' do %>
-            <b><i class="general foundicon-remove"></i></b>
-          <% end %>
-        </td>
+        <% if current_user.is_admin? %>
+          <td class="center_cell">
+            <%= link_to edit_account_service_path(@account, service) do %>
+              <i class="general foundicon-edit"></i>
+            <% end %>
+          </td>
+          <td class="center_cell">
+            <%= link_to [@account, service],
+                        method: :delete,
+                        confirm: 'Are you sure? This will permanently delete your service history record.' do %>
+              <b><i class="general foundicon-remove"></i></b>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     </tbody>
   <% end %>

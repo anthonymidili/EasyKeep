@@ -26,10 +26,10 @@
       </ul>
     </div>
 
-    <h4>New Service</h4>
-
-    <%= render 'services/form' %>
-
+    <% if current_user.is_admin? %>
+      <h4>New Service</h4>
+      <%= render 'services/form' %>
+    <% end %>
     <%= render 'services/index' if @services.present? %>
 
     <br>
