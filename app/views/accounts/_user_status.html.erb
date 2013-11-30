@@ -1,10 +1,15 @@
 <% if account.user.invitation_token.present? %>
-  Invited
+  <div>
+    Invited
+    <%= link_to 'Re-invite', invite_user_path(account_id: account),
+                method: :post,
+                class: 'tiny button radius',
+                title: 'to view there account information' %>
+  </div>
 <% elsif account.user.encrypted_password.present? %>
   Active
 <% elsif account.user.email.present? %>
-  <%= link_to 'Invite',
-              invite_user_path(account_id: account),
+  <%= link_to 'Invite', invite_user_path(account_id: account),
               method: :post,
               class: 'tiny button radius',
               title: 'to view there account information' %>
