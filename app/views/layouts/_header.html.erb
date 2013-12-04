@@ -18,7 +18,7 @@
           <li class="divider"></li>
 
           <!-- Company drop-down -->
-          <% if current_user.company.persisted? && current_user.is_admin? %>
+          <% if !current_user.company.nil? && current_user.company.persisted? && current_user.is_admin? %>
             <li class="has-dropdown"><a href="#">Company settings</a>
               <ul class="dropdown">
                 <li><%= link_to 'Company', company_path(current_user.company) %></li>
