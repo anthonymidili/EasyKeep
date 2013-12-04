@@ -6,13 +6,11 @@ class Users::InvitationsController < Devise::InvitationsController
   prepend_before_filter :resource_from_invitation_token, :only => [:edit, :destroy]
   helper_method :after_sign_in_path_for
 
-  # GET /resource/invitation/new
   def new
     self.resource = resource_class.new
     render :new
   end
 
-  # POST /resource/invitation
   def create
     self.resource = resource_class.invite!(invite_params, current_inviter) do |invitable|
       invitable.company_id = current_user.company_id
@@ -28,12 +26,10 @@ class Users::InvitationsController < Devise::InvitationsController
     end
   end
 
-  # GET /resource/invitation/accept?invitation_token=abcdef
   def edit
     render :edit
   end
 
-  # PUT /resource/invitation
   def update
     self.resource = resource_class.accept_invitation!(update_resource_params)
 
@@ -47,7 +43,6 @@ class Users::InvitationsController < Devise::InvitationsController
     end
   end
 
-  # GET /resource/invitation/remove?invitation_token=abcdef
   def destroy
     resource.destroy
     set_flash_message :notice, :invitation_removed
@@ -82,11 +77,11 @@ protected
   end
 
   def invite_params
-    devise_parameter_sanitizer.for(:invite)
+    devise_parameter_sanitizer.sanitize(:invite)
   end
 
   def update_resource_params
-    devise_parameter_sanitizer.for(:accept_invitation)
+    devise_parameter_sanitizer.sanitize(:accept_invitation)
   end
 
   def require_admin
