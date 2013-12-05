@@ -31,14 +31,14 @@
         <% if current_user.is_admin? %>
           <td class="center_cell">
             <%= link_to edit_account_service_path(@account, service) do %>
-              <i class="general foundicon-edit"></i>
+              <i class="page fi-page-edit"></i>
             <% end %>
           </td>
           <td class="center_cell">
             <%= link_to [@account, service],
                         method: :delete,
                         confirm: 'Are you sure? This will permanently delete your service history record.' do %>
-              <b><i class="general foundicon-remove"></i></b>
+              <b><i class="general fi-x"></i></b>
             <% end %>
           </td>
         <% end %>
