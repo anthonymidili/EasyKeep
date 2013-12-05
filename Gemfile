@@ -18,7 +18,7 @@ end
 
 group :assets do
   gem 'sass-rails',                  '~> 3.2.6'
-  gem 'foundation-rails', github: 'zurb/foundation-rails'
+  gem 'foundation-rails',            '~> 5.0.2'
   gem 'foundation-icons-sass-rails', '~> 3.0.0'
   gem 'coffee-rails',                '~> 3.2.2'
   gem 'uglifier',                    '~> 2.3.2'

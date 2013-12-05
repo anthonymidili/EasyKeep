@@ -15,8 +15,8 @@
 
   <title><%= content_for?(:title) ? "House Keeping | #{yield(:title)}" : 'House Keeping' %></title>
 
-  <%= stylesheet_link_tag 'application', 'data-turbolinks-track' => true, media: 'all' %>
-  <%= javascript_include_tag 'vendor/modernizr', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'vendor/modernizr' %>
 
   <%= csrf_meta_tags %>
 </head>
@@ -29,6 +29,5 @@
 <%= yield %>
 
 <%= javascript_include_tag 'application' %>
-<%= javascript_tag '$(document).foundation();' %>
 </body>
 </html>
