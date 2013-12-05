@@ -18,11 +18,11 @@ end
 
 group :assets do
   gem 'sass-rails',                  '~> 3.2.6'
-  gem 'zurb-foundation',             '~> 4.3.2'
+  gem 'foundation-rails', github: 'zurb/foundation-rails'
   gem 'foundation-icons-sass-rails', '~> 3.0.0'
   gem 'coffee-rails',                '~> 3.2.2'
   gem 'uglifier',                    '~> 2.3.2'
-  gem 'jquery-ui-sass-rails',        '~> 4.0.3.0'
+  gem 'jquery-ui-sass-rails',        '~> 4.0.3'
 end
 
 group :production do

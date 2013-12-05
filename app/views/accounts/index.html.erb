@@ -32,12 +32,12 @@
             <td><%= render 'user_status', account: account %></td>
             <td class="center_cell">
               <%= link_to edit_account_path(account) do %>
-                <i class="general foundicon-edit"></i>
+                <i class="page fi-page-edit"></i>
               <% end %>
             </td>
             <td class="center_cell">
               <%= link_to account, method: :delete, confirm: 'Are you sure? This will permanently delete your account and all the information.'  do %>
-                <b><i class="general foundicon-remove"></i></b>
+                <b><i class="general fi-x"></i></b>
               <% end %>
             </td>
           </tr>
