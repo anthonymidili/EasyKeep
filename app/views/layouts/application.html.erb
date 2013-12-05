@@ -15,18 +15,20 @@
 
   <title><%= content_for?(:title) ? "House Keeping | #{yield(:title)}" : 'House Keeping' %></title>
 
-  <%= stylesheet_link_tag 'application' %>
-  <%= javascript_include_tag 'vendor/modernizr' %>
+  <%= stylesheet_link_tag 'application', 'data-turbolinks-track' => true, media: 'all' %>
+  <%= javascript_include_tag 'vendor/modernizr', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-<%= javascript_include_tag 'application' %>
-<%= render 'layouts/header' %>
+  <%= render 'layouts/header' %>
 
-<%= render 'shared/flash_messages' %>
+  <%= render 'shared/flash_messages' %>
 
-<%= yield %>
+  <%= yield %>
 
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_tag '$(document).foundation();' %>
 </body>
 </html>
