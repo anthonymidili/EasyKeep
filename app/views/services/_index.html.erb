@@ -1,5 +1,16 @@
 <h4>Service History</h4>
 
+<div class="row">
+  <%= form_tag @account, method: :get do %>
+    <div class="small-6 columns">
+      <%= select_year(Date.today) %>
+    </div>
+    <div class="small-6 columns">
+      <%= submit_tag 'Select year', class: 'tiny button radius', name: nil %>
+    </div>
+  <% end %>
+</div>
+
 <table class="small-12">
   <thead>
     <tr>
