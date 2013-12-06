@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="small-12 large-6 small-centered columns">
+  <div class="small-12 medium-6 large-6 small-centered columns">
 
     <h2><%= t 'devise.invitations.edit.header' %></h2>
 
@@ -13,7 +13,7 @@
       <p><%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation %></p>
 
-      <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
+      <p><%= f.submit t("devise.invitations.edit.submit_button"), class: 'small button radius expand' %></p>
     <% end %>
 
   </div>
