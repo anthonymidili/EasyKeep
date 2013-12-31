@@ -3,10 +3,10 @@
 <div class="row">
   <%= form_tag @account, method: :get do %>
     <div class="small-6 columns">
-      <%= select_year(Date.today) %>
+      <%= select_date(active_date) %>
     </div>
     <div class="small-6 columns">
-      <%= submit_tag 'Select year', class: 'tiny button radius', name: nil %>
+      <%= submit_tag 'Select Year to View', class: 'tiny button radius', name: nil %>
     </div>
   <% end %>
 </div>
@@ -24,7 +24,7 @@
     </tr>
   </thead>
 
-<% @services.each do |service| %>
+<% @services.by_year(active_date).each do |service| %>
   <% if service.persisted? %>
     <tbody>
       <tr>

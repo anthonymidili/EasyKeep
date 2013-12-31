@@ -10,4 +10,9 @@ class Service < ActiveRecord::Base
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
   default_scope order: 'performed_on DESC'
+
+  scope :by_year, -> active_date {
+    date = active_date
+    where("performed_on >= ? AND performed_on <= ?", date.beginning_of_year, date.end_of_year)
+  }
 end
