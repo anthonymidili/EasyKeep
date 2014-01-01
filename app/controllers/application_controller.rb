@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       if cookies[:active_date].nil?
         cookies[:active_date] = Date.current
       else
-        cookies[:active_date].to_date || Date.current
+        cookies[:active_date].to_date
       end
     end
   end; helper_method :active_date
