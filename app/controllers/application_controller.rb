@@ -9,11 +9,9 @@ class ApplicationController < ActionController::Base
     @active_date = begin
       cookies[:active_date] = Date.new(params[:date][:year].to_i, params[:date][:month].to_i,params[:date][:day].to_i)
     rescue
-      if cookies[:active_date].nil?
-        cookies[:active_date] = Date.current
-      else
-        cookies[:active_date].to_date
-      end
+      cookies[:active_date].nil? ?
+          cookies[:active_date] = Date.current :
+          cookies[:active_date].to_date
     end
   end; helper_method :active_date
 end
