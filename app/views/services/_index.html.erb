@@ -3,7 +3,7 @@
 <div class="row">
   <%= form_tag @account, method: :get do %>
     <div class="small-6 columns">
-      <%= select_date(active_date) %>
+      <%= select_date(active_date, discard_month: true, discard_day: true) %>
     </div>
     <div class="small-6 columns">
       <%= submit_tag 'Select Year to View', class: 'tiny button radius', name: nil %>
@@ -24,39 +24,39 @@
     </tr>
   </thead>
 
-<% @services.by_year(active_date).each do |service| %>
-  <% if service.persisted? %>
-    <tbody>
-      <tr>
-        <td><%= service.performed_on %></td>
-        <td><%= number_to_currency(service.money_received, unit: '$') %></td>
-        <td>
-          <% if service.note.length > 10 %>
-            <%= link_to account_service_path(@account, service) do %>
-              <%= service.note.truncate(10, :omission => '... (continued)') %>
+  <% @services.by_year(active_date).each do |service| %>
+    <% if service.persisted? %>
+      <tbody>
+        <tr>
+          <td><%= service.performed_on %></td>
+          <td><%= number_to_currency(service.money_received, unit: '$') %></td>
+          <td>
+            <% if service.note.length > 10 %>
+              <%= link_to account_service_path(@account, service) do %>
+                <%= service.note.truncate(10, :omission => '... (continued)') %>
+              <% end %>
+            <% else %>
+              <%= service.note %>
             <% end %>
-          <% else %>
-            <%= service.note %>
+          </td>
+          <% if current_user.is_admin? %>
+            <td class="center_cell">
+              <%= link_to edit_account_service_path(@account, service) do %>
+                <i class="page fi-page-edit"></i>
+              <% end %>
+            </td>
+            <td class="center_cell">
+              <%= link_to [@account, service],
+                          method: :delete,
+                          confirm: 'Are you sure? This will permanently delete your service history record.' do %>
+                <b><i class="general fi-x"></i></b>
+              <% end %>
+            </td>
           <% end %>
-        </td>
-        <% if current_user.is_admin? %>
-          <td class="center_cell">
-            <%= link_to edit_account_service_path(@account, service) do %>
-              <i class="page fi-page-edit"></i>
-            <% end %>
-          </td>
-          <td class="center_cell">
-            <%= link_to [@account, service],
-                        method: :delete,
-                        confirm: 'Are you sure? This will permanently delete your service history record.' do %>
-              <b><i class="general fi-x"></i></b>
-            <% end %>
-          </td>
-        <% end %>
-      </tr>
-    </tbody>
+        </tr>
+      </tbody>
+    <% end %>
   <% end %>
-<% end %>
 </table>
 
 <%= paginate @services %>
