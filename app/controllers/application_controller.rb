@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
 private
 
   def set_cookies
-    cookies[:active_date] = Date.current if cookies[:active].nil?
+    cookies[:active_date] = Date.current if cookies[:active_date].nil?
   end
 end
