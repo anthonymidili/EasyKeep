@@ -16,11 +16,11 @@
         <%= user_f.label :name, '*Contact name' %>
         <%= user_f.text_field :name, placeholder: 'John Smith' %>
       </div>
-        <div class="small-12 medium-6 large-6 columns">
-          <%= user_f.label :email %>
-          <%= user_f.text_field :email,
-                  disabled: @account.user.encrypted_password.present? %>
-        </div>
+      <div class="small-12 medium-6 large-6 columns">
+        <%= user_f.label :email %>
+        <%= user_f.text_field :email,
+                disabled: @account.user.encrypted_password.present? %>
+      </div>
     </div>
   <% end %>
 
