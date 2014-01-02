@@ -3,6 +3,19 @@
 <div class="row">
   <%= form_tag @account, method: :get do %>
     <div class="small-6 columns">
+      <label>View By</label>
+      <%= radio_button_tag 'view_by', :year %><%= label_tag 'view_by', 'Year' %>
+      <%= radio_button_tag 'view_by', :month %><%= label_tag 'view_by', 'Month' %>
+    </div>
+    <div class="small-6 columns">
+      <%= submit_tag 'View By', class: 'tiny button radius', name: nil %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <%= form_tag @account, method: :get do %>
+    <div class="small-6 columns">
       <%= select_date(active_date, discard_month: true, discard_day: true) %>
     </div>
     <div class="small-6 columns">
