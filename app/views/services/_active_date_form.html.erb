@@ -1,8 +1,10 @@
 <%= form_tag @account, method: :get do %>
-  <div class="small-6 medium-3 large-3 columns">
-    <%= year_or_month_select %>
-  </div>
-  <div class="small-6 medium-3 large-3 columns">
-    <%= submit_tag "Select #{view_by.capitalize} to View", class: 'tiny button radius', name: nil %>
+  <div class="row">
+    <div class="small-6 columns">
+      <%= year_or_month_select %>
+    </div>
+    <div class="small-6 columns">
+      <%= submit_tag "Select #{view_by.capitalize} to View", class: 'tiny button radius', name: nil %>
+    </div>
   </div>
 <% end %>
