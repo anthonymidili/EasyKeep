@@ -1,1 +1,3 @@
-<h1>Year</h1>
+<% @services.by_year(active_date).each do |service| %>
+  <%= render 'services/items', service: service %>
+<% end %>

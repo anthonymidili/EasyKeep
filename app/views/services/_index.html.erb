@@ -1,26 +1,10 @@
 <h4>Service History</h4>
 
 <div class="row">
-  <%= form_tag @account, method: :get do %>
-    <div class="small-12 medium-6 large-6 columns">
-      <label>View By</label>
-      <%= radio_button_tag 'view_by', :year, view_by == :year ? true : false %><%= label_tag 'view_by_year', 'Year' %>
-      <%= radio_button_tag 'view_by', :month, view_by == :month ? true : false %><%= label_tag 'view_by_month', 'Month' %>
-      <%= submit_tag 'View By', class: 'tiny button radius', name: nil %>
-    </div>
-  <% end %>
+  <%= render 'services/view_by_form' %>
 
-  <%= form_tag @account, method: :get do %>
-    <div class="small-6 medium-3 large-3 columns">
-      <%= select_date(active_date, discard_month: true, discard_day: true) %>
-    </div>
-    <div class="small-6 medium-3 large-3 columns">
-      <%= submit_tag 'Select Year to View', class: 'tiny button radius', name: nil %>
-    </div>
-  <% end %>
+  <%= render 'services/active_date_form' %>
 </div>
-
-<%= render "services/#{view_by}_view" %>
 
 <table class="small-12">
   <thead>
@@ -35,39 +19,7 @@
     </tr>
   </thead>
 
-  <% @services.by_year(active_date).each do |service| %>
-    <% if service.persisted? %>
-      <tbody>
-        <tr>
-          <td><%= service.performed_on %></td>
-          <td><%= number_to_currency(service.money_received, unit: '$') %></td>
-          <td>
-            <% if service.note.length > 10 %>
-              <%= link_to account_service_path(@account, service) do %>
-                <%= service.note.truncate(10, :omission => '... (continued)') %>
-              <% end %>
-            <% else %>
-              <%= service.note %>
-            <% end %>
-          </td>
-          <% if current_user.is_admin? %>
-            <td class="center_cell">
-              <%= link_to edit_account_service_path(@account, service) do %>
-                <i class="page fi-page-edit"></i>
-              <% end %>
-            </td>
-            <td class="center_cell">
-              <%= link_to [@account, service],
-                          method: :delete,
-                          confirm: 'Are you sure? This will permanently delete your service history record.' do %>
-                <b><i class="general fi-x"></i></b>
-              <% end %>
-            </td>
-          <% end %>
-        </tr>
-      </tbody>
-    <% end %>
-  <% end %>
+  <%= render "services/#{view_by}_view" %>
 </table>
 
 <%= paginate @services %>

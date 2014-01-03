@@ -1,0 +1,8 @@
+<%= form_tag @account, method: :get do %>
+  <div class="small-12 medium-6 large-6 columns">
+    <label>View By</label>
+    <%= radio_button_tag 'view_by', :year, view_by == :year ? true : false %><%= label_tag 'view_by_year', 'Year' %>
+    <%= radio_button_tag 'view_by', :month, view_by == :month ? true : false %><%= label_tag 'view_by_month', 'Month' %>
+    <%= submit_tag 'View By', class: 'tiny button radius', name: nil %>
+  </div>
+<% end %>

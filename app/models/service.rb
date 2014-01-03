@@ -15,4 +15,9 @@ class Service < ActiveRecord::Base
     date = active_date
     where("performed_on >= ? AND performed_on <= ?", date.beginning_of_year, date.end_of_year)
   }
+
+  scope :by_month, -> active_date {
+    date = active_date
+    where("performed_on >= ? AND performed_on <= ?", date.beginning_of_month, date.end_of_month)
+  }
 end
