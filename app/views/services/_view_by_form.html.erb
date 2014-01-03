@@ -1,8 +1,10 @@
 <%= form_tag @account, method: :get do %>
   <div class="small-12 medium-6 large-6 columns">
     <label>View By</label>
-    <%= radio_button_tag 'view_by', :year, view_by == :year ? true : false %><%= label_tag 'view_by_year', 'Year' %>
-    <%= radio_button_tag 'view_by', :month, view_by == :month ? true : false %><%= label_tag 'view_by_month', 'Month' %>
-    <%= submit_tag 'View By', class: 'tiny button radius', name: nil %>
+    <ul class="inline-list">
+      <li><label><%= radio_button_tag 'view_by', :year, view_by == :year ? true : false %> Year</label></li>
+      <li><lable><%= radio_button_tag 'view_by', :month, view_by == :month ? true : false %> Month</lable></li>
+      <li><%= submit_tag 'View By', class: 'tiny button radius', name: nil %></li>
+    </ul>
   </div>
 <% end %>
