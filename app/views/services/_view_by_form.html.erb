@@ -1,9 +1,9 @@
-<%= form_tag @account, method: :get do %>
+<%= form_tag @account, id: :view_by_selection, method: :get do %>
   <div class="small-12 medium-6 large-6 columns">
     <label>View By</label>
     <ul class="inline-list">
-      <li><label><%= radio_button_tag 'view_by', :year, view_by == :year ? true : false %> Year</label></li>
-      <li><label><%= radio_button_tag 'view_by', :month, view_by == :month ? true : false %> Month</label></li>
+      <li><label><%= radio_button_tag 'view_by', :year, view_by == :year %> Year</label></li>
+      <li><label><%= radio_button_tag 'view_by', :month, view_by == :month %> Month</label></li>
       <li><%= submit_tag 'View By', class: 'tiny button radius', name: nil %></li>
     </ul>
   </div>
