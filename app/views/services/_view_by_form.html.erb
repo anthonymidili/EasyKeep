@@ -3,7 +3,7 @@
     <label>View By</label>
     <ul class="inline-list">
       <li><label><%= radio_button_tag 'view_by', :year, view_by == :year ? true : false %> Year</label></li>
-      <li><lable><%= radio_button_tag 'view_by', :month, view_by == :month ? true : false %> Month</lable></li>
+      <li><label><%= radio_button_tag 'view_by', :month, view_by == :month ? true : false %> Month</label></li>
       <li><%= submit_tag 'View By', class: 'tiny button radius', name: nil %></li>
     </ul>
   </div>
