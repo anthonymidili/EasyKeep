@@ -8,7 +8,7 @@ module ServicesHelper
     end
   end
 
-  def paginate_with_scope
+  def services_with_scope
     case view_by
       when :year
         @services.by_year(active_date)
