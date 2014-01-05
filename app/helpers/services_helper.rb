@@ -16,4 +16,13 @@ module ServicesHelper
         @services.by_month(active_date)
     end
   end
+
+  def sum_services
+    case view_by
+      when :year
+        number_to_currency(@services_all.by_year(active_date).sum(&:money_received))
+      else
+        number_to_currency(@services_all.by_month(active_date).sum(&:money_received))
+    end
+  end
 end

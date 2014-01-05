@@ -9,6 +9,7 @@ class AccountsController < ApplicationController
 
   def show
     @services = @account.services.page(params[:page]).per(10)
+    @services_all = @account.services
     @service = @account.services.build
     @service.performed_on ||= Date.current
   end
