@@ -1,9 +1,9 @@
 class Service < ActiveRecord::Base
-  before_save { |service| service.money_received = 0 if service.money_received.blank? }
+  before_save { |service| service.price = 0 if service.price.blank? }
 
-  attr_accessible :money_received, :note, :performed_on
+  attr_accessible :note, :performed_on, :price
 
-  belongs_to :account
+      belongs_to :account
 
   validates :performed_on,
             format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,

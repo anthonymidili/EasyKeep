@@ -7,8 +7,8 @@
 
 <div class="row">
   <div class="small-12 columns">
-    <div class="total_amount_received">
-      <%= "Total Amount Received this #{view_by.capitalize}:" %>
+    <div class="total_amount">
+      <%= "Total Invoice Price this #{view_by.capitalize}:" %>
       <span class="red"><%= sum_services %></span>
     </div>
   </div>
@@ -18,7 +18,7 @@
   <thead>
     <tr>
       <th>Performed on</th>
-      <th>Amount received</th>
+      <th>Price</th>
       <th>Note</th>
       <% if current_user.is_admin? %>
         <th>Edit</th>
@@ -31,8 +31,8 @@
     <% if service.persisted? %>
       <tbody>
         <tr>
-          <td><%= service.performed_on %></td>
-          <td><%= number_to_currency(service.money_received, unit: '$') %></td>
+          <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
+          <td><%= number_to_currency(service.price, unit: '$') %></td>
           <td>
             <% if service.note.length > 10 %>
               <%= link_to account_service_path(@account, service) do %>

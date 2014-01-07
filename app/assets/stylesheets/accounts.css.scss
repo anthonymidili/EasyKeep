@@ -11,10 +11,12 @@ td.center_cell {
 }
 
 i {
-  z-index: 100;
+  display: inline-block;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.total_amount_received {
+.total_amount {
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: 110%;

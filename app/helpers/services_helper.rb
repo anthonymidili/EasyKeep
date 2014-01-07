@@ -20,9 +20,9 @@ module ServicesHelper
   def sum_services
     case view_by
       when :year
-        number_to_currency(@services_all.by_year(active_date).sum(&:money_received))
+        number_to_currency(@services_all.by_year(active_date).sum(&:price))
       else
-        number_to_currency(@services_all.by_month(active_date).sum(&:money_received))
+        number_to_currency(@services_all.by_month(active_date).sum(&:price))
     end
   end
 end
