@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     if params[:view_by]
       cookies[:view_by] = params[:view_by].to_sym
     else
-      cookies[:view_by] ? cookies[:view_by].to_sym : :year
+      cookies[:view_by] ? cookies[:view_by].to_sym : :month
     end
   end; helper_method :view_by
 end
