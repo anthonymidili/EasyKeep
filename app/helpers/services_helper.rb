@@ -9,20 +9,12 @@ module ServicesHelper
   end
 
   def services_with_scope
-    case view_by
-      when :month
-        @services.by_month(active_date)
-      else
-        @services.by_year(active_date)
-    end
+    # @services.by_range(active_date)
+    # or @services.by_month(active_date)
+    @services.send(:"by_#{view_by}", active_date)
   end
 
   def sum_services
-    case view_by
-      when :month
-        number_to_currency(@services_all.by_month(active_date).sum(&:price))
-      else
-        number_to_currency(@services_all.by_year(active_date).sum(&:price))
-    end
+    number_to_currency(@services_all.send(:"by_#{view_by}", active_date).sum(&:price))
   end
 end
