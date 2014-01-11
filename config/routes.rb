@@ -1,7 +1,4 @@
 HouseKeeping::Application.routes.draw do
-  resources :invoices
-
-
   devise_for :users, :skip => [:registrations], :controllers => { :invitations => 'users/invitations' }
   as :user do
     get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
@@ -13,7 +10,11 @@ HouseKeeping::Application.routes.draw do
   resources :companies, except: [:index]
 
   resources :accounts do
-    resources :services, except: [:index, :new]
+    resources :services, except: [:index, :new] do
+      collection do
+        put :invoice
+      end
+    end
   end
 
   root to: 'welcome#home'
