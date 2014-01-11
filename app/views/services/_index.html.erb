@@ -9,7 +9,7 @@
   <div class="small-12 columns">
     <div class="total_amount">
       <%= "Total Invoice Price this #{view_by.capitalize}:" %>
-      <span class="red"><%= sum_services %></span>
+      <span class="red"><%= sum_services(@services) %></span>
     </div>
   </div>
 </div>
@@ -27,7 +27,7 @@
     </tr>
   </thead>
 
-  <% services_with_scope.each do |service| %>
+  <% services_with_view_by_scope(@services).each do |service| %>
     <% if service.persisted? %>
       <tbody>
         <tr>
@@ -61,5 +61,3 @@
     <% end %>
   <% end %>
 </table>
-
-<%= paginate services_with_scope %>

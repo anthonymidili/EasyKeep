@@ -8,13 +8,13 @@ module ServicesHelper
     end
   end
 
-  def services_with_scope
-    # @services.by_range(active_date)
+  def services_with_view_by_scope(items)
+    # @services.by_year(active_date)
     # or @services.by_month(active_date)
-    @services.send(:"by_#{view_by}", active_date)
+    items.send(:"by_#{view_by}", active_date)
   end
 
-  def sum_services
-    number_to_currency(@services_all.send(:"by_#{view_by}", active_date).sum(&:price))
+  def sum_services(items)
+    number_to_currency(items.send(:"by_#{view_by}", active_date).sum(&:price))
   end
 end

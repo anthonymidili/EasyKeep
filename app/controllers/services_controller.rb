@@ -12,7 +12,7 @@ class ServicesController < ApplicationController
   end
 
   def create
-    @services = @account.services.all
+    @services = @account.services
     @service = @account.services.new(params[:service])
 
     if @service.save

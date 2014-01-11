@@ -4,12 +4,11 @@ class AccountsController < ApplicationController
   before_filter :load_and_authorize_account, only: [:show, :edit, :update]
 
   def index
-    @accounts = current_company.accounts.page(params[:page]).per(10)
+    @accounts = current_company.accounts
   end
 
   def show
-    @services = @account.services.page(params[:page]).per(10)
-    @services_all = @account.services
+    @services = @account.services
     @service = @account.services.build
     @service.performed_on ||= Date.current
   end
