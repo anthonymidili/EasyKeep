@@ -10,6 +10,7 @@ class Account < ActiveRecord::Base
   attr_accessible :user_attributes
 
   has_many :services, dependent: :destroy
+  has_many :invoices, dependent: :destroy
 
   validates :name, presence: true
 

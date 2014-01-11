@@ -1,4 +1,7 @@
 HouseKeeping::Application.routes.draw do
+  resources :invoices
+
+
   devise_for :users, :skip => [:registrations], :controllers => { :invitations => 'users/invitations' }
   as :user do
     get 'users/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
