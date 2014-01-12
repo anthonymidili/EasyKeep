@@ -9,7 +9,7 @@ class InvoicesController < ApplicationController
   end
 
   def index
-    @invoices = @account.invoices
+    @invoices = @account.invoices.page(params[:page]).per(10)
   end
 
   def edit
@@ -27,8 +27,13 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
+    @services = @account.services
     @invoice = @account.invoices.find(params[:id])
+
+    @services.update_all({invoice_id: nil}, {id: @invoice.services})
     @invoice.destroy
+
+    redirect_to account_invoices_path(@account), alert: 'Invoice was successfully deleted.'
   end
 
   private

@@ -1,21 +1,52 @@
-<h1>Listing invoices</h1>
+<% provide(:title, raw("#{@account.name} Invoices")) %>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row">
+  <div class="small-12 small-centered columns">
 
-<% @invoices.each do |invoice| %>
-  <tr>
-    <td><%= link_to 'Show', invoice %></td>
-    <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
-    <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <h1><%= "#{@account.name} Invoices" %></h1>
 
-<br />
+    <table class="small-12">
+      <thead>
+        <tr>
+          <th>Created at</th>
+          <th>Invoice#</th>
+          <th>Sub Total</th>
+          <th>Total</th>
+          <th>Edit</th>
+          <th>Destroy</th>
+        </tr>
+      </thead>
 
-<%= link_to 'New Invoice', new_invoice_path %>
+      <% @invoices.each do |invoice| %>
+        <tbody>
+          <tr>
+            <td><%= link_to invoice.created_at.strftime("%Y-%b-%d"), account_invoice_path(@account, invoice) %></td>
+            <td><%= invoice.id %></td>
+            <td><%= number_to_currency(invoice.sub_total) %></td>
+            <td><%= number_to_currency(invoice.total_cost) %></td>
+            <td class="center_cell">
+              <!-- <%= link_to edit_account_invoice_path(@account, invoice) do %> -->
+                <i class="page fi-page-edit"></i>
+              <% end %>
+            </td>
+            <td class="center_cell">
+              <%= link_to [@account, invoice],
+                          method: :delete,
+                          confirm: 'Are you sure? This will permanently delete your invoice information.'  do %>
+                <i class="general fi-x"></i>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+
+    <%= paginate @invoices %>
+
+    <br>
+
+    <%= link_to @account.name, @account %> |
+    <%= link_to 'Account Listings', accounts_path %>
+
+  </div>
+</div>
