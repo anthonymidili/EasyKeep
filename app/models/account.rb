@@ -14,7 +14,17 @@ class Account < ActiveRecord::Base
 
   validates :name, presence: true
 
+  default_scope order: 'name ASC'
+
   def full_address
     [ address_1, address_2, city, state, zip ].select(&:present?).join(', ')
+  end
+
+  def sum_services(view_by, active_date)
+    services.send(:"by_#{view_by}", active_date).sum(&:price)
+  end
+
+  def invoiceable(view_by, active_date)
+    services.send(:"by_#{view_by}", active_date).where(invoice_id: nil).sum(&:price)
   end
 end

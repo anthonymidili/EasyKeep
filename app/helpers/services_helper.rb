@@ -13,8 +13,4 @@ module ServicesHelper
     # or @services.by_month(active_date)
     items.send(:"by_#{view_by}", active_date)
   end
-
-  def sum_services(items)
-    number_to_currency(items.send(:"by_#{view_by}", active_date).sum(&:price))
-  end
 end

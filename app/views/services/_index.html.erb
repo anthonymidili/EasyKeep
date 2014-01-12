@@ -8,8 +8,9 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="total_amount">
-      <%= "Total Invoice Price this #{view_by.capitalize}:" %>
-      <span><%= sum_services(@services) %></span>
+      <p><%= "Total Invoice Price this #{view_by.capitalize}:" %>
+      <span><%= number_to_currency(@account.sum_services(view_by, active_date)) %></span></p>
+      <p>Amount Needed to be Invoiced: <span><%= number_to_currency(@account.invoiceable(view_by, active_date)) %></span></p>
     </div>
   </div>
 </div>

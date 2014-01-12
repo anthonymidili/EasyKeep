@@ -5,7 +5,7 @@
 
     <h1><%= "#{@account.name} Invoice" %></h1>
 
-    <b>Invoice # <%= @invoice.id %></b>
+    <b>Invoice# <%= @invoice.id %></b>
 
     <div class="panel">
       <ul class="inline-list">
@@ -48,8 +48,9 @@
     <div class="row">
       <div class="small-12 columns">
         <div class="total_amount">
-          <p>Sub Total: <span><%= sub_total(@services) %></span></p>
-          <p>7% Tax: <span><%= tax(@services) %></span></p>
+          <p>Sub Total: <span><%= number_to_currency(@invoice.sub_total) %></span></p>
+          <p>7% Sales Tax: <span><%= number_to_currency(@invoice.tax) %></span></p>
+          <p>Total: <span><%= number_to_currency(@invoice.total_cost) %></span></p>
         </div>
       </div>
     </div>
