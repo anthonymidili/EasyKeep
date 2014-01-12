@@ -7,14 +7,14 @@
 
     <div class="small-12 columns">
       <ul class="inline-list small">
-        <li><label><b>Owner: </b><%= @account.company.users.first.name %></label></li>
+        <li><label><b>Owner: </b><%= @account.company.users.find(1).name %></label></li>
         <li><label><b>Address: </b><%= @account.company.full_address %></label></li>
         <li><label><b>Phone: </b><%= @account.company.phone %></label></li>
         <% if @account.company.fax.present? %>
           <li><label><b>Fax: </b><%= @account.company.fax %></label></li>
         <% end %>
         <% if @account.company.users.first.email.present? %>
-          <li><label><b>Email: </b><%= @account.company.users.first.email %></label></li>
+          <li><label><b>Email: </b><%= @account.company.users.find(1).email %></label></li>
         <% end %>
       </ul>
     </div>
