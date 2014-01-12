@@ -8,21 +8,21 @@
     <div class="panel">
       <ul class="inline-list">
         <% if @account.user.name.present? %>
-          <li><b>Contact name: </b><%= @account.user.name %></li>
+          <li><label><b>Contact name: </b><%= @account.user.name %></label></li>
         <% end %>
         <% if @account.full_address.present? %>
-          <li><b>Address: </b><%= @account.full_address %></li>
+          <li><label><b>Address: </b><%= @account.full_address %></label></li>
         <% end %>
         <% if @account.phone.present? %>
-          <li><b>Phone: </b><%= @account.phone %></li>
+          <li><label><b>Phone: </b><%= @account.phone %></label></li>
         <% end %>
         <% if @account.fax.present? %>
-          <li><b>Fax: </b><%= @account.fax %></li>
+          <li><label><b>Fax: </b><%= @account.fax %></label></li>
         <% end %>
         <% if @account.user.email.present? %>
-          <li><b>Email: </b><%= mail_to @account.user.email %></li>
+          <li><label><b>Email: </b><%= mail_to @account.user.email %></label></li>
         <% end %>
-        <li><b>User status: </b><%= render 'accounts/user_status', account: @account %></li>
+        <li><label><b>User status: </b><%= render 'accounts/user_status', account: @account %></label></li>
       </ul>
     </div>
 
