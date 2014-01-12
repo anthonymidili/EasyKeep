@@ -1,3 +1,8 @@
+@media print {
+  .hide_on_print {
+    display: none;
+  }
+}
 td.center_cell {
   text-align: center !important;
 }
@@ -24,5 +29,11 @@ i {
   text-align: right;
   span {
     color: red;
+  }
+}
+
+ul.small {
+  li {
+    font-size: 70%;
   }
 }

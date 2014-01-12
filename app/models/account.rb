@@ -24,7 +24,7 @@ class Account < ActiveRecord::Base
     services.send(:"by_#{view_by}", active_date).sum(&:price)
   end
 
-  def invoiceable(view_by, active_date)
+  def sum_invoiceables(view_by, active_date)
     services.send(:"by_#{view_by}", active_date).where(invoice_id: nil).sum(&:price)
   end
 end

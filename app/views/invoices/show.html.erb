@@ -3,24 +3,39 @@
 <div class="row">
   <div class="small-12 small-centered columns">
 
-    <h1><%= "#{@account.name} Invoice" %></h1>
+    <h3><%= @account.company.name %></h3>
+
+    <div class="small-12 columns">
+      <ul class="inline-list small">
+        <li><label><b>Owner: </b><%= @account.company.users.first.name %></label></li>
+        <li><label><b>Address: </b><%= @account.company.full_address %></label></li>
+        <li><label><b>Phone: </b><%= @account.company.phone %></label></li>
+        <% if @account.company.fax.present? %>
+          <li><label><b>Fax: </b><%= @account.company.fax %></label></li>
+        <% end %>
+        <% if @account.company.users.first.email.present? %>
+          <li><label><b>Email: </b><%= @account.company.users.first.email %></label></li>
+        <% end %>
+      </ul>
+    </div>
 
     <b>Invoice# <%= @invoice.id %></b>
 
     <div class="panel">
       <ul class="inline-list">
-        <li><b>Invoice for: </b><%= @account.user.name %></li>
+        <li><label><b>Account name: </b><%= @account.name %></label></li>
+        <li><label><b>Invoice for: </b><%= @account.user.name %></label></li>
         <% if @account.full_address.present? %>
-          <li><b>Address: </b><%= @account.full_address %></li>
+          <li><label><b>Address: </b><%= @account.full_address %></label></li>
         <% end %>
         <% if @account.phone.present? %>
-          <li><b>Phone: </b><%= @account.phone %></li>
+          <li><label><b>Phone: </b><%= @account.phone %></label></li>
         <% end %>
         <% if @account.fax.present? %>
-          <li><b>Fax: </b><%= @account.fax %></li>
+          <li><label><b>Fax: </b><%= @account.fax %></label></li>
         <% end %>
         <% if @account.user.email.present? %>
-          <li><b>Email: </b><%= mail_to @account.user.email %></li>
+          <li><label><b>Email: </b><%= @account.user.email %></label></li>
         <% end %>
       </ul>
     </div>
@@ -28,8 +43,8 @@
     <table class="small-12">
       <thead>
         <tr>
-          <th>Performed on</th>
-          <th>Price</th>
+          <th>Service Date</th>
+          <th>Service Cost</th>
         </tr>
       </thead>
 
@@ -48,12 +63,14 @@
     <div class="row">
       <div class="small-12 columns">
         <div class="total_amount">
-          <p>Sub Total: <span><%= number_to_currency(@invoice.sub_total) %></span></p>
-          <p>7% Sales Tax: <span><%= number_to_currency(@invoice.tax) %></span></p>
+          <p>Sub Total: <%= number_to_currency(@invoice.sub_total) %></p>
+          <p>7% Sales Tax: <%= number_to_currency(@invoice.tax) %></p>
           <p>Total: <span><%= number_to_currency(@invoice.total_cost) %></span></p>
         </div>
       </div>
     </div>
+
+    <%= link_to 'Back to Account', account_path(@account), class: 'small button radius hide_on_print' %>
 
   </div>
 </div>
