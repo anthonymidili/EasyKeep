@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin, except: [:show]
-  before_filter :set_account
+  before_filter :set_and_authorize_account
 
   def show
     @service = @account.services.find(params[:id])
@@ -46,7 +46,7 @@ class ServicesController < ApplicationController
       @services = @account.services
       @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
 
-      redirect_to @account
+      redirect_to account_invoice_path(@account, @invoice)
     else
       redirect_to @account, alert: 'There was a problem creating a new invoice. Please try again.'
     end
@@ -58,8 +58,13 @@ private
     redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
 
-  def set_account
-    @account = current_company.accounts.find(params[:account_id])
+  def set_and_authorize_account
+    @account = if current_user.is_admin?
+                 current_company.accounts.find(params[:account_id])
+               elsif current_user.account.to_param == params[:account_id]
+                 current_user.account
+               else
+                 redirect_to account_path(current_user.account)
+               end
   end
-
 end

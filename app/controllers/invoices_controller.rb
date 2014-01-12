@@ -1,83 +1,49 @@
 class InvoicesController < ApplicationController
-  # GET /invoices
-  # GET /invoices.json
-  def index
-    @invoices = Invoice.all
+  before_filter :authenticate_user!
+  before_filter :require_admin, except: [:show]
+  before_filter :set_and_authorize_account
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @invoices }
-    end
-  end
-
-  # GET /invoices/1
-  # GET /invoices/1.json
   def show
-    @invoice = Invoice.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @invoice }
-    end
+    @invoice = @account.invoices.find(params[:id])
+    @services = @invoice.services
   end
 
-  # GET /invoices/new
-  # GET /invoices/new.json
-  def new
-    @invoice = Invoice.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @invoice }
-    end
+  def index
+    @invoices = @account.invoices
   end
 
-  # GET /invoices/1/edit
   def edit
-    @invoice = Invoice.find(params[:id])
+    @invoice = @account.invoices.find(params[:id])
   end
 
-  # POST /invoices
-  # POST /invoices.json
-  def create
-    @invoice = Invoice.new(params[:invoice])
-
-    respond_to do |format|
-      if @invoice.save
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
-        format.json { render json: @invoice, status: :created, location: @invoice }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @invoice.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /invoices/1
-  # PUT /invoices/1.json
   def update
-    @invoice = Invoice.find(params[:id])
+    @invoice = @account.invoices.find(params[:id])
 
-    respond_to do |format|
-      if @invoice.update_attributes(params[:invoice])
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @invoice.errors, status: :unprocessable_entity }
-      end
+    if @invoice.update_attributes(params[:invoice])
+      redirect_to @invoice, notice: 'Invoice was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
-  # DELETE /invoices/1
-  # DELETE /invoices/1.json
   def destroy
-    @invoice = Invoice.find(params[:id])
+    @invoice = @account.invoices.find(params[:id])
     @invoice.destroy
+  end
 
-    respond_to do |format|
-      format.html { redirect_to invoices_url }
-      format.json { head :no_content }
-    end
+  private
+
+  def require_admin
+    redirect_to account_path(current_user.account) unless current_user.is_admin?
+  end
+
+  def set_and_authorize_account
+    @account = if current_user.is_admin?
+                 current_company.accounts.find(params[:account_id])
+               elsif current_user.account.to_param == params[:account_id]
+                 current_user.account
+               else
+                 redirect_to account_path(current_user.account)
+               end
   end
 end

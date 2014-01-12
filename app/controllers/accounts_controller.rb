@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin, except: [:show, :edit, :update]
-  before_filter :load_and_authorize_account, only: [:show, :edit, :update]
+  before_filter :set_and_authorize_account, only: [:show, :edit, :update]
 
   def index
     @accounts = current_company.accounts.page(params[:page]).per(10)
@@ -55,7 +55,7 @@ private
     redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
 
-  def load_and_authorize_account
+  def set_and_authorize_account
     @account = if current_user.is_admin?
                  current_company.accounts.find(params[:id])
                elsif current_user.account.to_param == params[:id]

@@ -15,6 +15,7 @@ HouseKeeping::Application.routes.draw do
         put :invoice
       end
     end
+    resources :invoices, except: [:new, :create]
   end
 
   root to: 'welcome#home'
