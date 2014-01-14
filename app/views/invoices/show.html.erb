@@ -43,17 +43,19 @@
     <table class="small-12">
       <thead>
         <tr>
-          <th>Service Date</th>
-          <th>Service Cost</th>
+          <th>Item#</th>
+          <th>Date performed</th>
+          <th>Service cost</th>
         </tr>
       </thead>
 
-      <% @services.each do |service| %>
+      <% @services.each_with_index do |service, i| %>
         <% if service.persisted? %>
           <tbody>
             <tr>
+              <td><%= i + 1 %></td>
               <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
-              <td><%= number_to_currency(service.price, unit: '$') %></td>
+              <td><%= number_to_currency(service.price) %></td>
             </tr>
           </tbody>
         <% end %>
@@ -61,17 +63,23 @@
     </table>
 
     <div class="row">
-      <div class="small-12 columns">
-        <div class="total_amount">
-          <p>Sub Total: <%= number_to_currency(@invoice.sub_total) %></p>
-          <p>7% Sales Tax: <%= number_to_currency(@invoice.tax) %></p>
-          <p>Total: <span><%= number_to_currency(@invoice.total_cost) %></span></p>
-        </div>
+      <div class="small-12 columns total_amount">
+        <p>
+          Sub Total: <%= number_to_currency(@invoice.sub_total) %> <br>
+          7% Sales Tax: <%= number_to_currency(@invoice.tax) %> <br>
+          Total: <span><%= number_to_currency(@invoice.total_cost) %></span>
+        </p>
       </div>
     </div>
 
-    <%= link_to 'Back to Account', account_path(@account), class: 'small button radius hide_on_print' %>
-    <%= link_to 'Invoice Listings', account_invoices_path(@account), class: 'small button radius hide_on_print' %>
+    <ul class="inline-list">
+      <li><%= link_to "#{@account.name} Account",
+                      account_path(@account),
+                      class: 'small button radius hide_on_print' %></li>
+      <li><%= link_to "#{@account.name} Invoices",
+                      account_invoices_path(@account),
+                      class: 'small button radius hide_on_print' %></li>
+    </ul>
 
   </div>
 </div>

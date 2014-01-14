@@ -14,6 +14,7 @@
           <th>Phone</th>
           <th>Fax</th>
           <th>Email</th>
+          <th>Invoices</th>
           <th>User status</th>
           <th>Edit</th>
           <th>Destroy</th>
@@ -29,6 +30,11 @@
             <td><%= account.phone %></td>
             <td><%= account.fax %></td>
             <td><%= mail_to account.user.email %></td>
+            <td class="center_cell">
+              <%= link_to account_invoices_path(account) do %>
+                <i class="miscellaneous fi-book"></i>
+              <% end %>
+            </td>
             <td><%= render 'user_status', account: account %></td>
             <td class="center_cell">
               <%= link_to edit_account_path(account) do %>

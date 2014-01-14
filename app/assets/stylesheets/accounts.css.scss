@@ -22,14 +22,15 @@ i {
 }
 
 .total_amount {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  font-size: 110%;
-  font-weight: bold;
-  text-align: right;
+  padding-top: 1em;
   span {
     color: red;
+    font-size: 110%;
   }
+}
+
+.large {
+  font-size: 110%;
 }
 
 ul.small {

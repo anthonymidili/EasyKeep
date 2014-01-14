@@ -20,11 +20,17 @@ class Account < ActiveRecord::Base
     [ address_1, address_2, city, state, zip ].select(&:present?).join(', ')
   end
 
-  def sum_services(view_by, active_date)
-    services.send(:"by_#{view_by}", active_date).sum(&:price)
+  def sum_services(view, date)
+    services_items(view, date).sum(&:price)
   end
 
-  def sum_invoiceables(view_by, active_date)
-    services.send(:"by_#{view_by}", active_date).where(invoice_id: nil).sum(&:price)
+  def sum_invoiceable_services(view, date)
+    services_items(view, date).where(invoice_id: nil).sum(&:price)
+  end
+
+private
+
+  def services_items(view_by, active_date)
+    services.send(:"by_#{view_by}", active_date)
   end
 end

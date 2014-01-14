@@ -6,12 +6,17 @@
 </div>
 
 <div class="row">
-  <div class="small-12 columns">
-    <div class="total_amount">
-      <p><%= "Cost of Services this #{view_by.capitalize}:" %>
-      <span><%= number_to_currency(@account.sum_services(view_by, active_date)) %></span></p>
-      <p>Invoiceable Amount: <span><%= number_to_currency(@account.sum_invoiceables(view_by, active_date)) %></span></p>
-    </div>
+  <div class="small-12 columns total_amount">
+    <ul class="inline-list">
+      <li>
+        <label><%= "Cost of Services this #{view_by.capitalize}:" %>
+        <span><%= number_to_currency(@account.sum_services(view_by, active_date)) %></span></label>
+      </li>
+      <li>
+        <label>Invoiceable Amount:
+        <span><%= number_to_currency(@account.sum_invoiceable_services(view_by, active_date)) %></span></label>
+      </li>
+    </ul>
   </div>
 </div>
 
@@ -68,5 +73,5 @@
       <% end %>
     <% end %>
   </table>
-  <%= submit_tag 'Invoice Checked', class: 'tiny button radius' %>
+  <%= submit_tag 'Invoice Checked Services', class: 'tiny button radius' %>
 <% end %>
