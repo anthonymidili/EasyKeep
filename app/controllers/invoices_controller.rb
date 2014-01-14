@@ -27,13 +27,16 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
-    @services = @account.services
-    @invoice = @account.invoices.find(params[:id])
+    ActiveRecord::Base.transaction do
 
-    @services.update_all({invoice_id: nil}, {id: @invoice.services})
-    @invoice.destroy
+      @services = @account.services
+      @invoice = @account.invoices.find(params[:id])
 
-    redirect_to account_invoices_path(@account), alert: 'Invoice was successfully deleted.'
+      @services.update_all({invoice_id: nil}, {id: @invoice.services})
+      @invoice.destroy
+
+      redirect_to account_invoices_path(@account), alert: 'Invoice was successfully deleted.'
+    end
   end
 
   private

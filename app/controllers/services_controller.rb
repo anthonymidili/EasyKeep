@@ -40,15 +40,19 @@ class ServicesController < ApplicationController
   end
 
   def invoice
-    @invoice = @account.invoices.new(params[:invoice])
+    ActiveRecord::Base.transaction do
 
-    if @invoice.save
-      @services = @account.services
-      @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
+      @invoice = @account.invoices.new(params[:invoice])
 
-      redirect_to account_invoice_path(@account, @invoice)
-    else
-      redirect_to @account, alert: 'There was a problem creating a new invoice. Please try again.'
+      if @invoice.save
+        @services = @account.services
+        @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
+
+        redirect_to account_invoice_path(@account, @invoice)
+      else
+        redirect_to @account, alert: 'There was a problem creating a new invoice. Please try again.'
+      end
+
     end
   end
 
