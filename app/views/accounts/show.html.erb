@@ -33,14 +33,10 @@
     <br>
 
     <ul class="inline-list">
-      <li><%= link_to 'Edit Account Info', edit_account_path(@account),
+      <li><%= link_to 'Account Listings', accounts_path,
                       class: 'small button radius' %></li>
-      <% if current_user.is_admin? %>
-        <li><%= link_to 'Account Listings', accounts_path,
-                        class: 'small button radius' %></li>
-        <li><%= link_to "#{@account.name} Invoices", account_invoices_path(@account),
-                        class: 'small button radius' %></li>
-      <% end %>
+      <li><%= link_to "#{@account.name} Invoices", account_invoices_path(@account),
+                      class: 'small button radius' %></li>
     </ul>
 
   </div>

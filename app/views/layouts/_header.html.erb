@@ -17,8 +17,23 @@
         <% if user_signed_in? %>
           <li class="divider"></li>
 
+          <!-- Account drop-down -->
+          <% if !current_user.company.nil? && @account %>
+            <li class="has-dropdown"><a href="#"><%= @account.name %></a>
+              <ul class="dropdown">
+                <li><%= link_to 'Account', account_path(@account) %></li>
+                <li><%= link_to 'Invoices', account_invoices_path(@account) %></li>
+                <% if current_user.is_admin? %>
+                  <li><%= link_to 'Edit Account', edit_account_path(@account) %></li>
+                  <li><%= link_to 'Destroy Account', @account, method: :delete, confirm: 'Are you sure? This will permanently delete your account and all the information.' %></li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+
           <!-- Company drop-down -->
           <% if !current_user.company.nil? && current_user.company.persisted? && current_user.is_admin? %>
+            <li class="divider"></li>
             <li class="has-dropdown"><a href="#">Company settings</a>
               <ul class="dropdown">
                 <li><%= link_to 'Company', company_path(current_user.company) %></li>
