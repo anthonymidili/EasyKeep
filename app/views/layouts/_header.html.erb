@@ -15,10 +15,10 @@
         <li class="divider"></li>
         <li class="active"><%= link_to 'Home', root_path %></li>
         <% if user_signed_in? %>
-          <li class="divider"></li>
 
           <!-- Account drop-down -->
-          <% if !current_user.company.nil? && @account %>
+          <% if !current_user.company.nil? && @account && @account.persisted? %>
+            <li class="divider"></li>
             <li class="has-dropdown"><a href="#"><%= @account.name %></a>
               <ul class="dropdown">
                 <li><%= link_to 'Account', account_path(@account) %></li>
@@ -32,7 +32,7 @@
           <% end %>
 
           <!-- Company drop-down -->
-          <% if !current_user.company.nil? && current_user.company.persisted? && current_user.is_admin? %>
+          <% if current_user.company && current_user.company.persisted? && current_user.is_admin? %>
             <li class="divider"></li>
             <li class="has-dropdown"><a href="#">Company settings</a>
               <ul class="dropdown">
