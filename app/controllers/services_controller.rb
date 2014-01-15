@@ -41,7 +41,6 @@ class ServicesController < ApplicationController
 
   def invoice
     ActiveRecord::Base.transaction do
-
       @invoice = @account.invoices.new(params[:invoice])
 
       if @invoice.save
@@ -52,7 +51,6 @@ class ServicesController < ApplicationController
       else
         redirect_to @account, alert: 'There was a problem creating a new invoice. Please try again.'
       end
-
     end
   end
 

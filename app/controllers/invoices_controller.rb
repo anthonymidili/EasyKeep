@@ -16,19 +16,8 @@ class InvoicesController < ApplicationController
     @invoice = @account.invoices.find(params[:id])
   end
 
-  def update
-    @invoice = @account.invoices.find(params[:id])
-
-    if @invoice.update_attributes(params[:invoice])
-      redirect_to @invoice, notice: 'Invoice was successfully updated.'
-    else
-      render action: 'edit'
-    end
-  end
-
   def destroy
     ActiveRecord::Base.transaction do
-
       @services = @account.services
       @invoice = @account.invoices.find(params[:id])
 

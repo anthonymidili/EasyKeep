@@ -25,7 +25,7 @@
             <td><%= number_to_currency(invoice.sub_total) %></td>
             <td><%= number_to_currency(invoice.total_cost) %></td>
             <td class="center_cell">
-              <!-- <%= link_to edit_account_invoice_path(@account, invoice) do %> -->
+              <%= link_to edit_account_invoice_path(@account, invoice) do %>
                 <i class="page fi-page-edit"></i>
               <% end %>
             </td>
