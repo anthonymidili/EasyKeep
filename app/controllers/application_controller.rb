@@ -7,19 +7,25 @@ class ApplicationController < ActionController::Base
 
   def active_date
     if params[:date]
-      cookies[:active_date] = Date.new(params[:date][:year].to_i,
-                                       params[:date][:month].to_i,
-                                       params[:date][:day].to_i)
+      current_user.active_date = Date.new(params[:date][:year].to_i,
+                                          params[:date][:month].to_i,
+                                          params[:date][:day].to_i)
+      current_user.save
+
+      current_user.active_date
     else
-      cookies[:active_date] ? cookies[:active_date].to_date : Date.current
+      current_user.active_date || Date.current
     end
   end; helper_method :active_date
 
   def view_by
     if params[:view_by]
-      cookies[:view_by] = params[:view_by].to_sym
+      current_user.view_by = params[:view_by]
+      current_user.save
+
+      current_user.view_by.to_sym
     else
-      cookies[:view_by] ? cookies[:view_by].to_sym : :month
+      current_user.view_by ? current_user.view_by.to_sym : :month
     end
   end; helper_method :view_by
 end
