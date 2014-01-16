@@ -20,5 +20,5 @@ class Service < ActiveRecord::Base
     where("performed_on >= ? AND performed_on <= ?", active_date.beginning_of_month, active_date.end_of_month)
   }
 
-  scope :not_used, where(invoice_id: nil)
+  scope :by_not_used, where(invoice_id: nil)
 end

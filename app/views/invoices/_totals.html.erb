@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="small-12 columns total_amount">
+    <p>
+      Sub Total: <%= number_to_currency(@invoice.sub_total) %> <br>
+      7% Sales Tax: <%= number_to_currency(@invoice.tax) %> <br>
+      Total: <span><%= number_to_currency(@invoice.total_cost) %></span>
+    </p>
+  </div>
+</div>
