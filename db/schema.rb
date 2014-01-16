@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140116185128) do
+ActiveRecord::Schema.define(:version => 20140116203121) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -68,8 +68,8 @@ ActiveRecord::Schema.define(:version => 20140116185128) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "company_id"
     t.string   "invitation_token"
     t.datetime "invitation_sent_at"
@@ -80,8 +80,6 @@ ActiveRecord::Schema.define(:version => 20140116185128) do
     t.string   "name"
     t.boolean  "is_admin",               :default => false
     t.datetime "invitation_created_at"
-    t.string   "view_by",                :default => "month"
-    t.date     "active_date"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
