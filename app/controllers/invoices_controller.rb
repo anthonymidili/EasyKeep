@@ -14,12 +14,13 @@ class InvoicesController < ApplicationController
 
   def edit
     @invoice = @account.invoices.find(params[:id])
+    @services = @account.services
   end
 
   def destroy
     ActiveRecord::Base.transaction do
-      @services = @account.services
       @invoice = @account.invoices.find(params[:id])
+      @services = @account.services
 
       @services.update_all({invoice_id: nil}, {id: @invoice.services})
       @invoice.destroy
@@ -28,7 +29,21 @@ class InvoicesController < ApplicationController
     end
   end
 
-  private
+  def add_services
+
+  end
+
+  def remove_services
+    ActiveRecord::Base.transaction do
+      @invoice = @account.invoices.find(params[:id])
+
+      @invoice.services.update_all({invoice_id: nil}, {id: params[:service_ids]})
+
+      redirect_to edit_account_invoice_path(@account, @invoice)
+    end
+  end
+
+private
 
   def require_admin
     redirect_to account_path(current_user.account) unless current_user.is_admin?

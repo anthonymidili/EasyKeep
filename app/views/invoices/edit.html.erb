@@ -1,6 +1,49 @@
-<h1>Editing invoice</h1>
+<% provide(:title, 'Edit Invoice') %>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="small-12 small-centered columns">
 
-<%= link_to 'Show', @invoice %> |
-<%= link_to 'Back', invoices_path %>
+    <h1>Editing Invoice</h1>
+
+    <%= render 'header' %>
+
+    <%= form_tag remove_services_account_invoices_path(@account, id: @invoice.id), method: :put do %>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Remove</th>
+            <th>Date performed</th>
+            <th>Service cost</th>
+          </tr>
+        </thead>
+
+        <% @invoice.services.each do |service| %>
+          <% if service.persisted? %>
+            <tbody>
+              <tr>
+                <td><%= check_box_tag "service_ids[]", service.id %></td>
+                <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
+                <td><%= number_to_currency(service.price) %></td>
+              </tr>
+            </tbody>
+          <% end %>
+        <% end %>
+      </table>
+      <%= submit_tag 'Remove Checked Services', class: 'tiny button radius' %>
+    <% end %>
+
+    <ul class="inline-list">
+      <li>
+        <%= link_to "#{@account.name} Account", account_path(@account), class: 'small button radius' %>
+      </li>
+      <li>
+        <%= link_to "#{@account.name} Invoice", account_invoice_path(@account, @invoice), class: 'small button radius' %>
+      </li>
+      <li>
+        <%= link_to "#{@account.name} Invoices", account_invoices_path(@account), class: 'small button radius' %>
+      </li>
+    </ul>
+
+  </div>
+</div>

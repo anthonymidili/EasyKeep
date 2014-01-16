@@ -5,7 +5,7 @@
 
     <h1><%= "#{@account.name} Invoices" %></h1>
 
-    <table class="small-12">
+    <table>
       <thead>
         <tr>
           <th>Created at</th>
@@ -46,10 +46,12 @@
     <br>
 
     <ul class="inline-list">
-      <li><%= link_to 'Account Listings', accounts_path,
-                      class: 'small button radius' %></li>
-      <li><%= link_to "#{@account.name} Account", @account,
-                      class: 'small button radius' %></li>
+      <li>
+        <%= link_to 'Account Listings', accounts_path, class: 'small button radius' %>
+      </li>
+      <li>
+        <%= link_to "#{@account.name} Account", @account, class: 'small button radius' %>
+      </li>
     </ul>
 
   </div>
