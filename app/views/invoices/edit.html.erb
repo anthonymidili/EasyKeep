@@ -8,7 +8,6 @@
     <%= render 'header' %>
 
     <%= form_tag remove_services_account_invoices_path(@account, id: @invoice.id), method: :put do %>
-
       <table>
         <thead>
           <tr>
@@ -31,6 +30,31 @@
         <% end %>
       </table>
       <%= submit_tag 'Remove Checked Services', class: 'tiny button radius' %>
+    <% end %>
+
+    <%= form_tag add_services_account_invoices_path(@account, id: @invoice.id), method: :put do %>
+      <table>
+        <thead>
+        <tr>
+          <th>Remove</th>
+          <th>Date performed</th>
+          <th>Service cost</th>
+        </tr>
+        </thead>
+
+        <% services_with_view_by_scope(@services).not_used.each do |service| %>
+          <% if service.persisted? %>
+            <tbody>
+            <tr>
+              <td><%= check_box_tag "service_ids[]", service.id %></td>
+              <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
+              <td><%= number_to_currency(service.price) %></td>
+            </tr>
+            </tbody>
+          <% end %>
+        <% end %>
+      </table>
+      <%= submit_tag 'Add Checked Services', class: 'tiny button radius' %>
     <% end %>
 
     <ul class="inline-list">

@@ -30,7 +30,14 @@ class InvoicesController < ApplicationController
   end
 
   def add_services
+    ActiveRecord::Base.transaction do
+      @invoice = @account.invoices.find(params[:id])
+      @services = @account.services
 
+      @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
+
+      redirect_to edit_account_invoice_path(@account, @invoice)
+    end
   end
 
   def remove_services
