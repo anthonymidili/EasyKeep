@@ -1,10 +1,10 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin
-  before_filter :redirect_if_company?, only: [ :new, :create ]
+  before_filter :only_one_company, only: [ :new, :create ]
 
   def show
-    @company = current_user.company
+    @company = current_company
   end
 
   def new
@@ -22,11 +22,11 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    @company = current_user.company
+    @company = current_company
   end
 
   def update
-    @company = current_user.company
+    @company = current_company
 
       if @company.update_attributes(params[:company])
         redirect_to @company, notice: 'Company was successfully updated.'
@@ -36,7 +36,7 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    @company = current_user.company
+    @company = current_company
     @company.destroy
 
     redirect_to new_company_path
@@ -44,11 +44,8 @@ class CompaniesController < ApplicationController
 
 private
 
-  def redirect_if_company?
-    if current_user.company
-      @company = current_user.company
-      redirect_to edit_company_path(@company)
-    end
+  def only_one_company
+    redirect_to edit_company_path(current_company) if current_company
   end
 
   def require_admin
