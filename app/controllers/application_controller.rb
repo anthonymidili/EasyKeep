@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
 
   def current_account
     if current_user.is_admin?
-      current_company.accounts.find(params[:id])
+      if params[:account_id]
+        current_company.accounts.find(params[:account_id])
+      else
+        current_company.accounts.find(params[:id])
+      end
     else
       current_user.account
     end

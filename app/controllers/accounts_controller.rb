@@ -1,14 +1,13 @@
 class AccountsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin, except: [:show, :edit, :update]
-  before_filter :authorize_account, only: [:show, :edit, :update]
+  before_filter :set_and_authorize_account, only: [:show, :edit, :update]
 
   def index
     @accounts = current_company.accounts.page(params[:page]).per(10)
   end
 
   def show
-    @account = current_account
     @services = @account.services
     @service = @account.services.build
     @service.performed_on ||= Date.current
@@ -32,11 +31,9 @@ class AccountsController < ApplicationController
   end
 
   def edit
-    @account = current_account
   end
 
   def update
-    @account = current_account
     @account.user.skip_validation = true
 
     if @account.update_attributes(params[:account])
@@ -58,7 +55,8 @@ private
     redirect_to account_path(current_account) unless current_user.is_admin?
   end
 
-  def authorize_account
-    redirect_to account_path(current_account) unless current_user.is_admin? || current_account.to_param == params[:id]
+  def set_and_authorize_account
+    @account = current_account
+    redirect_to account_path(@account) unless current_user.is_admin? || @account.to_param == params[:id]
   end
 end

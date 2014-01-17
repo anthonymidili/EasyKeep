@@ -61,12 +61,7 @@ private
   end
 
   def set_and_authorize_account
-    @account = if current_user.is_admin?
-                 current_company.accounts.find(params[:account_id])
-               elsif current_user.account.to_param == params[:account_id]
-                 current_user.account
-               else
-                 redirect_to account_path(current_user.account)
-               end
+    @account = current_account
+    redirect_to account_path(@account) unless current_user.is_admin? || @account.to_param == params[:account_id]
   end
 end
