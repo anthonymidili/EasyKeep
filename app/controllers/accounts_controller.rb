@@ -1,13 +1,14 @@
 class AccountsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin, except: [:show, :edit, :update]
-  before_filter :set_and_authorize_account, only: [:show, :edit, :update]
+  before_filter :authorize_account, only: [:show, :edit, :update]
 
   def index
     @accounts = current_company.accounts.page(params[:page]).per(10)
   end
 
   def show
+    @account = current_account
     @services = @account.services
     @service = @account.services.build
     @service.performed_on ||= Date.current
@@ -31,9 +32,11 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    @account = current_account
   end
 
   def update
+    @account = current_account
     @account.user.skip_validation = true
 
     if @account.update_attributes(params[:account])
@@ -44,7 +47,7 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    @account = current_company.accounts.find(params[:id])
+    @account = current_account
     @account.user.destroy
     redirect_to accounts_url, alert: 'Account and all account information was successfully deleted.'
   end
@@ -52,16 +55,10 @@ class AccountsController < ApplicationController
 private
 
   def require_admin
-    redirect_to account_path(current_user.account) unless current_user.is_admin?
+    redirect_to account_path(current_account) unless current_user.is_admin?
   end
 
-  def set_and_authorize_account
-    @account = if current_user.is_admin?
-                 current_company.accounts.find(params[:id])
-               elsif current_user.account.to_param == params[:id]
-                 current_user.account
-               else
-                 redirect_to account_path(current_user.account)
-               end
+  def authorize_account
+    redirect_to account_path(current_account) unless current_user.is_admin? || current_account.to_param == params[:id]
   end
 end

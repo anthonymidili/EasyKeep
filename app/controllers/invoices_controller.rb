@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_admin, except: [:show]
+  before_filter :require_admin, except: [:show, :index]
   before_filter :set_and_authorize_account
 
   def show

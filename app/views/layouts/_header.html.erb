@@ -23,8 +23,8 @@
               <ul class="dropdown">
                 <li><%= link_to 'Account', account_path(@account) %></li>
                 <li><%= link_to 'Invoices', account_invoices_path(@account) %></li>
+                <li><%= link_to 'Edit Account', edit_account_path(@account) %></li>
                 <% if current_user.is_admin? %>
-                  <li><%= link_to 'Edit Account', edit_account_path(@account) %></li>
                   <li><%= link_to 'Destroy Account', @account, method: :delete, confirm: 'Are you sure? This will permanently delete your account and all the information.' %></li>
                 <% end %>
               </ul>

@@ -21,7 +21,9 @@
   <table>
     <thead>
       <tr>
-        <th>Invoice</th>
+        <% if current_user.is_admin? %>
+          <th>Invoice</th>
+        <% end %>
         <th>Performed on</th>
         <th>Price</th>
         <th>Note</th>
@@ -36,10 +38,12 @@
       <% if service.persisted? %>
         <tbody>
           <tr>
-            <td><%= check_box_tag "service_ids[]",
-                                  service.id,
-                                  service.invoice_id.nil?,
-                                  disabled: service.invoice_id? %></td>
+            <% if current_user.is_admin? %>
+              <td><%= check_box_tag "service_ids[]",
+                                    service.id,
+                                    service.invoice_id.nil?,
+                                    disabled: service.invoice_id? %></td>
+            <% end %>
             <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
             <td><%= number_to_currency(service.price, unit: '$') %></td>
             <td>
@@ -70,5 +74,5 @@
       <% end %>
     <% end %>
   </table>
-  <%= submit_tag 'Invoice Checked Services', class: 'tiny button radius' %>
+  <%= submit_tag 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin? %>
 <% end %>

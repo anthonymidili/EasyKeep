@@ -5,6 +5,14 @@ class ApplicationController < ActionController::Base
     current_user.company if user_signed_in?
   end
 
+  def current_account
+    if current_user.is_admin?
+      current_company.accounts.find(params[:id])
+    else
+      current_user.account
+    end
+  end
+
   def active_date
     if params[:date]
       cookies[:active_date] = Date.new(params[:date][:year].to_i,
