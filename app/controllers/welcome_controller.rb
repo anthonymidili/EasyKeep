@@ -1,16 +1,19 @@
 class WelcomeController < ApplicationController
+  before_filter :admin_has_company?
+
   def home
     if user_signed_in?
-      if current_user.company.nil?
-        redirect_to new_company_path
-      elsif current_user.account
-        @account = current_user.account
-        redirect_to account_path(@account)
-      elsif current_user.is_admin?
+      if  current_user.is_admin?
         redirect_to accounts_path
       else
-        redirect_to root_path
+        redirect_to account_path(current_account)
       end
     end
+  end
+
+private
+
+  def admin_has_company?
+    redirect_to new_company_path if user_signed_in? && current_user.is_admin? && current_company.nil?
   end
 end
