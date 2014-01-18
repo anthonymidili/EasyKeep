@@ -7,7 +7,7 @@
 
     <%= render 'form' %>
 
-    <%= link_to 'Back', account_path(@account) %>
+    <%= link_to "#{@account.name} Account", @account, class: 'small button radius' %>
 
   </div>
 </div>
