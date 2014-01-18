@@ -7,7 +7,7 @@ HouseKeeping::Application.routes.draw do
     post 'users/invitation/invite_user' => 'users/invitations#invite_user', as: 'invite_user'
   end
 
-  resources :companies, except: [:index]
+  resource :company
 
   resources :accounts do
     resources :services, except: [:index, :new] do

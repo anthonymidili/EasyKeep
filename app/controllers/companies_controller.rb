@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
     @company = current_user.build_company(params[:company])
 
     if @company.save && current_user.save
-      redirect_to @company, notice: 'Company was successfully created.'
+      redirect_to company_path, notice: 'Company was successfully created.'
     else
       render action: 'new'
     end
@@ -29,7 +29,7 @@ class CompaniesController < ApplicationController
     @company = current_company
 
       if @company.update_attributes(params[:company])
-        redirect_to @company, notice: 'Company was successfully updated.'
+        redirect_to company_path, notice: 'Company was successfully updated.'
       else
         render action: 'edit'
       end
@@ -45,7 +45,7 @@ class CompaniesController < ApplicationController
 private
 
   def only_one_company
-    redirect_to edit_company_path(current_company) if current_company
+    redirect_to edit_company_path if current_company
   end
 
   def require_admin
