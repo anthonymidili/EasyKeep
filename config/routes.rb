@@ -15,11 +15,12 @@ HouseKeeping::Application.routes.draw do
         put :invoice
       end
     end
-    resources :invoices, except: [:new, :create, :update] do
-      collection do
-        put :add_services
-        put :remove_services
-      end
+  end
+
+  resources :invoices, except: [:new, :create, :update] do
+    collection do
+      put :add_services
+      put :remove_services
     end
   end
 

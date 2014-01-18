@@ -1,6 +1,7 @@
 <h4>Remove Services from your Invoice</h4>
 
-<%= form_tag remove_services_account_invoices_path(@account, id: @invoice.id), method: :put do %>
+<%= form_tag remove_services_invoices_path(id: @invoice.id), method: :put do %>
+  <%= hidden_field_tag(:account_id, @account.id) %>
   <table>
     <thead>
       <tr>

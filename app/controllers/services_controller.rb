@@ -47,7 +47,7 @@ class ServicesController < ApplicationController
         @services = @account.services
         @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
 
-        redirect_to account_invoice_path(@account, @invoice)
+        redirect_to invoice_path(@invoice, account_id: @account.id)
       else
         redirect_to @account, alert: 'There was a problem creating a new invoice. Please try again.'
       end

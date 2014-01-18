@@ -2,7 +2,8 @@
 
 <div class="row">
   <!-- View By Form -->
-  <%= form_tag edit_account_invoice_path(@account, @invoice), id: :view_by_selection, method: :get do %>
+  <%= form_tag edit_invoice_path(@invoice), id: :view_by_selection, method: :get do %>
+    <%= hidden_field_tag(:account_id, @account.id) %>
     <div class="small-12 medium-6 large-6 columns">
       <label>View By</label>
       <ul class="inline-list">
@@ -14,7 +15,8 @@
   <% end %>
 
   <!-- Active Date Form -->
-  <%= form_tag edit_account_invoice_path(@account, @invoice), method: :get do %>
+  <%= form_tag edit_invoice_path(@invoice), method: :get do %>
+    <%= hidden_field_tag(:account_id, @account.id) %>
     <div class="small-6 medium-3 large-3 columns">
       <%= year_or_month_select %>
     </div>
@@ -24,7 +26,8 @@
   <% end %>
 </div>
 
-<%= form_tag add_services_account_invoices_path(@account, id: @invoice.id), method: :put do %>
+<%= form_tag add_services_invoices_path(id: @invoice.id), method: :put do %>
+  <%= hidden_field_tag(:account_id, @account.id) %>
   <table>
     <thead>
       <tr>
@@ -48,4 +51,3 @@
   </table>
   <%= submit_tag 'Add Checked Services', class: 'tiny button radius' %>
 <% end %>
-

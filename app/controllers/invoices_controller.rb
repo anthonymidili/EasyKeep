@@ -25,7 +25,7 @@ class InvoicesController < ApplicationController
       @services.update_all({invoice_id: nil}, {id: @invoice.services})
       @invoice.destroy
 
-      redirect_to account_invoices_path(@account), alert: 'Invoice was successfully deleted.'
+      redirect_to invoices_path(account_id: @account.id), alert: 'Invoice was successfully deleted.'
     end
   end
 
@@ -36,7 +36,7 @@ class InvoicesController < ApplicationController
 
       @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
 
-      redirect_to edit_account_invoice_path(@account, @invoice)
+      redirect_to edit_invoice_path(@invoice, account_id: @account.id)
     end
   end
 
@@ -46,7 +46,7 @@ class InvoicesController < ApplicationController
 
       @invoice.services.update_all({invoice_id: nil}, {id: params[:service_ids]})
 
-      redirect_to edit_account_invoice_path(@account, @invoice)
+      redirect_to edit_invoice_path(@invoice, account_id: @account.id)
     end
   end
 

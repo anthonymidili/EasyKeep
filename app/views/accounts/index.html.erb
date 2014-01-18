@@ -31,7 +31,7 @@
             <td><%= account.fax %></td>
             <td><%= mail_to account.user.email %></td>
             <td class="center_cell">
-              <%= link_to account_invoices_path(account) do %>
+              <%= link_to invoices_path(account_id: account.id) do %>
                 <i class="miscellaneous fi-book"></i>
               <% end %>
             </td>
