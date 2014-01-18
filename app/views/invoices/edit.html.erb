@@ -5,67 +5,15 @@
 
     <h1>Editing Invoice</h1>
 
-    <%= render 'header' %>
+    <%= render 'sub_header' %>
 
-    <h4>Remove Services from your Invoice</h4>
-
-    <%= form_tag remove_services_account_invoices_path(@account, id: @invoice.id), method: :put do %>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Date performed</th>
-            <th>Service cost</th>
-          </tr>
-        </thead>
-
-        <% @invoice.services.each do |service| %>
-          <% if service.persisted? %>
-            <tbody>
-              <tr>
-                <td><%= check_box_tag "service_ids[]", service.id %></td>
-                <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
-                <td><%= number_to_currency(service.price) %></td>
-              </tr>
-            </tbody>
-          <% end %>
-        <% end %>
-      </table>
-      <%= submit_tag 'Remove Checked Services', class: 'tiny button radius' %>
-    <% end %>
+    <%= render 'remove_services' %>
 
     <%= render 'totals' %>
 
     <hr>
 
-    <h4>Add Services to your Invoice</h4>
-
-    <%= render 'date_bar_forms' %>
-
-    <%= form_tag add_services_account_invoices_path(@account, id: @invoice.id), method: :put do %>
-      <table>
-        <thead>
-        <tr>
-          <th></th>
-          <th>Date performed</th>
-          <th>Service cost</th>
-        </tr>
-        </thead>
-
-        <% services_with_view_by_scope(@services).by_not_used.each do |service| %>
-          <% if service.persisted? %>
-            <tbody>
-            <tr>
-              <td><%= check_box_tag "service_ids[]", service.id %></td>
-              <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
-              <td><%= number_to_currency(service.price) %></td>
-            </tr>
-            </tbody>
-          <% end %>
-        <% end %>
-      </table>
-      <%= submit_tag 'Add Checked Services', class: 'tiny button radius' %>
-    <% end %>
+    <%= render 'add_services' %>
 
     <ul class="inline-list">
       <li>

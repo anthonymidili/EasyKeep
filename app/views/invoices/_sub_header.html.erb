@@ -8,9 +8,7 @@
     <% if @account.company.fax.present? %>
       <li><label><b>Fax: </b><%= @account.company.fax %></label></li>
     <% end %>
-    <% if @account.company.users.first.email.present? %>
-      <li><label><b>Email: </b><%= @account.company.users.find(1).email %></label></li>
-    <% end %>
+    <li><label><b>Email: </b><%= @account.company.users.find(1).email %></label></li>
   </ul>
 </div>
 
@@ -18,7 +16,6 @@
 
 <div class="panel">
   <ul class="inline-list">
-    <li><label><b>Account name: </b><%= @account.name %></label></li>
     <li><label><b>Invoice for: </b><%= @account.user.name %></label></li>
     <% if @account.full_address.present? %>
       <li><label><b>Address: </b><%= @account.full_address %></label></li>
