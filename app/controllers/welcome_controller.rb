@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
       if  current_user.is_admin?
         redirect_to accounts_path
       else
-        redirect_to account_path(current_account)
+        redirect_to account_path(current_user.account)
       end
     end
   end
