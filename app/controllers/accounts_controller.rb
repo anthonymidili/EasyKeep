@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    @account = current_account
+    @account = current_company.accounts.find(params[:id])
     @account.user.destroy
     redirect_to accounts_url, alert: 'Account and all account information was successfully deleted.'
   end
@@ -56,7 +56,12 @@ private
   end
 
   def set_and_authenticate_account
+    current_user.current_account_id = params[:id]
+    current_user.save
+
     @account = current_account
-    redirect_to account_path(@account) unless current_user.is_admin? || @account.to_param == params[:id]
+    unless current_user.is_admin? || current_user.account.id == current_user.current_account_id
+      redirect_to account_path(current_user.account)
+    end
   end
 end

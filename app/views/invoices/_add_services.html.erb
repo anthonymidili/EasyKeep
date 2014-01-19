@@ -3,7 +3,6 @@
 <div class="row">
   <!-- View By Form -->
   <%= form_tag edit_invoice_path(@invoice), id: :view_by_selection, method: :get do %>
-    <%= hidden_field_tag(:account_id, @account.id) %>
     <div class="small-12 medium-6 large-6 columns">
       <label>View By</label>
       <ul class="inline-list">
@@ -16,7 +15,6 @@
 
   <!-- Active Date Form -->
   <%= form_tag edit_invoice_path(@invoice), method: :get do %>
-    <%= hidden_field_tag(:account_id, @account.id) %>
     <div class="small-6 medium-3 large-3 columns">
       <%= year_or_month_select %>
     </div>
@@ -27,7 +25,6 @@
 </div>
 
 <%= form_tag add_services_invoices_path(id: @invoice.id), method: :put do %>
-  <%= hidden_field_tag(:account_id, @account.id) %>
   <table>
     <thead>
       <tr>

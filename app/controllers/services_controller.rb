@@ -47,7 +47,7 @@ class ServicesController < ApplicationController
         @services = @account.services
         @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
 
-        redirect_to invoice_path(@invoice, account_id: @account.id)
+        redirect_to invoice_path(@invoice)
       else
         redirect_to @account, alert: 'There was a problem creating a new invoice. Please try again.'
       end
@@ -62,6 +62,8 @@ private
 
   def set_and_authenticate_account
     @account = current_account
-    redirect_to account_path(@account) unless current_user.is_admin? || @account.to_param == params[:account_id]
+    unless current_user.is_admin? || current_user.account.id == current_user.current_account_id
+      redirect_to account_path(current_user.account)
+    end
   end
 end

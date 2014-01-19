@@ -25,7 +25,7 @@ class InvoicesController < ApplicationController
       @services.update_all({invoice_id: nil}, {id: @invoice.services})
       @invoice.destroy
 
-      redirect_to invoices_path(account_id: @account.id), alert: 'Invoice was successfully deleted.'
+      redirect_to invoices_path, alert: 'Invoice was successfully deleted.'
     end
   end
 
@@ -36,7 +36,7 @@ class InvoicesController < ApplicationController
 
       @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
 
-      redirect_to edit_invoice_path(@invoice, account_id: @account.id)
+      redirect_to edit_invoice_path(@invoice)
     end
   end
 
@@ -46,7 +46,7 @@ class InvoicesController < ApplicationController
 
       @invoice.services.update_all({invoice_id: nil}, {id: params[:service_ids]})
 
-      redirect_to edit_invoice_path(@invoice, account_id: @account.id)
+      redirect_to edit_invoice_path(@invoice)
     end
   end
 
@@ -57,7 +57,14 @@ private
   end
 
   def set_and_authenticate_account
+    if params[:account_id]
+      current_user.current_account_id = params[:account_id]
+      current_user.save
+    end
+
     @account = current_account
-    redirect_to account_path(@account) unless current_user.is_admin? || @account.to_param == params[:account_id]
+    unless current_user.is_admin? || current_user.account.id == current_user.current_account_id
+      redirect_to account_path(current_user.account)
+    end
   end
 end

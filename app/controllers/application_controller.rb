@@ -5,13 +5,11 @@ class ApplicationController < ActionController::Base
     current_user.company if user_signed_in?
   end
 
+  # The current_account_id needs to be set for any link leaving the accounts/index action for admins to view and edit
+  # the correct account information.
   def current_account
     if current_user.is_admin?
-      if params[:account_id]
-        current_company.accounts.find(params[:account_id])
-      else
-        current_company.accounts.find(params[:id])
-      end
+      Account.find(current_user.current_account_id)
     else
       current_user.account
     end
