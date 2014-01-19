@@ -2,16 +2,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def current_company
-    current_user.company if user_signed_in?
+    @current_company ||= current_user.company if user_signed_in?
   end
 
-  # The current_account_id needs to be set for any link leaving the accounts/index action for admins to view and edit
-  # the correct account information.
+  # The current_account_id is set to the account the user is viewing.
   def current_account
-    if current_user.is_admin?
-      Account.find(current_user.current_account_id)
-    else
-      current_user.account
+    current_company.accounts.find(current_user.current_account_id) if user_signed_in?
+  end
+
+  # use this on any controller you need the @account with a before_filter.
+  def set_and_authenticate_account
+    @account = current_account
+    unless current_user.is_admin? || current_user.account.id == current_account.id
+      redirect_to account_path(current_user.account)
     end
   end
 

@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin, except: [:show, :edit, :update]
+  before_filter :set_current_account_id
   before_filter :set_and_authenticate_account, only: [:show, :edit, :update]
 
   def index
@@ -55,13 +56,10 @@ private
     redirect_to account_path(current_account) unless current_user.is_admin?
   end
 
-  def set_and_authenticate_account
-    current_user.current_account_id = params[:id]
-    current_user.save
-
-    @account = current_account
-    unless current_user.is_admin? || current_user.account.id == current_user.current_account_id
-      redirect_to account_path(current_user.account)
+  def set_current_account_id
+    if params[:id]
+      current_user.current_account_id = params[:id]
+      current_user.save
     end
   end
 end

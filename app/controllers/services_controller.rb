@@ -59,11 +59,4 @@ private
   def require_admin
     redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
-
-  def set_and_authenticate_account
-    @account = current_account
-    unless current_user.is_admin? || current_user.account.id == current_user.current_account_id
-      redirect_to account_path(current_user.account)
-    end
-  end
 end

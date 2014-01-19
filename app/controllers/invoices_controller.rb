@@ -1,6 +1,7 @@
 class InvoicesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin, except: [:show, :index]
+  before_filter :set_current_account_id
   before_filter :set_and_authenticate_account
 
   def show
@@ -56,15 +57,10 @@ private
     redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
 
-  def set_and_authenticate_account
+  def set_current_account_id
     if params[:account_id]
       current_user.current_account_id = params[:account_id]
       current_user.save
-    end
-
-    @account = current_account
-    unless current_user.is_admin? || current_user.account.id == current_user.current_account_id
-      redirect_to account_path(current_user.account)
     end
   end
 end
