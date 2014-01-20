@@ -57,9 +57,10 @@ private
   end
 
   def set_current_account_id
-    if params[:id]
-      current_user.current_account_id = params[:id]
-      current_user.save
-    end
+    @set_current_account_id ||=
+        if params[:id]
+          current_user.current_account_id = params[:id]
+          current_user.save
+        end
   end
 end
