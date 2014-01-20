@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<%= form_tag invoice_account_services_path(@account), method: :put do %>
+<%= form_tag invoice_services_path, method: :put do %>
   <table>
     <thead>
       <tr>
@@ -48,7 +48,7 @@
             <td><%= number_to_currency(service.price, unit: '$') %></td>
             <td>
               <% if service.note.length > 10 %>
-                <%= link_to account_service_path(@account, service) do %>
+                <%= link_to service do %>
                   <%= service.note.truncate(10, :omission => '... (continued)') %>
                 <% end %>
               <% else %>
@@ -57,12 +57,12 @@
             </td>
             <% if current_user.is_admin? %>
               <td class="center_cell">
-                <%= link_to edit_account_service_path(@account, service) do %>
+                <%= link_to edit_service_path(service) do %>
                   <i class="page fi-page-edit"></i>
                 <% end %>
               </td>
               <td class="center_cell">
-                <%= link_to [@account, service],
+                <%= link_to service,
                             method: :delete,
                             confirm: 'Are you sure? This will permanently delete your service history record.' do %>
                   <i class="general fi-x"></i>

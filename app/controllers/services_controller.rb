@@ -14,7 +14,7 @@ class ServicesController < ApplicationController
 
   def create
     @services = @account.services
-    @service = @account.services.new(params[:service])
+    @service = @account.services.build(params[:service])
 
     if @service.save
       redirect_to @account, notice: 'Service was successfully created.'

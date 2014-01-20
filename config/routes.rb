@@ -9,11 +9,11 @@ HouseKeeping::Application.routes.draw do
 
   resource :company
 
-  resources :accounts do
-    resources :services, except: [:index, :new] do
-      collection do
-        put :invoice
-      end
+  resources :accounts
+
+  resources :services, except: [:index, :new] do
+    collection do
+      put :invoice
     end
   end
 

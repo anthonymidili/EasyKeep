@@ -14,7 +14,7 @@
     <ul class="inline-list">
       <li><%= link_to "#{@account.name} Account", @account, class: 'small button radius' %></li>
       <% if current_user.is_admin? %>
-        <li><%= link_to 'Edit', edit_account_service_path(@account, @service), class: 'small button radius' %></li>
+        <li><%= link_to 'Edit', edit_service_path(@service), class: 'small button radius' %></li>
       <% end %>
     </ul>
 
