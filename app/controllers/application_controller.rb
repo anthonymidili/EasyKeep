@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
         end
   end
 
-  # The current_account_id is set to the account the user is viewing.
+  # The current_account_id is set to the current account the user is viewing.
   # Use this on any controller you need the @account with a before_filter.
   def set_and_authenticate_account
     @set_and_authenticate_account ||=

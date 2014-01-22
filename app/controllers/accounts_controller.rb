@@ -53,7 +53,7 @@ class AccountsController < ApplicationController
 private
 
   def require_admin
-    redirect_to account_path(current_account) unless current_user.is_admin?
+    redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
 
   def set_current_account_id
