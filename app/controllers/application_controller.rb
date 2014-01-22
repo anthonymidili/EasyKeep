@@ -10,11 +10,10 @@ class ApplicationController < ActionController::Base
   # you will need to pass the :account_id as a param in your link.
   # Use this on any controller that belongs_to an account model.
   def set_nested_current_account_id
-    @set_nested_current_account_id ||=
-        if params[:account_id]
-          current_user.current_account_id = params[:account_id]
-          current_user.save
-        end
+    if params[:account_id]
+      current_user.current_account_id = params[:account_id]
+      current_user.save
+    end
   end
 
   # The current_account_id is set to the current account the user is viewing.
