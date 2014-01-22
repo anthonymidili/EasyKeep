@@ -16,7 +16,7 @@
           <tr>
             <td><%= check_box_tag "service_ids[]", service.id %></td>
             <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
-            <td><%= number_to_currency(service.price) %></td>
+            <td><%= number_to_currency(service.cost) %></td>
           </tr>
         </tbody>
       <% end %>

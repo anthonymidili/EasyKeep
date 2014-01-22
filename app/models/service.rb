@@ -1,7 +1,7 @@
 class Service < ActiveRecord::Base
-  attr_accessible :note, :performed_on, :price
+  attr_accessible :note, :performed_on, :cost
 
-  before_save { |service| service.price = 0 if service.price.blank? }
+  before_save { |service| service.cost = 0 if service.cost.blank? }
 
   belongs_to :account
   belongs_to :invoice

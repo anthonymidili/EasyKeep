@@ -7,7 +7,7 @@ class Invoice < ActiveRecord::Base
   default_scope order: 'created_at DESC'
 
   def sub_total
-    self.services.sum(&:price)
+    self.services.sum(&:cost)
   end
 
   def tax

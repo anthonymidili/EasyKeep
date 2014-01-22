@@ -21,11 +21,11 @@ class Account < ActiveRecord::Base
   end
 
   def sum_services(view, date)
-    services_items(view, date).sum(&:price)
+    services_items(view, date).sum(&:cost)
   end
 
   def sum_invoiceable_services(view, date)
-    services_items(view, date).where(invoice_id: nil).sum(&:price)
+    services_items(view, date).where(invoice_id: nil).sum(&:cost)
   end
 
 private

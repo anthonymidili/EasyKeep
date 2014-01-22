@@ -25,7 +25,7 @@
           <th>Invoice</th>
         <% end %>
         <th>Performed on</th>
-        <th>Price</th>
+        <th>Cost</th>
         <th>Note</th>
         <% if current_user.is_admin? %>
           <th>Edit</th>
@@ -45,7 +45,7 @@
                                     disabled: service.invoice_id? %></td>
             <% end %>
             <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
-            <td><%= number_to_currency(service.price, unit: '$') %></td>
+            <td><%= number_to_currency(service.cost, unit: '$') %></td>
             <td>
               <% if service.note.length > 10 %>
                 <%= link_to service do %>
