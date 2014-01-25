@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_admin
+  before_filter :require_admin!
   before_filter :only_one_company, only: [ :new, :create ]
 
   def show
@@ -46,9 +46,5 @@ private
 
   def only_one_company
     redirect_to edit_company_path if current_company
-  end
-
-  def require_admin
-    redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
 end

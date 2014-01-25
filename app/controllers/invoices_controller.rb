@@ -1,8 +1,7 @@
 class InvoicesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_admin, except: [:show, :index]
+  before_filter :require_admin!, except: [:show, :index]
   before_filter :set_nested_current_account_id, only: [:index]
-  before_filter :authenticate_account!
 
   def show
     @invoice = current_account.invoices.find(params[:id])
@@ -49,11 +48,5 @@ class InvoicesController < ApplicationController
 
       redirect_to edit_invoice_path(@invoice)
     end
-  end
-
-private
-
-  def require_admin
-    redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
 end

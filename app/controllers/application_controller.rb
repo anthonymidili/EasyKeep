@@ -1,32 +1,30 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def require_admin!
+    redirect_to account_path(current_user.account) unless current_user.is_admin?
+  end
+
   def current_company
     @current_company ||= current_user.company if user_signed_in?
   end; helper_method :current_company
 
-  # If an :account_id is passed in the params, the current_account_id will be updated for the current_user.
+  # If an :account_id is passed in the params by an admin, the current_account_id will be updated for the current_user.
   # If going to a controller action outside of the accounts controller before the current_account_id is set,
   # you will need to pass the :account_id as a param in your link.
   # Use this on any controller that belongs_to an account model.
   def set_nested_current_account_id
-    if params[:account_id]
+    if current_user.is_admin? && params[:account_id]
       current_user.current_account_id = params[:account_id]
       current_user.save
     end
   end
 
+  # The current_account_id is set to the current_account the user is viewing.
+  # Find the current_account by id so if the account is not found it returns nil.
   def current_account
     @current_account ||= current_company.accounts.find_by_id(current_user.current_account_id) if user_signed_in?
   end; helper_method :current_account
-
-  # The current_account_id is set to the current account the user is viewing.
-  # Use this on any controller you need the @account with a before_filter.
-  def authenticate_account!
-    unless current_user.is_admin? || current_user.account.id == current_account.id
-      redirect_to account_path(current_user.account)
-    end
-  end
 
   def active_date
     @active_date ||=

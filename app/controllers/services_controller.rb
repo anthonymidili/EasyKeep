@@ -1,8 +1,6 @@
 class ServicesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_admin, except: [:show]
-  before_filter :set_nested_current_account_id
-  before_filter :authenticate_account!
+  before_filter :require_admin!, except: [:show]
 
   def show
     @service = current_account.services.find(params[:id])
@@ -53,11 +51,5 @@ class ServicesController < ApplicationController
         redirect_to current_account, alert: 'There was a problem creating a new invoice. Please try again.'
       end
     end
-  end
-
-private
-
-  def require_admin
-    redirect_to account_path(current_user.account) unless current_user.is_admin?
   end
 end
