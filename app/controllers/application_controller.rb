@@ -9,15 +9,19 @@ class ApplicationController < ActionController::Base
     @current_company ||= current_user.company if user_signed_in?
   end; helper_method :current_company
 
-  # If an :account_id is passed in the params by an admin, the current_account_id will be updated for the current_user.
+  # If on the accounts_controller or an :account_id is passed in the params by an admin,
+  # the current_account_id will be updated for the current_user.
   # If going to a controller action outside of the accounts controller before the current_account_id is set,
   # you will need to pass the :account_id as a param in your link.
-  # Use this on any controller that belongs_to an account model.
-  def set_nested_current_account_id
-    if current_user.is_admin? && params[:account_id]
-      current_user.current_account_id = params[:account_id]
-      current_user.save
-    end
+  def set_current_account_id
+    @set_current_account_id ||=
+        if params[:controller] == 'accounts' && params[:id]
+          current_user.current_account_id = params[:id]
+          current_user.save
+        elsif current_user.is_admin? && params[:account_id]
+          current_user.current_account_id = params[:account_id]
+          current_user.save
+        end
   end
 
   # The current_account_id is set to the current_account the user is viewing.

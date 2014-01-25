@@ -55,14 +55,6 @@ class AccountsController < ApplicationController
 
 private
 
-  def set_current_account_id
-    @set_current_account_id ||=
-        if params[:id]
-          current_user.current_account_id = params[:id]
-          current_user.save
-        end
-  end
-
   def authenticate_account!
     unless current_user.is_admin? || current_user.account.id == current_account.id
       redirect_to account_path(current_user.account)
