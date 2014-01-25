@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def current_company
     @current_company ||= current_user.company if user_signed_in?
-  end
+  end; helper_method :current_company
 
   # If an :account_id is passed in the params, the current_account_id will be updated for the current_user.
   # If going to a controller action outside of the accounts controller before the current_account_id is set,
@@ -16,13 +16,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_account
+    @current_account ||= current_company.accounts.find_by_id(current_user.current_account_id) if user_signed_in?
+  end; helper_method :current_account
+
   # The current_account_id is set to the current account the user is viewing.
   # Use this on any controller you need the @account with a before_filter.
-  def set_and_authenticate_account
-    @set_and_authenticate_account ||=
-        @account = current_company.accounts.find(current_user.current_account_id) if user_signed_in?
-
-    unless current_user.is_admin? || current_user.account.id == @account.id
+  def authenticate_account!
+    unless current_user.is_admin? || current_user.account.id == current_account.id
       redirect_to account_path(current_user.account)
     end
   end

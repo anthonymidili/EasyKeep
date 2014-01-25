@@ -2,26 +2,26 @@ class InvoicesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin, except: [:show, :index]
   before_filter :set_nested_current_account_id, only: [:index]
-  before_filter :set_and_authenticate_account
+  before_filter :authenticate_account!
 
   def show
-    @invoice = @account.invoices.find(params[:id])
+    @invoice = current_account.invoices.find(params[:id])
     @services = @invoice.services
   end
 
   def index
-    @invoices = @account.invoices.page(params[:page]).per(10)
+    @invoices = current_account.invoices.page(params[:page]).per(10)
   end
 
   def edit
-    @invoice = @account.invoices.find(params[:id])
-    @services = @account.services
+    @invoice = current_account.invoices.find(params[:id])
+    @services = current_account.services
   end
 
   def destroy
     ActiveRecord::Base.transaction do
-      @invoice = @account.invoices.find(params[:id])
-      @services = @account.services
+      @invoice = current_account.invoices.find(params[:id])
+      @services = current_account.services
 
       @services.update_all({invoice_id: nil}, {id: @invoice.services})
       @invoice.destroy
@@ -32,8 +32,8 @@ class InvoicesController < ApplicationController
 
   def add_services
     ActiveRecord::Base.transaction do
-      @invoice = @account.invoices.find(params[:id])
-      @services = @account.services
+      @invoice = current_account.invoices.find(params[:id])
+      @services = current_account.services
 
       @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
 
@@ -43,7 +43,7 @@ class InvoicesController < ApplicationController
 
   def remove_services
     ActiveRecord::Base.transaction do
-      @invoice = @account.invoices.find(params[:id])
+      @invoice = current_account.invoices.find(params[:id])
 
       @invoice.services.update_all({invoice_id: nil}, {id: params[:service_ids]})
 

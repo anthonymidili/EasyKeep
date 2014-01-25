@@ -2,13 +2,14 @@ class AccountsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin, except: [:show, :edit, :update]
   before_filter :set_current_account_id
-  before_filter :set_and_authenticate_account, only: [:show, :edit, :update]
+  before_filter :authenticate_account!, only: [:show, :edit, :update]
 
   def index
     @accounts = current_company.accounts.page(params[:page]).per(10)
   end
 
   def show
+    @account = current_account
     @services = @account.services
     @service = @account.services.build
     @service.performed_on ||= Date.current
@@ -32,9 +33,11 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    @account = current_account
   end
 
   def update
+    @account = current_account
     @account.user.skip_validation = true
 
     if @account.update_attributes(params[:account])
@@ -45,7 +48,7 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    @account = current_company.accounts.find(params[:id])
+    @account = current_account
     @account.user.destroy
     redirect_to accounts_url, alert: 'Account and all account information was successfully deleted.'
   end

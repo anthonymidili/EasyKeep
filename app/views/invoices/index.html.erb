@@ -1,9 +1,9 @@
-<% provide(:title, raw("#{@account.name} Invoices")) %>
+<% provide(:title, raw("#{current_account.name} Invoices")) %>
 
 <div class="row">
   <div class="small-12 small-centered columns">
 
-    <h1><%= "#{@account.name} Invoices" %></h1>
+    <h1><%= "#{current_account.name} Invoices" %></h1>
 
     <table>
       <thead>
@@ -50,7 +50,7 @@
         <%= link_to 'Account Listings', accounts_path, class: 'small button radius' %>
       </li>
       <li>
-        <%= link_to "#{@account.name} Account", @account, class: 'small button radius' %>
+        <%= link_to "#{current_account.name} Account", current_account, class: 'small button radius' %>
       </li>
     </ul>
 
