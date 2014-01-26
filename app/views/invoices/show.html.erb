@@ -28,10 +28,12 @@
     <%= render 'totals' %>
 
     <ul class="inline-list hide_on_print">
-      <li>
-        <%= link_to 'Edit Invoice', edit_invoice_path(@invoice),
-                    class: 'small button radius' %>
-      </li>
+      <% if current_user.is_admin? %>
+        <li>
+          <%= link_to 'Edit Invoice', edit_invoice_path(@invoice),
+                      class: 'small button radius' %>
+        </li>
+      <% end %>
       <li>
         <%= link_to "#{current_account.name} Account", current_account, class: 'small button radius' %>
       </li>

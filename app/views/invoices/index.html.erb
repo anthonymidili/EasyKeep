@@ -8,34 +8,42 @@
     <table>
       <thead>
         <tr>
-          <th>Created at</th>
           <th>Invoice#</th>
+          <th>Created at</th>
           <th>Sub Total</th>
           <th>Total</th>
-          <th>Edit</th>
-          <th>Destroy</th>
+          <% if current_user.is_admin? %>
+            <th>Edit</th>
+            <th>Destroy</th>
+          <% end %>
         </tr>
       </thead>
 
       <% @invoices.each do |invoice| %>
         <tbody>
           <tr>
-            <td><%= link_to invoice.created_at.strftime("%Y-%b-%d"), invoice_path(invoice) %></td>
-            <td><%= invoice.id %></td>
+            <td class="center_cell">
+              <%= link_to invoice_path(invoice) do %>
+                <i class="page fi-page"> <b><%= invoice.id %></b></i>
+              <% end %>
+            </td>
+            <td><%= invoice.created_at.strftime("%Y-%b-%d") %></td>
             <td><%= number_to_currency(invoice.sub_total) %></td>
             <td><%= number_to_currency(invoice.total_cost) %></td>
-            <td class="center_cell">
-              <%= link_to edit_invoice_path(invoice) do %>
-                <i class="page fi-page-edit"></i>
-              <% end %>
-            </td>
-            <td class="center_cell">
-              <%= link_to invoice,
-                          method: :delete,
-                          confirm: 'Are you sure? This will permanently delete your invoice information.'  do %>
-                <i class="general fi-x"></i>
-              <% end %>
-            </td>
+            <% if current_user.is_admin? %>
+              <td class="center_cell">
+                <%= link_to edit_invoice_path(invoice) do %>
+                  <i class="page fi-page-edit"></i>
+                <% end %>
+              </td>
+              <td class="center_cell">
+                <%= link_to invoice,
+                            method: :delete,
+                            confirm: 'Are you sure? This will permanently delete your invoice information.'  do %>
+                  <i class="general fi-x"></i>
+                <% end %>
+              </td>
+            <% end %>
           </tr>
         </tbody>
       <% end %>
@@ -46,9 +54,11 @@
     <br>
 
     <ul class="inline-list">
-      <li>
-        <%= link_to 'Account Listings', accounts_path, class: 'small button radius' %>
-      </li>
+      <% if current_user.is_admin? %>
+        <li>
+          <%= link_to 'Account Listings', accounts_path, class: 'small button radius' %>
+        </li>
+      <% end %>
       <li>
         <%= link_to "#{current_account.name} Account", current_account, class: 'small button radius' %>
       </li>
