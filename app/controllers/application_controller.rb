@@ -10,24 +10,22 @@ class ApplicationController < ActionController::Base
   end; helper_method :current_company
 
   # If on the accounts_controller or an :account_id is passed in the params by an admin,
-  # the current_account_id will be updated for the current_user.
-  # If going to a controller action outside of the accounts controller before the current_account_id is set,
+  # the current_account cookie will be updated for the current_account.
+  # If going to a controller action outside of the accounts controller before the current_account cookie is set,
   # you will need to pass the :account_id as a param in your link.
   def set_current_account_id
     @set_current_account_id ||=
         if params[:controller] == 'accounts' && params[:id]
-          current_user.current_account_id = params[:id]
-          current_user.save
+          cookies[:current_account] = params[:id]
         elsif current_user.is_admin? && params[:account_id]
-          current_user.current_account_id = params[:account_id]
-          current_user.save
+          cookies[:current_account] = params[:account_id]
         end
   end
 
   # The current_account_id is set to the current_account the user is viewing.
   # Find the current_account by id so if the account is not found it returns nil.
   def current_account
-    @current_account ||= current_company.accounts.find_by_id(current_user.current_account_id) if user_signed_in?
+    @current_account ||= current_company.accounts.find_by_id(cookies[:current_account]) if user_signed_in?
   end; helper_method :current_account
 
   def active_date
