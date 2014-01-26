@@ -2,7 +2,6 @@ class Company < ActiveRecord::Base
   attr_accessible :address_1, :address_2, :city, :name, :fax, :phone, :state, :zip
 
   has_many :users
-
   has_many :accounts, dependent: :destroy
 
   validates :name, presence: true

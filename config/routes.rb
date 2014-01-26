@@ -21,7 +21,8 @@ HouseKeeping::Application.routes.draw do
     collection do
       put :add_services
       put :remove_services
-    end
+      end
+    resources :payments
   end
 
   root to: 'welcome#home'

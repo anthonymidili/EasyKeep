@@ -2,7 +2,9 @@ class Invoice < ActiveRecord::Base
   # attr_accessible :title, :body
 
   belongs_to :account
+
   has_many :services
+  has_many :payments
 
   default_scope order: 'created_at DESC'
 
