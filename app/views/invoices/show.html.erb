@@ -30,9 +30,6 @@
     <ul class="inline-list hide_on_print">
       <% if current_user.is_admin? %>
         <li>
-          <%= link_to 'Apply Payment', new_invoice_payment_path(@invoice) %>
-        </li>
-        <li>
           <%= link_to 'Edit Invoice', edit_invoice_path(@invoice), class: 'small button radius' %>
         </li>
       <% end %>
@@ -43,6 +40,14 @@
         <%= link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius' %>
       </li>
     </ul>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <%= link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small button radius' if current_user.is_admin? %>
+      </div>
+    </div>
+
+    <%= render 'payments/payments' %>
 
   </div>
 </div>

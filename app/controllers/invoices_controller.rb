@@ -6,6 +6,7 @@ class InvoicesController < ApplicationController
   def show
     @invoice = current_account.invoices.find(params[:id])
     @services = @invoice.services
+    @payments = @invoice.payments
   end
 
   def index

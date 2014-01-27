@@ -1,19 +1,29 @@
 <%= form_for [@invoice, @payment] do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
-  </div>
-  <div class="field">
-    <%= f.label :received_on %><br />
-    <%= f.date_select :received_on %>
-  </div>
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="row">
+    <div class="small-12 medium-6 large-6 columns">
+      <label>*Received on (yyyy-mm-dd)</label>
+      <%= f.text_field :received_on, placeholder: 'Date' %>
+
+      <%= f.label :transaction_type %>
+      <%= f.select :transaction_type,
+                   'Check' => :check,
+                   'Debit' => :debit,
+                   'Credit' => :credit %>
+    </div>
+    <div class="small-12 medium-6 large-6 columns">
+      <%= f.label :amount %>
+      <div class="row collapse">
+        <div class="small-3 medium-2 large-2 columns">
+          <span class="prefix z-index_1">$</span>
+        </div>
+        <div class="small-9 medium-10 large-10 columns">
+          <%= f.number_field :amount, step: 0.01, placeholder: '0.00' %>
+        </div>
+      </div>
+
+      <%= f.submit class: 'small button radius expand' %>
+    </div>
   </div>
 <% end %>

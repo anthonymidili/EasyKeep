@@ -1,0 +1,31 @@
+<h4>Payment History</h4>
+
+<table>
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Received on</th>
+    <th>Amount</th>
+    <th>Invoice</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+
+<% @payments.each do |payment| %>
+  <% if payment.persisted? %>
+    <tbody>
+    <tr>
+      <td><%= payment.transaction_type %></td>
+      <td><%= payment.received_on %></td>
+      <td><%= payment.amount %></td>
+      <td><%= payment.invoice_id %></td>
+      <td><%= link_to 'Show', invoice_payment_path(@invoice, payment) %></td>
+      <td><%= link_to 'Edit', edit_invoice_payment_path(@invoice, payment) %></td>
+      <td><%= link_to 'Destroy', [@invoice, payment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    </tbody>
+  <% end %>
+<% end %>
+</table>

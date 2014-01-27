@@ -3,25 +3,24 @@ class PaymentsController < ApplicationController
   before_filter :require_admin!
   before_filter :load_invoice
 
-  def index
-    @payments = @invoice.payments
-  end
-
   def show
     @payment = @invoice.payments.find(params[:id])
   end
 
   def new
     @payment = @invoice.payments.build
+    @payment.received_on ||= Date.current
   end
 
   def create
     @payment = @invoice.payments.build(params[:payment])
+    @payments = @invoice.payments
+    @services = @invoice.services
 
     if @payment.save
       redirect_to @invoice, notice: 'Payment was successfully created.'
     else
-      render 'invoices/show'
+      render 'payments/new'
     end
   end
 
@@ -43,7 +42,7 @@ class PaymentsController < ApplicationController
     @payment = @invoice.payments.find(params[:id])
     @payment.destroy
 
-    redirect_to invoice_payments_path(@invoice)
+    redirect_to @invoice
   end
 
 private
