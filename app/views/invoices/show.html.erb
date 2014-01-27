@@ -3,7 +3,7 @@
 <div class="row">
   <div class="small-12 small-centered columns">
 
-    <%= render 'sub_header' %>
+    <%= render 'invoices/sub_header' %>
 
     <table>
       <thead>
@@ -25,21 +25,22 @@
       <% end %>
     </table>
 
-    <%= render 'totals' %>
+    <%= render 'invoices/totals' %>
 
     <ul class="inline-list hide_on_print">
       <% if current_user.is_admin? %>
         <li>
-          <%= link_to 'Edit Invoice', edit_invoice_path(@invoice),
-                      class: 'small button radius' %>
+          <%= link_to 'Apply Payment', new_invoice_payment_path(@invoice) %>
+        </li>
+        <li>
+          <%= link_to 'Edit Invoice', edit_invoice_path(@invoice), class: 'small button radius' %>
         </li>
       <% end %>
       <li>
         <%= link_to "#{current_account.name} Account", current_account, class: 'small button radius' %>
       </li>
       <li>
-        <%= link_to "#{current_account.name} Invoices", invoices_path,
-                    class: 'small button radius' %>
+        <%= link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius' %>
       </li>
     </ul>
 

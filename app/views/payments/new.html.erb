@@ -1,5 +1,7 @@
 <h1>New payment</h1>
 
-<%= render 'form' %>
+<%= render 'payments/form' %>
 
-<%= link_to 'Back', payments_path %>
+<%= link_to 'Back', invoice_payments_path(@invoice) %>
+
+<a class="close-reveal-modal">&#215;</a>
