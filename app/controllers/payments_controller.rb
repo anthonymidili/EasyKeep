@@ -3,10 +3,6 @@ class PaymentsController < ApplicationController
   before_filter :require_admin!
   before_filter :load_invoice
 
-  def show
-    @payment = @invoice.payments.find(params[:id])
-  end
-
   def new
     @payment = @invoice.payments.build
     @payment.received_on ||= Date.current
@@ -20,7 +16,7 @@ class PaymentsController < ApplicationController
     if @payment.save
       redirect_to @invoice, notice: 'Payment was successfully created.'
     else
-      render 'payments/new'
+      render 'payments/_new'
     end
   end
 
@@ -32,7 +28,7 @@ class PaymentsController < ApplicationController
     @payment = @invoice.payments.find(params[:id])
 
     if @payment.update_attributes(params[:payment])
-      redirect_to invoice_payment_path(@invoice, @payment), notice: 'Payment was successfully updated.'
+      redirect_to @invoice, notice: 'Payment was successfully updated.'
     else
       render action: 'edit'
     end
@@ -42,7 +38,7 @@ class PaymentsController < ApplicationController
     @payment = @invoice.payments.find(params[:id])
     @payment.destroy
 
-    redirect_to @invoice
+    redirect_to @invoice, alert: 'Payment history item successfully deleted.'
   end
 
 private

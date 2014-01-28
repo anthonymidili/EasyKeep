@@ -22,7 +22,7 @@ HouseKeeping::Application.routes.draw do
       put :add_services
       put :remove_services
       end
-    resources :payments
+    resources :payments, except: [:show, :index]
   end
 
   root to: 'welcome#home'

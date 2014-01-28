@@ -43,11 +43,11 @@
 
     <div class="row">
       <div class="small-12 columns">
-        <%= link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small button radius' if current_user.is_admin? %>
+        <%= link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small button radius', id: 'apply_payment', remote: true if current_user.is_admin? %>
       </div>
     </div>
 
-    <%= render 'payments/payments' %>
+    <%= render 'payments/payments' if @invoice.payments.any? %>
 
   </div>
 </div>

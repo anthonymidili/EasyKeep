@@ -1,3 +1,5 @@
+<% provide(:title, 'New Payment') %>
+
 <div class="row">
   <div class="small-12 columns">
 
@@ -5,7 +7,7 @@
 
     <%= render 'payments/form' %>
 
-    <%= link_to 'Back', @invoice %>
+    <%= link_to 'Back', @invoice if @payment.errors.any? %>
 
   </div>
 </div>

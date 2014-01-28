@@ -6,8 +6,6 @@
     <th>Type</th>
     <th>Received on</th>
     <th>Amount</th>
-    <th>Invoice</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -18,12 +16,20 @@
     <tbody>
     <tr>
       <td><%= payment.transaction_type %></td>
-      <td><%= payment.received_on %></td>
-      <td><%= payment.amount %></td>
-      <td><%= payment.invoice_id %></td>
-      <td><%= link_to 'Show', invoice_payment_path(@invoice, payment) %></td>
-      <td><%= link_to 'Edit', edit_invoice_payment_path(@invoice, payment) %></td>
-      <td><%= link_to 'Destroy', [@invoice, payment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= payment.received_on.strftime("%Y-%b-%d") %></td>
+      <td><%= number_to_currency(payment.amount, unit: '$') %></td>
+      <td class="center_cell">
+        <%= link_to edit_invoice_payment_path(@invoice, payment) do %>
+          <i class="page fi-page-edit"></i>
+        <% end %>
+      </td>
+      <td class="center_cell">
+        <%= link_to [@invoice, payment],
+                    method: :delete,
+                    confirm: 'Are you sure? This will permanently delete your payment history record.' do %>
+          <i class="general fi-x"></i>
+        <% end %>
+      </td>
     </tr>
     </tbody>
   <% end %>

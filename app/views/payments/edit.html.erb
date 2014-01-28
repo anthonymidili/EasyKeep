@@ -1,6 +1,13 @@
-<h1>Editing payment</h1>
+<% provide(:title, 'Edit Payment') %>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="small-12 columns">
 
-<%= link_to 'Show', invoice_payment_path(@invoice, @payment) %> |
-<%= link_to 'Back', invoice_payments_path(@invoice) %>
+    <h1>Editing payment</h1>
+
+    <%= render 'form' %>
+
+    <%= link_to 'Back', @invoice %>
+
+  </div>
+</div>
