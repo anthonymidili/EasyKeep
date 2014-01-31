@@ -7,6 +7,8 @@ class InvoicesController < ApplicationController
     @invoice = current_account.invoices.find(params[:id])
     @services = @invoice.services
     @payments = @invoice.payments
+    @payment = @invoice.payments.build
+    @payment.received_on ||= Date.current
   end
 
   def index

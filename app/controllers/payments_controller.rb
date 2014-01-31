@@ -3,11 +3,6 @@ class PaymentsController < ApplicationController
   before_filter :require_admin!
   before_filter :load_invoice
 
-  def new
-    @payment = @invoice.payments.build
-    @payment.received_on ||= Date.current
-  end
-
   def create
     @payment = @invoice.payments.build(params[:payment])
     @payments = @invoice.payments
