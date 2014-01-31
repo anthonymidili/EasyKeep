@@ -1,5 +1,5 @@
 class Payment < ActiveRecord::Base
-  attr_accessible :amount, :received_on, :transaction_type
+  attr_accessible :amount, :received_on, :transaction_type, :memo
 
   belongs_to :invoice
 

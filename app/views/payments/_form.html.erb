@@ -3,16 +3,21 @@
 
   <div class="row">
     <div class="small-12 medium-3 large-3 columns">
-      <label>*Received on (yyyy-mm-dd)</label>
+      <%= f.label :received_on, '*Received on (yyyy-mm-dd)' %>
       <%= f.text_field :received_on, placeholder: 'Date' %>
     </div>
 
-    <div class="small-12 medium-3 large-3 columns">
-      <%= f.label :transaction_type %>
+    <div class="small-6 medium-2 large-2 columns">
+      <%= f.label :transaction_type, 'Type' %>
       <%= f.select :transaction_type,
                    'Check' => :check,
                    'Debit' => :debit,
                    'Credit' => :credit %>
+    </div>
+
+    <div class="small-6 medium-2 large-2 columns">
+      <%= f.label :memo %>
+      <%= f.text_field :memo, placeholder: 'Check#' %>
     </div>
 
     <div class="small-12 medium-3 large-3 columns">
@@ -27,7 +32,7 @@
       </div>
     </div>
 
-    <div class="small-12 medium-3 large-3 columns">
+    <div class="small-12 medium-2 large-2 columns">
       <%= f.submit class: 'small button radius expand' %>
     </div>
   </div>
