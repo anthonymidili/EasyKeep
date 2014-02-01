@@ -8,11 +8,13 @@
   </div>
   <div class="small-6 columns total_amount">
     <p>
-      Payments Total: <%= number_to_currency(@invoice.payments_total) %> <br>
-      <% if @invoice.money_owed > 0 %>
-        Money Owed: <span><%= number_to_currency(@invoice.money_owed) %></span>
-      <% else %>
-        <br> <b class="paid_in_full">Paid In Full</b>
+      <% if @invoice.payments.any? %>
+        Payments Total: <%= number_to_currency(@invoice.payments_total) %> <br>
+        <% if @invoice.money_owed > 0 %>
+          Money Owed: <span><%= number_to_currency(@invoice.money_owed) %></span>
+        <% else %>
+          <br> <b class="paid_in_full">Paid In Full</b>
+        <% end %>
       <% end %>
     </p>
   </div>
