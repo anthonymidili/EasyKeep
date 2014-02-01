@@ -9,4 +9,5 @@ class Payment < ActiveRecord::Base
             format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
+  default_scope order: 'received_on DESC'
 end

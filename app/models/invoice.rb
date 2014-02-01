@@ -19,4 +19,12 @@ class Invoice < ActiveRecord::Base
   def total_cost
     sub_total + tax
   end
+
+  def payments_total
+    self.payments.sum(&:amount)
+  end
+
+  def money_owed
+    total_cost - payments_total
+  end
 end

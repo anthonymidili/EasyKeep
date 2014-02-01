@@ -12,11 +12,7 @@ td.center_cell {
   text-align: center !important;
 }
 
-.text_area_height {
-  height: 3.5em;
-}
-
-.z-index_1 {
+.prefix {
   z-index: 1;
 }
 
@@ -30,12 +26,8 @@ i {
   padding-top: 1em;
   span {
     color: red;
-    font-size: 110%;
+    font-size: 120%;
   }
-}
-
-.large {
-  font-size: 110%;
 }
 
 ul.small {
