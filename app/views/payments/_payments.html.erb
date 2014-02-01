@@ -19,7 +19,7 @@
     <tbody>
     <tr>
       <td><%= payment.received_on.strftime("%Y-%b-%d") %></td>
-      <td><%= payment.transaction_type %></td>
+      <td><%= payment.transaction_type.capitalize %></td>
       <td><%= payment.memo %></td>
       <td><%= number_to_currency(payment.amount, unit: '$') %></td>
       <% if current_user.is_admin? %>
