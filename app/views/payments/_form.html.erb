@@ -2,12 +2,12 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="row">
-    <div class="small-12 medium-3 large-3 columns">
+    <div class="small-12 medium-12 large-3 columns">
       <%= f.label :received_on, '*Received on (yyyy-mm-dd)' %>
       <%= f.text_field :received_on, placeholder: 'Date' %>
     </div>
 
-    <div class="small-6 medium-2 large-2 columns">
+    <div class="small-6 medium-6 large-2 columns">
       <%= f.label :transaction_type, 'Type' %>
       <%= f.select :transaction_type,
                    'Check' => :check,
@@ -15,12 +15,12 @@
                    'Credit' => :credit %>
     </div>
 
-    <div class="small-6 medium-2 large-2 columns">
+    <div class="small-6 medium-6 large-2 columns">
       <%= f.label :memo %>
       <%= f.text_field :memo, placeholder: 'Check#' %>
     </div>
 
-    <div class="small-12 medium-2 large-2 columns">
+    <div class="small-12 medium-12 large-2 columns">
       <%= f.label :amount %>
       <div class="row collapse">
         <div class="small-3 medium-2 large-2 columns">
@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <div class="small-12 medium-3 large-3 columns">
+    <div class="small-12 medium-12 large-3 columns">
       <label style="visibility: hidden">submit</label>
       <%= f.submit class: 'small button radius expand' %>
     </div>
