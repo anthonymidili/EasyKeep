@@ -10,8 +10,8 @@
         <tr>
           <th>Invoice#</th>
           <th>Created at</th>
-          <th>Sub Total</th>
           <th>Total</th>
+          <th>Money owed</th>
           <% if current_user.is_admin? %>
             <th>Edit</th>
             <th>Destroy</th>
@@ -28,8 +28,8 @@
               <% end %>
             </td>
             <td><%= invoice.created_at.strftime("%Y-%b-%d") %></td>
-            <td><%= number_to_currency(invoice.sub_total) %></td>
             <td><%= number_to_currency(invoice.total_cost) %></td>
+            <td <%= red_text?(invoice) %>><%= number_to_currency(invoice.money_owed) %></td>
             <% if current_user.is_admin? %>
               <td class="center_cell">
                 <%= link_to edit_invoice_path(invoice) do %>
