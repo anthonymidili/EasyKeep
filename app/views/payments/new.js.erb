@@ -1,0 +1,7 @@
+$('#apply_payment').hide().after('<%= j render("new") %>');
+
+$('#payment_received_on').datepicker({
+  changeYear: true,
+  changeMonth: true,
+  dateFormat: 'yy-mm-dd'
+});
