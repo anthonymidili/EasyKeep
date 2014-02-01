@@ -29,7 +29,7 @@
             </td>
             <td><%= invoice.created_at.strftime("%Y-%b-%d") %></td>
             <td><%= number_to_currency(invoice.total_cost) %></td>
-            <td <%= red_text? if invoice.money_owed > 0 %>><%= number_to_currency(invoice.money_owed) %></td>
+            <td <%= red_text?(invoice) %>><%= number_to_currency(invoice.money_owed) %></td>
             <% if current_user.is_admin? %>
               <td class="center_cell">
                 <%= link_to edit_invoice_path(invoice) do %>
