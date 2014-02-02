@@ -13,7 +13,7 @@
         <% if @invoice.money_is_owed? %>
           Money Owed: <span><%= number_to_currency(@invoice.money_owed) %></span>
         <% else %>
-          <br> <b class="paid_in_full">Paid In Full</b>
+          <%= image_tag('paid_in_full.png') %>
         <% end %>
       <% end %>
     </p>
