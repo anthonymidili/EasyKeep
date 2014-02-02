@@ -27,4 +27,8 @@ class Invoice < ActiveRecord::Base
   def money_owed
     total_cost - payments_total
   end
+
+  def money_is_owed?
+    money_owed >= 0.01
+  end
 end

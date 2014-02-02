@@ -10,7 +10,7 @@
     <p>
       <% if @invoice.payments.any? %>
         Payments Total: <%= number_to_currency(@invoice.payments_total) %> <br>
-        <% if @invoice.money_owed >= 0.01 %>
+        <% if @invoice.money_is_owed? %>
           Money Owed: <span><%= number_to_currency(@invoice.money_owed) %></span>
         <% else %>
           <br> <b class="paid_in_full">Paid In Full</b>
