@@ -8,6 +8,10 @@
     <h1><%= @company.name %></h1>
 
     <dl>
+      <dt><%= 'Admin'.pluralize(@company.admins.count) %>:</dt>
+      <dd>
+        <%= @company.admins.map(&:name).join(', ') %>
+      </dd>
       <dt>Address:</dt>
       <dd><%= @company.full_address %></dd>
       <dt>Phone:</dt>
