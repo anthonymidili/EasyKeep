@@ -1,6 +1,6 @@
-<p>Hello <%= @resource.email %>!</p>
+<p>Hello <%= "#{@resource.name}, #{@resource.email}" %>!</p>
 
-<p>House Keeping has invited you to <%= link_to 'donnagibbs.herokuapp.com', 'https://donnagibbs.herokuapp.com' %>, to view your account history. You can accept this invitation through the link below.</p>
+<p>Donna Gibbs has invited you to <%= link_to 'donnagibbs.herokuapp.com', 'https://donnagibbs.herokuapp.com' %>, to view your account history. You can accept this invitation through the link below.</p>
 
 <p><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>
 
