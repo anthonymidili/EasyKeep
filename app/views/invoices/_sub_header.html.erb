@@ -2,13 +2,13 @@
 
 <div class="small-12 columns">
   <ul class="inline-list small">
-    <li><label><b>Owner: </b><%= current_company.users.find(1).name %></label></li>
+    <li><label><b>Owner: </b><%= current_company.by_owner_name %></label></li>
     <li><label><b>Address: </b><%= current_company.full_address %></label></li>
     <li><label><b>Phone: </b><%= current_company.phone %></label></li>
     <% if current_company.fax.present? %>
       <li><label><b>Fax: </b><%= current_company.fax %></label></li>
     <% end %>
-    <li><label><b>Email: </b><%= current_company.users.find(1).email %></label></li>
+    <li><label><b>Email: </b><%= current_company.by_owner_email %></label></li>
   </ul>
 </div>
 
