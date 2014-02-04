@@ -14,31 +14,31 @@
   </tr>
   </thead>
 
-<% @payments.each do |payment| %>
-  <% if payment.persisted? %>
-    <tbody>
-    <tr>
-      <td><%= payment.received_on.strftime("%Y-%b-%d") %></td>
-      <td><%= payment.transaction_type.capitalize %></td>
-      <td><%= payment.memo %></td>
-      <td><%= number_to_currency(payment.amount, unit: '$') %></td>
-      <% if current_user.is_admin? %>
-        <td class="center_cell hide_on_print">
-          <%= link_to edit_invoice_payment_path(@invoice, payment) do %>
-            <i class="page fi-page-edit"></i>
-          <% end %>
-        </td>
-        <td class="center_cell hide_on_print">
-          <%= link_to [@invoice, payment],
-                      method: :delete,
-                      confirm: 'Are you sure? This will permanently delete your payment history record.' do %>
-            <i class="general fi-x"></i>
-          <% end %>
-        </td>
-      <% end %>
+  <% @payments.each do |payment| %>
+    <% if payment.persisted? %>
+      <tbody>
+      <tr>
+        <td><%= payment.received_on.strftime("%Y-%b-%d") %></td>
+        <td><%= payment.transaction_type.capitalize %></td>
+        <td><%= payment.memo %></td>
+        <td><%= number_to_currency(payment.amount, unit: '$') %></td>
+        <% if current_user.is_admin? %>
+          <td class="center_cell hide_on_print">
+            <%= link_to edit_invoice_payment_path(@invoice, payment) do %>
+              <i class="page fi-page-edit"></i>
+            <% end %>
+          </td>
+          <td class="center_cell hide_on_print">
+            <%= link_to [@invoice, payment],
+                        method: :delete,
+                        confirm: 'Are you sure? This will permanently delete your payment history record.' do %>
+              <i class="general fi-x"></i>
+            <% end %>
+          </td>
+        <% end %>
 
-    </tr>
-    </tbody>
+      </tr>
+      </tbody>
+    <% end %>
   <% end %>
-<% end %>
 </table>

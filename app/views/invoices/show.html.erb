@@ -13,11 +13,13 @@
         </tr>
       </thead>
 
+      <h4>Cleaning Services</h4>
+
       <% @services.each do |service| %>
         <% if service.persisted? %>
           <tbody>
             <tr>
-              <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
+              <td class="title"><%= service.performed_on.strftime("%Y-%b-%d") %></td>
               <td><%= number_to_currency(service.cost) %></td>
             </tr>
           </tbody>

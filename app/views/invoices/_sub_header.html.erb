@@ -1,8 +1,7 @@
 <h3><%= current_company.name %></h3>
 
 <div class="small-12 columns">
-  <ul class="inline-list small">
-    <li><label><b>Owner: </b><%= current_company.by_owner_name %></label></li>
+  <ul class="small no_bullets">
     <li><label><b>Address: </b><%= current_company.full_address %></label></li>
     <li><label><b>Phone: </b><%= current_company.phone %></label></li>
     <% if current_company.fax.present? %>
@@ -15,7 +14,8 @@
 <b>Invoice# <%= @invoice.id %></b>
 
 <div class="panel">
-  <ul class="inline-list">
+  <ul class="no_bullets">
+    <li><label><b>Company: </b><%= current_company.name %></label></li>
     <li><label><b>Invoice for: </b><%= current_account.user.name %></label></li>
     <% if current_account.full_address.present? %>
       <li><label><b>Address: </b><%= current_account.full_address %></label></li>

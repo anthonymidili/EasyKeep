@@ -2,13 +2,28 @@
   .hide_on_print {
     display: none;
   }
+
+  div.panel {
+    border: 1px solid black;
+  }
+
+  table {
+    border: 1px solid black;
+  }
 }
 
 table {
   width: 100%;
+  td.title {
+    width: 60%;
+  }
 }
 
 td.center_cell {
+  text-align: center !important;
+}
+
+.center {
   text-align: center !important;
 }
 
@@ -45,5 +60,22 @@ i {
 ul.small {
   li {
     font-size: 70%;
+  }
+}
+
+ul.no_bullets {
+  list-style-type: none;
+}
+
+dl.company_info {
+  $column-gutter: 4.5em;
+  @include grid-row($behavior: nest);
+
+  dt {
+    @include grid-column(2, $float: left);
+  }
+
+  dd {
+    @include grid-column(10, $float: left);
   }
 }

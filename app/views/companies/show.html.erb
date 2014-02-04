@@ -7,7 +7,7 @@
 
     <h1><%= @company.name %></h1>
 
-    <dl>
+    <dl class="company_info">
       <dt>Owner:</dt>
       <dd><%= @company.by_owner_name %></dd>
       <dt><%= 'Admin'.pluralize(@company.by_admin.count) %>:</dt>
