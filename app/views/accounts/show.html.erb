@@ -7,9 +7,7 @@
 
     <div class="panel">
       <ul class="inline-list">
-        <% if @account.user.name.present? %>
-          <li><label><b>Contact name: </b><%= @account.user.name %></label></li>
-        <% end %>
+        <li><label><b>Contact name: </b><%= @account.user.name %></label></li>
         <% if @account.full_address.present? %>
           <li><label><b>Address: </b><%= @account.full_address %></label></li>
         <% end %>
