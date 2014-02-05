@@ -25,4 +25,5 @@ bundler_stubs/
 /public/uploads
 
 # Ignore development gmail account info
-/config/local_env.yml
+/config/initializers/gmail_account.rb
+/config/initializers/app_env_vars.rb
