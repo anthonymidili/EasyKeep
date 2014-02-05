@@ -26,4 +26,3 @@ bundler_stubs/
 
 # Ignore development gmail account info
 /config/initializers/gmail_account.rb
-/config/initializers/app_env_vars.rb
