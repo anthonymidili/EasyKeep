@@ -7,7 +7,12 @@
 
     <%= render 'payments/form' %>
 
-    <%= link_to 'Back', @invoice if @payment.errors.any? %>
+    <% if @payment.errors.any? %>
+      <ul class="inline-list">
+        <li>Money Owed: <%= number_to_currency(@invoice.money_owed) %></li>
+        <li><%= link_to 'Back', @invoice %></li>
+      </ul>
+    <% end %>
 
   </div>
 </div>
