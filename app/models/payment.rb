@@ -15,7 +15,7 @@ class Payment < ActiveRecord::Base
 private
 
   def no_credit_allowed
-    if !amount.nil? && amount > invoice.money_owed
+    if amount && amount > invoice.money_owed
       errors.add(:amount, "can't be greater than total money owed")
     end
   end
