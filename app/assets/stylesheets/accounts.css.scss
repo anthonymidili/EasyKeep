@@ -49,6 +49,12 @@ i {
   color: red;
 }
 
+li {
+  span.red_text {
+    display: inline;
+  }
+}
+
 .paid_in_full {
   color: green;
   font-size: 180%;
