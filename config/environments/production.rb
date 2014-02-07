@@ -66,12 +66,6 @@ HouseKeeping::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Devise mailer
-  if Rails.env.production?
-    config.action_mailer.default_url_options = { :host => 'donnagibbs.herokuapp.com' }
-  end
-
-  if Rails.env.staging?
-    config.action_mailer.default_url_options = { :host => 'house-keeping.herokuapp.com' }
-  end
+  config.action_mailer.default_url_options = { :host => "donnagibbs.herokuapp.com" }
 
 end
