@@ -12,10 +12,19 @@ class Payment < ActiveRecord::Base
 
   default_scope order: 'received_on DESC'
 
+  # When creating a payment the payment is nil so payment amount is 0.
+  # When updating a payment the payment amount is the current payment being edited. Adding the current payment
+  # amount to the money_owed amount.
+  def money_owed_with_payment
+    current_payment = invoice.payments.find_by_id(id)
+    payment = current_payment ? current_payment.amount : 0
+    invoice.money_owed + payment
+  end
+
 private
 
   def no_credit_allowed
-    if amount && amount > invoice.money_owed
+    if amount && amount > money_owed_with_payment
       errors.add(:amount, "can't be greater than total money owed")
     end
   end
