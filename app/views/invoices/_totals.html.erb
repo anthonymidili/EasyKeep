@@ -16,18 +16,19 @@
   </div>
   <div class="small-12 medium-12 large-6 columns total_amount">
     <% if @invoice.payments.any? %>
-      <% if @invoice.money_is_owed? %>
-        <table>
-          <tbody>
-          <tr>
-            <td class="title">Payments Total:</td><td><%= number_to_currency(@invoice.payments_total) %></td>
-          </tr>
+      <table>
+        <tbody>
+        <tr>
+          <td class="title">Payments Total:</td><td><%= number_to_currency(@invoice.payments_total) %></td>
+        </tr>
+        <% if @invoice.money_is_owed? %>
           <tr>
             <td>Money Owed:</td><td><span><%= number_to_currency(@invoice.money_owed) %></span></td>
           </tr>
-          </tbody>
-        </table>
-      <% else %>
+        <% end %>
+        </tbody>
+      </table>
+      <% unless @invoice.money_is_owed? %>
         <div class="center"><%= image_tag('paid_in_full.png') %></div>
       <% end %>
     <% end %>
