@@ -38,8 +38,11 @@ class CompaniesController < ApplicationController
   def destroy
     @company = current_company
     @company.destroy
-
     redirect_to new_company_path
+  end
+
+  def quarterly_report
+
   end
 
 private

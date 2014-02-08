@@ -7,7 +7,11 @@ HouseKeeping::Application.routes.draw do
     post 'users/invitation/invite_user' => 'users/invitations#invite_user', as: 'invite_user'
   end
 
-  resource :company
+  resource :company do
+    member do
+      get :quarterly_report
+    end
+  end
 
   resources :accounts
 
