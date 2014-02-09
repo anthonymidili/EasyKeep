@@ -56,7 +56,7 @@ class AccountsController < ApplicationController
 private
 
   def authenticate_account!
-    unless current_user.is_admin? || current_user.account.id == current_account.id
+    unless current_user.is_admin? || current_account && current_user.account.id == current_account.id
       redirect_to account_path(current_user.account)
     end
   end
