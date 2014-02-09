@@ -28,3 +28,5 @@ end
 group :production do
   gem 'pg', '~> 0.17.0'
 end
+
+gem 'dotenv-rails', groups: [ :development, :test ]
