@@ -41,12 +41,12 @@ HouseKeeping::Application.configure do
   config.action_mailer.delivery_method = :smtp
 
   ActionMailer::Base.smtp_settings = {
-      :address        => 'smtp.gmail.com',
-      :port           => 587,
-      :authentication => :plain,
-      :user_name      => ENV['EMAIL'],
-      :password       => ENV['PASSWORD'],
-      :enable_starttls_auto => true
+      :address             => ENV['SMTP_ADDRESS'],
+      :port                => ENV['SMTP_PORT'],
+      :authentication      => ENV['SMTP_AUTHENTICATION'],
+      :user_name           => ENV['SMTP_USER_NAME'],
+      :password            => ENV['SMTP_PASSWORD'],
+      :openssl_verify_mode => ENV['SMTP_OPENSSL_VERIFY_MODE']
   }
 
 end
