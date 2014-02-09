@@ -42,7 +42,8 @@ class CompaniesController < ApplicationController
   end
 
   def quarterly_report
-
+    @company = current_company
+    @accounts = current_company.accounts
   end
 
 private
