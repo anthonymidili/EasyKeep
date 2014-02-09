@@ -24,11 +24,11 @@ class Invoice < ActiveRecord::Base
     self.payments.sum(&:amount)
   end
 
-  def money_owed
+  def balance_due
     total_cost - payments_total
   end
 
-  def money_is_owed?
-    money_owed >= 0.01
+  def not_paid_in_full?
+    balance_due >= 0.01
   end
 end

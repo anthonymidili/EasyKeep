@@ -9,7 +9,7 @@
 
     <% if @payment.errors.any? %>
       <ul class="inline-list">
-        <li>Money Owed: <span class="red_text"><%= number_to_currency(@invoice.money_owed) %></span></li>
+        <li>Balance Due: <span class="red_text"><%= number_to_currency(@invoice.balance_due) %></span></li>
         <li><%= link_to 'Back', @invoice %></li>
       </ul>
     <% end %>
