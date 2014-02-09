@@ -24,8 +24,5 @@ bundler_stubs/
 .idea/
 /public/uploads
 
-# Ignore development ENV file
-/config/initializers/gmail_account.rb
-
 # Ignore ENV file
 .env

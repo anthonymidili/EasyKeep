@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', '~> 0.9.0', groups: [ :development, :test ]
+
 gem 'rails', '3.2.16'
 
 gem 'jquery-rails',     '~> 3.0.4'
@@ -28,5 +30,3 @@ end
 group :production do
   gem 'pg', '~> 0.17.0'
 end
-
-gem 'dotenv-rails', groups: [ :development, :test ]
