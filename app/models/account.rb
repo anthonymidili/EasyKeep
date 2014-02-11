@@ -28,6 +28,12 @@ class Account < ActiveRecord::Base
     services_items(view, date).where(invoice_id: nil).sum(&:cost)
   end
 
+  def accounts_totals(active_date)
+    jan = Date.new(active_date.year, 1, 1)
+    time_range = (jan.beginning_of_month .. jan.end_of_month)
+    self.invoices.includes(:payments).where('payments.received_on' => time_range).sum('payments.amount')
+  end
+
 private
 
   def services_items(view_by, active_date)

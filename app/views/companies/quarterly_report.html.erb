@@ -5,5 +5,23 @@
 
     <h1>Quarterly Report</h1>
 
+    <table>
+      <thead>
+      <tr>
+        <th>Account</th>
+        <th>January</th>
+      </tr>
+      </thead>
+
+      <% @accounts.each do |account| %>
+        <tbody>
+        <tr>
+          <td><%= account.name %></td>
+          <td><%= account.accounts_totals(active_date) %></td>
+        </tr>
+        </tbody>
+      <% end %>
+    </table>
+
   </div>
 </div>
