@@ -44,6 +44,10 @@ class CompaniesController < ApplicationController
   def quarterly_report
     @company = current_company
     @accounts = current_company.accounts
+
+    if params[:view_quarter]
+      cookies[:view_quarter] = params[:view_quarter]
+    end
   end
 
 private

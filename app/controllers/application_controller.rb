@@ -47,4 +47,9 @@ class ApplicationController < ActionController::Base
           cookies[:view_by] ? cookies[:view_by].to_sym : :month
         end
   end; helper_method :view_by
+
+  def view_quarter
+    @view_quarter ||=
+          cookies[:view_quarter] || 1
+  end; helper_method :view_quarter
 end

@@ -29,8 +29,8 @@ class Account < ActiveRecord::Base
   end
 
   def accounts_totals(active_date)
-    month_of = Date.new(active_date.year, 1, 1)
-    time_range = (month_of.beginning_of_month..month_of.end_of_month)
+    quarter = Date.new(active_date.year, 1, 1)
+    time_range = (quarter.beginning_of_quarter..quarter.end_of_quarter)
     self.invoices.includes(:payments).where('payments.received_on' => time_range).sum('payments.amount')
   end
 
