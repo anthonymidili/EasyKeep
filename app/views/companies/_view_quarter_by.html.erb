@@ -7,9 +7,9 @@
     <div class="small-12 medium-3 large-3 columns">
       <%= label_tag :view_quarter, 'Select quarter' %>
       <%= select_tag :view_quarter, options_for_select([['1st', 1],
-                                                          ['2nd', 4],
-                                                          ['3rd', 7],
-                                                          ['4th', 10]], selected: view_quarter) %>
+                                                        ['2nd', 4],
+                                                        ['3rd', 7],
+                                                        ['4th', 10]], selected: view_quarter) %>
     </div>
     <div class="small-12 medium-3 large-3 columns left">
       <%= submit_tag 'Select Quarter to View', class: 'tiny button radius expand', name: nil %>
