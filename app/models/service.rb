@@ -13,11 +13,11 @@ class Service < ActiveRecord::Base
   default_scope order: 'performed_on DESC'
 
   scope :by_year, -> active_date {
-    where("performed_on >= ? AND performed_on <= ?", active_date.beginning_of_year, active_date.end_of_year)
+    where(performed_on: active_date.beginning_of_year..active_date.end_of_year)
   }
 
   scope :by_month, -> active_date {
-    where("performed_on >= ? AND performed_on <= ?", active_date.beginning_of_month, active_date.end_of_month)
+    where(performed_on: active_date.beginning_of_month..active_date.end_of_month)
   }
 
   scope :by_not_used, where(invoice_id: nil)
