@@ -1,26 +1,18 @@
 <div class="row">
-  <!-- Active Date Form -->
-  <%= form_tag quarterly_report_company_path(@company), class: 'left', method: :get do %>
-    <div class="small-12 columns">
-      <ul class="inline-list">
-        <li><%= select_date(active_date, discard_month: true, discard_day: true) %></li>
-        <li><%= submit_tag "Select #{view_by.capitalize} to View", class: 'tiny button radius', name: nil %></li>
-      </ul>
+  <%= form_tag quarterly_report_company_path(@company), method: :get do %>
+    <div class="small-12 medium-3 large-3 columns">
+      <%= label_tag 'date_year', 'Select year' %>
+      <%= select_date(active_date, discard_month: true, discard_day: true) %>
     </div>
-  <% end %>
-
-  <!-- Select Quarter -->
-  <%= form_tag quarterly_report_company_path(@company), class: 'left', method: :get do %>
-    <div class="small-12 columns">
-      <ul class="inline-list">
-        <li>
-          <%= select_tag :view_quarter, options_for_select([['1st', 1],
-                                                              ['2nd', 4],
-                                                              ['3rd', 7],
-                                                              ['4th', 10]], selected: view_quarter) %>
-        </li>
-        <li><%= submit_tag 'Select Quarter', class: 'tiny button radius', name: nil %></li>
-      </ul>
+    <div class="small-12 medium-3 large-3 columns">
+      <%= label_tag :view_quarter, 'Select quarter' %>
+      <%= select_tag :view_quarter, options_for_select([['1st', 1],
+                                                          ['2nd', 4],
+                                                          ['3rd', 7],
+                                                          ['4th', 10]], selected: view_quarter) %>
+    </div>
+    <div class="small-12 medium-3 large-3 columns left">
+      <%= submit_tag 'Select Quarter to View', class: 'tiny button radius expand', name: nil %>
     </div>
   <% end %>
 </div>
