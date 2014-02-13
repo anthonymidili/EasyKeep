@@ -5,6 +5,16 @@
 
     <h1>Quarterly Report</h1>
 
+    <!-- Active Date Form -->
+    <div class="row">
+      <%= form_tag quarterly_report_company_path(@company), method: :get do %>
+        <div class="small-6 medium-3 large-3 columns">
+          <%= select_date(active_date, discard_month: true, discard_day: true) %>
+          <%= submit_tag "Select #{view_by.capitalize} to View", class: 'tiny button radius', name: nil %>
+        </div>
+      <% end %>
+    </div>
+
     <table>
       <thead>
       <tr>

@@ -25,7 +25,7 @@ HouseKeeping::Application.routes.draw do
     collection do
       put :add_services
       put :remove_services
-      end
+    end
     resources :payments, except: [:show, :index]
   end
 
