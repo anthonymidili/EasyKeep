@@ -20,7 +20,10 @@
       <%= form_tag quarterly_report_company_path(@company), method: :get do %>
         <div class="small-6 medium-3 large-3 columns">
           <%= label_tag :view_quarter, 'Quarter to view' %>
-          <%= select_tag(:view_quarter, options_for_select([['1st', 1], ['2nd', 4], ['3rd', 7], ['4th', 10]])) %>
+          <%= select_tag :view_quarter, options_for_select([['1st', 1],
+                                                            ['2nd', 4],
+                                                            ['3rd', 7],
+                                                            ['4th', 10]], selected: view_quarter) %>
         </div>
         <div class="small-6 medium-3 large-3 columns">
           <%= submit_tag 'Select Quarter', class: 'tiny button radius', name: nil %>
@@ -32,7 +35,7 @@
       <thead>
       <tr>
         <th>Account</th>
-        <th>January</th>
+        <th><%= viewing_quarter %> quarter totals</th>
       </tr>
       </thead>
 
@@ -40,7 +43,7 @@
         <tbody>
         <tr>
           <td><%= account.name %></td>
-          <td><%= account.accounts_totals(active_date) %></td>
+          <td><%= account.accounts_totals(active_date, view_quarter) %></td>
         </tr>
         </tbody>
       <% end %>

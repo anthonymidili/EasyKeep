@@ -50,6 +50,6 @@ class ApplicationController < ActionController::Base
 
   def view_quarter
     @view_quarter ||=
-          cookies[:view_quarter] || 1
+          cookies[:view_quarter] ? cookies[:view_quarter].to_i : 1
   end; helper_method :view_quarter
 end
