@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20140217020211) do
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
     t.string   "memo"
+    t.integer  "account_id"
     t.integer  "company_id"
   end
 
