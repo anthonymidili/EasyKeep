@@ -2,6 +2,7 @@ class Payment < ActiveRecord::Base
   attr_accessible :amount, :received_on, :transaction_type, :memo
 
   belongs_to :invoice
+  belongs_to :company
 
   validates :amount, presence: true, numericality: true
   validates :transaction_type, presence: true

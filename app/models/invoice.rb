@@ -4,7 +4,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :account
 
   has_many :services
-  has_many :payments
+  has_many :payments, dependent: :destroy
 
   default_scope order: 'created_at DESC'
 

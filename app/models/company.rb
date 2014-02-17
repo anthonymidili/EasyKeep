@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
 
   has_many :users
   has_many :accounts, dependent: :destroy
+  has_many :payments
 
   validates :name, presence: true
   validates :address_1, presence: true

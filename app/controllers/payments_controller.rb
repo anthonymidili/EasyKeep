@@ -10,6 +10,7 @@ class PaymentsController < ApplicationController
 
   def create
     @payment = @invoice.payments.build(params[:payment])
+    @payment.company_id = current_company.id
     @payments = @invoice.payments
     @services = @invoice.services
 
