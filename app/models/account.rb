@@ -11,6 +11,7 @@ class Account < ActiveRecord::Base
 
   has_many :services, dependent: :destroy
   has_many :invoices, dependent: :destroy
+  has_many :payments
 
   validates :name, presence: true
 

@@ -2,6 +2,8 @@ class Payment < ActiveRecord::Base
   attr_accessible :amount, :received_on, :transaction_type, :memo
 
   belongs_to :invoice
+  belongs_to :company
+  belongs_to :account
 
   validates :amount, presence: true, numericality: true
   validates :transaction_type, presence: true
@@ -11,6 +13,11 @@ class Payment < ActiveRecord::Base
   validate :no_credit_allowed
 
   default_scope order: 'received_on DESC'
+
+  scope :by_quarter, -> active_date, view_quarter {
+    quarter_for = Date.new(active_date.year, view_quarter, 1)
+    where(performed_on: quarter_for.beginning_of_quarter..quarter_for.end_of_quarter)
+  }
 
   # When creating a payment the payment is nil so payment amount is 0.
   # When updating a payment the payment amount is the current payment being edited. Adding the current payment

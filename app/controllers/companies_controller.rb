@@ -1,7 +1,8 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin!
-  before_filter :only_one_company, only: [ :new, :create ]
+  before_filter :only_one_company, only: [:new, :create]
+  before_filter :set_view_quarter_cookie, only: [:quarterly_report]
 
   def show
     @company = current_company
@@ -43,16 +44,16 @@ class CompaniesController < ApplicationController
 
   def quarterly_report
     @company = current_company
-    @accounts = current_company.accounts
-
-    if params[:view_quarter]
-      cookies[:view_quarter] = params[:view_quarter]
-    end
+    @payments = current_company.payments
   end
 
 private
 
   def only_one_company
     redirect_to edit_company_path if current_company
+  end
+
+  def set_view_quarter_cookie
+    cookies[:view_quarter] = params[:view_quarter] if params[:view_quarter]
   end
 end
