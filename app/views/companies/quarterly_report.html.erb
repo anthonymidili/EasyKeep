@@ -11,9 +11,9 @@
       <thead>
       <tr>
         <th>Account</th>
-        <th><%= Date.new(active_date.year, view_quarter, 1).strftime('%B') %> totals</th>
-        <th><%= Date.new(active_date.year, view_quarter + 1, 1).strftime('%B') %> totals</th>
-        <th><%= Date.new(active_date.year, view_quarter + 2, 1).strftime('%B') %> totals</th>
+        <th><%= month_in_quarter_date(0).strftime('%B') %> totals</th>
+        <th><%= month_in_quarter_date(1).strftime('%B') %> totals</th>
+        <th><%= month_in_quarter_date(2).strftime('%B') %> totals</th>
       </tr>
       </thead>
 
@@ -21,9 +21,9 @@
         <tbody>
         <tr>
           <td><%= account.name %></td>
-          <td><%= account.accounts_totals_1(active_date, view_quarter) %></td>
-          <td><%= account.accounts_totals_2(active_date, view_quarter) %></td>
-          <td><%= account.accounts_totals_3(active_date, view_quarter) %></td>
+          <td><%= account.account_month_total(month_in_quarter_date(0)) %></td>
+          <td><%= account.account_month_total(month_in_quarter_date(1)) %></td>
+          <td><%= account.account_month_total(month_in_quarter_date(2)) %></td>
         </tr>
         </tbody>
       <% end %>

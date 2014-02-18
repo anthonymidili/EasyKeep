@@ -28,21 +28,8 @@ class Account < ActiveRecord::Base
     services_items(view, date).where(invoice_id: nil).sum(&:cost)
   end
 
-  def accounts_totals_1(active_date, view_quarter)
-    first = Date.new(active_date.year, view_quarter, 1)
-    time_range = (first.beginning_of_month..first.end_of_month)
-    self.invoices.includes(:payments).where(payments: { received_on: time_range } ).sum('payments.amount')
-  end
-
-  def accounts_totals_2(active_date, view_quarter)
-    first = Date.new(active_date.year, view_quarter + 1, 1)
-    time_range = (first.beginning_of_month..first.end_of_month)
-    self.invoices.includes(:payments).where(payments: { received_on: time_range } ).sum('payments.amount')
-  end
-
-  def accounts_totals_3(active_date, view_quarter)
-    first = Date.new(active_date.year, view_quarter + 2, 1)
-    time_range = (first.beginning_of_month..first.end_of_month)
+  def account_month_total(month_in_quarter_of)
+    time_range = (month_in_quarter_of.beginning_of_month..month_in_quarter_of.end_of_month)
     self.invoices.includes(:payments).where(payments: { received_on: time_range } ).sum('payments.amount')
   end
 
