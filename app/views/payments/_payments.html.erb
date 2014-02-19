@@ -14,9 +14,9 @@
   </tr>
   </thead>
 
+  <tbody>
   <% @payments.each do |payment| %>
     <% if payment.persisted? %>
-      <tbody>
       <tr>
         <td><%= payment.received_on.strftime("%Y-%b-%d") %></td>
         <td><%= payment.transaction_type.capitalize %></td>
@@ -36,9 +36,8 @@
             <% end %>
           </td>
         <% end %>
-
       </tr>
-      </tbody>
     <% end %>
   <% end %>
+  </tbody>
 </table>

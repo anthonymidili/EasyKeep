@@ -34,45 +34,45 @@
       </tr>
     </thead>
 
+    <tbody>
     <% services_with_view_by_scope(@services).each do |service| %>
       <% if service.persisted? %>
-        <tbody>
-          <tr>
-            <% if current_user.is_admin? %>
-              <td><%= check_box_tag "service_ids[]",
-                                    service.id,
-                                    service.invoice_id.nil?,
-                                    disabled: service.invoice_id? %></td>
+        <tr>
+          <% if current_user.is_admin? %>
+            <td><%= check_box_tag "service_ids[]",
+                                  service.id,
+                                  service.invoice_id.nil?,
+                                  disabled: service.invoice_id? %></td>
+          <% end %>
+          <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
+          <td><%= number_to_currency(service.cost, unit: '$') %></td>
+          <td>
+            <% if service.note.length > 10 %>
+              <%= link_to service do %>
+                <%= service.note.truncate(10, :omission => '... (continued)') %>
+              <% end %>
+            <% else %>
+              <%= service.note %>
             <% end %>
-            <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
-            <td><%= number_to_currency(service.cost, unit: '$') %></td>
-            <td>
-              <% if service.note.length > 10 %>
-                <%= link_to service do %>
-                  <%= service.note.truncate(10, :omission => '... (continued)') %>
-                <% end %>
-              <% else %>
-                <%= service.note %>
+          </td>
+          <% if current_user.is_admin? %>
+            <td class="center_cell">
+              <%= link_to edit_service_path(service) do %>
+                <i class="page fi-page-edit"></i>
               <% end %>
             </td>
-            <% if current_user.is_admin? %>
-              <td class="center_cell">
-                <%= link_to edit_service_path(service) do %>
-                  <i class="page fi-page-edit"></i>
-                <% end %>
-              </td>
-              <td class="center_cell">
-                <%= link_to service,
-                            method: :delete,
-                            confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' do %>
-                  <i class="general fi-x"></i>
-                <% end %>
-              </td>
-            <% end %>
-          </tr>
-        </tbody>
+            <td class="center_cell">
+              <%= link_to service,
+                          method: :delete,
+                          confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' do %>
+                <i class="general fi-x"></i>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
       <% end %>
     <% end %>
+    </tbody>
   </table>
   <%= submit_tag 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin? %>
 <% end %>

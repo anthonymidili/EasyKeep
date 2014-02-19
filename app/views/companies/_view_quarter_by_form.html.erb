@@ -1,10 +1,10 @@
 <div class="row">
   <%= form_tag quarterly_report_company_path, method: :get do %>
-    <div class="small-12 medium-3 large-3 columns">
+    <div class="small-6 medium-3 large-3 columns">
       <%= label_tag 'date_year', 'Select year' %>
       <%= select_date(active_date, discard_month: true, discard_day: true) %>
     </div>
-    <div class="small-12 medium-3 large-3 columns">
+    <div class="small-6 medium-3 large-3 columns">
       <%= label_tag :view_quarter, 'Select quarter' %>
       <%= select_tag :view_quarter, options_for_select([['1st', 1],
                                                         ['2nd', 4],

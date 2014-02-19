@@ -5,7 +5,7 @@
 
     <h1>Quarterly Report</h1>
 
-    <%= render 'view_quarter_by' %>
+    <%= render 'view_quarter_by_form' %>
 
     <table>
       <thead>
@@ -17,16 +17,23 @@
       </tr>
       </thead>
 
+      <tbody>
       <% @accounts.each do |account| %>
-        <tbody>
         <tr>
           <td><%= account.name %></td>
-          <td><%= account.account_month_total(month_in_quarter_date(0)) %></td>
-          <td><%= account.account_month_total(month_in_quarter_date(1)) %></td>
-          <td><%= account.account_month_total(month_in_quarter_date(2)) %></td>
+          <td><%= number_to_currency(account.account_month_total(month_in_quarter_date(0))) %></td>
+          <td><%= number_to_currency(account.account_month_total(month_in_quarter_date(1))) %></td>
+          <td><%= number_to_currency(account.account_month_total(month_in_quarter_date(2))) %></td>
         </tr>
-        </tbody>
       <% end %>
+
+      <tr>
+        <td><b>Quarter Totals</b></td>
+        <td>bla</td>
+        <td>bla</td>
+        <td>bla</td>
+      </tr>
+      </tbody>
     </table>
 
   </div>
