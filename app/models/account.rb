@@ -31,7 +31,7 @@ class Account < ActiveRecord::Base
 
   def account_month_total(month_in_quarter_of)
     time_range = (month_in_quarter_of.beginning_of_month..month_in_quarter_of.end_of_month)
-    self.invoices.includes(:payments).where(payments: { received_on: time_range } ).sum('payments.amount')
+    payments.where(received_on: time_range).sum(&:amount)
   end
 
 private

@@ -27,4 +27,9 @@ class Company < ActiveRecord::Base
   def by_admin
     users.where(is_admin: true)
   end
+
+  def company_month_total(month_in_quarter_of)
+    time_range = (month_in_quarter_of.beginning_of_month..month_in_quarter_of.end_of_month)
+    payments.where(received_on: time_range).sum(&:amount)
+  end
 end

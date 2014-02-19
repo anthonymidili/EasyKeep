@@ -29,9 +29,9 @@
 
       <tr>
         <td><b>Quarter Totals</b></td>
-        <td>bla</td>
-        <td>bla</td>
-        <td>bla</td>
+        <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(0))) %></b></td>
+        <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(1))) %></b></td>
+        <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(2))) %></b></td>
       </tr>
       </tbody>
     </table>
