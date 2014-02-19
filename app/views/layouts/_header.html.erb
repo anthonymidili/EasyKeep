@@ -16,6 +16,7 @@
         <li class="active"><%= link_to 'Home', root_path %></li>
 
         <% if user_signed_in? %>
+
           <!-- Account drop-down -->
           <% if current_company && current_account %>
             <li class="divider"></li>
@@ -35,14 +36,23 @@
             </li>
           <% end %>
 
-          <!-- Company drop-down -->
           <% if current_company && current_company.persisted? && current_user.is_admin? %>
+
+            <!-- Reports drop-down -->
+            <li class="divider"></li>
+            <li class="has-dropdown"><a href="#">Reports</a>
+              <ul class="dropdown">
+                <li><%= link_to 'Quarterly report', quarterly_report_company_path %></li>
+              </ul>
+            </li>
+
+            <!-- Company drop-down -->
             <li class="divider"></li>
             <li class="has-dropdown"><a href="#">Company settings</a>
               <ul class="dropdown">
                 <li><%= link_to 'Company', company_path %></li>
                 <li><%= link_to 'Edit', edit_company_path %></li>
-                <li><%= link_to 'Invite Admin', new_user_invitation_path %></li>
+                <li><%= link_to 'Invite admin', new_user_invitation_path %></li>
                 <li>
                   <%= link_to 'Destroy', current_user.company,
                                 method: :delete,
