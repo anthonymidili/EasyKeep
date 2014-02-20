@@ -9,7 +9,7 @@
 
     <dl class="company_info">
       <dt>Owner:</dt>
-      <dd><%= @company.by_owner_name %></dd>
+      <dd><%= @company.owner_name %></dd>
       <dt><%= 'Admin'.pluralize(@company.by_admin.count) %>:</dt>
       <dd><%= @company.by_admin.map(&:name).join(', ') %></dd>
       <dt>Address:</dt>

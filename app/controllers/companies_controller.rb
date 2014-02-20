@@ -54,6 +54,7 @@ private
   end
 
   def set_view_quarter_cookie
-    cookies[:view_quarter] = params[:view_quarter] if params[:view_quarter]
+    @set_view_quarter_cookie ||=
+        cookies[:view_quarter] = params[:view_quarter] if params[:view_quarter]
   end
 end

@@ -7,7 +7,7 @@
     <% if current_company.fax.present? %>
       <li><label><b>Fax: </b><%= current_company.fax %></label></li>
     <% end %>
-    <li><label><b>Email: </b><%= current_company.by_owner_email %></label></li>
+    <li><label><b>Email: </b><%= current_company.owner_email %></label></li>
   </ul>
 </div>
 

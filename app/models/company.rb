@@ -16,11 +16,11 @@ class Company < ActiveRecord::Base
     [ address_1, address_2, city, state, zip ].select(&:present?).join(', ')
   end
 
-  def by_owner_name
+  def owner_name
     users.where(is_owner: true).map(&:name).join(', ')
   end
 
-  def by_owner_email
+  def owner_email
     users.where(is_owner: true).map(&:email).join(', ')
   end
 
