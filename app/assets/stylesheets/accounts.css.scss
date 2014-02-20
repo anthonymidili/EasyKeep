@@ -85,3 +85,9 @@ dl.company_info {
     @include grid-column(10, $float: left);
   }
 }
+
+tr.divider-line {
+  td {
+    border-top: 2px solid #dddddd;
+  }
+}
