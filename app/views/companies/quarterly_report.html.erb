@@ -14,6 +14,7 @@
         <th><%= month_in_quarter_date(0).strftime('%B') %> totals</th>
         <th><%= month_in_quarter_date(1).strftime('%B') %> totals</th>
         <th><%= month_in_quarter_date(2).strftime('%B') %> totals</th>
+        <th>Account totals</th>
       </tr>
       </thead>
 
@@ -24,14 +25,16 @@
           <td><%= number_to_currency(account.account_month_total(month_in_quarter_date(0))) %></td>
           <td><%= number_to_currency(account.account_month_total(month_in_quarter_date(1))) %></td>
           <td><%= number_to_currency(account.account_month_total(month_in_quarter_date(2))) %></td>
+          <td><%= number_to_currency(account.account_quarter_total(active_date, view_quarter)) %></td>
         </tr>
       <% end %>
 
       <tr class="divider-line">
-        <td><b>Month Totals</b></td>
+        <td><b>Totals</b></td>
         <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(0))) %></b></td>
         <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(1))) %></b></td>
         <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(2))) %></b></td>
+        <td class="red_text"><b><%= number_to_currency(@company.sum_quarter(active_date, view_quarter)) %></b></td>
       </tr>
       </tbody>
     </table>
@@ -40,12 +43,12 @@
       <div class="small-12 columns total_amount">
         <ul class="inline-list">
           <li>
-            <label>Taxes applied to total:
-              <span><%= number_to_currency(@company.taxes_applied(active_date, view_quarter)) %></span></label>
-          </li>
-          <li>
             <label><%= "#{for_quarter} quarter total:" %>
               <span><%= number_to_currency(@company.sum_quarter(active_date, view_quarter)) %></span></label>
+          </li>
+          <li>
+            <label>Taxes applied to total:
+              <span><%= number_to_currency(@company.taxes_applied(active_date, view_quarter)) %></span></label>
           </li>
         </ul>
       </div>

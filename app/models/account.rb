@@ -34,6 +34,12 @@ class Account < ActiveRecord::Base
     payments.where(received_on: time_range).sum(&:amount)
   end
 
+  def account_quarter_total(active_date, view_quarter)
+    quarter = Date.new(active_date.year, view_quarter, 1)
+    time_range = (quarter.beginning_of_quarter..quarter.end_of_quarter)
+    payments.where(received_on: time_range).sum(&:amount)
+  end
+
 private
 
   def services_items(view_by, active_date)
