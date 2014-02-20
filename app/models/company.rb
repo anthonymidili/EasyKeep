@@ -32,4 +32,14 @@ class Company < ActiveRecord::Base
     time_range = (month_in_quarter_of.beginning_of_month..month_in_quarter_of.end_of_month)
     payments.where(received_on: time_range).sum(&:amount)
   end
+
+  def sum_quarter(active_date, view_quarter)
+    quarter = Date.new(active_date.year, view_quarter, 1)
+    time_range = (quarter.beginning_of_quarter..quarter.end_of_quarter)
+    payments.where(received_on: time_range).sum(&:amount)
+  end
+
+  def taxes_applied(active_date, view_quarter)
+    sum_quarter(active_date, view_quarter) * 0.07
+  end
 end

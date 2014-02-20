@@ -17,11 +17,18 @@ table {
   td.title {
     width: 60%;
   }
+
+  td.center_cell {
+    text-align: center !important;
+  }
+
+  tr.divider-line {
+    td {
+      border-top: 2px solid #dddddd;
+    }
+  }
 }
 
-td.center_cell {
-  text-align: center !important;
-}
 
 .center {
   text-align: center !important;
@@ -83,11 +90,5 @@ dl.company_info {
 
   dd {
     @include grid-column(10, $float: left);
-  }
-}
-
-tr.divider-line {
-  td {
-    border-top: 2px solid #dddddd;
   }
 }

@@ -10,7 +10,7 @@
     <table>
       <thead>
       <tr>
-        <th>Account</th>
+        <th><%= 'Account'.pluralize(@accounts.count) %></th>
         <th><%= month_in_quarter_date(0).strftime('%B') %> totals</th>
         <th><%= month_in_quarter_date(1).strftime('%B') %> totals</th>
         <th><%= month_in_quarter_date(2).strftime('%B') %> totals</th>
@@ -28,13 +28,28 @@
       <% end %>
 
       <tr class="divider-line">
-        <td><b>Quarter Totals</b></td>
+        <td><b>Month Totals</b></td>
         <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(0))) %></b></td>
         <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(1))) %></b></td>
         <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(2))) %></b></td>
       </tr>
       </tbody>
     </table>
+
+    <div class="row">
+      <div class="small-12 columns total_amount">
+        <ul class="inline-list">
+          <li>
+            <label>Taxes applied to total:
+              <span><%= number_to_currency(@company.taxes_applied(active_date, view_quarter)) %></span></label>
+          </li>
+          <li>
+            <label><%= "#{for_quarter} quarter total:" %>
+              <span><%= number_to_currency(@company.sum_quarter(active_date, view_quarter)) %></span></label>
+          </li>
+        </ul>
+      </div>
+    </div>
 
   </div>
 </div>
