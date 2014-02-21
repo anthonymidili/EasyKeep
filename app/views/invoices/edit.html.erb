@@ -5,7 +5,11 @@
 
     <h1>Editing Invoice</h1>
 
-    <%= render 'sub_header' %>
+    <%= render 'layouts/sub_headers/company_info' %>
+
+    <b>Invoice# <%= @invoice.id %></b>
+
+    <%= render 'layouts/sub_headers/customer_info' %>
 
     <%= render 'remove_services' %>
 

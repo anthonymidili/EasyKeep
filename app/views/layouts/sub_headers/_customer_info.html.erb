@@ -1,18 +1,3 @@
-<h3><%= current_company.name %></h3>
-
-<div class="small-12 columns">
-  <ul class="small-text no_bullets">
-    <li><label><b>Address: </b><%= current_company.full_address %></label></li>
-    <li><label><b>Phone: </b><%= current_company.phone %></label></li>
-    <% if current_company.fax.present? %>
-      <li><label><b>Fax: </b><%= current_company.fax %></label></li>
-    <% end %>
-    <li><label><b>Email: </b><%= current_company.owner_email %></label></li>
-  </ul>
-</div>
-
-<b>Invoice# <%= @invoice.id %></b>
-
 <div class="panel">
   <ul class="no_bullets">
     <% if current_account.is_a_company? %>

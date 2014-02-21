@@ -3,7 +3,11 @@
 <div class="row">
   <div class="small-12 small-centered columns">
 
-    <%= render 'invoices/sub_header' %>
+    <%= render 'layouts/sub_headers/company_info' %>
+
+    <b>Invoice# <%= @invoice.id %></b>
+
+    <%= render 'layouts/sub_headers/customer_info' %>
 
     <table>
       <thead>
