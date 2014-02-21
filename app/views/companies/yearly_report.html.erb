@@ -1,1 +1,66 @@
-<h1>yearly_report</h1>
+<% provide(:title, 'Yearly Report') %>
+
+<div class="row">
+  <div class="small-12 columns">
+
+    <%= render 'layouts/sub_headers/company_info' %>
+
+    <%= render 'select_year_form' %>
+
+
+    <h4><%= "Yearly Report - #{active_date.year}" %></h4>
+
+    <table>
+      <thead>
+      <tr>
+        <th><%= 'Account'.pluralize(@accounts.count) %></th>
+        <th>First quarter</th>
+        <th>Second quarter</th>
+        <th>Third quarter</th>
+        <th>Fourth quarter</th>
+        <th>Account totals</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @accounts.each do |account| %>
+        <tr>
+          <td><%= account.name %></td>
+          <td><%= number_to_currency(account.account_quarter_total(yearly_date(1))) %></td>
+          <td><%= number_to_currency(account.account_quarter_total(yearly_date(4))) %></td>
+          <td><%= number_to_currency(account.account_quarter_total(yearly_date(7))) %></td>
+          <td><%= number_to_currency(account.account_quarter_total(yearly_date(10))) %></td>
+          <td><%= number_to_currency(account.account_year_total(active_date)) %></td>
+        </tr>
+      <% end %>
+
+      <tr class="divider-line">
+        <td><b>Totals</b></td>
+        <td><b><%= number_to_currency(current_company.company_quarter_total(yearly_date(1))) %></b></td>
+        <td><b><%= number_to_currency(current_company.company_quarter_total(yearly_date(4))) %></b></td>
+        <td><b><%= number_to_currency(current_company.company_quarter_total(yearly_date(7))) %></b></td>
+        <td><b><%= number_to_currency(current_company.company_quarter_total(yearly_date(10))) %></b></td>
+        <td class="red_text">
+          <b><%= number_to_currency(current_company.company_year_total(active_date)) %></b>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="row">
+      <div class="small-12 columns total_amount">
+        <ul class="inline-list">
+          <li>
+            <label><%= "#{quarter_name} quarter total:" %>
+              <span><%= number_to_currency(current_company.company_year_total(active_date)) %></span></label>
+          </li>
+          <li>
+            <label>Taxes applied to total:
+              <span><%= number_to_currency(current_company.yearly_taxes_applied(view_quarter_date)) %></span></label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

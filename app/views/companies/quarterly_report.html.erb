@@ -7,15 +7,15 @@
 
     <%= render 'view_quarter_by_form' %>
 
-    <h4><%= "Quarterly Report - #{active_date.year}" %> <small><%= "#{for_quarter} Quarter" %></small></h4>
+    <h4><%= "Quarterly Report - #{active_date.year}" %> <small><%= "#{quarter_name} Quarter" %></small></h4>
 
     <table>
       <thead>
       <tr>
         <th><%= 'Account'.pluralize(@accounts.count) %></th>
-        <th><%= month_in_quarter_date(0).strftime('%B') %> totals</th>
-        <th><%= month_in_quarter_date(1).strftime('%B') %> totals</th>
-        <th><%= month_in_quarter_date(2).strftime('%B') %> totals</th>
+        <th><%= month_in_quarter_date(0).strftime('%B') %></th>
+        <th><%= month_in_quarter_date(1).strftime('%B') %></th>
+        <th><%= month_in_quarter_date(2).strftime('%B') %></th>
         <th>Account totals</th>
       </tr>
       </thead>
@@ -27,7 +27,7 @@
           <td><%= number_to_currency(account.account_month_total(month_in_quarter_date(0))) %></td>
           <td><%= number_to_currency(account.account_month_total(month_in_quarter_date(1))) %></td>
           <td><%= number_to_currency(account.account_month_total(month_in_quarter_date(2))) %></td>
-          <td><%= number_to_currency(account.account_quarter_total(active_date, view_quarter)) %></td>
+          <td><%= number_to_currency(account.account_quarter_total(view_quarter_date)) %></td>
         </tr>
       <% end %>
 
@@ -36,7 +36,7 @@
         <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(0))) %></b></td>
         <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(1))) %></b></td>
         <td><b><%= number_to_currency(current_company.company_month_total(month_in_quarter_date(2))) %></b></td>
-        <td class="red_text"><b><%= number_to_currency(@company.sum_quarter(active_date, view_quarter)) %></b></td>
+        <td class="red_text"><b><%= number_to_currency(current_company.company_quarter_total(view_quarter_date)) %></b></td>
       </tr>
       </tbody>
     </table>
@@ -45,12 +45,12 @@
       <div class="small-12 columns total_amount">
         <ul class="inline-list">
           <li>
-            <label><%= "#{for_quarter} quarter total:" %>
-              <span><%= number_to_currency(@company.sum_quarter(active_date, view_quarter)) %></span></label>
+            <label><%= "#{quarter_name} quarter total:" %>
+              <span><%= number_to_currency(current_company.company_quarter_total(view_quarter_date)) %></span></label>
           </li>
           <li>
             <label>Taxes applied to total:
-              <span><%= number_to_currency(@company.taxes_applied(active_date, view_quarter)) %></span></label>
+              <span><%= number_to_currency(current_company.quarterly_taxes_applied(view_quarter_date)) %></span></label>
           </li>
         </ul>
       </div>

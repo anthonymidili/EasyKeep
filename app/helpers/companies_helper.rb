@@ -3,7 +3,15 @@ module CompaniesHelper
     Date.new(active_date.year, view_quarter + increment_month_by, 1)
   end
 
-  def for_quarter
+  def view_quarter_date
+    Date.new(active_date.year, view_quarter, 1)
+  end
+
+  def yearly_date(quarter)
+    Date.new(active_date.year, quarter, 1)
+  end
+
+  def quarter_name
     case view_quarter
       when 1; 'First'
       when 4; 'Second'

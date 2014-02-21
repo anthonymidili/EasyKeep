@@ -28,18 +28,26 @@ class Company < ActiveRecord::Base
     users.where(is_admin: true)
   end
 
-  def company_month_total(month_in_quarter_of)
-    time_range = (month_in_quarter_of.beginning_of_month..month_in_quarter_of.end_of_month)
+  def company_month_total(date)
+    time_range = (date.beginning_of_month..date.end_of_month)
     payments.where(received_on: time_range).sum(&:amount)
   end
 
-  def sum_quarter(active_date, view_quarter)
-    quarter = Date.new(active_date.year, view_quarter, 1)
-    time_range = (quarter.beginning_of_quarter..quarter.end_of_quarter)
+  def company_quarter_total(date)
+    time_range = (date.beginning_of_quarter..date.end_of_quarter)
     payments.where(received_on: time_range).sum(&:amount)
   end
 
-  def taxes_applied(active_date, view_quarter)
-    sum_quarter(active_date, view_quarter) * 0.07
+  def company_year_total(date)
+    time_range = (date.beginning_of_year..date.end_of_year)
+    payments.where(received_on: time_range).sum(&:amount)
+  end
+
+  def quarterly_taxes_applied(date)
+    company_quarter_total(date) * 0.07
+  end
+
+  def yearly_taxes_applied(date)
+    company_year_total(date) * 0.07
   end
 end

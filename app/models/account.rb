@@ -29,14 +29,18 @@ class Account < ActiveRecord::Base
     services_items(view, date).where(invoice_id: nil).sum(&:cost)
   end
 
-  def account_month_total(month_in_quarter_of)
-    time_range = (month_in_quarter_of.beginning_of_month..month_in_quarter_of.end_of_month)
+  def account_month_total(date)
+    time_range = (date.beginning_of_month..date.end_of_month)
     payments.where(received_on: time_range).sum(&:amount)
   end
 
-  def account_quarter_total(active_date, view_quarter)
-    quarter = Date.new(active_date.year, view_quarter, 1)
-    time_range = (quarter.beginning_of_quarter..quarter.end_of_quarter)
+  def account_quarter_total(date)
+    time_range = (date.beginning_of_quarter..date.end_of_quarter)
+    payments.where(received_on: time_range).sum(&:amount)
+  end
+
+  def account_year_total(date)
+    time_range = (date.beginning_of_year..date.end_of_year)
     payments.where(received_on: time_range).sum(&:amount)
   end
 
