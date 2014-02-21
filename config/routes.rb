@@ -10,6 +10,7 @@ HouseKeeping::Application.routes.draw do
   resource :company do
     member do
       get :quarterly_report
+      get :yearly_report
     end
   end
 

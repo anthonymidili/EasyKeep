@@ -47,6 +47,10 @@ class CompaniesController < ApplicationController
     @accounts = current_company.accounts
   end
 
+  def yearly_report
+    @company = current_company
+  end
+
 private
 
   def only_one_company
