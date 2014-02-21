@@ -20,7 +20,8 @@ end
 
 group :assets do
   gem 'sass-rails',                  '~> 3.2.6'
-  gem 'zurb-foundation',             '~> 4.3.2'
+  # Can not update beyond '5.0.3.0' until issue 'Gem foundation-rails 5.1.1.0 incompatible with the Rails asset pipeline #4494' is resolved.
+  gem 'foundation-rails',            '5.0.3.0'
   gem 'foundation-icons-sass-rails', '~> 3.0.0'
   gem 'coffee-rails',                '~> 3.2.2'
   gem 'uglifier',                    '~> 2.3.2'
