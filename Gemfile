@@ -20,7 +20,7 @@ end
 
 group :assets do
   gem 'sass-rails',                  '~> 3.2.6'
-  gem 'foundation-rails'
+  gem 'foundation-rails',            '~> 5.1.1'
   gem 'foundation-icons-sass-rails', '~> 3.0.0'
   gem 'coffee-rails',                '~> 3.2.2'
   gem 'uglifier',                    '~> 2.3.2'
