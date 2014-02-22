@@ -61,5 +61,8 @@ module HouseKeeping
 
     # For Heroku Development
     config.assets.initialize_on_precompile = false
+
+    # For Foundation5
+    config.assets.precompile += %w( vendor/modernizr.js )
   end
 end
