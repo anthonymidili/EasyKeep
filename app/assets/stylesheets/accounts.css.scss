@@ -101,13 +101,5 @@ dl.company_info {
     bottom: 0;
     margin-bottom: 0;
     height: 35px;
-    /* Firefox */
-    width: -moz-calc(100% - 30px) !important;
-    /* WebKit */
-    width: -webkit-calc(100% - 30px) !important;
-    /* Opera */
-    width: -o-calc(100% - 30px) !important;
-    /* Standard */
-    width: calc(100% - 30px) !important;
   }
 }
