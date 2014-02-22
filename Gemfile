@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
+
 gem 'dotenv-rails', '~> 0.9.0', groups: [ :development, :test ]
 
 gem 'rails', '3.2.16'
