@@ -99,8 +99,15 @@ dl.company_info {
   input {
     position: absolute;
     bottom: 0;
-    margin: 0;
+    margin-bottom: 0;
     height: 35px;
-    width: 220px !important;
+    /* Firefox */
+    width: -moz-calc(100% - 30px) !important;
+    /* WebKit */
+    width: -webkit-calc(100% - 30px) !important;
+    /* Opera */
+    width: -o-calc(100% - 30px) !important;
+    /* Standard */
+    width: calc(100% - 30px) !important;
   }
 }
