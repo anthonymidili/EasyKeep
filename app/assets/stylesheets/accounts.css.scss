@@ -92,3 +92,15 @@ dl.company_info {
     @include grid-column(10, $float: left);
   }
 }
+
+.inline-tiny-button {
+  position: relative;
+  height: 57px;
+  input {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    height: 35px;
+    width: 220px !important;
+  }
+}
