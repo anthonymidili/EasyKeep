@@ -9,7 +9,7 @@
                  as: resource_name,
                  url: session_path(resource_name)) do |f| %>
 
-      <%= f.label :email %>
+      <%= f.label :email, 'Your email' %>
       <%= f.text_field :email, autofocus: true %>
 
       <%= f.label :password %>
