@@ -30,6 +30,8 @@ HouseKeeping::Application.routes.draw do
     resources :payments, except: [:show, :index]
   end
 
+  get :about, to: 'welcome#about'
+
   root to: 'welcome#home'
 
   # The priority is based upon order of creation:

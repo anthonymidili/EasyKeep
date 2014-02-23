@@ -11,6 +11,10 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def about
+
+  end
+
 private
 
   def admin_has_company?
