@@ -1,17 +1,19 @@
 <% if account.user.invitation_token.present? %>
-  <div>
-    Invited
-    <%= link_to 'Re-invite', invite_user_path(account_id: account),
-                method: :post,
-                class: 'tiny button radius',
-                title: 'to view there account information' %>
-  </div>
+  Invited
+  <%= link_to 'Re-invite', invite_user_path(account_id: account),
+              method: :post,
+              class: 'tiny button radius user_status',
+              title: 'to view there account information' %>
 <% elsif account.user.encrypted_password.present? %>
   Active
+  <%= link_to 'Re-invite', invite_user_path(account_id: account),
+              method: :post,
+              class: 'tiny button radius user_status',
+              title: 'to view there account information' %>
 <% elsif account.user.email.present? %>
   <%= link_to 'Invite', invite_user_path(account_id: account),
               method: :post,
-              class: 'tiny button radius',
+              class: 'tiny button radius user_status',
               title: 'to view there account information' %>
 <% else %>
   no email

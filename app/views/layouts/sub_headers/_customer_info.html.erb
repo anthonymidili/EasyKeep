@@ -2,8 +2,7 @@
   <ul class="no_bullets">
     <% if current_account.is_a_company? %>
       <li><label><b>Company: </b><%= current_account.name %></label></li>
-    <% end %>
-    <% unless current_account.is_a_company? %>
+    <% else %>
       <li><label><b>Invoice for: </b><%= current_account.user.name %></label></li>
     <% end %>
     <% if current_account.full_address.present? %>
@@ -17,6 +16,11 @@
     <% end %>
     <% if current_account.user.email.present? %>
       <li><label><b>Email: </b><%= current_account.user.email %></label></li>
+    <% end %>
+    <% if current_user.is_admin? %>
+      <li class="hide_on_print">
+        <label><b>User status: </b><%= render 'accounts/user_status', account: current_account %>
+        </label></li>
     <% end %>
   </ul>
 </div>

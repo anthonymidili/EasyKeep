@@ -5,24 +5,7 @@
 
     <h1><%= "#{@account.name} Account" %></h1>
 
-    <div class="panel">
-      <ul class="inline-list">
-        <li><label><b>Contact name: </b><%= @account.user.name %></label></li>
-        <% if @account.full_address.present? %>
-          <li><label><b>Address: </b><%= @account.full_address %></label></li>
-        <% end %>
-        <% if @account.phone.present? %>
-          <li><label><b>Phone: </b><%= @account.phone %></label></li>
-        <% end %>
-        <% if @account.fax.present? %>
-          <li><label><b>Fax: </b><%= @account.fax %></label></li>
-        <% end %>
-        <% if @account.user.email.present? %>
-          <li><label><b>Email: </b><%= mail_to @account.user.email %></label></li>
-        <% end %>
-        <li><label><b>User status: </b><%= render 'accounts/user_status', account: @account %></label></li>
-      </ul>
-    </div>
+    <%= render 'layouts/sub_headers/customer_info' %>
 
     <%= render 'services/new' if current_user.is_admin? %>
 

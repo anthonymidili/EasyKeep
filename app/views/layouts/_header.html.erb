@@ -64,11 +64,16 @@
           <% end %>
 
           <li class="divider"></li>
-          <li><%= link_to 'User settings', edit_user_registration_path %></li>
-          <li class="divider"></li>
           <li><%= link_to 'About', about_path %></li>
+
+          <!-- User drop-down -->
           <li class="divider"></li>
-          <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+          <li class="has-dropdown"><a href="#">User settings</a>
+            <ul class="dropdown">
+              <li><%= link_to 'Edit User', edit_user_registration_path %></li>
+              <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
         <% else %>
           <li class="divider"></li>
           <li><%= link_to 'Sign in', new_user_session_path %></li>
