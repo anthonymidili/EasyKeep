@@ -45,8 +45,12 @@
       <div class="small-12 columns total_amount">
         <ul class="inline-list">
           <li>
-            <label><%= "#{quarter_name} quarter total:" %>
+            <label><%= "#{quarter_name} quarter total amount received:" %>
               <span><%= number_to_currency(current_company.company_quarter_total(view_quarter_date)) %></span></label>
+          </li>
+          <li>
+            <label>Total less taxes applied:
+              <span><%= number_to_currency(current_company.quarterly_total_less_taxes(view_quarter_date)) %></span></label>
           </li>
           <li>
             <label>Taxes applied to total:

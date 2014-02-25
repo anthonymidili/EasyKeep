@@ -43,11 +43,19 @@ class Company < ActiveRecord::Base
     payments.where(received_on: time_range).sum(&:amount)
   end
 
+  def quarterly_total_less_taxes(date)
+    company_quarter_total(date) / 1.07
+  end
+
+  def yearly_total_less_taxes(date)
+    company_year_total(date) / 1.07
+  end
+
   def quarterly_taxes_applied(date)
-    company_quarter_total(date) * 0.07
+    company_quarter_total(date) - quarterly_total_less_taxes(date)
   end
 
   def yearly_taxes_applied(date)
-    company_year_total(date) * 0.07
+    company_year_total(date) - yearly_total_less_taxes(date)
   end
 end
