@@ -5,6 +5,8 @@
 
     <%= render 'layouts/sub_headers/company_info' %>
 
+    <b><%= @invoice.invoice_date.strftime("%Y-%b-%d") %></b><br>
+
     <b>Invoice# <%= @invoice.id %></b>
 
     <%= render 'layouts/sub_headers/customer_info' %>

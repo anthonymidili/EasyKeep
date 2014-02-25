@@ -6,13 +6,10 @@ class ServicesController < ApplicationController
     @service = current_account.services.find(params[:id])
   end
 
-  def edit
-    @service = current_account.services.find(params[:id])
-  end
-
   def create
     @services = current_account.services
     @service = current_account.services.build(params[:service])
+    @account = current_account
 
     if @service.save
       redirect_to current_account, notice: 'Service was successfully created.'
@@ -21,13 +18,17 @@ class ServicesController < ApplicationController
     end
   end
 
+  def edit
+    @service = current_account.services.find(params[:id])
+  end
+
   def update
     @service = current_account.services.find(params[:id])
 
     if @service.update_attributes(params[:service])
       redirect_to current_account, notice: 'Service was successfully updated.'
     else
-      render action: 'edit'
+      render 'edit'
     end
   end
 
@@ -41,6 +42,7 @@ class ServicesController < ApplicationController
   def invoice
     ActiveRecord::Base.transaction do
       @invoice = current_account.invoices.new(params[:invoice])
+      @invoice.invoice_date = Date.current
 
       if @invoice.save
         @services = current_account.services

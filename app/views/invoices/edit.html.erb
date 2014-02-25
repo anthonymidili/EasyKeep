@@ -7,6 +7,19 @@
 
     <%= render 'layouts/sub_headers/company_info' %>
 
+    <%= form_for @invoice do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <div class="row">
+        <div class="small-3 columns">
+          <%= f.text_field :invoice_date, class: 'datePicker', placeholder: 'Date' %>
+        </div>
+        <div class="small-3 small-pull-6 columns">
+          <%= f.submit 'Update Date', class: 'tiny button radius' %>
+        </div>
+      </div>
+    <% end %>
+
     <b>Invoice# <%= @invoice.id %></b>
 
     <%= render 'layouts/sub_headers/customer_info' %>

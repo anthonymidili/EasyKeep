@@ -22,7 +22,7 @@ HouseKeeping::Application.routes.draw do
     end
   end
 
-  resources :invoices, except: [:new, :create, :update] do
+  resources :invoices, except: [:new, :create] do
     collection do
       put :add_services
       put :remove_services

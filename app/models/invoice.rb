@@ -1,10 +1,14 @@
 class Invoice < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :invoice_date
 
   belongs_to :account
 
   has_many :services
   has_many :payments, dependent: :destroy
+
+  validates :invoice_date,
+            format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
+                      message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
   default_scope order: 'created_at DESC'
 
