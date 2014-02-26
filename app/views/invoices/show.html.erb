@@ -5,7 +5,7 @@
 
     <%= render 'layouts/sub_headers/company_info' %>
 
-    <b><%= @invoice.invoice_date.strftime("%Y-%b-%d") %></b><br>
+    <b><%= @invoice.established_at.strftime("%Y-%b-%d") %></b><br>
 
     <b>Invoice# <%= @invoice.id %></b>
 
@@ -21,7 +21,7 @@
 
       <h4>Cleaning Services</h4>
 
-      <% @services.each do |service| %>
+      <% @services.reverse_order.each do |service| %>
         <% if service.persisted? %>
           <tbody>
             <tr>

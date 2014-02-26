@@ -1,16 +1,16 @@
 class Invoice < ActiveRecord::Base
-  attr_accessible :invoice_date
+  attr_accessible :established_at
 
   belongs_to :account
 
   has_many :services
   has_many :payments, dependent: :destroy
 
-  validates :invoice_date,
+  validates :established_at,
             format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
-  default_scope order: 'created_at DESC'
+  default_scope order: 'established_at DESC'
 
   def sub_total
     self.services.sum(&:cost)

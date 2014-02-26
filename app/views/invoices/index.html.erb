@@ -27,7 +27,7 @@
               <i class="page fi-page"> <b><%= invoice.id %></b></i>
             <% end %>
           </td>
-          <td><%= invoice.invoice_date.strftime("%Y-%b-%d") %></td>
+          <td><%= invoice.established_at.strftime("%Y-%b-%d") %></td>
           <td><%= number_to_currency(invoice.total_cost) %></td>
           <td <%= red_text?(invoice) %>><%= number_to_currency(invoice.balance_due) %></td>
           <% if current_user.is_admin? %>

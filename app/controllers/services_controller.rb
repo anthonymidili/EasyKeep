@@ -42,7 +42,7 @@ class ServicesController < ApplicationController
   def invoice
     ActiveRecord::Base.transaction do
       @invoice = current_account.invoices.new(params[:invoice])
-      @invoice.invoice_date = Date.current
+      @invoice.established_at = Date.current
 
       if @invoice.save
         @services = current_account.services

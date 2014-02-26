@@ -10,7 +10,7 @@
       </tr>
     </thead>
 
-    <% @invoice.services.each do |service| %>
+    <% @invoice.services.reverse_order.each do |service| %>
       <% if service.persisted? %>
         <tbody>
           <tr>
