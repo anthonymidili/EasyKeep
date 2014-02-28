@@ -1,28 +1,47 @@
 <% provide(:title, @company.name) %>
 
-<br>
-
 <div class="row">
-  <div class="small-12 medium-8 large-8 small-centered columns panel">
+  <div class="small-12 columns">
 
     <h1><%= @company.name %></h1>
 
-    <dl class="company_info">
-      <dt>Owner:</dt>
-      <dd><%= @company.owner.name %></dd>
-      <dt><%= 'Admin'.pluralize(@company.by_admin.count) %>:</dt>
-      <dd><%= @company.by_admin.map(&:name).join(', ') %></dd>
-      <dt>Address:</dt>
-      <dd><%= @company.full_address %></dd>
-      <dt>Phone:</dt>
-      <dd><%= @company.phone %></dd>
-      <% if @company.fax.present? %>
-        <dt>Fax:</dt>
-        <dd><%= @company.fax %></dd>
+    <ul class="small-text no_bullets">
+      <li><label><b>Owner:</b> <%= @company.owner.name %></label></li>
+      <li><label><b>Address: </b><%= current_company.full_address %></label></li>
+      <li><label><b>Phone: </b><%= current_company.phone %></label></li>
+      <% if current_company.fax.present? %>
+        <li><label><b>Fax: </b><%= current_company.fax %></label></li>
       <% end %>
-    </dl>
+      <li><label><b>Email: </b><%= current_company.owner.email %></label></li>
+    </ul>
 
-    <br>
+    <h3>Admins</h3>
+
+    <Table>
+      <thead>
+      <tr>
+        <th>name</th>
+        <th>Email</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @company.by_admin.each do |user| %>
+        <% unless user.is_owner? %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td class="center_cell">
+              <%= link_to delete_user_company_path(user), method: :delete, confirm: 'Are you sure? This will permanently DELETE your Admin and all there information'  do %>
+                <i class="general fi-x"></i>
+              <% end %>
+            </td>
+
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </Table>
 
     <ul class="inline-list">
       <li><%= link_to 'Edit', edit_company_path, class: 'small button radius' %></li>

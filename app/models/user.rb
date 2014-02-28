@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
+  default_scope order: 'id ASC'
+
   def password_required?
     super unless @skip_validation
   end

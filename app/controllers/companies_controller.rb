@@ -50,6 +50,13 @@ class CompaniesController < ApplicationController
     @accounts = current_company.accounts
   end
 
+  def delete_user
+    @user = current_company.users.find(params[:id])
+    @user.destroy
+
+    redirect_to company_path
+  end
+
 private
 
   def only_one_company

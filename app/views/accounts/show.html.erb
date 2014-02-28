@@ -5,7 +5,7 @@
 
     <h1><%= "#{@account.name} Account" %></h1>
 
-    <%= render 'layouts/sub_headers/customer_info' %>
+    <%= render 'shared/customer_info' %>
 
     <%= render 'services/new' if current_user.is_admin? %>
 

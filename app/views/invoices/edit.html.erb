@@ -5,7 +5,7 @@
 
     <h1>Editing Invoice</h1>
 
-    <%= render 'layouts/sub_headers/company_info' %>
+    <%= render 'shared/company_info' %>
 
     <%= form_for @invoice do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
@@ -22,7 +22,7 @@
 
     <b>Invoice# <%= @invoice.id %></b>
 
-    <%= render 'layouts/sub_headers/customer_info' %>
+    <%= render 'shared/customer_info' %>
 
     <%= render 'remove_services' %>
 

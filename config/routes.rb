@@ -11,6 +11,7 @@ HouseKeeping::Application.routes.draw do
     member do
       get :quarterly_report
       get :yearly_report
+      delete 'company/delete_user/:id', to: 'companies#delete_user', as: :delete_user
     end
   end
 

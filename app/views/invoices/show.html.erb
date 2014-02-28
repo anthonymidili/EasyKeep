@@ -3,13 +3,13 @@
 <div class="row">
   <div class="small-12 small-centered columns">
 
-    <%= render 'layouts/sub_headers/company_info' %>
+    <%= render 'shared/company_info' %>
 
     <b><%= @invoice.established_at.strftime("%Y-%b-%d") %></b><br>
 
     <b>Invoice# <%= @invoice.id %></b>
 
-    <%= render 'layouts/sub_headers/customer_info' %>
+    <%= render 'shared/customer_info' %>
 
     <table>
       <thead>
