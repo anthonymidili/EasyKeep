@@ -16,12 +16,8 @@ class Company < ActiveRecord::Base
     [ address_1, address_2, city, state, zip ].select(&:present?).join(', ')
   end
 
-  def owner_name
-    users.where(is_owner: true).map(&:name).join(', ')
-  end
-
-  def owner_email
-    users.where(is_owner: true).map(&:email).join(', ')
+  def owner
+    users.find_by_is_owner(true)
   end
 
   def by_admin
