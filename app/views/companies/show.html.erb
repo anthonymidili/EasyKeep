@@ -20,10 +20,10 @@
       <li><%= link_to 'Accounts listing', accounts_path, class: 'small button radius' %></li>
     </ul>
 
-    <% if @company.by_admin.count > 1 && current_user.is_owner? %>
-      <h3>Admins</h3>
+    <%= link_to 'Invite admin', new_user_invitation_path, class: 'tiny button radius' if current_user.is_owner? %>
 
-      <%= link_to 'Invite admin', new_user_invitation_path, class: 'tiny button radius' if current_user.is_owner? %>
+    <% if @company.by_admin.count > 1 %>
+      <h3>Admins</h3>
 
       <Table>
         <thead>
