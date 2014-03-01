@@ -20,14 +20,19 @@
       <li><%= link_to 'Accounts listing', accounts_path, class: 'small button radius' %></li>
     </ul>
 
-    <% if @company.by_admin.count > 1 %>
+    <% if @company.by_admin.count > 1 && current_user.is_owner? %>
       <h3>Admins</h3>
+
+      <%= link_to 'Invite admin', new_user_invitation_path, class: 'tiny button radius' if current_user.is_owner? %>
+
       <Table>
         <thead>
         <tr>
           <th>name</th>
           <th>Email</th>
-          <th>Delete</th>
+          <% if current_user.is_owner? %>
+            <th>Delete</th>
+          <% end %>
         </tr>
         </thead>
         <tbody>
@@ -36,11 +41,13 @@
             <tr>
               <td><%= user.name %></td>
               <td><%= user.email %></td>
-              <td class="center_cell">
-                <%= link_to delete_user_company_path(user), method: :delete, confirm: 'Are you sure? This will permanently DELETE your Admin and all there information'  do %>
-                  <i class="general fi-x"></i>
-                <% end %>
-              </td>
+              <% if current_user.is_owner? %>
+                <td class="center_cell">
+                  <%= link_to delete_user_company_path(user), method: :delete, confirm: 'Are you sure? This will permanently DELETE your Admin and all there information'  do %>
+                    <i class="general fi-x"></i>
+                  <% end %>
+                </td>
+              <% end %>
             </tr>
           <% end %>
         <% end %>
