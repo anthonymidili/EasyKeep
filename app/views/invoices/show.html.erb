@@ -5,11 +5,13 @@
 
     <%= render 'shared/company_info' %>
 
-    <b><%= @invoice.established_at.strftime("%Y-%b-%d") %></b><br>
+    <b><%= @invoice.established_at.strftime('%Y-%b-%d') %></b><br>
 
     <b>Invoice# <%= @invoice.id %></b>
 
     <%= render 'shared/customer_info' %>
+
+    <h4>Cleaning Services</h4>
 
     <table>
       <thead>
@@ -19,13 +21,11 @@
         </tr>
       </thead>
 
-      <h4>Cleaning Services</h4>
-
       <% @services.reverse_order.each do |service| %>
         <% if service.persisted? %>
           <tbody>
             <tr>
-              <td class="title"><%= service.performed_on.strftime("%Y-%b-%d") %></td>
+              <td class="title"><%= service.performed_on.strftime('%Y-%b-%d') %></td>
               <td><%= number_to_currency(service.cost) %></td>
             </tr>
           </tbody>
