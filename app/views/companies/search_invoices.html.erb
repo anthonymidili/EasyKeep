@@ -1,0 +1,53 @@
+<% provide(:title, 'Invoices Listings') %>
+
+<div class="row">
+  <div class="small-12 small-centered columns">
+
+    <h1><%= "#{current_company.name} Invoices Listing" %></h1>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Account</th>
+        <th>Contact name</th>
+        <th>Invoice #</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Balance due</th>
+        <th>Edit</th>
+        <th>Destroy</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @invoices.each do |invoice| %>
+        <tr>
+          <td><%= link_to invoice.account.name, account_path(invoice.account) %></td>
+          <td><%= invoice.account.user.name %></td>
+          <td class="center_cell">
+            <%= link_to invoice_path(invoice, account_id: invoice.account_id) do %>
+              <i class="page fi-page"> <b><%= invoice.id %></b></i>
+            <% end %>
+          </td>
+          <td><%= invoice.established_at.strftime('%Y-%b-%d') %></td>
+          <td><%= number_to_currency(invoice.total_cost) %></td>
+          <td <%= red_text?(invoice) %>><%= number_to_currency(invoice.balance_due) %></td>
+          <td class="center_cell">
+            <%= link_to edit_invoice_path(invoice, account_id: invoice.account_id) do %>
+              <i class="page fi-page-edit"></i>
+            <% end %>
+          </td>
+          <td class="center_cell">
+            <%= link_to invoice_path(invoice, account_id: invoice.account_id), method: :delete, confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.'  do %>
+              <i class="general fi-x"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <%= paginate @invoices %>
+
+  </div>
+</div>

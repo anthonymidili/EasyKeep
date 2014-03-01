@@ -37,7 +37,8 @@ class ServicesController < ApplicationController
 
   def invoice
     ActiveRecord::Base.transaction do
-      @invoice = current_account.invoices.new(params[:invoice])
+      @invoice = current_account.invoices.build(params[:invoice])
+      @invoice.company_id = current_company.id
       @invoice.established_at = Date.current
 
       if @invoice.save

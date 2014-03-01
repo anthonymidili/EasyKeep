@@ -2,6 +2,7 @@ class Invoice < ActiveRecord::Base
   attr_accessible :established_at
 
   belongs_to :account
+  belongs_to :company
 
   has_many :services
   has_many :payments, dependent: :destroy

@@ -53,8 +53,11 @@ class CompaniesController < ApplicationController
   def delete_user
     @user = current_company.users.find(params[:id])
     @user.destroy
-
     redirect_to company_path
+  end
+
+  def search_invoices
+    @invoices = current_company.invoices.page(params[:page]).per(10)
   end
 
 private

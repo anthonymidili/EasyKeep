@@ -1,7 +1,7 @@
 class InvoicesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin!, except: [:show, :index]
-  before_filter :set_current_account_id, only: [:index]
+  before_filter :set_current_account_id, only: [:index, :edit, :destroy ]
 
   def show
     @invoice = current_account.invoices.find(params[:id])
