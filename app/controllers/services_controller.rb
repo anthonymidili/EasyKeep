@@ -1,10 +1,6 @@
 class ServicesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_admin!, except: [:show]
-
-  def show
-    @service = current_account.services.find(params[:id])
-  end
+  before_filter :require_admin!
 
   def create
     @services = current_account.services

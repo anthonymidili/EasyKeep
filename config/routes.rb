@@ -17,7 +17,7 @@ HouseKeeping::Application.routes.draw do
 
   resources :accounts
 
-  resources :services, except: [:index, :new] do
+  resources :services, except: [:show, :index, :new] do
     collection do
       put :invoice
     end

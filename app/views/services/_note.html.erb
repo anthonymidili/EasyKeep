@@ -1,0 +1,11 @@
+<div <%= "id=noteModal#{service.id}" %> class="reveal-modal" data-reveal>
+  <h1><%= current_account.name %> Note <small><%= service.performed_on %></small></h1>
+
+  <p><%= service.note %></p>
+
+  <% if current_user.is_admin? %>
+    <%= link_to 'Edit', edit_service_path(service), class: 'small button radius' %>
+  <% end %>
+
+  <a class="close-reveal-modal">&#215;</a>
+</div>
