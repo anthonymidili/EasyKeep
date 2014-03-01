@@ -12,7 +12,6 @@ HouseKeeping::Application.routes.draw do
       get :quarterly_report
       get :yearly_report
       delete 'delete_user/:id', to: 'companies#delete_user', as: :delete_user
-      get 'unset_admin/:id', to: 'companies#unset_admin', as: :unset_admin
     end
   end
 

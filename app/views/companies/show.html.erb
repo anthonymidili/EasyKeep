@@ -20,39 +20,33 @@
       <li><%= link_to 'Accounts listing', accounts_path, class: 'small button radius' %></li>
     </ul>
 
-    <h3>Admins</h3>
-
-    <Table>
-      <thead>
-      <tr>
-        <th>name</th>
-        <th>Email</th>
-        <th>Remove as admin</th>
-        <th>Delete</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @company.by_admin.each do |user| %>
-        <% unless user.is_owner? %>
-          <tr>
-            <td><%= user.name %></td>
-            <td><%= user.email %></td>
-            <td class="center_cell">
-              <%= link_to unset_admin_company_path(user) do %>
-                <i class="miscellaneous fi-prohibited"></i> Admin
-              <% end %>
-            </td>
-            <td class="center_cell">
-              <%= link_to delete_user_company_path(user), method: :delete, confirm: 'Are you sure? This will permanently DELETE your Admin and all there information'  do %>
-                <i class="general fi-x"></i>
-              <% end %>
-            </td>
-
-          </tr>
+    <% if @company.by_admin.count > 1 %>
+      <h3>Admins</h3>
+      <Table>
+        <thead>
+        <tr>
+          <th>name</th>
+          <th>Email</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @company.by_admin.each do |user| %>
+          <% unless user.is_owner? %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td class="center_cell">
+                <%= link_to delete_user_company_path(user), method: :delete, confirm: 'Are you sure? This will permanently DELETE your Admin and all there information'  do %>
+                  <i class="general fi-x"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-      </tbody>
-    </Table>
+        </tbody>
+      </Table>
+    <% end %>
 
   </div>
 </div>

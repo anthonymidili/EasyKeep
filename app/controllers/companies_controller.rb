@@ -57,13 +57,6 @@ class CompaniesController < ApplicationController
     redirect_to company_path
   end
 
-  def unset_admin
-    @user = current_company.users.find(params[:id])
-    @user.update_attribute(:is_admin, false)
-
-    redirect_to company_path
-  end
-
 private
 
   def only_one_company
