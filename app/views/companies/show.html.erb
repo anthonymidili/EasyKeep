@@ -15,6 +15,11 @@
       <li><label><b>Email: </b><%= current_company.owner.email %></label></li>
     </ul>
 
+    <ul class="inline-list">
+      <li><%= link_to 'Edit Company', edit_company_path, class: 'small button radius' %></li>
+      <li><%= link_to 'Accounts listing', accounts_path, class: 'small button radius' %></li>
+    </ul>
+
     <h3>Admins</h3>
 
     <Table>
@@ -22,6 +27,7 @@
       <tr>
         <th>name</th>
         <th>Email</th>
+        <th>Remove as admin</th>
         <th>Delete</th>
       </tr>
       </thead>
@@ -31,6 +37,11 @@
           <tr>
             <td><%= user.name %></td>
             <td><%= user.email %></td>
+            <td class="center_cell">
+              <%= link_to unset_admin_company_path(user) do %>
+                <i class="miscellaneous fi-prohibited"></i> Admin
+              <% end %>
+            </td>
             <td class="center_cell">
               <%= link_to delete_user_company_path(user), method: :delete, confirm: 'Are you sure? This will permanently DELETE your Admin and all there information'  do %>
                 <i class="general fi-x"></i>
@@ -42,11 +53,6 @@
       <% end %>
       </tbody>
     </Table>
-
-    <ul class="inline-list">
-      <li><%= link_to 'Edit', edit_company_path, class: 'small button radius' %></li>
-      <li><%= link_to 'Accounts listing', accounts_path, class: 'small button radius' %></li>
-    </ul>
 
   </div>
 </div>
