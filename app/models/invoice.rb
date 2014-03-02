@@ -36,12 +36,4 @@ class Invoice < ActiveRecord::Base
   def not_paid_in_full?
     balance_due >= 0.01
   end
-
-  def self.search(search)
-    if search
-      where('lower(id) LIKE lower(?)', "%#{search}%")
-    else
-      all
-    end
-  end
 end

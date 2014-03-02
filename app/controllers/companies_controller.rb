@@ -57,10 +57,7 @@ class CompaniesController < ApplicationController
   end
 
   def search_invoices
-    @invoices =
-        Kaminari.paginate_array(
-            current_company.invoices.order('id DESC').limit(100).search(params[:search])
-        ).page(params[:page]).per(10)
+    @invoices = current_company.invoices.order('id DESC').page(params[:page]).per(10)
   end
 
 private
