@@ -2,16 +2,16 @@ source 'https://rubygems.org'
 
 gem 'dotenv-rails', '~> 0.9.0', groups: [ :development, :test ]
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.17'
 
 gem 'jquery-rails',     '~> 3.0.4'
 gem 'devise',           '~> 3.2.2'
 gem 'devise_invitable', '1.3.2'
 gem 'bcrypt',           '~> 3.1.6'
 gem 'kaminari',         '~> 0.15.0'
+gem 'pg',               '~> 0.17.1'
 
 group :development, :test do
-  gem 'sqlite3',     '~> 1.3.8'
   gem 'rspec-rails', '~> 2.14.0'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -25,8 +25,4 @@ group :assets do
   gem 'coffee-rails',                '~> 3.2.2'
   gem 'uglifier',                    '~> 2.3.2'
   gem 'jquery-ui-sass-rails',        '~> 4.0.3'
-end
-
-group :production do
-  gem 'pg', '~> 0.17.0'
 end

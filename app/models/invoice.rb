@@ -39,7 +39,7 @@ class Invoice < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('id LIKE ?', "%#{search}%")
+      where('id ILIKE ?', "%#{search}%")
     else
       all
     end
