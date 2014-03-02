@@ -57,7 +57,7 @@ class CompaniesController < ApplicationController
   end
 
   def search_invoices
-    @invoices = current_company.invoices.page(params[:page]).per(10)
+    @invoices = current_company.invoices.order('id DESC')
   end
 
 private
