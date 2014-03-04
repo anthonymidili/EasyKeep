@@ -60,20 +60,10 @@ class CompaniesController < ApplicationController
     @invoices = current_company.invoices.order('id DESC').limit(100).page(params[:page]).per(10)
     @invoice = current_company.invoices.find_by_id(params[:search])
 
-    search_for_invoice if params[:search]
+    found_invoice if params[:search]
   end
 
 private
-
-  def search_for_invoice
-    if @invoice
-      redirect_to invoice_path(@invoice, account_id: @invoice.account_id),
-                  notice: 'Here is the Invoice you requested.'
-    else
-      flash[:alert] = "Could not find Invoice# #{params[:search]}."
-      render 'search_invoices'
-    end
-  end
 
   def only_one_company
     redirect_to edit_company_path if current_company
@@ -82,5 +72,15 @@ private
   def set_view_quarter_cookie
     @set_view_quarter_cookie ||=
         cookies[:view_quarter] = params[:view_quarter] if params[:view_quarter]
+  end
+
+  def found_invoice
+    if @invoice
+      redirect_to invoice_path(@invoice, account_id: @invoice.account_id),
+                  notice: 'Here is the Invoice you requested.'
+    else
+      flash[:alert] = "Could not find Invoice# #{params[:search]}."
+      render 'search_invoices'
+    end
   end
 end
