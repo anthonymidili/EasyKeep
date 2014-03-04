@@ -48,10 +48,10 @@
           <td><%= number_to_currency(service.cost, unit: '$') %></td>
           <td>
             <% if service.note.length > 10 %>
-              <%= link_to service, 'data-reveal-id' => "noteModal#{service.id}", remote: true do %>
+              <%= link_to '#', 'data-reveal-id' => "noteModal#{service.id}", remote: true do %>
                 <%= service.note.truncate(10, :omission => '... (continued)') %>
               <% end %>
-              <%= render 'services/note', service: service %>
+              <%= render 'services/note_modal', service: service %>
             <% else %>
               <%= service.note %>
             <% end %>

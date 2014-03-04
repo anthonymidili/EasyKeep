@@ -1,5 +1,7 @@
-<div <%= "id=noteModal#{service.id}" %> class="reveal-modal" data-reveal>
-  <h1><%= current_account.name %> Note <small><%= service.performed_on %></small></h1>
+<div <%= "id=noteModal#{service.id}" %> class="reveal-modal medium" data-reveal>
+  <h1><%= current_account.name %> Note <small><%= service.performed_on.strftime('%Y-%b-%d') %></small></h1>
+
+  <hr>
 
   <p><%= service.note %></p>
 
