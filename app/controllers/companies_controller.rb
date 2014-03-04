@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
     if @company.save && current_user.save
       redirect_to company_path, notice: 'Company was successfully created.'
     else
-      render action: 'new'
+      render 'new'
     end
   end
 
@@ -32,7 +32,7 @@ class CompaniesController < ApplicationController
       if @company.update_attributes(params[:company])
         redirect_to company_path, notice: 'Company was successfully updated.'
       else
-        render action: 'edit'
+        render 'edit'
       end
   end
 
