@@ -56,10 +56,8 @@ i {
   color: red;
 }
 
-li {
-  span.red_text {
-    display: inline;
-  }
+span.red_text {
+  display: inline;
 }
 
 ul.small-text {
@@ -70,19 +68,6 @@ ul.small-text {
 
 ul.no_bullets {
   list-style-type: none;
-}
-
-dl.company_info {
-  $column-gutter: 4.5em;
-  @include grid-row($behavior: nest);
-
-  dt {
-    @include grid-column(2, $float: left);
-  }
-
-  dd {
-    @include grid-column(10, $float: left);
-  }
 }
 
 .inline-tiny-button {
