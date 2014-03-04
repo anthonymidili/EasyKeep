@@ -4,7 +4,7 @@ development:
   database: my_database_development
   pool: 5
   username: AMidili
-  password: the4kings
+  password: secret
   host: localhost
   port: 5432
   timeout: 5000
@@ -15,7 +15,7 @@ test:
   database: my_database_test
   pool: 5
   username: AMidili
-  password: the4kings
+  password: secret
   host: localhost
   port: 5432
   timeout: 5000
