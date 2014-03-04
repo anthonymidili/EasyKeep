@@ -57,10 +57,23 @@ class CompaniesController < ApplicationController
   end
 
   def search_invoices
-    @invoices = current_company.invoices.order('id DESC').page(params[:page]).per(10)
+    @invoices = current_company.invoices.order('id DESC').limit(100).page(params[:page]).per(10)
+    @invoice = current_company.invoices.find_by_id(params[:search])
+
+    search_for_invoice if params[:search]
   end
 
 private
+
+  def search_for_invoice
+    if @invoice
+      redirect_to invoice_path(@invoice, account_id: @invoice.account_id),
+                  notice: 'Here is the Invoice you requested.'
+    else
+      flash[:alert] = "Could not find Invoice# #{params[:search]}."
+      render 'search_invoices'
+    end
+  end
 
   def only_one_company
     redirect_to edit_company_path if current_company
