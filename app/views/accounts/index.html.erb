@@ -14,6 +14,8 @@
           <th>Phone</th>
           <th>Fax</th>
           <th>Email</th>
+          <th>All Services Invoiced</th>
+          <th>All Invoices P.I.F.</th>
           <th>Invoices</th>
           <th>User status</th>
           <th>Edit</th>
@@ -30,6 +32,8 @@
           <td><%= account.phone %></td>
           <td><%= account.fax %></td>
           <td><%= mail_to account.user.email %></td>
+          <td><%= account.all_services_invoiced? %></td>
+          <td><%= account.paid_in_full? %></td>
           <td class="center_cell">
             <%= link_to invoices_path(account_id: account.id) do %>
               <i class="miscellaneous fi-book"></i>

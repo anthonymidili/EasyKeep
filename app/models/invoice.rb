@@ -14,7 +14,7 @@ class Invoice < ActiveRecord::Base
   default_scope order: 'established_at DESC'
 
   def sub_total
-    self.services.sum(&:cost)
+    services.sum(&:cost)
   end
 
   def tax
@@ -26,7 +26,7 @@ class Invoice < ActiveRecord::Base
   end
 
   def payments_total
-    self.payments.sum(&:amount)
+    payments.sum(&:amount)
   end
 
   def balance_due

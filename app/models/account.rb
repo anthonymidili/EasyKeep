@@ -44,6 +44,15 @@ class Account < ActiveRecord::Base
     payments.where(received_on: time_range).sum(&:amount)
   end
 
+  def all_services_invoiced?
+    !services.where(invoice_id: nil).present?
+  end
+
+  def paid_in_full?
+    outstanding_balance = invoices.map(&:not_paid_in_full?)
+    !outstanding_balance.include?(true)
+  end
+
 private
 
   def services_items(view_by, active_date)
