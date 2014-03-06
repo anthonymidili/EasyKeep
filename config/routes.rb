@@ -29,6 +29,9 @@ HouseKeeping::Application.routes.draw do
       put :add_services
       put :remove_services
     end
+    member do
+      get :invoice_ready
+    end
     resources :payments, except: [:show, :index]
   end
 

@@ -61,4 +61,12 @@ class InvoicesController < ApplicationController
       redirect_to edit_invoice_path(@invoice)
     end
   end
+
+  def invoice_ready
+    @invoice = current_account.invoices.find(params[:id])
+    @user = @invoice.account.user
+    UserMailer.invoice_ready_to_view(@user, @invoice).deliver
+
+    redirect_to @invoice
+  end
 end
