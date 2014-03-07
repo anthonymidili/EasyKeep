@@ -2,14 +2,20 @@
   Invited
   <%= link_to 'Re-invite', invite_user_path(account_id: account),
               method: :post,
-              class: 'tiny button radius user_status',
+              class: 'tiny button radius user_status_button',
               title: 'to view there account information' %>
 <% elsif account.user.encrypted_password.present? %>
   <b class="green_text">Active</b>
+  <% if @invoice %>
+    <br>
+    <%= link_to "Email #{@invoice.account.user.name} that invoice is ready for viewing",
+                invoice_ready_invoice_path(@invoice),
+                class: 'tiny button radius send_user_email_button' %>
+  <% end %>
 <% elsif account.user.email.present? %>
   <%= link_to 'Invite', invite_user_path(account_id: account),
               method: :post,
-              class: 'tiny button radius user_status',
+              class: 'tiny button radius user_status_button',
               title: 'to view there account information' %>
 <% else %>
   no email

@@ -55,10 +55,6 @@
       <li>
         <%= link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius' %>
       </li>
-      <li>
-        <%= link_to "Email #{current_account.name} that invice is ready to be viewed",
-                    invoice_ready_invoice_path(@invoice) %>
-      </li>
     </ul>
 
     <div class="row">

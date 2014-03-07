@@ -19,8 +19,8 @@
     <% end %>
     <% if current_user.is_admin? %>
       <li class="hide_on_print">
-        <label><b>User status: </b><%= render 'accounts/user_status', account: current_account %>
-        </label></li>
+        <label><b>User status: </b><%= render 'accounts/user_status', account: current_account %></label>
+      </li>
     <% end %>
   </ul>
 </div>

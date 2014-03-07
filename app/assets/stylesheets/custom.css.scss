@@ -86,9 +86,15 @@ ul.no_bullets {
   }
 }
 
-.user_status {
+.user_status_button {
   width: 8em;
   padding-top: 3px !important;
   padding-bottom: 3px !important;
   margin: 0 !important;
+}
+
+.send_user_email_button {
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+  margin: 4px 0 7px 0 !important;
 }
