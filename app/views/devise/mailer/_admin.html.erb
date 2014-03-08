@@ -1,0 +1,7 @@
+<h1>Become an Admin</h1>
+
+<p>Hello <%= "#{@resource.name}, <#{@resource.email}>" %></p>
+
+<p><%= @resource.company.owner.name %> has invited you to <%= link_to 'donnagibbs.herokuapp.com', root_url %>, to be an admin over the company accounts. You can accept this invitation through the link below.</p>
+
+<p><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>

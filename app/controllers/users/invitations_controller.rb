@@ -20,10 +20,4 @@ class Users::InvitationsController < Devise::InvitationsController
       respond_with_navigational(resource) { render :new }
     end
   end
-
-  def invite_user
-    @account = current_company.accounts.find(params[:account_id])
-    @account.user.invite!(current_user)  # current user is optional to set the invited_by attribute
-    redirect_to account_path(@account), notice: 'Successfully sent invitation.'
-  end
 end

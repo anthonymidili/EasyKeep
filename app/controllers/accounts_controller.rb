@@ -53,6 +53,12 @@ class AccountsController < ApplicationController
     redirect_to accounts_url, alert: 'Account and all account information was successfully deleted.'
   end
 
+  def invite_customer
+    @account = current_account
+    @account.user.invite!(current_user)  # current user is optional to set the invited_by attribute
+    redirect_to account_path(@account), notice: 'Successfully sent invitation.'
+  end
+
 private
 
   def authenticate_account!
