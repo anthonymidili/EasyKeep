@@ -64,7 +64,7 @@ class InvoicesController < ApplicationController
 
   def invoice_ready
     @invoice = current_account.invoices.find(params[:id])
-    UserMailer.invoice_ready_to_view(@invoice).deliver
+    UserMailer.invoice_ready_notice(@invoice).deliver
 
     redirect_to @invoice, notice: "Email has been successfully sent to #{@invoice.account.user.name}."
   end
