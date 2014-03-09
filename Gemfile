@@ -8,7 +8,7 @@ gem 'rails', '3.2.17'
 
 gem 'jquery-rails',     '~> 3.0.4'
 gem 'devise',           '~> 3.2.2'
-gem 'devise_invitable', '1.3.2'
+gem 'devise_invitable', '~> 1.3.4'
 gem 'bcrypt',           '~> 3.1.6'
 gem 'kaminari',         '~> 0.15.0'
 gem 'pg',               '~> 0.17.1'
