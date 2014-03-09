@@ -98,3 +98,8 @@ ul.no_bullets {
   padding-bottom: 3px !important;
   margin: 4px 0 7px 0 !important;
 }
+
+.disable_link {
+  pointer-events: none;
+  cursor: default;
+}

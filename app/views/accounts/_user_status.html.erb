@@ -1,9 +1,9 @@
 <% if account.user.invitation_token.present? %>
   Invited
-  <%= link_to 'Re-invite', account_invite_customer_path(account),
-              method: :post,
+  <%= link_to 'Re-invite', '#', 'data-reveal-id' => "inviteCustomerModal#{account.id}",
               class: 'tiny button radius user_status_button',
-              title: 'to view there account information' %>
+              title: 'to view there account information', remote: true %>
+  <%= render 'invite_customer_modal', account: account %>
 <% elsif account.user.encrypted_password.present? %>
   <b class="green_text">Active</b>
   <% if @invoice %>
@@ -13,10 +13,10 @@
                 class: 'tiny button radius send_user_email_button' %>
   <% end %>
 <% elsif account.user.email.present? %>
-  <%= link_to 'Invite', account_invite_customer_path(account),
-              method: :post,
+  <%= link_to 'Invite', '#', 'data-reveal-id' => "inviteCustomerModal#{account.id}",
               class: 'tiny button radius user_status_button',
-              title: 'to view there account information' %>
+              title: 'to view there account information', remote: true %>
+  <%= render 'invite_customer_modal', account: account %>
 <% else %>
   no email
 <% end %>

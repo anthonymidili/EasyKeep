@@ -1,5 +1,5 @@
 <% if @resource.is_admin? %>
   <%= render 'admin' %>
 <% else %>
-  <%= render 'customer' %>
+  <%= render 'customer', resource: @resource %>
 <% end %>
