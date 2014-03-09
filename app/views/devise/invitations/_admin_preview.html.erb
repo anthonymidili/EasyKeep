@@ -1,0 +1,16 @@
+<!-- If this file is changed then you must change 'devise/mailer/_admin' all so. -->
+
+<h1>Invitation Preview</h1>
+
+<hr>
+
+<h4>Become an Admin</h4>
+
+<p>Hello [contact name], [email]</p>
+
+<p><%= current_company.owner.name %> has invited you to <%= link_to 'donnagibbs.herokuapp.com', '#' %>, to be an admin over the company accounts for <%= current_company.name %>. You can accept this invitation through the link below.</p>
+
+<p><%= link_to 'Accept invitation', '#' %></p>
+
+<p>If you don't want to accept the invitation, please ignore this email.<br />
+  Your account won't be created until you access the link above and set your password.</p>
