@@ -1,8 +1,10 @@
 <% provide(:title, 'Invite User') %>
 
 <div class="row">
-  <div class="small-12 medium-6 large-6 small-centered columns">
 
+  <br>
+
+  <div class="small-12 medium-4 large-4 columns panel">
     <h2><%= t "devise.invitations.new.header" %> to a new admin user</h2>
 
     <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
@@ -18,6 +20,21 @@
 
       <p><%= f.submit t("devise.invitations.new.submit_button"), class: 'small button radius expand' %></p>
     <% end %>
+  </div>
+  <div class="small-12 medium-8 large-8 columns disable_link">
+    <h1>Invitation Preview</h1>
 
+    <hr>
+
+    <h4>Become an Admin</h4>
+
+    <p>Hello [contact name], [email]</p>
+
+    <p><%= current_company.owner.name %> has invited you to <%= link_to 'donnagibbs.herokuapp.com', root_url %>, to be an admin over the company accounts. You can accept this invitation through the link below.</p>
+
+    <p><%= link_to 'Accept invitation', '#' %></p>
+
+    <p>If you don't want to accept the invitation, please ignore this email.<br />
+      Your account won't be created until you access the link above and set your password.</p>
   </div>
 </div>
