@@ -22,6 +22,14 @@
                       class: 'small button radius' %></li>
       <li><%= link_to 'Edit Account Info', edit_account_path(@account),
                       class: 'small button radius' %></li>
+      <% if current_user.is_owner? %>
+        <li>
+          <%= link_to 'Destroy Account', current_account,
+                      class: 'small alert button radius',
+                      method: :delete,
+                      confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' %>
+        </li>
+      <% end %>
     </ul>
 
   </div>

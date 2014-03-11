@@ -18,11 +18,18 @@
     <ul class="inline-list">
       <% if current_user.is_owner? %>
         <li><%= link_to 'Edit Company', edit_company_path, class: 'small button radius' %></li>
+        <li>
+          <%= link_to 'Destroy Company', current_user.company,
+                      class: 'small alert button radius',
+                      method: :delete,
+                      confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' %>
+        </li>
+        <li>
+          <%= link_to 'Invite New Admin', new_user_invitation_path, class: 'small button radius' %>
+        </li>
       <% end %>
-      <li><%= link_to 'Accounts listing', accounts_path, class: 'small button radius' %></li>
+      <li><%= link_to 'Accounts Listing', accounts_path, class: 'small button radius' %></li>
     </ul>
-
-    <%= link_to 'Invite admin', new_user_invitation_path, class: 'tiny button radius' if current_user.is_owner? %>
 
     <% if @company.by_admin.count > 1 %>
       <h3>Admins</h3>
