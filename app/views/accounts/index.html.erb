@@ -16,7 +16,9 @@
           <th>Invoices</th>
           <th>User status</th>
           <th>Edit</th>
-          <th>Destroy</th>
+          <% if current_user.is_owner? %>
+            <th>Destroy</th>
+          <% end %>
         </tr>
       </thead>
 
@@ -43,11 +45,13 @@
               <i class="page fi-page-edit"></i>
             <% end %>
           </td>
-          <td class="center_cell">
-            <%= link_to account, method: :delete, confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!'  do %>
-              <i class="general fi-x"></i>
-            <% end %>
-          </td>
+          <% if current_user.is_owner? %>
+            <td class="center_cell">
+              <%= link_to account, method: :delete, confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!'  do %>
+                <i class="general fi-x"></i>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
         <%= render 'contact_info_modal', account: account %>
       <% end %>

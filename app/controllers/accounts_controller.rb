@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_admin!, except: [:show, :edit, :update]
+  before_filter :require_owner!, only: [:destroy]
+  before_filter :require_admin!, except: [:show, :edit, :update, :destroy]
   before_filter :set_current_account_id
   before_filter :authenticate_account!, only: [:show, :edit, :update]
 
