@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
   belongs_to :company
 
   validates :name, presence: true
-  validate :email_unique
 
   default_scope order: 'id ASC'
 
@@ -25,14 +24,6 @@ class User < ActiveRecord::Base
   end
   
   def email_required?
-    self.encrypted_password.present? || self.invitation_token.present? || self.is_admin?
-  end
-
-private
-
-  def email_unique
-    if company.users.find_by_email(email) && is_admin?
-      errors.add(:user, 'email has already been taken') unless email.blank?
-    end
+    self.encrypted_password.present? || self.invitation_token.present?
   end
 end
