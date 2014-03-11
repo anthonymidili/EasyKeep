@@ -19,6 +19,7 @@ private
     resource_class.invite!(invite_params, current_inviter) do |invitable|
       invitable.company_id = current_user.company_id
       invitable.is_admin = true
+      invitable.require_email = true
       invitable.save
     end
   end

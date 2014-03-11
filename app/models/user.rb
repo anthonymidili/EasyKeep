@@ -10,12 +10,14 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   # attr_accessible :title, :body
   attr_accessor :skip_validation
+  attr_accessor :require_email
 
   has_one :account, dependent: :destroy
 
   belongs_to :company
 
   validates :name, presence: true
+  validate :unique_email_required
 
   default_scope order: 'id ASC'
 
@@ -24,6 +26,14 @@ class User < ActiveRecord::Base
   end
   
   def email_required?
-    self.encrypted_password.present? || self.invitation_token.present?
+    self.encrypted_password.present? || self.invitation_token.present? || @require_email
+  end
+
+private
+
+  def unique_email_required
+    if @require_email && company.users.find_by_email(email)
+      errors.add(:user, 'email has already been taken') unless email.blank?
+    end
   end
 end
