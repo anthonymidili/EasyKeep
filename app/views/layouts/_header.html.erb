@@ -25,7 +25,7 @@
                 <li><%= link_to 'Account', current_account %></li>
                 <li><%= link_to 'Invoices', invoices_path %></li>
                 <li><%= link_to 'Edit Account', edit_account_path(current_account) %></li>
-                <% if current_user.is_admin? %>
+                <% if current_user.is_owner? %>
                   <li>
                     <%= link_to 'Destroy Account', current_account,
                                 method: :delete,
@@ -56,11 +56,13 @@
                 <li><%= link_to 'Edit', edit_company_path %></li>
                 <% if current_user.is_owner? %>
                   <li><%= link_to 'Invite admin', new_user_invitation_path %></li>
-                  <li>
-                    <%= link_to 'Destroy', current_user.company,
-                                  method: :delete,
-                                  confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' %>
-                  </li>
+                  <% if current_user.is_owner? %>
+                    <li>
+                      <%= link_to 'Destroy', current_user.company,
+                                    method: :delete,
+                                    confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' %>
+                    </li>
+                  <% end %>
                 <% end %>
               </ul>
             </li>

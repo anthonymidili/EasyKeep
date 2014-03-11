@@ -35,6 +35,7 @@
           <% end %>
         </tr>
         </thead>
+
         <tbody>
         <% @company.by_admin.each do |user| %>
           <% unless user.is_owner? %>
