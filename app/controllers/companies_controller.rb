@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_owner!, only: [:destroy, :delete_user]
-  before_filter :require_admin!, except: [:destroy, :delete_user]
+  before_filter :require_owner!, only: [:edit, :update, :destroy, :delete_user]
+  before_filter :require_admin!, except: [:edit, :update, :destroy, :delete_user]
   before_filter :only_one_company, only: [:new, :create]
   before_filter :set_view_quarter_cookie, only: [:quarterly_report]
 

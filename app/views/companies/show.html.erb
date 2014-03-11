@@ -16,7 +16,9 @@
     </ul>
 
     <ul class="inline-list">
-      <li><%= link_to 'Edit Company', edit_company_path, class: 'small button radius' %></li>
+      <% if current_user.is_owner? %>
+        <li><%= link_to 'Edit Company', edit_company_path, class: 'small button radius' %></li>
+      <% end %>
       <li><%= link_to 'Accounts listing', accounts_path, class: 'small button radius' %></li>
     </ul>
 

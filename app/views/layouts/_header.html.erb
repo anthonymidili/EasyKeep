@@ -53,16 +53,14 @@
             <li class="has-dropdown"><a href="#">Company settings</a>
               <ul class="dropdown">
                 <li><%= link_to 'Company', company_path %></li>
-                <li><%= link_to 'Edit', edit_company_path %></li>
                 <% if current_user.is_owner? %>
+                  <li><%= link_to 'Edit', edit_company_path %></li>
                   <li><%= link_to 'Invite admin', new_user_invitation_path %></li>
-                  <% if current_user.is_owner? %>
-                    <li>
-                      <%= link_to 'Destroy', current_user.company,
-                                    method: :delete,
-                                    confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' %>
-                    </li>
-                  <% end %>
+                  <li>
+                    <%= link_to 'Destroy', current_user.company,
+                                  method: :delete,
+                                  confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' %>
+                  </li>
                 <% end %>
               </ul>
             </li>
