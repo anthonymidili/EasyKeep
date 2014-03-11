@@ -2,7 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def require_admin!
-    redirect_to account_path(current_user.account) unless current_user.is_admin?
+    redirect_to root_path unless current_user.is_admin?
+  end
+
+  def require_owner!
+    redirect_to root_path unless current_user.is_owner?
   end
 
   def current_company
