@@ -39,9 +39,8 @@ class ApplicationController < ActionController::Base
   def active_date
     @active_date ||=
         if params[:date]
-          cookies[:active_date] = Date.new(params[:date][:year].to_i,
-                                           params[:date][:month].to_i,
-                                           params[:date][:day].to_i)
+          cookies[:active_date] =
+              Date.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
         else
           cookies[:active_date] ? cookies[:active_date].to_date : Date.current
         end

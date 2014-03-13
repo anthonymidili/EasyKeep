@@ -3,7 +3,7 @@
   <%= link_to 'Re-invite', '#', 'data-reveal-id' => "inviteCustomerModal#{account.id}",
               class: 'tiny button radius user_status_button',
               title: 'to view there account information', remote: true %>
-  <%= render 'invite_customer_modal', account: account %>
+  <%= render 'accounts/invite_customer_modal', account: account %>
 <% elsif account.user.encrypted_password.present? %>
   <b class="green_text">Active</b>
   <% if @invoice %>
@@ -17,7 +17,7 @@
   <%= link_to 'Invite', '#', 'data-reveal-id' => "inviteCustomerModal#{account.id}",
               class: 'tiny button radius user_status_button',
               title: 'to view there account information', remote: true %>
-  <%= render 'invite_customer_modal', account: account %>
+  <%= render 'accounts/invite_customer_modal', account: account %>
 <% else %>
   no email
 <% end %>
