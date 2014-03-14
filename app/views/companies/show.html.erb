@@ -6,22 +6,22 @@
 
     <ul class="small-text no_bullets">
       <li><label><b>Owner:</b> <%= @company.owner.name %></label></li>
-      <li><label><b>Address: </b><%= current_company.full_address %></label></li>
-      <li><label><b>Phone: </b><%= current_company.phone %></label></li>
-      <% if current_company.fax.present? %>
-        <li><label><b>Fax: </b><%= current_company.fax %></label></li>
+      <li><label><b>Address: </b><%= @company.full_address %></label></li>
+      <li><label><b>Phone: </b><%= @company.phone %></label></li>
+      <% if @company.fax.present? %>
+        <li><label><b>Fax: </b><%= @company.fax %></label></li>
       <% end %>
-      <li><label><b>Email: </b><%= current_company.owner.email %></label></li>
+      <li><label><b>Email: </b><%= @company.owner.email %></label></li>
     </ul>
 
     <ul class="inline-list">
       <% if current_user.is_owner? %>
         <li><%= link_to 'Edit Company', edit_company_path, class: 'small button radius' %></li>
         <li>
-          <%= link_to 'Destroy Company', current_user.company,
+          <%= link_to 'Destroy Company', @company,
                       class: 'small alert button radius',
                       method: :delete,
-                      confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' %>
+                      confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, ADMINS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' %>
         </li>
         <li>
           <%= link_to 'Invite New Admin', new_user_invitation_path, class: 'small button radius' %>
@@ -65,112 +65,5 @@
     <% end %>
   </div>
 
-  <div class="small-12 columns">
-    <h3>Roles Explanation</h3>
-
-    <h5>Owner:</h5>
-    <p>
-      An owner is the user who created the company on this site. The owner has full access to all the features of
-      the site. There can only be one owner role in a company. The owner is the only user that can edit, destroy,
-      or create a company and invite users to become an admin of the accounts.
-    </p>
-
-    <h5>Admin:</h5>
-    <p>
-      Consider an admin as a partner or supervisor over the company's accounts. An admin can not have an account
-      with the company. If you have an admin that is also a customer the admin will need a separate email address
-      for both there admin and customer roles.
-    </p>
-
-    <h5>Customer:</h5>
-    <p>
-      A customer only has access to there own account information. Such as viewing there service, invoice, and
-      payment history. Customers can also edit there contact information so your records are always up do date.
-    </p>
-  </div>
-
-  <div class="small-12 columns">
-    <h3>Role Permissions</h3>
-    <p>
-      Owner = O, Admin = A, Customer = C
-    </p>
-
-    <table>
-      <thead>
-      <tr>
-        <th>Permission</th>
-        <th>view</th>
-        <th>Create</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr>
-        <td>Personal information</td>
-        <td>O, A, C</td>
-        <td>O, A</td>
-        <td>O, A, C</td>
-        <td>O</td>
-      </tr>
-      <tr>
-        <td>Personal account</td>
-        <td>C</td>
-        <td></td>
-        <td>C</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Admin users</td>
-        <td>O, A</td>
-        <td>O</td>
-        <td></td>
-        <td>O</td>
-      </tr>
-      <tr>
-        <td>Company</td>
-        <td>O, A</td>
-        <td>O</td>
-        <td>O</td>
-        <td>O</td>
-      </tr>
-      <tr>
-        <td>All accounts</td>
-        <td>O, A</td>
-        <td>O, A</td>
-        <td>O, A</td>
-        <td>O</td>
-      </tr>
-      <tr>
-        <td>Service history</td>
-        <td>O, A, C</td>
-        <td>O, A</td>
-        <td>O, A</td>
-        <td>O, A</td>
-      </tr>
-      <tr>
-        <td>Invoice history</td>
-        <td>O, A, C</td>
-        <td>O, A</td>
-        <td>O, A</td>
-        <td>O, A</td>
-      </tr>
-      <tr>
-        <td>Payment history</td>
-        <td>O, A, C</td>
-        <td>O, A</td>
-        <td>O, A</td>
-        <td>O, A</td>
-      </tr>
-      <tr>
-        <td>Repots</td>
-        <td>O, A</td>
-        <td></td>
-        <td>O, A</td>
-        <td></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+  <%= render :partial => 'roles_explanation' %>
 </div>
