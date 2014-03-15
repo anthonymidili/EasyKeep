@@ -28,3 +28,5 @@ group :assets do
   gem 'uglifier',                    '~> 2.3.2'
   gem 'jquery-ui-sass-rails',        '~> 4.0.3'
 end
+
+gem 'rails_12factor', group: :staging
