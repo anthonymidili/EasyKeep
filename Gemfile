@@ -1,32 +1,32 @@
 source 'https://rubygems.org'
 
 ruby '2.0.0'
-
-gem 'dotenv-rails', '~> 0.9.0', groups: [ :development, :test ]
-
 gem 'rails', '3.2.17'
 
-gem 'jquery-rails',     '~> 3.0.4'
-gem 'devise',           '~> 3.2.2'
+gem 'jquery-rails', '~> 3.1.0'
+gem 'devise', '~> 3.2.3'
 gem 'devise_invitable', '~> 1.3.4'
-gem 'bcrypt',           '~> 3.1.6'
-gem 'kaminari',         '~> 0.15.0'
-gem 'pg',               '~> 0.17.1'
+gem 'bcrypt', '~> 3.1.7'
+gem 'kaminari', '~> 0.15.1'
+gem 'pg', '~> 0.17.1'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.14.0'
+  gem 'dotenv-rails', '~> 0.10.0'
+  gem 'rspec-rails', '~> 2.14.1'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'hirb'
 end
 
 group :assets do
-  gem 'sass-rails',                  '~> 3.2.6'
-  gem 'foundation-rails',            '~> 5.1.1'
+  gem 'sass-rails', '~> 3.2.6'
+  gem 'foundation-rails', '~> 5.2.1'
   gem 'foundation-icons-sass-rails', '~> 3.0.0'
-  gem 'coffee-rails',                '~> 3.2.2'
-  gem 'uglifier',                    '~> 2.3.2'
-  gem 'jquery-ui-sass-rails',        '~> 4.0.3'
+  gem 'coffee-rails', '~> 3.2.2'
+  gem 'uglifier', '~> 2.5.0'
+  gem 'jquery-ui-sass-rails', '~> 4.0.3'
 end
 
-gem 'rails_12factor', group: :staging
+group :staging, :production do
+  gem 'rails_12factor', '~> 0.0.2'
+end
