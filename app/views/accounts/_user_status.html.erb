@@ -8,7 +8,7 @@
   <b class="green_text">Active</b>
   <% if @invoice %>
     <br>
-    <%= link_to "Email #{@invoice.account.user.name} that invoice is ready for viewing", '#',
+    <%= link_to "Notify #{@invoice.account.user.name} that invoice is ready for viewing", '#',
                 'data-reveal-id' => "invoiceReadyModal#{@invoice.id}",
                 class: 'tiny button radius send_user_email_button' %>
     <%= render 'accounts/invoice_ready_modal', invoice: @invoice %>
