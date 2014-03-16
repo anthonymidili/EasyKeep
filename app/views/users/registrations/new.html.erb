@@ -1,0 +1,32 @@
+<% provide(:title, 'Sign up') %>
+
+<div class="row">
+  <div class="small-12 medium-6 large-6 small-centered columns">
+
+    <h2 class="heading">Sign up</h2>
+
+    <%= form_for(resource,
+                 :as => resource_name,
+                 :url => registration_path(resource_name)) do |f| %>
+
+      <%= devise_error_messages! %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'input-block-level', autofocus: true %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'input-block-level' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'input-block-level' %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'input-block-level' %>
+
+      <%= f.submit 'Sign up', class: 'btn btn-large btn-block btn-primary' %>
+    <% end %>
+
+    <%= render 'devise/shared/links' %>
+
+  </div>
+</div>
