@@ -14,6 +14,14 @@
       <li><label><b>Email: </b><%= @company.owner.email %></label></li>
     </ul>
 
+    <% unless @company.accounts.any? %>
+      <div class="row">
+        <div class="small-8 small-centered columns">
+          <%= link_to 'Get Started', new_account_path, class: 'large button radius expand' %>
+        </div>
+      </div>
+    <% end %>
+
     <ul class="inline-list">
       <% if current_user.is_owner? %>
         <li><%= link_to 'Edit Company', edit_company_path, class: 'small button radius' %></li>
