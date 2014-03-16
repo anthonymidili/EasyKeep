@@ -19,7 +19,6 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'sass', '~> 3.2.15'
   gem 'sass-rails', '~> 3.2.6'
   gem 'foundation-rails', '~> 5.2.1'
   gem 'foundation-icons-sass-rails', '~> 3.0.0'
