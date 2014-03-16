@@ -19,15 +19,10 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'sass', '~> 3.2.15'
   gem 'sass-rails', '~> 3.2.6'
   gem 'foundation-rails', '~> 5.2.1'
   gem 'foundation-icons-sass-rails', '~> 3.0.0'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '~> 2.5.0'
   gem 'jquery-ui-sass-rails', '~> 4.0.3'
-end
-
-group :staging, :production do
-  gem 'rails_12factor', '~> 0.0.2'
 end
