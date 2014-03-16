@@ -12,18 +12,20 @@
       <%= devise_error_messages! %>
 
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'input-block-level', autofocus: true %>
+      <%= f.text_field :name, autofocus: true %>
 
       <%= f.label :email %>
-      <%= f.text_field :email, class: 'input-block-level' %>
+      <%= f.text_field :email %>
 
       <%= f.label :password %>
-      <%= f.password_field :password, class: 'input-block-level' %>
+      <%= f.password_field :password, autocomplete: 'off' %>
 
       <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: 'input-block-level' %>
+      <%= f.password_field :password_confirmation %>
 
-      <%= f.submit 'Sign up', class: 'btn btn-large btn-block btn-primary' %>
+      <br>
+
+      <%= f.submit 'Sign up', class: 'button radius expand' %>
     <% end %>
 
     <%= render 'devise/shared/links' %>
