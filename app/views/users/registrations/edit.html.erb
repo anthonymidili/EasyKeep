@@ -35,9 +35,18 @@
 
       <br>
 
-      <%= f.submit 'Update', class: 'button radius expand' %>
+      <%= f.submit 'Update', class: 'radius button expand' %>
       <%= link_to 'Back', root_path, class: 'small button secondary radius expand' %>
     <% end %>
 
+    <% if current_user.is_owner? %>
+      <hr>
+
+      <h3>Cancel my account</h3>
+      <%= link_to 'Cancel my account', registration_path(resource_name),
+                    class: 'tiny alert radius button',
+                    :method => :delete,
+                    :data => { :confirm => 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, ADMINS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY! As well as your PERSONAL ACCOUNT with us!' } %>
+    <% end %>
   </div>
 </div>
