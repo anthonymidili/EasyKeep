@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-HouseKeeping::Application.load_tasks
+EasyKeep::Application.load_tasks
