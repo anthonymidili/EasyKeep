@@ -4,7 +4,7 @@
 
 <p>Hello <%= "#{@resource.name} <#{@resource.email}>," %></p>
 
-<p><%= @resource.company.owner.name %> has invited you to <%= link_to 'Easy Keep', root_url %>, to be an admin over the company accounts for <%= @resource.company.name %>. You can accept this invitation through the link
+<p><%= @resource.company.owner.name %> has invited you to <%= link_to 'EasyKeep', root_url %>, to be an admin over the company accounts for <%= @resource.company.name %>. You can accept this invitation through the link
   below.</p>
 
 <p><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @token) %></p>
