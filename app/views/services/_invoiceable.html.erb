@@ -1,70 +1,70 @@
-<h4>Invoiceable Services</h4>
-
-<div class="row">
-  <div class="small-12 columns total_amount">
-    <label>
-      Invoiceable Amount:
-      <span><%= number_to_currency(@account.sum_invoiceable_services) %></span>
-    </label>
+<% if @services.by_not_used.any? %>
+  <h4>Invoiceable Services</h4>
+  <div class="row">
+    <div class="small-12 columns total_amount">
+      <label>
+        Invoiceable Amount:
+        <span><%= number_to_currency(@account.sum_invoiceable_services) %></span>
+      </label>
+    </div>
   </div>
-</div>
-
-<%= form_tag invoice_services_path, method: :put do %>
-  <table>
-    <thead>
-      <tr>
-        <% if current_user.is_admin? %>
-          <th>Invoice</th>
-        <% end %>
-        <th>Performed on</th>
-        <th>Cost</th>
-        <th>Note</th>
-        <% if current_user.is_admin? %>
-          <th>Edit</th>
-          <th>Delete</th>
-        <% end %>
-      </tr>
-    </thead>
-
-    <tbody>
-    <% @services.by_not_used.each do |service| %>
-      <% if service.persisted? %>
+  <%= form_tag invoice_services_path, method: :put do %>
+    <table>
+      <thead>
         <tr>
           <% if current_user.is_admin? %>
-            <td><%= check_box_tag 'service_ids[]',
-                                  service.id,
-                                  service.invoice_id.nil? %></td>
+            <th>Invoice</th>
           <% end %>
-          <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
-          <td><%= number_to_currency(service.cost, unit: '$') %></td>
-          <td>
-            <% if service.note.length > 10 %>
-              <%= link_to '#', 'data-reveal-id' => "noteModal#{service.id}", remote: true do %>
-                <%= service.note.truncate(10, :omission => '... (continued)') %>
-              <% end %>
-              <%= render 'services/note_modal', service: service %>
-            <% else %>
-              <%= service.note %>
-            <% end %>
-          </td>
+          <th>Performed on</th>
+          <th>Cost</th>
+          <th>Note</th>
           <% if current_user.is_admin? %>
-            <td class="center_cell">
-              <%= link_to edit_service_path(service) do %>
-                <i class="page fi-page-edit"></i>
-              <% end %>
-            </td>
-            <td class="center_cell">
-              <%= link_to service,
-                          method: :delete,
-                          confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' do %>
-                <i class="general fi-x"></i>
-              <% end %>
-            </td>
+            <th>Edit</th>
+            <th>Delete</th>
           <% end %>
         </tr>
+      </thead>
+      <tbody>
+      <% @services.by_not_used.each do |service| %>
+        <% if service.persisted? %>
+          <tr>
+            <% if current_user.is_admin? %>
+              <td><%= check_box_tag 'service_ids[]',
+                                    service.id,
+                                    service.invoice_id.nil? %></td>
+            <% end %>
+            <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
+            <td><%= number_to_currency(service.cost, unit: '$') %></td>
+            <td>
+              <% if service.note.length > 10 %>
+                <%= link_to '#', 'data-reveal-id' => "noteModal#{service.id}", remote: true do %>
+                  <%= service.note.truncate(10, :omission => '... (continued)') %>
+                <% end %>
+                <%= render 'services/note_modal', service: service %>
+              <% else %>
+                <%= service.note %>
+              <% end %>
+            </td>
+            <% if current_user.is_admin? %>
+              <td class="center_cell">
+                <%= link_to edit_service_path(service) do %>
+                  <i class="page fi-page-edit"></i>
+                <% end %>
+              </td>
+              <td class="center_cell">
+                <%= link_to service,
+                            method: :delete,
+                            confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' do %>
+                  <i class="general fi-x"></i>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-    </tbody>
-  </table>
-  <%= submit_tag 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin? %>
+      </tbody>
+    </table>
+    <%= submit_tag 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin? %>
+  <% end %>
 <% end %>
+
