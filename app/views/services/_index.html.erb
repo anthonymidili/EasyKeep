@@ -14,6 +14,7 @@
 <table>
   <thead>
   <tr>
+    <th>Invoiced</th>
     <th>Performed on</th>
     <th>Cost</th>
     <th>Note</th>
@@ -28,6 +29,7 @@
   <% services_with_view_by_scope(@services).each do |service| %>
     <% if service.persisted? %>
       <tr>
+        <td><%= yes_or_no(service.invoice_id.present?) %></td>
         <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
         <td><%= number_to_currency(service.cost, unit: '$') %></td>
         <td>
