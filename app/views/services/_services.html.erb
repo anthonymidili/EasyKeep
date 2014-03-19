@@ -1,19 +1,11 @@
-<h4>Service History</h4>
-
-<%= render 'services/date_bar_forms' %>
+<h4>Invoiceable Services</h4>
 
 <div class="row">
   <div class="small-12 columns total_amount">
-    <ul class="inline-list">
-      <li>
-        <label><%= "Cost of Services this #{view_by.capitalize}:" %>
-        <span><%= number_to_currency(@account.sum_services(view_by, active_date)) %></span></label>
-      </li>
-      <li>
-        <label>Invoiceable Amount:
-        <span><%= number_to_currency(@account.sum_invoiceable_services(view_by, active_date)) %></span></label>
-      </li>
-    </ul>
+    <label>
+      Invoiceable Amount:
+      <span><%= number_to_currency(@account.sum_invoiceable_services) %></span>
+    </label>
   </div>
 </div>
 
@@ -35,7 +27,7 @@
     </thead>
 
     <tbody>
-    <% services_with_view_by_scope(@services).each do |service| %>
+    <% @services.by_not_used.each do |service| %>
       <% if service.persisted? %>
         <tr>
           <% if current_user.is_admin? %>

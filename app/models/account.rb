@@ -25,8 +25,8 @@ class Account < ActiveRecord::Base
     services_items(view, date).sum(&:cost)
   end
 
-  def sum_invoiceable_services(view, date)
-    services_items(view, date).where(invoice_id: nil).sum(&:cost)
+  def sum_invoiceable_services
+    services.where(invoice_id: nil).sum(&:cost)
   end
 
   def account_month_total(date)

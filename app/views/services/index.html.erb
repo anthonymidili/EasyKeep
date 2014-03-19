@@ -1,0 +1,61 @@
+<h4>Service History</h4>
+
+<%= render 'services/date_bar_forms' %>
+
+<div class="row">
+  <div class="small-12 columns total_amount">
+    <label>
+      <%= "Cost of Services this #{view_by.capitalize}:" %>
+      <span><%= number_to_currency(@account.sum_services(view_by, active_date)) %></span>
+    </label>
+  </div>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>Performed on</th>
+    <th>Cost</th>
+    <th>Note</th>
+    <% if current_user.is_admin? %>
+      <th>Edit</th>
+      <th>Delete</th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% services_with_view_by_scope(@services).each do |service| %>
+    <% if service.persisted? %>
+      <tr>
+        <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
+        <td><%= number_to_currency(service.cost, unit: '$') %></td>
+        <td>
+          <% if service.note.length > 10 %>
+            <%= link_to '#', 'data-reveal-id' => "noteModal#{service.id}", remote: true do %>
+              <%= service.note.truncate(10, :omission => '... (continued)') %>
+            <% end %>
+            <%= render 'services/note_modal', service: service %>
+          <% else %>
+            <%= service.note %>
+          <% end %>
+        </td>
+        <% if current_user.is_admin? %>
+          <td class="center_cell">
+            <%= link_to edit_service_path(service) do %>
+              <i class="page fi-page-edit"></i>
+            <% end %>
+          </td>
+          <td class="center_cell">
+            <%= link_to service,
+                        method: :delete,
+                        confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' do %>
+              <i class="general fi-x"></i>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
