@@ -21,7 +21,7 @@
         <td><%= payment.received_on.strftime("%Y-%b-%d") %></td>
         <td><%= payment.transaction_type.capitalize %></td>
         <td><%= payment.memo %></td>
-        <td><%= number_to_currency(payment.amount, unit: '$') %></td>
+        <td class="totals"><%= number_to_currency(payment.amount, unit: '$') %></td>
         <% if current_user.is_admin? %>
           <td class="center_cell hide_on_print">
             <%= link_to edit_invoice_payment_path(@invoice, payment) do %>

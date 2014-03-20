@@ -16,8 +16,8 @@
             <th>Invoice</th>
           <% end %>
           <th>Performed on</th>
-          <th>Cost</th>
           <th>Memo</th>
+          <th>Cost</th>
           <% if current_user.is_admin? %>
             <th>Edit</th>
             <th>Delete</th>
@@ -34,7 +34,6 @@
                                     service.invoice_id.nil? %></td>
             <% end %>
             <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
-            <td><%= number_to_currency(service.cost, unit: '$') %></td>
             <td>
               <% if service.memo.length > 10 %>
                 <%= link_to '#', 'data-reveal-id' => "memoModal#{service.id}", remote: true do %>
@@ -45,6 +44,7 @@
                 <%= service.memo %>
               <% end %>
             </td>
+            <td><%= number_to_currency(service.cost, unit: '$') %></td>
             <% if current_user.is_admin? %>
               <td class="center_cell">
                 <%= link_to edit_service_path(service) do %>

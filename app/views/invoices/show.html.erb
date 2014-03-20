@@ -11,12 +11,13 @@
 
     <%= render 'shared/customer_info' %>
 
-    <h4>Cleaning Services</h4>
+    <h4>Services</h4>
 
     <table>
       <thead>
         <tr>
           <th>Date performed</th>
+          <th>Memo</th>
           <th>Service cost</th>
         </tr>
       </thead>
@@ -25,8 +26,9 @@
         <% if service.persisted? %>
           <tbody>
             <tr>
-              <td class="title"><%= service.performed_on.strftime('%Y-%b-%d') %></td>
-              <td><%= number_to_currency(service.cost) %></td>
+              <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
+              <td><%= service.memo %></td>
+              <td class="totals"><%= number_to_currency(service.cost) %></td>
             </tr>
           </tbody>
         <% end %>

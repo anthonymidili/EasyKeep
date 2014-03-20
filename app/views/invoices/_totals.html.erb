@@ -3,10 +3,12 @@
     <table>
       <tbody>
       <tr>
-        <td class="title">Sub Total:</td><td><%= number_to_currency(@invoice.sub_total) %></td>
+        <td>Sub Total:</td>
+        <td class="totals"><%= number_to_currency(@invoice.sub_total) %></td>
       </tr>
       <tr>
-        <td>7% Sales Tax:</td><td><%= number_to_currency(@invoice.tax) %></td>
+        <td>7% Sales Tax:</td>
+        <td><%= number_to_currency(@invoice.tax) %></td>
       </tr>
       <tr>
         <td>Total Due:</td><td><span><%= number_to_currency(@invoice.total_cost) %></span></td>
@@ -19,11 +21,13 @@
       <table>
         <tbody>
         <tr>
-          <td class="title">Payments Total:</td><td><%= number_to_currency(@invoice.payments_total) %></td>
+          <td>Payments Total:</td>
+          <td class="totals"><%= number_to_currency(@invoice.payments_total) %></td>
         </tr>
         <% if @invoice.not_paid_in_full? %>
           <tr>
-            <td>Balance Due:</td><td><span><%= number_to_currency(@invoice.balance_due) %></span></td>
+            <td>Balance Due:</td>
+            <td><span><%= number_to_currency(@invoice.balance_due) %></span></td>
           </tr>
         <% end %>
         </tbody>
