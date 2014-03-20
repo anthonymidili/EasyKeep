@@ -3,7 +3,7 @@
     <% if current_account.is_a_company? %>
       <li><label><b>Company: </b><%= current_account.name %></label></li>
     <% else %>
-      <li><label><b>Invoice for: </b><%= current_account.user.name %></label></li>
+      <li><label><b>Contact: </b><%= current_account.user.name %></label></li>
     <% end %>
     <% if current_account.full_address.present? %>
       <li><label><b>Address: </b><%= current_account.full_address %></label></li>

@@ -1,11 +1,9 @@
 <% if @services.by_not_used.any? %>
-  <hr>
-
   <h4>Invoiceable Services</h4>
   <div class="row">
     <div class="small-12 columns total_amount">
       <label>
-        Invoiceable Amount:
+        Invoiceable Amount Total:
         <span><%= number_to_currency(@account.sum_invoiceable_services) %></span>
       </label>
     </div>
@@ -68,5 +66,6 @@
     </table>
     <%= submit_tag 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin? %>
   <% end %>
-<% end %>
 
+  <hr>
+<% end %>

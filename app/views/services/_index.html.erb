@@ -1,5 +1,3 @@
-<hr>
-
 <h4>Service History</h4>
 
 <%= render 'services/date_bar_forms' %>
@@ -37,7 +35,7 @@
               <i class="page fi-page"> <b><%= service.invoice_id %></b></i>
             <% end %>
           <% else %>
-            <i>N/A</i>
+            <i>not invoiced</i>
           <% end %>
         </td>
         <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
