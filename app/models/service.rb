@@ -1,5 +1,5 @@
 class Service < ActiveRecord::Base
-  attr_accessible :note, :performed_on, :cost
+  attr_accessible :memo, :performed_on, :cost
 
   before_save { |service| service.cost = 0 if service.cost.blank? }
 

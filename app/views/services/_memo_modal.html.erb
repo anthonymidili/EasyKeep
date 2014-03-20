@@ -1,0 +1,13 @@
+<div <%= "id=memoModal#{service.id}" %> class="reveal-modal" data-reveal>
+  <h1><%= current_account.name %> Memo <small><%= service.performed_on.strftime('%Y-%b-%d') %></small></h1>
+
+  <hr>
+
+  <p><%= service.memo %></p>
+
+  <% if current_user.is_admin? %>
+    <%= link_to 'Edit', edit_service_path(service), class: 'small button radius' %>
+  <% end %>
+
+  <a class="close-reveal-modal">&#215;</a>
+</div>
