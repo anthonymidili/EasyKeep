@@ -1,3 +1,5 @@
+<hr>
+
 <h4>Service History</h4>
 
 <%= render 'services/date_bar_forms' %>
@@ -14,7 +16,7 @@
 <table>
   <thead>
   <tr>
-    <th>Invoiced</th>
+    <th>Invoice#</th>
     <th>Performed on</th>
     <th>Cost</th>
     <th>Note</th>
@@ -29,7 +31,15 @@
   <% services_with_view_by_scope(@services).each do |service| %>
     <% if service.persisted? %>
       <tr>
-        <td><%= yes_or_no(service.invoice_id.present?) %></td>
+        <td>
+          <% if service.invoice_id.present? %>
+            <%= link_to invoice_path(service.invoice_id) do %>
+              <i class="page fi-page"> <b><%= service.invoice_id %></b></i>
+            <% end %>
+          <% else %>
+            <i>N/A</i>
+          <% end %>
+        </td>
         <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
         <td><%= number_to_currency(service.cost, unit: '$') %></td>
         <td>
