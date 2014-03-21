@@ -34,16 +34,7 @@
                                     service.invoice_id.nil? %></td>
             <% end %>
             <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
-            <td>
-              <% if service.memo.length > 10 %>
-                <%= link_to '#', 'data-reveal-id' => "memoModal#{service.id}", remote: true do %>
-                  <%= service.memo.truncate(10, :omission => '... (continued)') %>
-                <% end %>
-                <%= render 'services/memo_modal', service: service %>
-              <% else %>
-                <%= service.memo %>
-              <% end %>
-            </td>
+            <td><%= service.memo %></td>
             <td><%= number_to_currency(service.cost, unit: '$') %></td>
             <% if current_user.is_admin? %>
               <td class="center_cell">

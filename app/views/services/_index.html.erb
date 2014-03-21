@@ -40,11 +40,11 @@
         </td>
         <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
         <td>
-          <% if service.memo.length > 10 %>
-            <%= link_to '#', 'data-reveal-id' => "memoIndexModal#{service.id}", remote: true do %>
-              <%= service.memo.truncate(10, :omission => '... (continued)') %>
+          <% if service.memo.length > 20 %>
+            <%= link_to '#', 'data-reveal-id' => "memoModal#{service.id}", remote: true do %>
+              <%= service.memo.truncate(20, :omission => '...') %>
             <% end %>
-            <%= render 'services/memo_index_modal', service: service %>
+            <%= render 'services/memo_modal', service: service %>
           <% else %>
             <%= service.memo %>
           <% end %>
