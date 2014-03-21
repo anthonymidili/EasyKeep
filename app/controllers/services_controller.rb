@@ -22,7 +22,7 @@ class ServicesController < ApplicationController
     @service = current_account.services.find(params[:id])
 
     if @service.update_attributes(params[:service])
-      redirect_to current_account, notice: 'Service was successfully updated.'
+      redirect_to_account_or_invoice
     else
       render 'edit'
     end
@@ -49,6 +49,16 @@ class ServicesController < ApplicationController
       else
         redirect_to current_account, alert: 'There was a problem creating a new invoice. Please try again.'
       end
+    end
+  end
+
+private
+
+  def redirect_to_account_or_invoice
+    if params[:invoice_id] && !@service.invoice.nil?
+      redirect_to edit_invoice_path(@service.invoice), notice: 'Service was successfully updated.'
+    else
+      redirect_to current_account, notice: 'Service was successfully updated.'
     end
   end
 end

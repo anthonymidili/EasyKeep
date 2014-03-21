@@ -8,6 +8,7 @@
         <th>Date performed</th>
         <th>Memo</th>
         <th>Service cost</th>
+        <th>Edit</th>
       </tr>
     </thead>
 
@@ -19,6 +20,11 @@
             <td><%= service.performed_on.strftime("%Y-%b-%d") %></td>
             <td><%= service.memo %></td>
             <td><%= number_to_currency(service.cost) %></td>
+            <td>
+              <%= link_to edit_service_path(service, invoice_id: service.invoice_id) do %>
+                <i class="page fi-page-edit"></i>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       <% end %>
