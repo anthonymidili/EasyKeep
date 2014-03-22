@@ -8,6 +8,9 @@
         <li><label><b>Fax: </b><%= current_company.fax %></label></li>
       <% end %>
       <li><label><b>Email: </b><%= current_company.owner.email %></label></li>
+      <% if current_company.license_number.present? %>
+        <li><label><b>License #: </b><%= current_company.license_number %></label></li>
+      <% end %>
     </ul>
   </div>
 </div>
