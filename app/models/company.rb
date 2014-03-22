@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
-  attr_accessible :address_1, :address_2, :city, :name, :fax, :phone, :state, :zip
+  attr_accessible :address_1, :address_2, :city, :name, :fax, :phone, :state, :zip,
+                  :established_on, :license_number, :service_provided, :service_summery
 
   has_many :users
   has_many :accounts, dependent: :destroy
