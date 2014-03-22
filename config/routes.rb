@@ -6,6 +6,7 @@ EasyKeep::Application.routes.draw do
       get :quarterly_report
       get :yearly_report
       get :search_invoices
+      get :about
       delete 'delete_user/:id', to: 'companies#delete_user', as: :delete_user
     end
   end

@@ -1,0 +1,20 @@
+<% provide(:title, 'About Company') %>
+
+<div class="row">
+  <div class="small-12 columns">
+    <h1><%= "About #{current_company.name}" %></h1>
+
+    <%= render 'shared/company_info' %>
+
+    <p>
+      <% if current_company.established_on.present? %>
+        <%= current_company.name %> was established on <%= current_company.established_on %>.
+      <% end %>
+    </p>
+    <p>
+      <% if current_company.service_summery.present? %>
+        <%= current_company.service_summery %>
+      <% end %>
+    </p>
+  </div>
+</div>

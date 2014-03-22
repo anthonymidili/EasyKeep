@@ -32,15 +32,18 @@
             </li>
           <% end %>
 
-          <% if current_company && current_company.persisted? && current_user.is_admin? %>
+          <% if current_company && current_company.persisted?  %>
             <!-- Company drop-down -->
             <li class="divider"></li>
             <li class="has-dropdown"><a href="#">Company</a>
               <ul class="dropdown">
-                <li><%= link_to 'Company settings', company_path %></li>
-                <li><%= link_to 'Quarterly report', quarterly_report_company_path %></li>
-                <li><%= link_to 'Yearly report', yearly_report_company_path %></li>
-                <li><%= link_to 'Search invoices', search_invoices_company_path %></li>
+                <% if current_user.is_admin? %>
+                  <li><%= link_to 'Company settings', company_path %></li>
+                  <li><%= link_to 'Quarterly report', quarterly_report_company_path %></li>
+                  <li><%= link_to 'Yearly report', yearly_report_company_path %></li>
+                  <li><%= link_to 'Search invoices', search_invoices_company_path %></li>
+                <% end %>
+                <li><%= link_to 'About Company', about_company_path %></li>
               </ul>
             </li>
           <% end %>

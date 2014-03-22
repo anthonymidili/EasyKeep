@@ -1,7 +1,10 @@
-<h3><%= current_company.name %></h3>
+<% unless params[:controller] == 'companies' && params[:action] == 'about' %>
+  <h3><%= current_company.name %></h3>
+<% end %>
 <div class="row">
   <div class="small-12 columns">
     <ul class="small-text no_bullets">
+      <li><label><b>Owner: </b><%= current_company.owner.name %></label></li>
       <li><label><b>Address: </b><%= current_company.full_address %></label></li>
       <li><label><b>Phone: </b><%= current_company.phone %></label></li>
       <% if current_company.fax.present? %>
