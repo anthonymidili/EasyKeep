@@ -26,6 +26,10 @@ class Company < ActiveRecord::Base
     users.where(is_admin: true)
   end
 
+  def service_provided!
+    service_provided.present? ? "#{service_provided} Services" : 'Services'
+  end
+
   def company_month_total(date)
     time_range = (date.beginning_of_month..date.end_of_month)
     payments.where(received_on: time_range).sum(&:amount)
