@@ -9,7 +9,6 @@ gem 'devise_invitable', '~> 1.3.4'
 gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari', '~> 0.15.1'
 gem 'pg', '~> 0.17.1'
-gem 'rails_12factor'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 0.10.0'
