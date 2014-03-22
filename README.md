@@ -1,6 +1,6 @@
 [![Code Climate](https://codeclimate.com/github/anthonymidili/EasyKeep.png)](https://codeclimate.com/github/anthonymidili/EasyKeep)
 
-# EasyKeep *(version '1.0.0')*
+# EasyKeep *(version '1.1.0')*
 
 **Easykeep** Started out to be an app to help my mom with her house keeping business. After doing that I wanted
 to help others with there small business.
