@@ -9,4 +9,12 @@
   </div>
 
   <%= render 'shared/address_fields', f: f %>
+
+  <%= render 'optional_company_field', f: f %>
+
+  <div class="row">
+    <div class="small-12 medium-6 large-6 columns">
+      <%= f.submit class: 'button radius expand' %>
+    </div>
+  </div>
 <% end %>

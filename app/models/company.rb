@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
-  attr_accessible :address_1, :address_2, :city, :name, :fax, :phone, :state, :zip
+  attr_accessible :address_1, :address_2, :city, :name, :fax, :phone, :state, :zip,
+                  :established_on, :license_number, :service_provided, :service_summery
 
   has_many :users
   has_many :accounts, dependent: :destroy
@@ -23,6 +24,10 @@ class Company < ActiveRecord::Base
 
   def by_admin
     users.where(is_admin: true)
+  end
+
+  def service_provided!
+    service_provided.present? ? "#{service_provided} Services" : 'Services'
   end
 
   def company_month_total(date)
