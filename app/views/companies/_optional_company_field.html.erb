@@ -1,72 +1,77 @@
-<dl class="accordion" data-accordion>
-  <dd>
-    <a href="#panel1">Let your customers know more about your company...</a>
-    <div id="panel1" class="content">
-      <dl class="tabs" data-tab>
-        <dd class="active"><a href="#panel2-1">Optional information</a></dd>
-        <dd><a href="#panel2-2">Service provided</a></dd>
-      </dl>
-      <div class="tabs-content">
-        <div class="content active" id="panel2-1">
-          <div class="row">
-            <div class="small-12 columns">
-              <p>If you have a license number this will be added to your invoices.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-12 medium-6 large-6 columns">
-              <%= f.label :license_number %>
-              <%= f.text_field :license_number %>
-            </div>
-          </div>
+<br>
 
-          <br>
+<h6 class="panel">Let your customers know more about your company...</h6>
 
-          <div class="row">
-            <div class="small-12 columns">
-              <p>Let your customers know when you started your company. Your customers will see this on the about
-                company page.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-12 medium-6 large-6 columns">
-              <%= f.label :established_on, 'Established on (yyyy-mm-dd)' %>
-              <%= f.text_field :established_on, class: 'datePicker', placeholder: 'Date' %>
-            </div>
-          </div>
-        </div>
-        <div class="content" id="panel2-2">
+<dl class="tabs" data-tab>
+  <dd class="active"><a href="#panel2-1">Optional information</a></dd>
+  <dd><a href="#panel2-2">Service provided</a></dd>
+</dl>
+<div class="tabs-content">
 
-          <div class="row">
-            <div class="small-12 columns">
-              <p>Tell EasyKeep what type of service you provide. That way when you create an invoice for you
-                customers, instead of just saying "Services" over the services listed on the invoice, it will say
-                "Cleaning Services" or "Lawn Care Service". Keep in mind that the word "Services" will be added after
-                you name the service you provide.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-12 medium-6 large-6 columns">
-              <%= f.label :service_provided %>
-              <%= f.text_field :service_provided %>
-            </div>
-          </div>
+  <div class="content active" id="panel2-1">
+    <div class="row">
+      <div class="small-12 columns">
+        <p>If you have a license number this will be added to your invoices.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 medium-6 large-6 columns">
+        <%= f.label :license_number %>
+        <%= f.text_field :license_number %>
+      </div>
+    </div>
 
-          <br>
+    <br>
 
-          <div class="row">
-            <div class="small-12 columns">
-              <p>Let your customers know what you and your company are all about. Your customers will see this on the
-                about company page.</p>
-              <%= f.label :service_summery %>
-              <%= f.text_area :service_summery, placeholder: 'example: "Providing a service at a reasonable price..."' %>
-            </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <p>Let your customers know when you started your company. Your customers will see this on the about
+          company page.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 medium-6 large-6 columns">
+        <%= f.label :established_on, 'Established on (yyyy-mm-dd)' %>
+        <%= f.text_field :established_on, class: 'datePicker', placeholder: 'Date' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="content" id="panel2-2">
+    <div class="row">
+      <div class="small-12 columns">
+        <p>Tell EasyKeep what type of service you provide. That way when you create an invoice for your
+          customers, instead of just saying "Services" over the services listed on the invoice, it will say
+          "Cleaning Services" or "Lawn Care Service". Keep in mind that the word "Services" will be added after
+          the type of service you provide.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 medium-6 large-6 columns">
+        <%= f.label :service_provided %>
+        <div class="row collapse">
+          <div class="small-7 columns">
+            <%= f.text_field :service_provided %>
           </div>
-
+          <div class="small-5 columns">
+            <span class="postfix radius">Services</span>
+          </div>
         </div>
       </div>
     </div>
-  </dd>
-</dl>
 
-<br>
+    <br>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <p>Let your customers know what you and your company are all about. Your customers will see this on the
+          about company page.</p>
+        <%= f.label :service_summery %>
+        <%= f.text_area :service_summery, placeholder: 'example: "Providing a service at a reasonable price..."' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
