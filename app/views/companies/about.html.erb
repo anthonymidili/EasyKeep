@@ -13,7 +13,7 @@
     </p>
     <p>
       <% if current_company.service_summery.present? %>
-        <%= current_company.service_summery %>
+        <%= simple_format(current_company.service_summery) %>
       <% end %>
     </p>
   </div>
