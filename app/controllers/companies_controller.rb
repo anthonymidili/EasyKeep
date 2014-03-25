@@ -25,13 +25,15 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = current_company
+    @invoice = current_company.invoices.find_by_id(params[:invoice_id])
   end
 
   def update
     @company = current_company
+    @invoice = current_company.invoices.find_by_id(params[:invoice_id])
 
       if @company.update_attributes(params[:company])
-        redirect_to company_path, notice: 'Company was successfully updated.'
+        redirect_to_company_or_invoice
       else
         render 'edit'
       end
@@ -86,6 +88,14 @@ private
     else
       flash[:alert] = "Could not find Invoice# #{params[:search]}."
       render 'search_invoices'
+    end
+  end
+
+  def redirect_to_company_or_invoice
+    if @invoice
+      redirect_to edit_invoice_path(@invoice), notice: 'Company was successfully updated.'
+    else
+      redirect_to edit_company_path, notice: 'Company was successfully updated.'
     end
   end
 end

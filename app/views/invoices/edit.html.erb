@@ -5,6 +5,8 @@
 
     <h1>Editing Invoice</h1>
 
+    <%= link_to 'edit header', edit_company_path(invoice_id: @invoice.id) %>
+
     <%= render 'shared/company_info' %>
 
     <%= form_for @invoice do |f| %>
