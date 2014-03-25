@@ -10,7 +10,7 @@ gem 'bcrypt',           '~> 3.1.7'
 gem 'kaminari',         '~> 0.15.1'
 gem 'pg',               '~> 0.17.1'
 gem 'rmagick',          '~> 2.13.2'
-gem 'carrierwave',      '~> 0.10.0'
+gem 'carrierwave',      '~> 0.9.0'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 0.10.0'

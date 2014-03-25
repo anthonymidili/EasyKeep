@@ -1,11 +1,14 @@
 class Company < ActiveRecord::Base
   attr_accessible :address_1, :address_2, :city, :name, :fax, :phone, :state, :zip,
-                  :established_on, :license_number, :service_provided, :service_summery
+                  :established_on, :license_number, :service_provided, :service_summery,
+                  :logo, :remote_logo_url, :remove_logo, :logo_cache
 
   has_many :users
   has_many :accounts, dependent: :destroy
   has_many :payments
   has_many :invoices
+
+  mount_uploader :logo, LogoUploader
 
   validates :name, presence: true
   validates :address_1, presence: true

@@ -5,6 +5,7 @@
 <dl class="tabs" data-tab>
   <dd class="active"><a href="#panel2-1">Optional information</a></dd>
   <dd><a href="#panel2-2">Service provided</a></dd>
+  <dd><a href="#panel2-3">Upload Logo</a></dd>
 </dl>
 <div class="tabs-content">
 
@@ -70,7 +71,33 @@
         <%= f.text_area :service_summery, placeholder: 'example: "Providing a service at a reasonable price..."' %>
       </div>
     </div>
+  </div>
 
+  <div class="content" id="panel2-3">
+    <div class="row">
+      <div class="small-12 columns">
+        <p>Have a logo you'd like to show off? Then upload it for all to see.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+
+        <%= f.label :logo do %>
+          Upload your Logo
+          <%= image_tag(f.object.logo_url) if f.object.logo? %>
+        <% end %>
+        <%= f.file_field :logo %>
+        <%= f.label :remote_logo_url, 'or image URL' %>
+        <%= f.text_field :remote_logo_url %>
+        <%= f.hidden_field :logo_cache %>
+
+        <label class="checkbox">
+          <%= f.check_box :remove_logo %> Check box to remove Logo
+        </label>
+
+      </div>
+    </div>
   </div>
 </div>
 

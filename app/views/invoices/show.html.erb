@@ -3,7 +3,15 @@
 <div class="row">
   <div class="small-12 small-centered columns">
 
-    <%= render 'shared/company_info' %>
+    <div class="row">
+      <div class="small-7 columns">
+        <%= render 'shared/company_info' %>
+      </div>
+      <div class="small-5 columns">
+        <br>
+        <%= image_tag current_company.logo_url(:thumb), class: 'right' if current_company.logo? %>
+      </div>
+    </div>
 
     <b><%= @invoice.established_at.strftime('%Y-%b-%d') %></b><br>
 
