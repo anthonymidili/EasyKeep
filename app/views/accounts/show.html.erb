@@ -3,6 +3,18 @@
 <div class="row">
   <div class="small-12 small-centered columns">
 
+    <ul class="inline-list pad-top">
+      <li><%= link_to 'Edit Account Info', edit_account_path(@account), class: 'small button radius' %></li>
+      <% if current_user.is_owner? %>
+        <li>
+          <%= link_to 'Destroy Account', @account,
+                      class: 'small alert button radius',
+                      method: :delete,
+                      confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' %>
+        </li>
+      <% end %>
+    </ul>
+
     <h1><%= "#{@account.name} Account" %></h1>
 
     <%= render 'shared/customer_info' %>
@@ -16,15 +28,6 @@
     <br>
 
     <ul class="inline-list">
-      <li><%= link_to 'Edit Account Info', edit_account_path(@account), class: 'small button radius' %></li>
-      <% if current_user.is_owner? %>
-        <li>
-          <%= link_to 'Destroy Account', @account,
-                      class: 'small alert button radius',
-                      method: :delete,
-                      confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' %>
-        </li>
-      <% end %>
       <% if current_user.is_admin? %>
         <li><%= link_to 'Account Listings', accounts_path, class: 'small button radius' %></li>
       <% end %>

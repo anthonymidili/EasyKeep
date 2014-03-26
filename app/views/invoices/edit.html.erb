@@ -5,7 +5,15 @@
 
     <h1>Editing Invoice</h1>
 
-    <%= link_to 'edit header', edit_company_path(invoice_id: @invoice.id) %>
+    <ul class="inline-list">
+      <li>
+        <%= link_to 'Back to Invoice', invoice_path(@invoice), class: 'small button radius' %>
+      </li>
+      <li>
+        <%= link_to 'Edit Company Header', edit_company_path(invoice_id: @invoice.id),
+                    class: 'small button radius' %>
+      </li>
+    </ul>
 
     <%= render 'shared/company_info' %>
 
@@ -34,10 +42,9 @@
 
     <%= render 'invoices/add_services' %>
 
+    <br>
+
     <ul class="inline-list">
-      <li>
-        <%= link_to 'Back to Invoice', invoice_path(@invoice), class: 'small button radius' %>
-      </li>
       <li>
         <%= link_to "#{current_account.name} Account", current_account, class: 'small button radius' %>
       </li>

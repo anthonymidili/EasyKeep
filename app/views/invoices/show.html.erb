@@ -3,6 +3,22 @@
 <div class="row">
   <div class="small-12 small-centered columns">
 
+    <ul class="inline-list hide_on_print pad-top">
+      <% if current_user.is_admin? %>
+        <li>
+          <%= link_to 'Edit Invoice', edit_invoice_path(@invoice), class: 'small button radius' %>
+        </li>
+      <% end %>
+      <% if current_user.is_owner? %>
+        <li>
+          <%= link_to 'Delete Invoice', @invoice,
+                      class: 'small alert button radius',
+                      method: :delete,
+                      confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' %>
+        </li>
+      <% end %>
+    </ul>
+
     <%= render 'shared/company_info' %>
 
     <b><%= @invoice.established_at.strftime('%Y-%b-%d') %></b><br>
@@ -38,19 +54,6 @@
     <%= render 'invoices/totals' %>
 
     <ul class="inline-list hide_on_print">
-      <% if current_user.is_admin? %>
-        <li>
-          <%= link_to 'Edit Invoice', edit_invoice_path(@invoice), class: 'small button radius' %>
-        </li>
-      <% end %>
-      <% if current_user.is_owner? %>
-        <li>
-          <%= link_to 'Delete Invoice', @invoice,
-                      class: 'small alert button radius',
-                      method: :delete,
-                      confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' %>
-        </li>
-      <% end %>
       <li>
         <%= link_to "#{current_account.name} Account", current_account, class: 'small button radius' %>
       </li>
