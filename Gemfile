@@ -11,6 +11,7 @@ gem 'kaminari',         '~> 0.15.1'
 gem 'pg',               '~> 0.17.1'
 gem 'rmagick',          '~> 2.13.2'
 gem 'carrierwave',      '~> 0.9.0'
+gem 'fog',              '~> 1.16'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 0.10.0'
