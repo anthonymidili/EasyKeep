@@ -1,8 +1,10 @@
-<% unless params[:controller] == 'companies' && params[:action] == 'about' %>
-  <h3><%= current_company.name %></h3>
-<% end %>
 <div class="row">
   <div class="small-12 columns">
+    <%= image_tag current_company.logo_url(:thumb), class: 'right pad-top' if current_company.logo? %>
+
+    <% unless params[:controller] == 'companies' && params[:action] == 'about' %>
+      <h3><%= current_company.name %></h3>
+    <% end %>
     <ul class="small-text no_bullets">
       <li><label><b>Owner: </b><%= current_company.owner.name %></label></li>
       <li><label><b>Address: </b><%= current_company.full_address %></label></li>
