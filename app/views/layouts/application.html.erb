@@ -14,12 +14,22 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
+    <div id="wrap">
+      <div id="header">
+        <%= render 'layouts/header' %>
+      </div>
 
-    <%= render 'shared/flash_messages' %>
+      <div id="main">
+        <%= render 'shared/flash_messages' %>
+        <%= yield %>
+      </div>
+    </div>
 
-    <%= yield %>
+    <div id="footer">
+      <%= render 'layouts/footer' %>
+    </div>
 
-    <%= render 'layouts/development_debugger' %>
+    <!-- <%= render 'layouts/development_debugger' if Rails.env.development? %> -->
   </body>
 </html>
+
