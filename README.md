@@ -21,7 +21,7 @@ to help others with there small business.
 + payments
 
 Have someone you want to over see your accounts? No problem. Invite them to become an admin over your accounts.
-Different user roles have different role permissions. An Owner of coarse has total control. An Admin has total control
+Different user roles have different role permissions. An Owner of course has total control. An Admin has total control
 over the accounts. A Customer can only view there own account information and they can also change there contact
 information so you can always have current information.
 

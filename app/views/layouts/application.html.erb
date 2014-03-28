@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!--[if !IE 7]>
+    <style type="text/css">
+      #wrap {display:table;height:100%}
+    </style>
+    <![endif]-->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="google-site-verification" content="vbqsuUszCy58b5IO0jvEvTlmBuSXPDtPoGKucKq03HY" />
 
     <%= favicon_link_tag('favicon.ico') %>
     <title><%= content_for?(:title) ? "EasyKeep | #{yield(:title)}" : 'EasyKeep' %></title>
@@ -25,9 +32,7 @@
       </div>
     </div>
 
-    <div id="footer" class="hide_on_print">
-      <%= render 'layouts/footer' %>
-    </div>
+    <%= render 'layouts/footer' %>
 
     <!-- <%= render 'layouts/development_debugger' if Rails.env.development? %> -->
   </body>
