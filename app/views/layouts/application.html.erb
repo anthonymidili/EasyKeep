@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!--[if !IE 7]>
-    <style type="text/css">
-      #wrap {display:table;height:100%}
-    </style>
-    <![endif]-->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -21,20 +16,12 @@
   </head>
 
   <body>
-    <div id="wrap">
-      <div id="header">
-        <%= render 'layouts/header' %>
-      </div>
+    <%= render 'layouts/header' %>
 
-      <div id="main">
-        <%= render 'shared/flash_messages' %>
-        <%= yield %>
-      </div>
-    </div>
+    <%= render 'shared/flash_messages' %>
+    <%= yield %>
 
-    <%= render 'layouts/footer' %>
-
-    <!-- <%= render 'layouts/development_debugger' if Rails.env.development? %> -->
+    <%= render 'layouts/development_debugger' if Rails.env.development? %>
   </body>
 </html>
 
