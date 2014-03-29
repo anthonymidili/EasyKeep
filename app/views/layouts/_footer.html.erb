@@ -1,17 +1,20 @@
-<footer>
-  <div class="row">
-    <div class="small-4 columns">
-      <H4>EasyKeep</H4>
-    </div>
-    <div class="small-4 columns">
-      <h5>ManOnFire Developers</h5>
-      <ul>
-        <li>Anthony Midili</li>
-        <li>Frank Mattia</li>
-      </ul>
-    </div>
-    <div class="small-4 columns">
-      <h5><%= mail_to('tonywinslow13+easykeep@gmail.com', 'Contact us') %></h5>
+<footer class="hide_on_print">
+  <div id="style_footer">
+    <div class="row">
+      <div class="small-6 columns">
+        <H5>EasyKeep</H5>
+        <ul class="inline-list">
+          <li><%= link_to 'About EasyKeep', about_path %></li>
+          <li><%= mail_to('tonywinslow13+easykeep@gmail.com', 'Contact us') %></li>
+        </ul>
+      </div>
+      <div class="small-6 columns">
+        <h5>ManOnFire Developers</h5>
+        <ul class="inline-list">
+          <li>Anthony Midili</li>
+          <li>Frank Mattia</li>
+        </ul>
+      </div>
     </div>
   </div>
 </footer>

@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!--[if !IE 7]>
+    <style type="text/css">
+      #wrap {display:table;height:100%}
+    </style>
+    <![endif]-->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <meta name="google-site-verification" content="vbqsuUszCy58b5IO0jvEvTlmBuSXPDtPoGKucKq03HY" />
 
     <%= favicon_link_tag('favicon.ico') %>
@@ -16,12 +20,17 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
+    <div id="wrap">
+      <%= render 'layouts/header' %>
 
-    <%= render 'shared/flash_messages' %>
-    <%= yield %>
+      <div id="main">
+        <%= render 'shared/flash_messages' %>
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= render 'layouts/footer' %>
 
     <%= render 'layouts/development_debugger' if Rails.env.development? %>
   </body>
 </html>
-
