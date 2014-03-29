@@ -1,74 +1,23 @@
-# Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = 'https://easykeep.herokuapp.com'
 
+SitemapGenerator.verbose = true
+
 SitemapGenerator::Sitemap.create do
-  add '/users/sign_in'
-  add '/users/sign_out'
-  add '/users/password'
-  add '/users/password/new'
-  add '/users/password/edit'
-  add '/users/cancel'
-  add '/users'
-  add '/users/sign_up'
-  add '/users/edit'
-  add '/users/invitation/accept'
-  add '/users/invitation/remove'
-  add '/users/invitation'
-  add '/users/invitation/new'
+  routes = Rails.application.routes.routes.map do |route|
+    {alias: route.name, path: route.path.spec.to_s, controller: route.defaults[:controller], action: route.defaults[:action]}
+  end
 
-  add '/company/quarterly_report'
-  add '/company/yearly_report'
-  add '/company/search_invoices'
-  add '/company/about'
-  add '/company/delete_user/:id'
-  add '/company'
-  add '/company/new'
-  add '/company/edit'
+  # Set a list of controllers you don't want to generate routes for.
+  # /rails/info in particular maps to something inaccessible.
+  # redirects have a nil controller. This prevents duplicate content penalties.
+  banned_controllers = ["rails/info", nil]
+  routes.reject! {|route| banned_controllers.include?(route[:controller])}
 
-  add '/accounts/:account_id/invite_customer'
-  add '/accounts'
-  add '/accounts/new'
-  add '/accounts/:id/edit'
-  add '/accounts/:id'
+  # sitemap_generator includes root by default; prevent duplication
+  routes.reject! {|route| route[:path] == '/'}
 
-  add '/services/invoice'
-  add '/services'
-  add '/services/:id/edit'
-  add '/services/:id'
+  routes.each {|route| add route[:path][0..-11]} end # Strips off '(.:format)
 
-  add '/invoices/add_services'
-  add '/invoices/remove_services'
-  add '/invoices/:id/invoice_ready'
-  add '/invoices/:invoice_id/payments'
-  add '/invoices/:invoice_id/payments/new'
-  add '/invoices/:invoice_id/payments/:id/edit'
-  add '/invoices/:invoice_id/payments/:id'
-  add '/invoices'
-  add '/invoices/:id/edit'
-  add '/invoices/:id'
-
-  add '/about'
-
-# Put links creation logic here.
-  #
-  # The root path '/' and sitemap index file are added automatically for you.
-  # Links are added to the Sitemap in the order they are specified.
-  #
-  # Usage: add(path, options={})
-  #        (default options are used if you don't specify)
-  #
-  # Defaults: :priority => 0.5, :changefreq => 'weekly',
-  #           :lastmod => Time.now, :host => default_host
-  #
-  # Examples:
-  #
-  # Add '/articles'
-  #
-  #   add articles_path, :priority => 0.7, :changefreq => 'daily'
-  #
-  # Add all articles:
-  #
-  #   Article.find_each do |article|
-  #     add article_path(article), :lastmod => article.updated_at
-  #   end
-end
+# Notice the below if you're hosting Jekyll/Octopress in a subdirectory
+# or otherwise want to index content outside of Rails' routes.
+# add_to_index '/path/sitemap.xml'
