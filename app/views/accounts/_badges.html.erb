@@ -1,0 +1,26 @@
+<div class="row">
+  <% @accounts.each do |account| %>
+    <div class="small-12 medium-6 columns">
+      <h4><%= link_to account.name, account %></h4>
+      <b>Contact</b> <%= account.user.name %><br>
+      <%= link_to '#', 'data-reveal-id' => "contactInfoModal#{account.id}", remote: true do %>
+        <b>Contact info</b><i class="general fi-mail"></i>
+      <% end %><br>
+      <b>All services invoiced</b> <%= yes_or_no(account.all_services_invoiced?) %><br>
+      <b>All invoices P.I.F.</b> <%= yes_or_no(account.paid_in_full?) %><br>
+      <%= link_to invoices_path(account_id: account.id) do %>
+        <b>Invoices</b><i class="miscellaneous fi-book"></i>
+      <% end %><br>
+      <b>User status</b> <%= render 'user_status', account: account %><br>
+      <%= link_to edit_account_path(account) do %>
+        <b>Edit</b><i class="page fi-page-edit"></i>
+      <% end %>
+      <% if current_user.is_owner? %>
+        <br>
+        <%= link_to account, method: :delete, confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!'  do %>
+          <b>Destroy</b><i class="general fi-x"></i>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
