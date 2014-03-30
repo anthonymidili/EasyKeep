@@ -33,6 +33,7 @@ EasyKeep::Application.routes.draw do
   end
 
   get :about, to: 'welcome#about'
+  get :contact_us, to: 'welcome#contact_us'
 
   root to: 'welcome#home'
 
