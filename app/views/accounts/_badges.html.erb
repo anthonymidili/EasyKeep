@@ -2,7 +2,26 @@
   <% @accounts.each do |account| %>
     <div class="small-12 medium-6 columns">
       <div class="badge">
-        <div class="badge_header"><h4><%= link_to account.name, account %></h4></div>
+
+        <div class="badge_header">
+          <div class="row">
+            <div class="small-8 columns">
+              <h4><%= link_to account.name, account %></h4>
+            </div>
+            <div class="small-4 columns">
+              <div class="pad-top right">
+                <%= link_to edit_account_path(account) do %>
+                  <i class="page fi-page-edit"></i>
+                <% end %>
+                <% if current_user.is_owner? %>
+                  <%= link_to account, method: :delete, confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!'  do %>
+                    <i class="general fi-x"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="badge_info">
           <b>Contact</b> <%= account.user.name %><br>
@@ -15,15 +34,8 @@
             <b>Invoices</b><i class="miscellaneous fi-book"></i>
           <% end %><br>
           <b>User status</b> <%= render 'user_status', account: account %><br>
-          <%= link_to edit_account_path(account) do %>
-            <i class="page fi-page-edit"></i>
-          <% end %>
-          <% if current_user.is_owner? %>
-            <%= link_to account, method: :delete, confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!'  do %>
-              <i class="general fi-x"></i>
-            <% end %>
-          <% end %>
         </div>
+
       </div>
     </div>
   <% end %>

@@ -117,19 +117,18 @@ ul.no_bullets {
 }
 
 .badge {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #d8d8d8;
+  border: 1px solid #d8d8d8;
   margin: 10px 0 10px 0;
+  padding-top: 5px;
+  min-height: 200px;
   background: #f2f2f2;
 
   .badge_header {
-    background: #606060;
     padding: 0 5px 0 5px;
+    background: #606060;
   }
 
   .badge_info {
-    padding: 0 5px 5px 5px;
-    min-height: 144px;
+    padding: 5px;
   }
 }
