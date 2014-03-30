@@ -115,3 +115,21 @@ ul.no_bullets {
 .pad-top {
   padding-top: 0.5em;
 }
+
+.badge {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d8d8d8;
+  margin: 10px 0 10px 0;
+  background: #f2f2f2;
+
+  .badge_header {
+    background: #606060;
+    padding: 0 5px 0 5px;
+  }
+
+  .badge_info {
+    padding: 0 5px 5px 5px;
+    min-height: 144px;
+  }
+}
