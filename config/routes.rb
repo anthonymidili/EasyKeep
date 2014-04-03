@@ -35,6 +35,8 @@ EasyKeep::Application.routes.draw do
   get :about, to: 'welcome#about'
   get :contact_us, to: 'welcome#contact_us'
 
+  get 'sitemap.xml' => 'welcome#sitemap', format: :xml, as: :sitemap
+
   root to: 'welcome#home'
 
   # The priority is based upon order of creation:

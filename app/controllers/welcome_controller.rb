@@ -17,6 +17,9 @@ class WelcomeController < ApplicationController
   def contact_us
   end
 
+  def sitemap
+  end
+
 private
 
   def admin_has_company?
