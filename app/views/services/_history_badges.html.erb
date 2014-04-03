@@ -27,10 +27,10 @@
           <div class="badge_info">
             <% if service.invoice_id.present? %>
               <%= link_to invoice_path(service.invoice_id) do %>
-                <i class="page fi-page"> <b><%= service.invoice_id %></b></i>
+                <b>Invoice#</b> <i class="page fi-page"> <b><%= service.invoice_id %></b></i>
               <% end %>
             <% else %>
-              <i>not invoiced</i>
+              <em>not invoiced</em>
             <% end %><br>
             <b>Cost</b> <%= number_to_currency(service.cost, unit: '$') %><br>
             <% if service.memo.present? %>
