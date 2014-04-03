@@ -1,16 +1,3 @@
-<h4>Service History Search</h4>
-
-<%= render 'services/date_bar_forms' %>
-
-<div class="row">
-  <div class="small-12 columns total_amount">
-    <label>
-      <%= "Cost of Services this #{view_by.capitalize}:" %>
-      <span><%= number_to_currency(@account.sum_services(view_by, active_date)) %></span>
-    </label>
-  </div>
-</div>
-
 <table>
   <thead>
   <tr>

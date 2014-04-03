@@ -1,0 +1,44 @@
+<div class="row">
+  <% services_with_view_by_scope(@services).each do |service| %>
+    <% if service.persisted? %>
+      <div class="small-12 medium-6 columns">
+        <div class="badge service_badge">
+          <div class="badge_header">
+            <div class="row">
+              <div class="small-8 columns">
+                <h5>Performed on <%= service.performed_on.strftime('%Y-%b-%d') %></h5>
+              </div>
+              <% if current_user.is_admin? %>
+                <div class="small-4 columns">
+                  <div class="pad-top right">
+                    <%= link_to edit_service_path(service) do %>
+                      <i class="page fi-page-edit"></i>
+                    <% end %>
+                    <%= link_to service,
+                                method: :delete,
+                                confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' do %>
+                      <i class="general fi-x"></i>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="badge_info">
+            <% if service.invoice_id.present? %>
+              <%= link_to invoice_path(service.invoice_id) do %>
+                <i class="page fi-page"> <b><%= service.invoice_id %></b></i>
+              <% end %>
+            <% else %>
+              <i>not invoiced</i>
+            <% end %><br>
+            <b>Cost</b> <%= number_to_currency(service.cost, unit: '$') %><br>
+            <% if service.memo.present? %>
+              <b>Memo</b> <%= service.memo %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -8,13 +8,9 @@
       </label>
     </div>
   </div>
-  <%= form_tag invoice_services_path, method: :put do %>
 
-    <div class="hide-for-medium-up"><%= render 'services/invoiceable_badges' %></div>
-    <div class="show-for-medium-up"><%= render 'services/invoiceable_table' %></div>
-
-    <%= submit_tag 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin? %>
-  <% end %>
+  <div class="hide-for-medium-up"><%= render 'services/invoiceable_badges' %></div>
+  <div class="show-for-medium-up"><%= render 'services/invoiceable_table' %></div>
 
   <hr>
 <% end %>
