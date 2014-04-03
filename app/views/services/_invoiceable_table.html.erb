@@ -1,0 +1,44 @@
+<table>
+  <thead>
+  <tr>
+    <% if current_user.is_admin? %>
+      <th>Invoice?</th>
+    <% end %>
+    <th>Performed on</th>
+    <th>Memo</th>
+    <th>Cost</th>
+    <% if current_user.is_admin? %>
+      <th>Edit</th>
+      <th>Delete</th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% @services.by_not_used.each do |service| %>
+    <% if service.persisted? %>
+      <tr>
+        <% if current_user.is_admin? %>
+          <td><%= check_box_tag 'service_ids[]', service.id, service.invoice_id.nil? %></td>
+        <% end %>
+        <td><%= service.performed_on.strftime('%Y-%b-%d') %></td>
+        <td><%= service.memo %></td>
+        <td><%= number_to_currency(service.cost, unit: '$') %></td>
+        <% if current_user.is_admin? %>
+          <td class="center_cell">
+            <%= link_to edit_service_path(service) do %>
+              <i class="page fi-page-edit"></i>
+            <% end %>
+          </td>
+          <td class="center_cell">
+            <%= link_to service,
+                        method: :delete,
+                        confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' do %>
+              <i class="general fi-x"></i>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>

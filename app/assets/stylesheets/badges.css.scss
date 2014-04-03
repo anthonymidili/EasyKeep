@@ -1,0 +1,27 @@
+.badge {
+  border: 1px solid #d8d8d8;
+  margin: 10px 0 10px 0;
+  padding-top: 5px;
+
+  background: #f2f2f2;
+
+  .badge_header {
+    padding: 0 5px 0 5px;
+    background: #606060;
+  }
+
+  .badge_info {
+    padding: 5px;
+  }
+}
+
+.account_badge {
+  min-height: 200px;
+}
+
+.service_badge {
+  h5 {
+    color: #2ba6cb;
+  }
+  input {margin: 0}
+}
