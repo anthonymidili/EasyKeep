@@ -2,17 +2,8 @@
 
 <div class="row">
   <div class="small-12 columns">
-    <h1><%= @company.name %></h1>
 
-    <ul class="small-text no_bullets">
-      <li><label><b>Owner:</b> <%= @company.owner.name %></label></li>
-      <li><label><b>Address: </b><%= @company.full_address %></label></li>
-      <li><label><b>Phone: </b><%= @company.phone %></label></li>
-      <% if @company.fax.present? %>
-        <li><label><b>Fax: </b><%= @company.fax %></label></li>
-      <% end %>
-      <li><label><b>Email: </b><%= @company.owner.email %></label></li>
-    </ul>
+    <%= render 'shared/company_info' %>
 
     <% unless @company.accounts.any? %>
       <div class="row">
@@ -24,16 +15,10 @@
 
     <ul class="inline-list">
       <% if current_user.is_owner? %>
-        <li><%= link_to 'Edit Company', edit_company_path, class: 'small button radius' %></li>
-        <li>
-          <%= link_to 'Destroy Company', @company,
-                      class: 'small alert button radius',
-                      method: :delete,
-                      confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, ADMINS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' %>
-        </li>
         <li>
           <%= link_to 'Invite New Admin', new_user_invitation_path, class: 'small button radius' %>
         </li>
+        <li><%= link_to 'Edit Company', edit_company_path, class: 'small button radius' %></li>
       <% end %>
       <li><%= link_to 'Accounts Listing', accounts_path, class: 'small button radius' %></li>
     </ul>
