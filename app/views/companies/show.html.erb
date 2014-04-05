@@ -15,9 +15,7 @@
 
     <ul class="inline-list">
       <% if current_user.is_owner? %>
-        <li>
-          <%= link_to 'Invite New Admin', new_user_invitation_path, class: 'small button radius' %>
-        </li>
+        <li><%= link_to 'Invite New Admin', new_user_invitation_path, class: 'small button radius' %></li>
         <li><%= link_to 'Edit Company', edit_company_path, class: 'small button radius' %></li>
       <% end %>
       <li><%= link_to 'Accounts Listing', accounts_path, class: 'small button radius' %></li>
@@ -29,7 +27,7 @@
       <Table>
         <thead>
         <tr>
-          <th>name</th>
+          <th>Name</th>
           <th>Email</th>
           <% if current_user.is_owner? %>
             <th>Delete</th>
