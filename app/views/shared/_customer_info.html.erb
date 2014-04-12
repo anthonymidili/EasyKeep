@@ -1,7 +1,7 @@
 <div class="panel">
   <ul class="no_bullets">
-    <% if current_account.is_a_company? %>
-      <li><label><b>Company: </b><%= current_account.name %></label></li>
+    <% if current_account.uses_account_name? %>
+      <li><label><b>Account: </b><%= current_account.name %></label></li>
     <% else %>
       <li><label><b>Contact: </b><%= current_account.user.name %></label></li>
     <% end %>

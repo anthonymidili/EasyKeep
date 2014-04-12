@@ -1,5 +1,6 @@
 class Account < ActiveRecord::Base
-  attr_accessible :address_1, :address_2, :city, :fax, :name, :phone, :state, :zip, :is_a_company
+  attr_accessible :address_1, :address_2, :city, :fax, :name, :phone, :state, :zip,
+                  :uses_account_name, :uses_contact_name
 
   belongs_to :company
   
