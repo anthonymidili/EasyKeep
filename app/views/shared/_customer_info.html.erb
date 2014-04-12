@@ -2,7 +2,8 @@
   <ul class="no_bullets">
     <% if current_account.uses_account_name? %>
       <li><label><b>Account: </b><%= current_account.name %></label></li>
-    <% else %>
+    <% end %>
+    <% if current_account.uses_contact_name? %>
       <li><label><b>Contact: </b><%= current_account.user.name %></label></li>
     <% end %>
     <% if current_account.full_address.present? %>
