@@ -37,7 +37,8 @@ class InvoicesController < ApplicationController
       @services.update_all({invoice_id: nil}, {id: @invoice.services})
       @invoice.destroy
 
-      redirect_to invoices_path, alert: 'Invoice was successfully deleted.'
+      redirect_to invoices_path, alert: 'Invoice was successfully deleted. Services on invoice are ready to be
+re-invoiced.'
     end
   end
 
@@ -74,7 +75,8 @@ class InvoicesController < ApplicationController
       @invoice = current_account.invoices.find(params[:id])
       current_account.update_attributes(params[:account])
 
-      redirect_to edit_invoice_path(@invoice), notice: 'Account Header was successfully updated.'
+      redirect_to edit_invoice_path(@invoice), notice: "Account was successfully updated for all current and future
+invoices for #{current_account.name} Account."
     end
   end
 end
