@@ -32,6 +32,8 @@
 
     <b>Invoice# <%= @invoice.id %></b>
 
+    <%= render 'invoices/change_account_header' if current_user.is_admin? %>
+
     <%= render 'shared/customer_info' %>
 
     <%= render 'invoices/remove_services' %>

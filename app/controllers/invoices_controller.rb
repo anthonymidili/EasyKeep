@@ -48,7 +48,7 @@ class InvoicesController < ApplicationController
 
       @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
 
-      redirect_to edit_invoice_path(@invoice)
+      redirect_to edit_invoice_path(@invoice), notice: 'Successfully added services from invoice.'
     end
   end
 
@@ -58,7 +58,7 @@ class InvoicesController < ApplicationController
 
       @invoice.services.update_all({invoice_id: nil}, {id: params[:service_ids]})
 
-      redirect_to edit_invoice_path(@invoice)
+      redirect_to edit_invoice_path(@invoice), notice: 'Successfully removed services from invoice.'
     end
   end
 
@@ -67,5 +67,14 @@ class InvoicesController < ApplicationController
     UserMailer.invoice_ready_notice(@invoice).deliver
 
     redirect_to @invoice, notice: "Email has been successfully sent to #{@invoice.account.user.name}."
+  end
+
+  def change_account_header
+    ActiveRecord::Base.transaction do
+      @invoice = current_account.invoices.find(params[:id])
+      current_account.update_attributes(params[:account])
+
+      redirect_to edit_invoice_path(@invoice), notice: 'Account Header was successfully updated.'
+    end
   end
 end
