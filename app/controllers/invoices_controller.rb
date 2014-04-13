@@ -49,7 +49,7 @@ re-invoiced.'
 
       @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
 
-      redirect_to edit_invoice_path(@invoice), notice: 'Successfully added services from invoice.'
+      redirect_to edit_invoice_path(@invoice), notice: 'Successfully added services to invoice.'
     end
   end
 
