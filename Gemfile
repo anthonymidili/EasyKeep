@@ -9,10 +9,12 @@ gem 'devise_invitable', '~> 1.3.4'
 gem 'bcrypt',           '~> 3.1.7'
 gem 'kaminari',         '~> 0.15.1'
 gem 'pg',               '~> 0.17.1'
+gem 'dynamic_sitemaps'
+
+# must stay this version to work properly
 gem 'rmagick',          '~> 2.13.2'
 gem 'carrierwave',      '~> 0.9.0'
 gem 'fog',              '~> 1.3.1'
-gem 'dynamic_sitemaps'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 0.10.0'
