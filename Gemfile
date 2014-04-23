@@ -9,7 +9,8 @@ gem 'devise_invitable', '~> 1.3.4'
 gem 'bcrypt',           '~> 3.1.7'
 gem 'kaminari',         '~> 0.15.1'
 gem 'pg',               '~> 0.17.1'
-gem 'dynamic_sitemaps'
+gem 'dynamic_sitemaps', '~> 2.0.0'
+gem 'haml',             '~> 4.0.5'
 
 # must stay this version to work properly
 gem 'rmagick',          '~> 2.13.2'
