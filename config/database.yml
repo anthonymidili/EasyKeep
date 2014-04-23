@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: my_database_development
+  database: EasyKeep_development
   pool: 5
   username: AMidili
   password: secret
@@ -12,7 +12,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: my_database_test
+  database: EasyKeep_test
   pool: 5
   username: AMidili
   password: secret
