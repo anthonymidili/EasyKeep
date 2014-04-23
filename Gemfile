@@ -11,9 +11,9 @@ gem 'kaminari',         '~> 0.15.1'
 gem 'pg',               '~> 0.17.1'
 gem 'dynamic_sitemaps', '~> 2.0.0'
 gem 'haml',             '~> 4.0.5'
+gem 'rmagick',          '~> 2.13.2'
 
 # must stay this version to work properly
-gem 'rmagick',          '~> 2.13.2'
 gem 'carrierwave',      '~> 0.9.0'
 gem 'fog',              '~> 1.3.1'
 
