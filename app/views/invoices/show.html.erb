@@ -9,7 +9,7 @@
           <%= link_to 'Edit Invoice', edit_invoice_path(@invoice), class: 'small button radius' %>
         </li>
       <% end %>
-      <% if current_user.is_owner? %>
+      <% if current_user.is_owner? && !@invoice.payments.any? %>
         <li>
           <%= link_to 'Delete Invoice', @invoice,
                       class: 'small alert button radius',
