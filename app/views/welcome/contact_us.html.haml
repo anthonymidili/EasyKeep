@@ -1,0 +1,12 @@
+- provide(:title, 'Contact us')
+
+.row
+  .small-12.columns
+    %h1 Contact EasyKeep
+    %ul
+      %li Have a suggestion?
+      %li found a bug?
+      %li or just want to tell us how much you love EasyKeep?
+    %p
+      = mail_to('tonywinslow13+easykeep@gmail.com', 'Send us an email.', target: '_blank')
+      We would love to hear from you.
