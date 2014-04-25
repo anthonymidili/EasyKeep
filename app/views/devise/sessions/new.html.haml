@@ -1,0 +1,21 @@
+- provide(:title, 'Sign in')
+
+.row
+  .small-12.medium-6.large-6.small-centered.columns
+    %h2 Sign in
+
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = f.label :email, 'Your email'
+      = f.text_field :email, autofocus: true
+      = f.label :password
+      = f.password_field :password
+      - if devise_mapping.rememberable?
+        = f.label :remember_me do
+          = f.check_box :remember_me
+          Remember me
+
+      %br/
+
+      = f.submit 'Sign in', class: 'button radius expand'
+
+    = render 'devise/shared/links'
