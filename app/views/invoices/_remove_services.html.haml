@@ -1,0 +1,25 @@
+%h4 Remove Services from your Invoice
+
+= form_tag remove_services_invoices_path(id: @invoice.id), method: :put do
+  %table
+    %thead
+      %tr
+        %th
+        %th Date performed
+        %th Memo
+        %th Service cost
+        %th Edit
+
+    - @invoice.services.reverse_order.each do |service|
+      - if service.persisted?
+        %tbody
+          %tr
+            %td= check_box_tag "service_ids[]", service.id
+            %td= service.performed_on.strftime("%Y-%b-%d")
+            %td= service.memo
+            %td= number_to_currency(service.cost)
+            %td
+              = link_to edit_service_path(service, invoice_id: service.invoice_id) do
+                %i.page.fi-page-edit
+
+  = submit_tag 'Remove Checked Services', class: 'tiny button radius'

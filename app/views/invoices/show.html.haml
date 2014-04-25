@@ -1,0 +1,47 @@
+- provide(:title, raw("#{current_account.name} Invoice #{@invoice.id}"))
+
+.row
+  .small-12.small-centered.columns
+    %ul.inline-list.hide_on_print.pad-top
+      - if current_user.is_admin?
+        %li
+          = link_to 'Edit Invoice', edit_invoice_path(@invoice), class: 'small button radius'
+      - if current_user.is_owner? && !@invoice.payments.any?
+        %li
+          = link_to 'Delete Invoice', @invoice, class: 'small alert button radius',  method: :delete,
+          confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.'
+
+    = render 'shared/company_info'
+    %p
+      %b= @invoice.established_at.strftime('%Y-%b-%d')
+    %b
+      Invoice# #{@invoice.id}
+
+    = render 'shared/customer_info'
+    %h4= current_company.service_provided!
+    %table
+      %thead
+        %tr
+          %th Date performed
+          %th Memo
+          %th Service cost
+      - @services.reverse_order.each do |service|
+        - if service.persisted?
+          %tbody
+            %tr
+              %td= service.performed_on.strftime('%Y-%b-%d')
+              %td= service.memo
+              %td.totals= number_to_currency(service.cost)
+
+    = render 'invoices/totals'
+    %ul.inline-list.hide_on_print
+      %li
+        = link_to "#{current_account.name} Account", current_account, class: 'small button radius'
+      %li
+        = link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius'
+
+    .row
+      .small-12.columns.hide_on_print
+        = link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small button radius',
+        id: 'apply_payment', remote: true if current_user.is_admin?
+    = render 'payments/payments' if @invoice.payments.any?
