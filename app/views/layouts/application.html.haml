@@ -1,0 +1,38 @@
+!!!
+%html{lang: 'en'}
+  %head
+    /[if !IE 7]
+      <style type="text/css">
+      \#wrap {display:table;height:100%}
+      </style>
+
+    %meta{charset: 'utf-8'}/
+    %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}/
+
+    / google site verification
+    %meta{content: 'vbqsuUszCy58b5IO0jvEvTlmBuSXPDtPoGKucKq03HY', name: 'google-site-verification'}/
+
+    / Bing site verification
+    %meta{content: '4250A7D44E750D6681DC55E69AB65D57', name: 'msvalidate.01'}/
+
+    / For search engine description
+    %meta{content: description_content, name: 'description'}/
+
+    = favicon_link_tag('favicon.ico')
+    %title= content_for?(:title) ? "EasyKeep | #{yield(:title)}" : 'EasyKeep | Making Small Business Easy'
+
+    = stylesheet_link_tag 'application', :media => :all
+    = javascript_include_tag 'vendor/modernizr'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  %body
+    #wrap
+      = render 'layouts/header'
+
+      #main
+        = render 'shared/flash_messages'
+        = yield
+
+    = render 'layouts/footer'
+    = render 'layouts/development_debugger' if Rails.env.development?
