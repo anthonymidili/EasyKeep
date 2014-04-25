@@ -1,0 +1,36 @@
+- provide(:title, 'Search Invoices')
+
+.row
+  .small-12.columns
+    %h1 Search Invoices
+    .row
+      = form_tag search_invoices_company_path, :method => 'get' do
+        .small-6.medium-3.large-3.columns
+          = number_field_tag :search, params[:search], placeholder: 'Enter Invoice#'
+        .small-6.medium-3.large-3.medium-pull-6.large-pull-6.columns
+          = submit_tag 'Search for Invoice', class: 'tiny button radius', :name => nil
+
+    %table
+      %thead
+        %tr
+          %th Account
+          %th Contact name
+          %th Invoice #
+          %th Date
+          %th Total
+          %th Balance due
+      %tbody
+        - @invoices.each do |invoice|
+          %tr
+            %td= link_to invoice.account.name, account_path(invoice.account)
+            %td= invoice.account.user.name
+            %td.center_cell
+              = link_to invoice_path(invoice, account_id: invoice.account_id) do
+                %i.page.fi-page
+                  %b= invoice.id
+            %td= invoice.established_at.strftime('%Y-%b-%d')
+            %td= number_to_currency(invoice.total_cost)
+            %td{class: red_text?(invoice)}
+              = pif_or_balance_due(invoice)
+
+  = paginate @invoices

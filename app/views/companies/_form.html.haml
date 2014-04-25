@@ -1,0 +1,18 @@
+= form_for @company, url: company_path, :html => {:multipart => true} do |f|
+  = render 'shared/error_messages', object: f.object
+  = hidden_field_tag :invoice_id, @invoice.id if @invoice
+
+  .row
+    .small-12.medium-6.large-6.columns
+      = f.label :name
+      = f.text_field :name, autofocus: true
+    .small-12.medium-6.large-6.columns
+      = f.label :website
+      = f.text_field :website
+
+  = render 'shared/address_fields', f: f
+  = render 'optional_company_field', f: f
+
+  .row
+    .small-12.medium-6.large-6.columns
+      = f.submit class: 'button radius expand'
