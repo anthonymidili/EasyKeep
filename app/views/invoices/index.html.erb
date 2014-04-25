@@ -38,6 +38,7 @@
             </td>
             <td class="center_cell show-for-medium-up">
               <%= link_to invoice,
+                          class: invoice.has_payment,
                           method: :delete,
                           confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.'  do %>
                 <i class="general fi-x"></i>

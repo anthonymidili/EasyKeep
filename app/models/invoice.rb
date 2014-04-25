@@ -36,4 +36,8 @@ class Invoice < ActiveRecord::Base
   def not_paid_in_full?
     balance_due >= 0.01
   end
+
+  def has_payment
+    'disable_link gray_text' if payments.any?
+  end
 end
