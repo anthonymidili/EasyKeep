@@ -2,16 +2,16 @@
   <div id="style_footer">
     <div class="row">
       <div class="small-12 medium-7 large-8 columns">
+        <%= link_to 'https://manonfire.herokuapp.com', target: '_blank' do %>
+          <%= image_tag 'ManOnFire_Header_small.png' %>
+        <% end %>
+      </div>
+      <div class="small-12 medium-5 large-4 columns">
         <h5>EasyKeep</h5>
         <ul class="inline-list">
           <li><%= link_to 'About EasyKeep', about_path %></li>
           <li><%= link_to 'Contact us', contact_us_path %></li>
         </ul>
-      </div>
-      <div class="small-12 medium-5 large-4 columns">
-        <%= link_to 'https://manonfire.herokuapp.com', target: '_blank' do %>
-          <%= image_tag 'ManOnFire_Header_small.png' %>
-        <% end %>
       </div>
     </div>
   </div>
