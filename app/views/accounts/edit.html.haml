@@ -1,0 +1,9 @@
+- provide(:title, 'Edit Account')
+
+.row
+  .small-12.medium-8.large-8.small-centered.columns
+    %h1= "Editing #{@account.name} Account"
+
+    = render 'form'
+
+    = link_to 'Back', account_path(@account), class: 'small button radius'

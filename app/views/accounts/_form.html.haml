@@ -1,0 +1,33 @@
+= form_for(@account) do |f|
+  = render 'shared/error_messages', object: f.object
+
+  - if current_user.is_admin?
+    .row
+      .small-12.medium-6.large-6.columns
+        = f.label :name, '*Account/Company name'
+        = f.text_field :name, autofocus: true, placeholder: 'Smith House'
+    .row
+      .small-12.medium-12.large-6.columns
+        %label
+          = f.check_box :uses_account_name
+          Use Account/Company name on invoices
+      .small-12.medium-12.large-6.columns
+        %label
+          = f.check_box :uses_contact_name
+          Use Contact name on invoices
+
+  = f.fields_for(:user) do |user_f|
+    .row
+      .small-12.medium-6.large-6.columns
+        = user_f.label :name, '*Contact name'
+        = user_f.text_field :name, placeholder: 'John Smith'
+      .small-12.medium-6.large-6.columns
+        = user_f.label :email
+        = user_f.text_field :email,
+          disabled: @account.user.encrypted_password.present?
+
+  = render 'shared/address_fields', f: f
+
+  .row
+    .small-12.medium-6.large-6.columns
+      = f.submit class: 'button radius expand'

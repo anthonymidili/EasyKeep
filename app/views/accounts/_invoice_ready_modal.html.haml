@@ -1,0 +1,11 @@
+%div{id: "invoiceReadyModal#{invoice.id}", class: 'reveal-modal medium', data: {reveal: true}}
+  %h1 Notification Preview
+
+  %hr/
+
+  .disable_link= render 'user_mailer/invoice_ready_message', invoice: invoice
+
+  %hr/
+
+  = link_to 'Send Notification', invoice_ready_invoice_path(invoice), class: 'tiny button radius'
+  %a.close-reveal-modal ×
