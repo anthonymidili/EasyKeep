@@ -1,0 +1,7 @@
+- provide(:title, 'Edit Service')
+
+.row
+  .small-12.columns
+    %h1 Editing Service
+    = render 'form'
+    = link_to "#{current_account.name} Account", current_account, class: 'small button radius'

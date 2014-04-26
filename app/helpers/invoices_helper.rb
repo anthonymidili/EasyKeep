@@ -1,6 +1,6 @@
 module InvoicesHelper
   def red_text?(item)
-    raw('class="red_text"') if item.not_paid_in_full?
+    'red_text' if item.not_paid_in_full?
   end
 
   def pif_or_balance_due(item)

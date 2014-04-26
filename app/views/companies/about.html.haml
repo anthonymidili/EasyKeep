@@ -1,0 +1,14 @@
+- provide(:title, 'About Company')
+
+%br/
+
+.row
+  .small-12.columns
+    = render 'shared/company_info'
+    %p
+      - if current_company.established_on.present?
+        = current_company.name
+        was established on #{current_company.established_on}.
+    %p
+      - if current_company.service_summery.present?
+        = simple_format(current_company.service_summery)

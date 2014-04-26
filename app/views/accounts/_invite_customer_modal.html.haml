@@ -1,0 +1,11 @@
+%div{id: "inviteCustomerModal#{account.id}", class: 'reveal-modal medium', data: {reveal: true}}
+  %h1 Invitation Preview
+
+  %hr/
+
+  .disable_link= render 'devise/mailer/customer', resource: account.user
+
+  %hr/
+
+  = link_to 'Send Invitation', account_invite_customer_path(account), method: :post, class: 'tiny button radius'
+  %a.close-reveal-modal &times;

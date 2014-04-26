@@ -1,0 +1,37 @@
+= form_tag invoice_services_path, method: :put do
+  .row
+    - @services.by_not_used.each do |service|
+      - if service.persisted?
+        .small-12.medium-6.columns
+
+          .badge.service_badge
+            .badge_header
+              .row
+                .small-8.columns
+                  %h5
+                    Performed on #{service.performed_on.strftime('%Y-%b-%d')}
+
+                - if current_user.is_admin?
+                  .small-4.columns
+                    .pad-top.right
+                      = link_to edit_service_path(service) do
+                        %i.page.fi-page-edit
+                      = link_to service, method: :delete,
+                      confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' do
+                        %i.general.fi-x
+
+            .badge_info
+              - if current_user.is_admin?
+                = check_box_tag 'service_ids[]', service.id, service.invoice_id.nil?
+                %b Invoice?
+                %br/
+
+              %b Cost
+              = number_to_currency(service.cost, unit: '$')
+              %br/
+
+              - if service.memo.present?
+                %b Memo
+                = service.memo
+
+  = submit_tag 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin?

@@ -1,0 +1,14 @@
+%footer.hide_on_print
+  #style_footer
+    .row
+      .small-12.medium-5.large-7.columns
+        = link_to 'https://manonfire.herokuapp.com', target: '_blank' do
+          = image_tag 'ManOnFire_Header_small.png'
+
+      .small-12.medium-7.large-5.columns
+        %ul.inline-list
+          %li= link_to 'About EasyKeep', about_path
+          %li= link_to 'Contact us', contact_us_path
+          %li
+            EasyKeep
+            %span.italic_text v-1.2.0

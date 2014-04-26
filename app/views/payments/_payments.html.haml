@@ -1,0 +1,28 @@
+%h4 Payment History
+%table
+  %thead
+    %tr
+      %th Received on
+      %th Type
+      %th Memo
+      %th Amount
+      - if current_user.is_admin?
+        %th.hide_on_print Edit
+        %th.hide_on_print Delete
+
+  %tbody
+    - @payments.each do |payment|
+      - if payment.persisted?
+        %tr
+          %td= payment.received_on.strftime("%Y-%b-%d")
+          %td= payment.transaction_type.capitalize
+          %td= payment.memo
+          %td.totals= number_to_currency(payment.amount, unit: '$')
+          - if current_user.is_admin?
+            %td.center_cell.hide_on_print
+              = link_to edit_invoice_payment_path(@invoice, payment) do
+                %i.page.fi-page-edit
+            %td.center_cell.hide_on_print
+              = link_to [@invoice, payment],
+              method: :delete, confirm: 'Are you sure? This will permanently DELETE your PAYMENT history record!' do
+                %i.general.fi-x

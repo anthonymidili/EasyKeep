@@ -1,0 +1,23 @@
+- provide(:title, raw("#{@account.name} Account"))
+
+.row
+  .small-12.small-centered.columns
+    %ul.inline-list.pad-top
+      %li= link_to 'Edit Account Info', edit_account_path(@account), class: 'small button radius'
+      - if current_user.is_owner?
+        %li
+          = link_to 'Destroy Account', @account, class: 'small alert button radius', method: :delete,
+          confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!'
+
+    %h1= "#{@account.name} Account"
+    = render 'shared/customer_info'
+    = render 'services/new' if current_user.is_admin?
+    = render 'services/invoiceable'
+    = render 'services/history'
+
+    %br/
+
+    %ul.inline-list
+      - if current_user.is_admin?
+        %li= link_to 'Account Listings', accounts_path, class: 'small button radius'
+      %li= link_to "#{@account.name} Invoices", invoices_path, class: 'small button radius'

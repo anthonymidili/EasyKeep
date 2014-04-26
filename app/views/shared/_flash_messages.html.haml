@@ -1,0 +1,8 @@
+- if flash[:alert]
+  .alert-box.alert.hide_on_print{data: {alert: true}}
+    = flash[:alert]
+    %a.close{href: "#"} &times;
+- if flash[:notice]
+  .alert-box.hide_on_print{data: {alert: true}}
+    = flash[:notice]
+    %a.close{href: "#"} &times;

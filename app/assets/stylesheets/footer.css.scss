@@ -2,12 +2,12 @@ html, body {height: 100%;}
 
 #wrap {min-height: 100%;}
 
-#main {padding-bottom: 120px;} /* must be same height as the footer */
+#main {padding-bottom: 92px;} /* must be same height as the footer */
 
 footer {
   position: relative;
-  margin-top: -120px; /* negative value of footer height */
-  height: 120px;
+  margin-top: -92px; /* negative value of footer height */
+  height: 92px;
   clear:both;
 
   #style_footer {

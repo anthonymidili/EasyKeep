@@ -1,0 +1,26 @@
+= form_for [@invoice, @payment] do |f|
+  = render 'shared/error_messages', object: f.object
+
+  .row
+    .small-12.medium-12.large-3.columns
+      = f.label :received_on, '*Received on (yyyy-mm-dd)'
+      = f.text_field :received_on, class: 'datePicker', placeholder: 'Date'
+
+    .small-6.medium-6.large-2.columns
+      = f.label :transaction_type, 'Type'
+      = f.select :transaction_type, 'Check' => :check, 'Debit' => :debit, 'Credit' => :credit, 'Cash' => :cash
+
+    .small-6.medium-6.large-2.columns
+      = f.label :memo
+      = f.text_field :memo, placeholder: 'Check#'
+
+    .small-12.medium-12.large-2.columns
+      = f.label :amount
+      .row.collapse
+        .small-3.medium-2.large-2.columns
+          %span.prefix $
+        .small-9.medium-10.large-10.columns
+          = f.number_field :amount, step: 0.01, placeholder: '0.00'
+
+    .small-12.medium-12.large-3.columns.inline-tiny-button
+      = f.submit class: 'tiny button radius expand'

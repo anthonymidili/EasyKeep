@@ -1,0 +1,61 @@
+.fixed.hide_on_print
+  %nav.top-bar{data: {topbar: true}}
+    %ul.title-area
+      / Title Area
+      %li.name
+        %h1= link_to 'EasyKeep', root_path
+
+      / Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
+      %li.toggle-topbar.menu-icon
+        = link_to '#' do
+          %span Menu
+
+    %section.top-bar-section
+      / Right Nav Section
+      %ul.right
+        %li.divider
+        %li= link_to 'Home', root_path
+
+        - if user_signed_in?
+
+          / Account drop-down
+          - if current_company && current_account
+            %li.divider
+            %li.has-dropdown
+              = link_to '#' do
+                %i.miscellaneous.fi-at-sign
+                  = current_account.name
+              %ul.dropdown
+                %li= link_to 'Account', current_account
+                %li= link_to 'Invoices', invoices_path
+                %li= link_to 'Edit account', edit_account_path(current_account)
+
+          - if current_company && current_company.persisted?
+            / Company drop-down
+            - if current_user.is_admin?
+              %li.divider
+              %li.has-dropdown
+                = link_to 'Company', '#'
+                %ul.dropdown
+                  %li= link_to 'Edit Company', edit_company_path
+                  %li= link_to 'Company admins', company_path
+                  %li= link_to 'Quarterly report', quarterly_report_company_path
+                  %li= link_to 'Yearly report', yearly_report_company_path
+                  %li= link_to 'Search invoices', search_invoices_company_path
+                  %li= link_to 'About Company', about_company_path
+            - else
+              %li.divider
+              %li= link_to "About #{current_company.name}", about_company_path
+
+          / User drop-down
+          %li.divider
+          %li.has-dropdown
+            = link_to '#' do
+              %i.people.fi-torso>
+              User
+            %ul.dropdown
+              %li= link_to 'User Settings', edit_user_registration_path
+              %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+        - else
+          %li.divider
+          %li= link_to 'Sign in', new_user_session_path

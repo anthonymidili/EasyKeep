@@ -1,0 +1,9 @@
+= form_for @invoice do |f|
+  = render 'shared/error_messages', object: f.object
+
+  .row
+    .small-6.medium-3.large-3.columns
+      = f.text_field :established_at, class: 'datePicker', placeholder: 'Date'
+
+    .small-6.medium-3.large-3.medium-pull-6.large-pull-6.columns
+      = f.submit 'Update Date', class: 'tiny button radius'

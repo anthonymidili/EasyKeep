@@ -1,0 +1,23 @@
+.row
+  / View By Form
+  = form_tag @account, id: :view_by_selection, method: :get do
+    .small-12.medium-6.large-6.columns
+      %label View By
+      %ul.inline-list
+        %li
+          %label
+            = radio_button_tag 'view_by', :month, view_by == :month
+            Month
+        %li
+          %label
+            = radio_button_tag 'view_by', :year, view_by == :year
+            Year
+        %li= submit_tag 'View By', class: 'tiny button radius', name: nil
+
+  / Active Date Form
+  = form_tag @account, method: :get do
+    .small-6.medium-3.large-3.columns
+      = year_or_month_select
+
+    .small-6.medium-3.large-3.columns
+      = submit_tag "Select #{view_by.capitalize} to View", class: 'tiny button radius', name: nil

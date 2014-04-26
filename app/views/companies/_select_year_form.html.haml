@@ -1,0 +1,7 @@
+.row.hide_on_print
+  = form_tag yearly_report_company_path, method: :get do
+    .small-12.medium-3.large-3.columns
+      = select_date(active_date, discard_month: true, discard_day: true)
+
+    .small-12.medium-3.large-3.medium-pull-6.large-pull-6.columns
+      = submit_tag 'Select Year', class: 'tiny button radius expand', name: nil

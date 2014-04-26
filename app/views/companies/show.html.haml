@@ -1,0 +1,40 @@
+- provide(:title, 'Company Admins')
+
+.row
+  .small-12.columns
+    = render 'shared/company_info'
+
+    - unless @company.accounts.any?
+      .row
+        .small-8.small-centered.columns
+          = link_to 'Get Started', new_account_path, class: 'large button radius expand'
+
+    %ul.inline-list
+      - if current_user.is_owner?
+        %li= link_to 'Invite New Admin', new_user_invitation_path, class: 'small button radius'
+        %li= link_to 'Edit Company', edit_company_path, class: 'small button radius'
+      %li= link_to 'Accounts Listing', accounts_path, class: 'small button radius'
+
+    - if @company.by_admin.count > 1
+
+      %h3 Admins
+      %table
+        %thead
+          %tr
+            %th Name
+            %th Email
+            - if current_user.is_owner?
+              %th Delete
+
+        %tbody
+          - @company.by_admin.each do |user|
+            - unless user.is_owner?
+              %tr
+                %td= user.name
+                %td= user.email
+                - if current_user.is_owner?
+                  %td.center_cell
+                    = link_to delete_user_company_path(user), method: :delete, confirm: 'Are you sure? This will permanently DELETE your Admin and all there information'  do
+                      %i.general.fi-x
+
+  = render :partial => 'roles_explanation'
