@@ -1,4 +1,4 @@
-%p Hello #{resource.name} <#{resource.email}>,
+%p= "Hello #{resource.name} <#{resource.email}>,"
 
 %p
   #{resource.company.owner.name} has invited you to #{link_to 'EasyKeep', root_url}, to view your account history.

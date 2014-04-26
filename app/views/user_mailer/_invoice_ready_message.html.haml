@@ -1,0 +1,7 @@
+%p= "Hello #{invoice.account.user.name} <#{invoice.account.user.email}>,"
+
+%p
+  #{invoice.company.owner.name} has invited you to #{link_to 'EasyKeep', root_url}, to view an invoice created for you.
+  You can view this invoice through the link below.
+
+%p= link_to 'Your Invoice', invoice_url(invoice)

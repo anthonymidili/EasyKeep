@@ -1,7 +1,7 @@
 / If this file is changed then you must change 'devise/invitations/_admin_preview' all so.
 
 %h4 Become an Admin
-%p Hello #{@resource.name} <#{@resource.email}>,
+%p= "Hello #{@resource.name} <#{@resource.email}>,"
 
 %p
   #{@resource.company.owner.name} has invited you to #{link_to 'EasyKeep', root_url}, to be an admin over the
