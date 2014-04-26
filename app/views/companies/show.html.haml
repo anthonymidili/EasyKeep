@@ -25,6 +25,7 @@
             %th Email
             - if current_user.is_owner?
               %th Delete
+
         %tbody
           - @company.by_admin.each do |user|
             - unless user.is_owner?

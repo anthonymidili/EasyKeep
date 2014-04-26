@@ -13,6 +13,7 @@
           - if current_user.is_admin?
             %th.show-for-medium-up Edit
             %th.show-for-medium-up Destroy
+
       %tbody
         - @invoices.each do |invoice|
           %tr
@@ -36,7 +37,6 @@
     = paginate @invoices
 
     %br/
-
     %ul.inline-list
       - if current_user.is_admin?
         %li= link_to 'Account Listings', accounts_path, class: 'small button radius'

@@ -14,10 +14,10 @@
     = render 'shared/company_info'
     %p
       %b= @invoice.established_at.strftime('%Y-%b-%d')
-    %b
-      Invoice# #{@invoice.id}
+    %b Invoice# #{@invoice.id}
 
     = render 'shared/customer_info'
+
     %h4= current_company.service_provided!
     %table
       %thead
@@ -34,6 +34,7 @@
               %td.totals= number_to_currency(service.cost)
 
     = render 'invoices/totals'
+
     %ul.inline-list.hide_on_print
       %li
         = link_to "#{current_account.name} Account", current_account, class: 'small button radius'

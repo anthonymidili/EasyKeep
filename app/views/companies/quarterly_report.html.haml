@@ -17,6 +17,7 @@
           %th= month_in_quarter_date(1).strftime('%B')
           %th= month_in_quarter_date(2).strftime('%B')
           %th Account totals
+
       %tbody
         - @accounts.each do |account|
           %tr

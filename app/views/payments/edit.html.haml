@@ -1,0 +1,11 @@
+- provide(:title, 'Edit Payment')
+
+.row
+  .small-12.columns
+    %h1 Editing payment
+    = render 'form'
+    %ul.inline-list
+      %li
+        Balance Due:
+        %span.red_text= number_to_currency(@payment.balance_due_plus_payment)
+      %li= link_to 'Back', @invoice

@@ -1,0 +1,12 @@
+- provide(:title, 'New Payment')
+
+.row
+  .small-12.columns
+    %h3 New payment
+    = render 'payments/form'
+    - if @payment.errors.any?
+      %ul.inline-list
+        %li
+          Balance Due:
+          %span.red_text= number_to_currency(@invoice.balance_due)
+        %li= link_to 'Back', @invoice
