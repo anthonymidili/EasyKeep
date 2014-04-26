@@ -14,11 +14,11 @@
     = render 'shared/customer_info'
     = render 'invoices/remove_services'
     = render 'invoices/totals'
-
     %hr/
-    = render 'invoices/add_services'
 
+    = render 'invoices/add_services'
     %br/
+
     %ul.inline-list
       %li
         = link_to "#{current_account.name} Account", current_account, class: 'small button radius'

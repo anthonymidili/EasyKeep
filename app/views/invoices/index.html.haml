@@ -35,8 +35,8 @@
                   %i.general.fi-x
 
     = paginate @invoices
-
     %br/
+
     %ul.inline-list
       - if current_user.is_admin?
         %li= link_to 'Account Listings', accounts_path, class: 'small button radius'
