@@ -44,12 +44,12 @@
           %li
             %label
               = "#{quarter_name} quarter total amount received:"
-              %span= number_to_currency(current_company.company_quarter_total(view_quarter_date))
+              %span.large_red_text= number_to_currency(current_company.company_quarter_total(view_quarter_date))
           %li
             %label
               Total less taxes applied:
-              %span= number_to_currency(current_company.quarterly_total_less_taxes(view_quarter_date))
+              %span.large_red_text= number_to_currency(current_company.quarterly_total_less_taxes(view_quarter_date))
           %li
             %label
               Taxes applied to total:
-              %span= number_to_currency(current_company.quarterly_taxes_applied(view_quarter_date))
+              %span.large_red_text= number_to_currency(current_company.quarterly_taxes_applied(view_quarter_date))

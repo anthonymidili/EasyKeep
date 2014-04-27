@@ -46,10 +46,11 @@ i {
 
 .total_amount {
   padding-top: 1em;
-  span {
-    color: red;
-    font-size: 120%;
-  }
+}
+
+.large_red_text {
+  color: red;
+  font-size: 120%;
 }
 
 .red_text {

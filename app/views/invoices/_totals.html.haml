@@ -1,5 +1,5 @@
 .row
-  .small-12.medium-12.large-6.columns.total_amount
+  .small-12.medium-7.large-6.columns.total_amount
     %table
       %tbody
         %tr
@@ -15,9 +15,9 @@
         %tr
           %td Total Due:
           %td
-            %span= number_to_currency(@invoice.total_cost)
+            %span.large_red_text= number_to_currency(@invoice.total_cost)
 
-  .small-12.medium-12.large-6.columns.total_amount
+  .small-12.medium-5.large-6.columns.total_amount
     - if @invoice.payments.any?
       %table
         %tbody
@@ -28,7 +28,7 @@
             %tr
               %td Balance Due:
               %td
-                %span= number_to_currency(@invoice.balance_due)
+                %span.large_red_text= number_to_currency(@invoice.balance_due)
 
       - unless @invoice.not_paid_in_full?
         .center= image_tag('paid_in_full.png')

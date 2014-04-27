@@ -4,7 +4,7 @@
     .small-12.columns.total_amount
       %label
         Invoiceable Cost Total:
-        %span= number_to_currency(@account.sum_invoiceable_services)
+        %span.large_red_text= number_to_currency(@account.sum_invoiceable_services)
 
   .hide-for-medium-up= render 'services/invoiceable_badges'
   .show-for-medium-up= render 'services/invoiceable_table'
