@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
-  attr_accessible :established_at
+  attr_accessible :established_at, :tax_percentage
 
   belongs_to :account
   belongs_to :company

@@ -6,7 +6,11 @@
           %td Sub Total:
           %td.totals= number_to_currency(@invoice.sub_total)
         %tr
-          %td 7% Sales Tax:
+          %td
+            - if params[:action] == 'edit'
+              = render 'invoices/change_sales_tax'
+            -else
+              #{@invoice.tax_percentage}% Sales Tax:
           %td= number_to_currency(@invoice.tax)
         %tr
           %td Total Due:
