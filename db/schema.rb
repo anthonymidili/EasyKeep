@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20140427143742) do
     t.datetime "updated_at",                    :null => false
     t.date     "established_at"
     t.integer  "company_id"
-    t.integer  "tax_percentage", :default => 7
+    t.integer  "sales_tax",      :default => 7
   end
 
   create_table "payments", :force => true do |t|
