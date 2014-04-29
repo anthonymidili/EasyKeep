@@ -7,5 +7,5 @@
     %ul.inline-list
       %li
         Balance Due:
-        %span.red_text= number_to_currency(@payment.balance_due_plus_payment)
+        %span.red_text= number_to_currency(@payment.balance_due_less_payment)
       %li= link_to 'Back', @invoice

@@ -17,7 +17,7 @@ class Payment < ActiveRecord::Base
   # When creating a payment the payment is nil so payment amount is 0.
   # When updating a payment the payment amount is the current payment being edited. Adding the current payment
   # amount to the money_owed amount.
-  def balance_due_plus_payment
+  def balance_due_less_payment
     current_payment = invoice.payments.find_by_id(id)
     payment = current_payment ? current_payment.amount : 0
     invoice.balance_due + payment
@@ -26,7 +26,7 @@ class Payment < ActiveRecord::Base
 private
 
   def no_credit_allowed
-    if amount && amount > balance_due_plus_payment
+    if amount && amount > balance_due_less_payment
       errors.add(:amount, "can't be greater than total balance due")
     end
   end

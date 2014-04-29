@@ -18,12 +18,12 @@ class Invoice < ActiveRecord::Base
     services.sum(&:cost)
   end
 
-  def tax
-    sub_total * 0.07
+  def sales_tax!
+    (sales_tax * 0.01) * sub_total
   end
 
   def total_cost
-    sub_total + tax
+    sub_total + sales_tax!
   end
 
   def payments_total
