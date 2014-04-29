@@ -1,6 +1,8 @@
 class Invoice < ActiveRecord::Base
   attr_accessible :established_at, :sales_tax
 
+  before_validation { |invoice| invoice.sales_tax = 0 if invoice.sales_tax.blank? }
+
   belongs_to :account
   belongs_to :company
 
@@ -10,7 +12,6 @@ class Invoice < ActiveRecord::Base
   validates :established_at,
             format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
-  validates :sales_tax, presence: true, numericality: true
 
   default_scope order: 'established_at DESC'
 

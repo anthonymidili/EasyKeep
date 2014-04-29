@@ -1,7 +1,4 @@
 = form_for @invoice do |f|
-  = render 'shared/error_messages', object: f.object if params[:show] == 'sales_tax_error'
-  = hidden_field_tag :show, :sales_tax_error
-
   .row.collapse
     .small-4.medium-4.large-2.columns
       = f.number_field :sales_tax
