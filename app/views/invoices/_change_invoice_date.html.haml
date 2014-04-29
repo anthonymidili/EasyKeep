@@ -1,5 +1,6 @@
 = form_for @invoice do |f|
-  = render 'shared/error_messages', object: f.object
+  = render 'shared/error_messages', object: f.object if params[:show] == 'established_at_error'
+  = hidden_field_tag :show, :established_at_error
 
   .row
     .small-6.medium-3.large-3.columns
