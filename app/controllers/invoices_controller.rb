@@ -2,6 +2,7 @@ class InvoicesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin!, except: [:show, :index]
   before_filter :set_current_account_id, only: [:index, :show]
+  before_filter :require_no_payments, only: [:edit, :update, :destroy]
 
   def show
     @invoice = current_account.invoices.find(params[:id])
@@ -78,5 +79,12 @@ re-invoiced.'
       redirect_to edit_invoice_path(@invoice), notice: "Account was successfully updated for all current and future
 invoices for #{current_account.name} Account."
     end
+  end
+
+private
+
+  def require_no_payments
+    @invoice = current_account.invoices.find(params[:id])
+    redirect_to @invoice if @invoice.payments.any?
   end
 end

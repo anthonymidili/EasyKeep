@@ -3,7 +3,7 @@
 .row
   .small-12.small-centered.columns
     %ul.inline-list.hide_on_print.pad-top
-      - if current_user.is_admin?
+      - if current_user.is_admin? && !@invoice.payments.any?
         %li
           = link_to 'Edit Invoice', edit_invoice_path(@invoice), class: 'small button radius'
       - if current_user.is_owner? && !@invoice.payments.any?

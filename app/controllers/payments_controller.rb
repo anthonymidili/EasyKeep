@@ -16,8 +16,7 @@ class PaymentsController < ApplicationController
     @services = @invoice.services
 
     if @payment.save
-      redirect_to @invoice, notice: 'Payment was successfully created. Invoices can only be deleted when no payments
-are applied!'
+      redirect_to @invoice, notice: 'Payment was successfully created. INVOICES can only be EDITED or DELETED when no payments are applied!'
     else
       render 'payments/_new'
     end
