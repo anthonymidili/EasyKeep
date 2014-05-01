@@ -15,16 +15,20 @@ class Invoice < ActiveRecord::Base
 
   default_scope order: 'established_at DESC'
 
+  def sales_tax!
+    sales_tax * 0.01
+  end
+
   def sub_total
     services.sum(&:cost)
   end
 
-  def sales_tax!
-    (sales_tax * 0.01) * sub_total
+  def services_sales_tax
+    (sub_total * sales_tax!).round(2)
   end
 
   def total_cost
-    sub_total + sales_tax!
+    sub_total + services_sales_tax
   end
 
   def payments_total
@@ -36,7 +40,7 @@ class Invoice < ActiveRecord::Base
   end
 
   def not_paid_in_full?
-    balance_due >= 0.01
+    balance_due > 0.00
   end
 
   def has_payment

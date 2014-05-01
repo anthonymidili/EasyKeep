@@ -11,7 +11,7 @@
               = render 'invoices/change_sales_tax'
             -else
               #{@invoice.sales_tax}% Sales Tax:
-          %td= number_to_currency(@invoice.sales_tax!)
+          %td= number_to_currency(@invoice.services_sales_tax)
         %tr
           %td Total Due:
           %td
