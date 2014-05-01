@@ -27,7 +27,7 @@
               = pif_or_balance_due(invoice)
             - if current_user.is_admin?
               %td.center_cell.show-for-medium-up
-                = link_to edit_invoice_path(invoice) do
+                = link_to edit_invoice_path(invoice), class: invoice.has_payment do
                   %i.page.fi-page-edit
               %td.center_cell.show-for-medium-up
                 = link_to invoice, class: invoice.has_payment, method: :delete,
