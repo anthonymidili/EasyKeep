@@ -7,7 +7,8 @@
     - unless @company.accounts.any?
       .row
         .small-8.small-centered.columns
-          = link_to 'Get Started', new_account_path, class: 'large button radius expand'
+          = link_to 'Ready to create your First Account? Click Here.', new_account_path,
+          class: 'large button radius expand alert'
 
     %ul.inline-list
       - if current_user.is_owner?

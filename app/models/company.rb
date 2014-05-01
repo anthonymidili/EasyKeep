@@ -49,11 +49,17 @@ class Company < ActiveRecord::Base
   end
 
   def quarterly_total_less_taxes(date)
-    company_quarter_total(date) / 1.07
+    time_range = (date.beginning_of_quarter..date.end_of_quarter)
+    invoices.sum{ |invoice|
+      invoice.payments.where(received_on: time_range).sum(&:amount) / (invoice.sales_tax * 0.01 + 1)
+    }
   end
 
   def yearly_total_less_taxes(date)
-    company_year_total(date) / 1.07
+    time_range = (date.beginning_of_year..date.end_of_year)
+    invoices.sum{ |invoice|
+      invoice.payments.where(received_on: time_range).sum(&:amount) / (invoice.sales_tax * 0.01 + 1)
+    }
   end
 
   def quarterly_taxes_applied(date)
