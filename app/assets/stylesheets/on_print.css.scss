@@ -1,4 +1,6 @@
 @media print {
+  html, body {overflow-x: inherit !important;}
+
   .hide_on_print {
     display: none;
   }
