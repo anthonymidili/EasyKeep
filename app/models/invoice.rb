@@ -24,11 +24,11 @@ class Invoice < ActiveRecord::Base
   end
 
   def services_sales_tax
-    (sub_total * sales_tax!).round(2)
+    sub_total * sales_tax!
   end
 
   def total_cost
-    sub_total + services_sales_tax
+    (sub_total + services_sales_tax).round(2)
   end
 
   def payments_total
