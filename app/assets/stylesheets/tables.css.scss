@@ -1,0 +1,14 @@
+html, body {overflow-x: hidden;}
+
+table {
+  width: 100%;
+  td.totals {width: 8em;}
+
+  td.center_cell {text-align: center !important;}
+
+  tr.divider-line {
+    td {border-top: 2px solid #dddddd;}
+  }
+}
+
+.scroll_overflow-x {overflow-x: auto;}

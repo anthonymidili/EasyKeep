@@ -22,66 +22,68 @@
   %h3 Role Permissions
   %p
     Owner = O, Admin = A, Customer = C
-  %table
-    %thead
-      %tr
-        %th Permission
-        %th view
-        %th Create
-        %th Edit
-        %th Delete
-    %tbody
-      %tr
-        %td Personal information
-        %td O, A, C
-        %td O, A
-        %td O, A, C
-        %td O
-      %tr
-        %td Personal account
-        %td C
-        %td
-        %td C
-        %td
-      %tr
-        %td Admin users
-        %td O, A
-        %td O
-        %td
-        %td O
-      %tr
-        %td Company
-        %td O, A
-        %td O
-        %td O
-        %td O
-      %tr
-        %td All accounts
-        %td O, A
-        %td O, A
-        %td O, A
-        %td O
-      %tr
-        %td Service history
-        %td O, A, C
-        %td O, A
-        %td O, A
-        %td O, A
-      %tr
-        %td Invoice history
-        %td O, A, C
-        %td O, A
-        %td O, A
-        %td O, A
-      %tr
-        %td Payment history
-        %td O, A, C
-        %td O, A
-        %td O, A
-        %td O, A
-      %tr
-        %td Reports
-        %td O, A
-        %td
-        %td O, A
-        %td
+
+  .scroll_overflow-x
+    %table
+      %thead
+        %tr
+          %th Permission
+          %th view
+          %th Create
+          %th Edit
+          %th Delete
+      %tbody
+        %tr
+          %td Personal information
+          %td O, A, C
+          %td O, A
+          %td O, A, C
+          %td O
+        %tr
+          %td Personal account
+          %td C
+          %td
+          %td C
+          %td
+        %tr
+          %td Admin users
+          %td O, A
+          %td O
+          %td
+          %td O
+        %tr
+          %td Company
+          %td O, A
+          %td O
+          %td O
+          %td O
+        %tr
+          %td All accounts
+          %td O, A
+          %td O, A
+          %td O, A
+          %td O
+        %tr
+          %td Service history
+          %td O, A, C
+          %td O, A
+          %td O, A
+          %td O, A
+        %tr
+          %td Invoice history
+          %td O, A, C
+          %td O, A
+          %td O, A
+          %td O, A
+        %tr
+          %td Payment history
+          %td O, A, C
+          %td O, A
+          %td O, A
+          %td O, A
+        %tr
+          %td Reports
+          %td O, A
+          %td
+          %td O, A
+          %td

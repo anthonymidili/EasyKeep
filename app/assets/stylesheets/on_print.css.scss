@@ -1,0 +1,14 @@
+@media print {
+  .hide_on_print {
+    display: none;
+  }
+
+  div.panel {
+    border: 1px solid black;
+  }
+
+  table {
+    border: 1px solid black;
+    page-break-inside: avoid;
+  }
+}
