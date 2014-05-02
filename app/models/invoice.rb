@@ -39,8 +39,8 @@ class Invoice < ActiveRecord::Base
     total_cost - payments_total
   end
 
-  def not_paid_in_full?
-    balance_due > 0.00
+  def paid_in_full?
+    balance_due == 0.00
   end
 
   def has_payment

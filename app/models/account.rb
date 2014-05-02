@@ -50,8 +50,7 @@ class Account < ActiveRecord::Base
   end
 
   def paid_in_full?
-    outstanding_balance = invoices.map(&:not_paid_in_full?)
-    !outstanding_balance.include?(true)
+    invoices.all?(&:paid_in_full?)
   end
 
 private

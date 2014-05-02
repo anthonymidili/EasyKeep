@@ -24,11 +24,11 @@
           %tr
             %td Payments Total:
             %td.totals= number_to_currency(@invoice.payments_total)
-          - if @invoice.not_paid_in_full?
+          - if !@invoice.paid_in_full?
             %tr
               %td Balance Due:
               %td
                 %span.large_red_text= number_to_currency(@invoice.balance_due)
 
-      - unless @invoice.not_paid_in_full?
+      - unless !@invoice.paid_in_full?
         .center= image_tag('paid_in_full.png')
