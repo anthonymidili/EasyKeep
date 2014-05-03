@@ -33,37 +33,18 @@ class Company < ActiveRecord::Base
     service_provided.present? ? "#{service_provided} Services" : 'Services'
   end
 
-  def company_month_total(date)
-    time_range = (date.beginning_of_month..date.end_of_month)
+  def total_company_payments(date, view_by)
+    time_range = (date.send("beginning_of_#{view_by}")..date.send("end_of_#{view_by}"))
     payments.where(received_on: time_range).sum(&:amount)
   end
 
-  def company_quarter_total(date)
-    time_range = (date.beginning_of_quarter..date.end_of_quarter)
-    payments.where(received_on: time_range).sum(&:amount)
-  end
-
-  def company_year_total(date)
-    time_range = (date.beginning_of_year..date.end_of_year)
-    payments.where(received_on: time_range).sum(&:amount)
-  end
-
-  def quarterly_total_less_taxes(date, range)
-    time_range = (date.send("beginning_of_#{range}")..date.send("end_of_#{range}"))
+  def total_less_taxes(date, view_by)
+    time_range = (date.send("beginning_of_#{view_by}")..date.send("end_of_#{view_by}"))
     less_invoice_tax(time_range)
   end
 
-  def yearly_total_less_taxes(date)
-    time_range = (date.beginning_of_year..date.end_of_year)
-    less_invoice_tax(time_range)
-  end
-
-  def quarterly_taxes_applied(date, range)
-    company_quarter_total(date) - quarterly_total_less_taxes(date, range)
-  end
-
-  def yearly_taxes_applied(date)
-    company_year_total(date) - yearly_total_less_taxes(date)
+  def taxes_applied(date, view_by)
+    total_company_payments(date, view_by) - total_less_taxes(date, view_by)
   end
 
 private
