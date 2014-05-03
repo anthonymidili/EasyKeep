@@ -1,14 +1,14 @@
 module CompaniesHelper
-  def month_in_quarter_date(increment_month_by)
-    Date.new(active_date.year, view_quarter + increment_month_by, 1)
+  def month_in_quarter_date(integer)
+    Date.new(active_date.year, view_quarter + integer, 1)
   end
 
   def view_quarter_date
     Date.new(active_date.year, view_quarter, 1)
   end
 
-  def yearly_date(quarter)
-    Date.new(active_date.year, quarter, 1)
+  def start_of_quarter_date(quarter_for)
+    Date.new(active_date.year, quarter_for, 1)
   end
 
   def quarter_name

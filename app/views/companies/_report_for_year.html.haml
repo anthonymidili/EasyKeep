@@ -1,0 +1,55 @@
+.row
+  .small-12.columns
+    %h4= "Yearly Report - #{active_date.year}"
+
+    .scroll_overflow-x
+      %table
+        %thead
+          %tr
+            %th= 'Account'.pluralize(@accounts.count)
+            %th First quarter
+            %th Second quarter
+            %th Third quarter
+            %th Fourth quarter
+            %th Account totals
+        %tbody
+          - @accounts.each do |account|
+            %tr
+              %td= account.name
+              %td= number_to_currency(account.total_account_payments(start_of_quarter_date(1), 'quarter'))
+              %td= number_to_currency(account.total_account_payments(start_of_quarter_date(4), 'quarter'))
+              %td= number_to_currency(account.total_account_payments(start_of_quarter_date(7), 'quarter'))
+              %td= number_to_currency(account.total_account_payments(start_of_quarter_date(10), 'quarter'))
+              %td= number_to_currency(account.total_account_payments(active_date, 'year'))
+          %tr.divider-line
+            %td
+              %b Totals
+            %td
+              %b= number_to_currency(current_company.total_company_payments(start_of_quarter_date(1), 'quarter'))
+            %td
+              %b= number_to_currency(current_company.total_company_payments(start_of_quarter_date(4), 'quarter'))
+            %td
+              %b= number_to_currency(current_company.total_company_payments(start_of_quarter_date(7), 'quarter'))
+            %td
+              %b= number_to_currency(current_company.total_company_payments(start_of_quarter_date(10), 'quarter'))
+            %td.red_text
+              %b= number_to_currency(current_company.total_company_payments(active_date, quarter_or_year))
+
+.row
+  .small-12.columns.total_amount
+    %ul.inline-list
+      %li
+        %label
+          = "#{active_date.year} total amount received:"
+          %span.large_red_text
+            = number_to_currency(current_company.total_company_payments(view_quarter_date, quarter_or_year))
+      %li
+        %label
+          Total less taxes applied:
+          %span.large_red_text
+            = number_to_currency(current_company.total_less_taxes(view_quarter_date, quarter_or_year))
+      %li
+        %label
+          Taxes applied to total:
+          %span.large_red_text
+            = number_to_currency(current_company.taxes_applied(view_quarter_date, quarter_or_year))
