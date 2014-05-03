@@ -45,7 +45,7 @@ class CompaniesController < ApplicationController
     redirect_to new_company_path
   end
 
-  def sales_report
+  def income_report
     @accounts = current_company.accounts
   end
 
