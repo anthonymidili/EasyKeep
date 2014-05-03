@@ -3,8 +3,7 @@ EasyKeep::Application.routes.draw do
              :controllers => { :registrations => 'users/registrations', :invitations => 'users/invitations' }
   resource :company do
     member do
-      get :quarterly_report
-      get :yearly_report
+      get :sales_report
       get :search_invoices
       get :about
       delete 'delete_user/:id', to: 'companies#delete_user', as: :delete_user

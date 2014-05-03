@@ -1,0 +1,14 @@
+.row.hide_on_print
+  = form_tag sales_report_company_path, id: :view_by_selection, method: :get do
+    .small-12.columns
+      %label Report For:
+      %ul.inline-list
+        %li
+          %label
+            = radio_button_tag 'view_by', :month, view_by == :month
+            Quarter
+        %li
+          %label
+            = radio_button_tag 'view_by', :year, view_by == :year
+            Year
+        %li= submit_tag 'View By', class: 'tiny button radius', name: nil

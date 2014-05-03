@@ -19,4 +19,11 @@ module CompaniesHelper
       else; 'Fourth'
     end
   end
+
+  def quarter_or_year
+    case view_by
+      when :month; 'quarter'
+      else; 'year'
+    end
+  end
 end
