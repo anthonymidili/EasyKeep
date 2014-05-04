@@ -9,7 +9,7 @@
           = link_to 'Destroy Account', @account, class: 'small alert button radius', method: :delete,
           confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!'
 
-    %h1= "#{@account.name} Account"
+    %h3.main_page_header= "#{@account.name} Account"
     = render 'shared/customer_info'
     = render 'services/new' if current_user.is_admin?
     = render 'services/invoiceable'
