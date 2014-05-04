@@ -17,7 +17,7 @@
         %td= link_to account.name, account
         %td= account.user.name
         %td.center_cell
-          = link_to '#', 'data-reveal-id' => "contactInfoModal#{account.id}", remote: true do
+          = link_to '#', 'data-reveal-id' => "contactInfoModal#{account.id}" do
             %i.general.fi-mail
         %td= yes_or_no(account.all_services_invoiced?)
         %td= yes_or_no(account.paid_in_full?)

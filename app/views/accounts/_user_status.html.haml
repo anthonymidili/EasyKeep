@@ -2,7 +2,7 @@
   Invited
   = link_to 'Re-invite', '#', 'data-reveal-id' => "inviteCustomerModal#{account.id}",
   class: 'tiny button radius user_status_button',
-  title: 'to view there account information', remote: true
+  title: 'to view there account information'
   = render 'accounts/invite_customer_modal', account: account
 - elsif account.user.encrypted_password.present?
   %b.green_text Active
@@ -15,7 +15,7 @@
 - elsif account.user.email.present?
   = link_to 'Invite', '#', 'data-reveal-id' => "inviteCustomerModal#{account.id}",
   class: 'tiny button radius user_status_button',
-  title: 'to view there account information', remote: true
+  title: 'to view there account information'
   = render 'accounts/invite_customer_modal', account: account
 - else
   no email

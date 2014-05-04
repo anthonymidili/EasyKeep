@@ -21,13 +21,7 @@
             - else
               %i not invoiced
           %td= service.performed_on.strftime('%Y-%b-%d')
-          %td
-            - if service.memo.length > 20
-              = link_to '#', 'data-reveal-id' => "memoModal#{service.id}", remote: true do
-                = service.memo.truncate(20, :omission => '...')
-              = render 'services/memo_modal', service: service
-            - else
-              = service.memo
+          %td= service.memo
           %td= number_to_currency(service.cost, unit: '$')
           - if current_user.is_admin?
             %td.center_cell
