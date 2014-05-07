@@ -55,6 +55,9 @@
             %ul.dropdown
               %li= link_to 'User Settings', edit_user_registration_path
               %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+              - if current_user.email == ENV['DEVELOPER_EMAIL']
+                %li= link_to 'DeveloperDashboard', developer_dashboard_path
+
         - else
           %li.divider
           %li= link_to 'Sign in', new_user_session_path

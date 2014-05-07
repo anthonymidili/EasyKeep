@@ -32,6 +32,8 @@ EasyKeep::Application.routes.draw do
     resources :payments, except: [:show, :index]
   end
 
+  get 'developer/dashboard'
+
   get :about, to: 'welcome#about'
   get :contact_us, to: 'welcome#contact_us'
 
