@@ -3,6 +3,8 @@ class DeveloperController < ApplicationController
   before_filter :authenticate_developer!
 
   def dashboard
+    @users = User.all
+    @owners = User.where(is_owner: true)
   end
 
 private
