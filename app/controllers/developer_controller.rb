@@ -3,7 +3,7 @@ class DeveloperController < ApplicationController
   before_filter :authenticate_developer!
 
   def dashboard
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
 private
