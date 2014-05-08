@@ -25,7 +25,6 @@
             %th Admin
             %th Sign in count
             %th Last sign in at
-            %th Delete
         %tbody
           - @users.sort_by(&:company_id).each do |user|
             %tr
@@ -37,10 +36,5 @@
               %td= yes_or_no(user.is_admin?)
               %td= user.sign_in_count
               %td= user.last_sign_in_at.strftime('%Y-%b-%d @ %I:%M%p') unless user.last_sign_in_at.nil?
-              %td.center_cell
-                - unless current_user.id == user.id
-                  = link_to developer_delete_path(user), method: :delete,
-                              confirm: "Are you sure? This will permanently DELETE #{user.name}'s ACCOUNT and EVERTHING attached to it!!!"  do
-                    %i.general.fi-x
 
     = paginate @users

@@ -33,7 +33,6 @@ EasyKeep::Application.routes.draw do
   end
 
   get 'developer/dashboard'
-  delete 'developer/destroy/:id', to: 'developer#destroy', as: :developer_delete
 
   get :about, to: 'welcome#about'
   get :contact_us, to: 'welcome#contact_us'

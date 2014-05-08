@@ -6,13 +6,6 @@ class DeveloperController < ApplicationController
     @users = User.page(params[:page]).per(10)
   end
 
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    redirect_to developer_dashboard_path, alert: 'User successfully deleted.'
-  end
-
 private
 
   def authenticate_developer!
