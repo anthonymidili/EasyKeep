@@ -3,7 +3,7 @@ class DeveloperController < ApplicationController
   before_filter :authenticate_developer!
 
   def dashboard
-    @users = User.page(params[:page]).per(10)
+    @users = Kaminari.paginate_array(User.all.sort_by(&:company_id)).page(params[:page]).per(10)
   end
 
 private
