@@ -61,3 +61,5 @@
       %em
         This app is geared for small businesses with no overhead and provides a service such as house keeping,
         interior design, lawn care, baby sitting, etc.
+
+    %p.center= link_to 'Sign up', new_user_registration_path, class: 'button radius' unless user_signed_in?
