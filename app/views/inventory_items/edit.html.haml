@@ -1,0 +1,12 @@
+-provide(:title, 'Edit Inventory Item')
+
+.row
+  .small-12.columns
+    %h1.main_page_header Editing Inventory Item
+    %br/
+
+    = render 'form'
+
+    = link_to 'Show', @inventory_item
+    |
+    = link_to 'Back', inventory_items_path

@@ -1,0 +1,21 @@
+= form_for(@inventory_item) do |f|
+  = render 'shared/error_messages', object: f.object
+
+  .row
+    .small-12.medium-6.large-6.columns
+      = f.label :item
+      = f.text_field :item, autofocus: true
+
+      = f.label :unit_amount
+      = f.number_field :unit_amount
+
+      = f.label :serial_number
+      = f.text_field :serial_number
+
+    .small-12.medium-6.large-6.columns
+      = f.label :description
+      = f.text_area :description, class: 'inventory_text_area_height'
+
+  .row
+    .small-12.medium-6.large-6.columns
+      = f.submit class: 'button radius expand'

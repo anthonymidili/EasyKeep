@@ -1,0 +1,22 @@
+- provide(:title, raw(@inventory_item.item))
+
+.row
+  .small-12.columns
+    %h3.main_page_header= @inventory_item.item
+    %br/
+
+    %p
+      %b Unit amount:
+      = @inventory_item.unit_amount
+
+    %p
+      %b Serial number:
+      = @inventory_item.serial_number
+
+    %p
+      %b Description:
+      = @inventory_item.description
+
+    = link_to 'Edit', edit_inventory_item_path(@inventory_item)
+    |
+    = link_to 'Back', inventory_items_path
