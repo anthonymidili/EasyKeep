@@ -1,50 +1,45 @@
 class InventoryItemsController < ApplicationController
   def index
-    @inventory_items = InventoryItem.all
+    @inventory_items = current_company.inventory_items.all
   end
 
   def show
-    @inventory_item = InventoryItem.all
+    @inventory_item = current_company.inventory_items.find(params[:id])
   end
 
   def new
-    @inventory_item = InventoryItem.new
+    @inventory_item = current_company.inventory_items.new
   end
 
   def edit
-    @inventory_item = InventoryItem.find(params[:id])
+    @inventory_item = current_company.inventory_items.find(params[:id])
   end
 
   def create
-    @inventory_item = InventoryItem.new(params[:inventory_item])
+    @inventory_item = current_company.inventory_items.new(params[:inventory_item])
 
-    respond_to do |format|
-      if @inventory_item.save
-        redirect_to @inventory_item, notice: 'Inventory was successfully created.'
-      else
-        render action: "new"
-      end
+
+    if @inventory_item.save
+      redirect_to @inventory_item, notice: 'Inventory was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   def update
-    @inventory_item = InventoryItem.find(params[:id])
+    @inventory_item = current_company.inventory_items.find(params[:id])
 
-    respond_to do |format|
-      if @inventory_item.update_attributes(params[:inventory_item])
-        redirect_to @inventory_item, notice: 'Inventory was successfully updated.'
-      else
-        render action: "edit"
-      end
+    if @inventory_item.update_attributes(params[:inventory_item])
+      redirect_to @inventory_item, notice: 'Inventory was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
-    @inventory_item = InventoryItem.find(params[:id])
+    @inventory_item = current_company.inventory_items.find(params[:id])
     @inventory_item.destroy
 
-    respond_to do |format|
-      redirect_to inventories_url
-    end
+    redirect_to inventory_items_path
   end
 end
