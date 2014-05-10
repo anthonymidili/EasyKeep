@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Item:</b>
+  <%= @inventory_item.item %>
+</p>
+
+<p>
+  <b>Unit amount:</b>
+  <%= @inventory_item.unit_amount %>
+</p>
+
+<p>
+  <b>Unit type:</b>
+  <%= @inventory_item.unit_type %>
+</p>
+
+<p>
+  <b>Serial number:</b>
+  <%= @inventory_item.serial_number %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @inventory_item.description %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @inventory_item.company_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_inventory_item_path(@inventory_item) %> |
+<%= link_to 'Back', inventory_items_path %>
