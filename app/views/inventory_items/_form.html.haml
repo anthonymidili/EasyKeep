@@ -6,15 +6,23 @@
       = f.label :item
       = f.text_field :item, autofocus: true
 
+    .small-12.medium-6.large-6.columns
       = f.label :unit_amount
       = f.number_field :unit_amount
 
+  .row
+    .small-12.medium-6.large-6.columns
       = f.label :serial_number
       = f.text_field :serial_number
 
     .small-12.medium-6.large-6.columns
       = f.label :description
-      = f.text_area :description, class: 'inventory_text_area_height'
+      = f.text_field :description
+
+  .row
+    .small-12.medium-6.large-6.columns
+      = f.label :tag_list
+      = f.text_field :tag_list
 
   .row
     .small-12.medium-6.large-6.columns

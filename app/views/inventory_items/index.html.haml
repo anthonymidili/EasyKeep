@@ -11,6 +11,7 @@
             %th Unit amount
             %th Serial number
             %th Description
+            %th Tags
             %th Edit
             %th Destroy
 
@@ -21,6 +22,7 @@
               %td= inventory_item.unit_amount
               %td= inventory_item.serial_number
               %td= inventory_item.description
+              %td= inventory_item.tag_list
               %td.center_cell
                 = link_to edit_inventory_item_path(inventory_item) do
                   %i.page.fi-page-edit

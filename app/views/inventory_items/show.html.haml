@@ -17,6 +17,10 @@
       %b Description:
       = @inventory_item.description
 
+    %p
+      %b Tags:
+      = @inventory_item.tag_list
+
     = link_to 'Edit', edit_inventory_item_path(@inventory_item)
     |
     = link_to 'Back', inventory_items_path

@@ -18,7 +18,6 @@ class InventoryItemsController < ApplicationController
   def create
     @inventory_item = current_company.inventory_items.new(params[:inventory_item])
 
-
     if @inventory_item.save
       redirect_to @inventory_item, notice: 'Inventory was successfully created.'
     else
