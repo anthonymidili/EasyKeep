@@ -1,11 +1,12 @@
 class Service < ActiveRecord::Base
   attr_accessible :memo, :performed_on, :cost
 
-  before_save { |service| service.cost = 0 if service.cost.blank? }
+  before_validation { |service| service.cost = 0 if service.cost.blank? }
 
   belongs_to :account
   belongs_to :invoice
 
+  validates :cost, numericality: true
   validates :performed_on,
             format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }

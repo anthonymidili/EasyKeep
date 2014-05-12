@@ -9,6 +9,7 @@ class Invoice < ActiveRecord::Base
   has_many :services
   has_many :payments, dependent: :destroy
 
+  validates :sales_tax, numericality: true
   validates :established_at,
             format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }

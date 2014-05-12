@@ -1,10 +1,15 @@
 class InventoryItem < ActiveRecord::Base
   attr_accessible :company_id, :description, :item, :serial_number, :unit_amount, :tag_list
 
+  before_validation { |inventory_item| inventory_item.unit_amount = 0 if inventory_item.unit_amount.blank? }
+
   belongs_to :company
 
   has_many :taggings
   has_many :tags, through: :taggings
+
+  validates :item, presence: true
+  validates :unit_amount, numericality: true
 
   def self.tagged_with(name)
     Tag.find_by_name!(name).inventory_items

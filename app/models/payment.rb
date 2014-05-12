@@ -1,11 +1,13 @@
 class Payment < ActiveRecord::Base
   attr_accessible :amount, :received_on, :transaction_type, :memo
 
+  before_validation { |payment| payment.amount = 0 if payment.amount.blank? }
+
   belongs_to :invoice
   belongs_to :company
   belongs_to :account
 
-  validates :amount, presence: true, numericality: true
+  validates :amount, numericality: true
   validates :transaction_type, presence: true
   validates :received_on,
             format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
