@@ -50,6 +50,10 @@ class Company < ActiveRecord::Base
     total_company_payments(date, view_by) - total_less_taxes(date, view_by)
   end
 
+  def available_tags
+    tags.map(&:name).join(', ')
+  end
+
 private
 
   def less_invoice_tax(time_range)

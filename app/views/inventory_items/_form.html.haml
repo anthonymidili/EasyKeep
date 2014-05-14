@@ -24,7 +24,7 @@
         = f.text_field :tag_list, placeholder: 'Create new tag(s) or use available tags.'
       .small-12.medium-6.large-6.columns
         %b Available tags:
-        = current_company.tags.map(&:name).join(', ')
+        = current_company.available_tags
 
   .row
     .small-12.medium-6.large-6.columns
