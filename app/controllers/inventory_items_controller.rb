@@ -1,4 +1,7 @@
 class InventoryItemsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :require_admin!
+
   def index
     @inventory_items = current_company.inventory_items.all
   end
@@ -15,7 +18,7 @@ class InventoryItemsController < ApplicationController
     @inventory_item = current_company.inventory_items.new(params[:inventory_item])
 
     if @inventory_item.save
-      redirect_to @inventory_item, notice: 'Inventory was successfully created.'
+      redirect_to inventory_items_path, notice: 'Inventory was successfully created.'
     else
       render action: 'new'
     end
@@ -29,7 +32,7 @@ class InventoryItemsController < ApplicationController
     @inventory_item = current_company.inventory_items.find(params[:id])
 
     if @inventory_item.update_attributes(params[:inventory_item])
-      redirect_to @inventory_item, notice: 'Inventory was successfully updated.'
+      redirect_to inventory_items_path, notice: 'Inventory was successfully updated.'
     else
       render action: 'edit'
     end
