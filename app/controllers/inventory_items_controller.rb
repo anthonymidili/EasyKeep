@@ -4,9 +4,9 @@ class InventoryItemsController < ApplicationController
 
   def index
     if params[:tag]
-      @inventory_items = current_company.tagged_with(params[:tag])
+      @inventory_items = current_company.tagged_with(params[:tag]).page(params[:page]).per(20)
     else
-      @inventory_items = current_company.inventory_items.all
+      @inventory_items = current_company.inventory_items.page(params[:page]).per(20)
     end
   end
 

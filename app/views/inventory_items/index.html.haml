@@ -3,8 +3,10 @@
 .row
   .small-12.columns
     #tag_cloud
-      .pad-top
-        = link_to 'Clear Search', inventory_items_path, class: 'tiny button radius alert' if params[:tag]
+      %ul.inline-list.pad-top
+        %li= link_to 'New Inventory Item', new_inventory_item_path, class: 'tiny button radius'
+        - if params[:tag]
+          %li= link_to 'Clear Search', inventory_items_path, class: 'tiny button radius alert'
 
       - tag_cloud current_company.tag_counts, %w[s m l] do |tag, css_class|
         = link_to tag.name, tag_path(tag.name), class: css_class
@@ -26,7 +28,7 @@
         %tbody
           - @inventory_items.each do |inventory_item|
             %tr
-              %td= link_to inventory_item.item, inventory_item
+              %td= inventory_item.item
               %td= inventory_item.unit_amount
               %td= inventory_item.serial_number
               %td= inventory_item.description
@@ -38,6 +40,6 @@
                 = link_to inventory_item, method: :delete,
                 confirm: 'Are you sure? This will permanently DELETE your Inventory Item!'  do
                   %i.general.fi-x
-    %br/
 
-    = link_to 'New Inventory Item', new_inventory_item_path
+    = paginate @inventory_items
+    %br/
