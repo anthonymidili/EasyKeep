@@ -3,7 +3,11 @@ class InventoryItemsController < ApplicationController
   before_filter :require_admin!
 
   def index
-    @inventory_items = current_company.inventory_items.all
+    if params[:tag]
+      @inventory_items = current_company.tagged_with(params[:tag])
+    else
+      @inventory_items = current_company.inventory_items.all
+    end
   end
 
   def show

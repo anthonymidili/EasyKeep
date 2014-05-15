@@ -2,7 +2,15 @@
 
 .row
   .small-12.columns
+    #tag_cloud
+      .pad-top
+        = link_to 'Clear Search', inventory_items_path, class: 'tiny button radius alert' if params[:tag]
+
+      - tag_cloud current_company.tag_counts, %w[s m l] do |tag, css_class|
+        = link_to tag.name, tag_path(tag.name), class: css_class
+
     %h1.main_page_header= "#{current_company.name} Inventory Items"
+
     .scroll_overflow-x
       %table
         %thead
@@ -22,7 +30,7 @@
               %td= inventory_item.unit_amount
               %td= inventory_item.serial_number
               %td= inventory_item.description
-              %td= inventory_item.tag_list
+              %td= raw inventory_item.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ')
               %td.center_cell
                 = link_to edit_inventory_item_path(inventory_item) do
                   %i.page.fi-page-edit

@@ -11,14 +11,6 @@ class InventoryItem < ActiveRecord::Base
   validates :item, presence: true
   validates :unit_amount, numericality: true
 
-  def self.tagged_with(name)
-    company.tags.find_by_name!(name).inventory_items
-  end
-
-  def self.tag_counts
-    company.tags.select('tags.*, count(taggings.tag_id) as count').joins(:taggings).group('taggings.tag_id')
-  end
-
   def tag_list
     tags.map(&:name).join(', ')
   end

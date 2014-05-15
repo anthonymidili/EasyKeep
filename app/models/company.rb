@@ -53,6 +53,15 @@ class Company < ActiveRecord::Base
     tags.map(&:name).join(', ')
   end
 
+
+  def tagged_with(name)
+    inventory_items.joins(:tags).where('tags.name' => name)
+  end
+
+  def tag_counts
+    tags.joins(:taggings).select('tags.*, count(tag_id)').group('tags.id').order('count DESC')
+  end
+
 private
 
   def less_invoice_tax(time_range)
