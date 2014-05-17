@@ -2,32 +2,29 @@
 
 .row
   .small-12.columns
-  %h1.main_page_header Unit Types Listing
 
-  %table
-    %thead
-      %tr
-        %th Name
-        %th Company
-        %th Show
-        %th Edit
-        %th Destroy
+    %h1.main_page_header Unit Types Listing
 
-    %tbody
-      - @units.each do |unit|
+    %table
+      %thead
         %tr
-          %td= unit.name
-          %td= unit.company_id
-          %td= link_to 'Show', unit
-          %td.center_cell.hide_on_print
-            = link_to edit_unit_path(unit) do
-              %i.page.fi-page-edit
-          %td.center_cell.hide_on_print
-            = link_to unit, method: :delete,
-            confirm: 'Are you sure? This will permanently DELETE your UNIT TYPE!' do
-              %i.general.fi-x
+          %th Name
+          %th Edit
+          %th Destroy
 
+      %tbody
+        - @units.each do |unit|
+          %tr
+            %td= unit.name
+            %td.center_cell.hide_on_print
+              = link_to edit_unit_path(unit) do
+                %i.page.fi-page-edit
+            %td.center_cell.hide_on_print
+              = link_to unit, method: :delete,
+              confirm: 'Are you sure? This will permanently DELETE your UNIT TYPE!' do
+                %i.general.fi-x
+    %br/
 
-  %br/
-
-  = link_to 'New Unit', new_unit_path
+    %ul.inline-list
+      %li= link_to 'New Unit Type', new_unit_path, class: 'small button radius'
+      %li= link_to 'Back to Inventory', inventory_items_path, class: 'small secondary button radius'

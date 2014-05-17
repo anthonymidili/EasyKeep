@@ -22,7 +22,7 @@ class UnitsController < ApplicationController
     @unit = current_company.units.new(params[:unit])
 
     if @unit.save
-      redirect_to @unit, notice: 'Unit type was successfully created.'
+      redirect_to units_path, notice: 'Unit type was successfully created.'
     else
       render action: 'new'
     end
@@ -32,7 +32,7 @@ class UnitsController < ApplicationController
     @unit = current_company.units.find(params[:id])
 
     if @unit.update_attributes(params[:unit])
-      redirect_to @unit, notice: 'Unit type was successfully updated.'
+      redirect_to units_path, notice: 'Unit type was successfully updated.'
     else
       render action: 'edit'
     end

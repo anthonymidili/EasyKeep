@@ -2,12 +2,12 @@
 
 .row
   .small-12.columns
-    #tag_cloud
-      %ul.inline-list.pad-top
-        %li= link_to 'New Inventory Item', new_inventory_item_path, class: 'tiny button radius'
-        - if params[:tag]
-          %li= link_to 'Clear Search', inventory_items_path, class: 'tiny button radius alert'
+    %ul.inline-list.pad-top
+      %li= link_to 'New Inventory Item', new_inventory_item_path, class: 'small button radius'
+      - if params[:tag]
+        %li= link_to 'Clear Search', inventory_items_path, class: 'small button radius alert'
 
+    #tag_cloud
       - tag_cloud current_company.tag_counts, %w[s m l] do |tag, css_class|
         = link_to tag.name, tag_path(tag.name), class: css_class
 
@@ -47,3 +47,6 @@
 
     = paginate @inventory_items
     %br/
+
+    %ul.inline-list
+      %li= link_to 'Manage unit types', units_path, class: 'small secondary button radius'

@@ -33,7 +33,7 @@ EasyKeep::Application.routes.draw do
   end
 
   resources :inventory_items
-  get 'tags/:tag', to: 'inventory_items#index', as: :tag
+  get 'search_tag/:tag', to: 'inventory_items#index', as: :tag
 
   resources :units
 
