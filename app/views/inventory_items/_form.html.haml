@@ -6,9 +6,12 @@
     .small-12.medium-6.large-6.columns
       = f.label :item
       = f.text_field :item, autofocus: true
-    .small-12.medium-6.large-6.columns
+    .small-6.medium-3.large-3.columns
       = f.label :unit_amount
-      = f.number_field :unit_amount
+      = f.number_field :unit_amount, step: 0.001, placeholder: '0.000'
+    .small-6.medium-3.large-3.columns
+      = f.label :unit_type
+      = f.text_field :unit_type
 
   .row
     .small-12.medium-6.large-6.columns

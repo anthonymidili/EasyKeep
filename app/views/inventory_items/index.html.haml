@@ -29,7 +29,11 @@
           - @inventory_items.each do |inventory_item|
             %tr
               %td= inventory_item.item
-              %td= inventory_item.unit_amount
+              %td
+                - if inventory_item.unit_type
+                  = pluralize(sprintf('%g' % inventory_item.unit_amount), inventory_item.unit_type)
+                - else
+                  = sprintf('%g' % inventory_item.unit_amount)
               %td= inventory_item.serial_number
               %td= inventory_item.description
               %td= raw inventory_item.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ')

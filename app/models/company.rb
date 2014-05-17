@@ -9,6 +9,7 @@ class Company < ActiveRecord::Base
   has_many :invoices
   has_many :inventory_items, dependent: :destroy
   has_many :tags, dependent: :destroy
+  has_many :units, dependent: :destroy
 
   mount_uploader :logo, LogoUploader
 
