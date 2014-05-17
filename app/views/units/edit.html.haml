@@ -1,7 +1,12 @@
-%h1 Editing unit
+- provide(:title, 'Editing Unit Type')
 
-= render 'form'
+.row
+  .small-12.columns
+    %h1.main_page_header Editing Unit Type
+    %br/
 
-= link_to 'Show', @unit
-\|
-= link_to 'Back', units_path
+    = render 'form'
+
+    = link_to 'Show', @unit
+    \|
+    = link_to 'Back', units_path

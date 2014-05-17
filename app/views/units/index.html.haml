@@ -1,21 +1,33 @@
-%h1 Listing units
+- provide(:title, 'Unit Types Listing')
 
-%table
-  %tr
-    %th Name
-    %th Company
-    %th
-    %th
-    %th
+.row
+  .small-12.columns
+  %h1.main_page_header Unit Types Listing
 
-  - @units.each do |unit|
-    %tr
-      %td= unit.name
-      %td= unit.company_id
-      %td= link_to 'Show', unit
-      %td= link_to 'Edit', edit_unit_path(unit)
-      %td= link_to 'Destroy', unit, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Company
+        %th Show
+        %th Edit
+        %th Destroy
 
-%br
+    %tbody
+      - @units.each do |unit|
+        %tr
+          %td= unit.name
+          %td= unit.company_id
+          %td= link_to 'Show', unit
+          %td.center_cell.hide_on_print
+            = link_to edit_unit_path(unit) do
+              %i.page.fi-page-edit
+          %td.center_cell.hide_on_print
+            = link_to unit, method: :delete,
+            confirm: 'Are you sure? This will permanently DELETE your UNIT TYPE!' do
+              %i.general.fi-x
 
-= link_to 'New Unit', new_unit_path
+
+  %br/
+
+  = link_to 'New Unit', new_unit_path

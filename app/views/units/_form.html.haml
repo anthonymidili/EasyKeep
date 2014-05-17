@@ -1,16 +1,10 @@
 = form_for @unit do |f|
-  - if @unit.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@unit.errors.count, "error")} prohibited this unit from being saved:"
-      %ul
-        - @unit.errors.full_messages.each do |msg|
-          %li= msg
+  = render 'shared/error_messages', object: f.object
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :company_id
-    = f.text_field :company_id
-  .actions
-    = f.submit 'Save'
+  .row
+    .small-12.medium-6.large-6.columns
+      = f.label :name
+      = f.text_field :name
+
+    .small-12.medium-6.large-6.columns.inline-tiny-button
+      = f.submit class: 'tiny button radius expand'

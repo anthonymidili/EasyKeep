@@ -1,5 +1,10 @@
-%h1 New unit
+- provide(:title, 'New Unit Type')
 
-= render 'form'
+.row
+  .small-12.columns
+    %h1.main_page_header New Unit Type
+    %br/
 
-= link_to 'Back', units_path
+    = render 'form'
+
+    = link_to 'Back', units_path

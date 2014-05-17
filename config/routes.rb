@@ -1,7 +1,4 @@
 EasyKeep::Application.routes.draw do
-  resources :units
-
-
   devise_for :users,
              :controllers => { :registrations => 'users/registrations', :invitations => 'users/invitations' }
   resource :company do
@@ -36,8 +33,9 @@ EasyKeep::Application.routes.draw do
   end
 
   resources :inventory_items
-
   get 'tags/:tag', to: 'inventory_items#index', as: :tag
+
+  resources :units
 
   get 'developer/dashboard'
 

@@ -1,12 +1,14 @@
-%p#notice= notice
+- provide(:title, 'Unit Type')
 
-%p
-  %b Name:
-  = @unit.name
-%p
-  %b Company:
-  = @unit.company_id
+.row
+  .small-12.columns
+    %h1.main_page_header Unit Type
+    %br/
 
-= link_to 'Edit', edit_unit_path(@unit)
-\|
-= link_to 'Back', units_path
+    %p
+      %b Name:
+      = @unit.name
+
+    = link_to 'Edit', edit_unit_path(@unit)
+    \|
+    = link_to 'Back', units_path
