@@ -6,12 +6,16 @@
     .small-12.medium-6.large-6.columns
       = f.label :item
       = f.text_field :item, autofocus: true
-    .small-6.medium-3.large-3.columns
+
+  .row
+    .small-12.medium-2.large-3.columns
       = f.label :unit_amount
       = f.number_field :unit_amount, step: 0.001, placeholder: '0.000'
-    .small-6.medium-3.large-3.columns
+    .small-12.medium-4.large-5.columns
       = f.label :unit_type
-      = f.text_field :unit_type
+      = f.collection_select :unit_type, current_company.units, :name, :name, :prompt => 'Select a Unit Type'
+    .small-12.medium-6.large-4.columns
+      = link_to 'or create new unit type', new_unit_path, class: 'large secondary button radius'
 
   .row
     .small-12.medium-6.large-6.columns
