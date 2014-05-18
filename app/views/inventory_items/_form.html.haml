@@ -4,26 +4,16 @@
 
   .row
     .small-12.medium-6.large-6.columns
-      = f.label :item
-      = f.text_field :item, autofocus: true
-
-  .row
-    .small-12.medium-2.large-3.columns
-      = f.label :unit_amount
-      = f.number_field :unit_amount, step: 0.001, placeholder: '0.000'
-    .small-12.medium-4.large-5.columns
-      = f.label :unit_type
-      = f.collection_select :unit_type, current_company.units, :name, :name, :prompt => 'Select a Unit Type'
-    .small-12.medium-6.large-4.columns
-      = link_to 'or create new unit type', new_unit_path, class: 'large secondary button radius'
+      = f.label :description
+      = f.text_field :description, autofocus: true
+    .small-12.medium-6.large-6.columns
+      = f.label :quantity
+      = f.number_field :quantity, step: 0.001, placeholder: '0.000'
 
   .row
     .small-12.medium-6.large-6.columns
       = f.label :serial_number
       = f.text_field :serial_number
-    .small-12.medium-6.large-6.columns
-      = f.label :description
-      = f.text_field :description
 
   .panel
     .row

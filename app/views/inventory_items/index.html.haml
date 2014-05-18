@@ -17,10 +17,9 @@
       %table
         %thead
           %tr
-            %th Item
-            %th Unit amount
-            %th Serial number
             %th Description
+            %th Quantity
+            %th Serial number
             %th Tags
             %th Edit
             %th Destroy
@@ -28,14 +27,9 @@
         %tbody
           - @inventory_items.each do |inventory_item|
             %tr
-              %td= inventory_item.item
-              %td
-                - if inventory_item.unit_type
-                  = pluralize(sprintf('%g' % inventory_item.unit_amount), inventory_item.unit_type)
-                - else
-                  = sprintf('%g' % inventory_item.unit_amount)
+              %td= link_to inventory_item.description, inventory_item_path(inventory_item)
+              %td= sprintf('%g' % inventory_item.quantity)
               %td= inventory_item.serial_number
-              %td= inventory_item.description
               %td= raw inventory_item.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ')
               %td.center_cell
                 = link_to edit_inventory_item_path(inventory_item) do
@@ -46,7 +40,3 @@
                   %i.general.fi-x
 
     = paginate @inventory_items
-    %br/
-
-    %ul.inline-list
-      %li= link_to 'Manage unit types', units_path, class: 'small secondary button radius'

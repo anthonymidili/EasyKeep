@@ -1,24 +1,17 @@
-- provide(:title, raw(@inventory_item.item))
+- provide(:title, raw(@inventory_item.description))
 
 .row
   .small-12.columns
-    %h3.main_page_header= @inventory_item.item
+    %h3.main_page_header= @inventory_item.description
     %br/
 
     %p
-      %b Unit amount:
-      - if @inventory_item.unit_type
-        = pluralize(sprintf('%g' % @inventory_item.unit_amount), @inventory_item.unit_type)
-      - else
-        = sprintf('%g' % @inventory_item.unit_amount)
+      %b Quantity:
+      = sprintf('%g' % @inventory_item.quantity)
 
     %p
       %b Serial number:
       = @inventory_item.serial_number
-
-    %p
-      %b Description:
-      = @inventory_item.description
 
     %p
       %b Tags:
