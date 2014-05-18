@@ -1,16 +1,16 @@
 class InventoryItem < ActiveRecord::Base
-  attr_accessible :company_id, :description, :item, :serial_number, :unit_amount, :unit_type, :tag_list,
+  attr_accessible :company_id, :description, :serial_number, :quantity, :tag_list,
                   :new_unit_type
 
-  before_validation { |inventory_item| inventory_item.unit_amount = 0 if inventory_item.unit_amount.blank? }
+  before_validation { |inventory_item| inventory_item.quantity = 0 if inventory_item.quantity.blank? }
 
   belongs_to :company
 
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
-  validates :item, presence: true
-  validates :unit_amount, numericality: true
+  validates :description, presence: true
+  validates :quantity, numericality: true
 
   def tag_list
     tags.map(&:name).join(', ')
