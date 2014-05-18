@@ -35,8 +35,6 @@ EasyKeep::Application.routes.draw do
   resources :inventory_items
   get 'search_tag/:tag', to: 'inventory_items#index', as: :tag
 
-  resources :units
-
   get 'developer/dashboard'
 
   get :about, to: 'welcome#about'
