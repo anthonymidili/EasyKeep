@@ -111,3 +111,13 @@ span.italic_text {
   .m { font-size: 1.2em; }
   .l { font-size: 1.8em; }
 }
+
+.on_the_spot_editing {
+  color: #00b200;
+  form {
+    button {
+      padding: 1px 3px 1px 3px !important;
+      margin: 0 4px 0 4px;
+    }
+  }
+}

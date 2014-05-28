@@ -29,7 +29,7 @@
           - @inventory_items.each do |inventory_item|
             %tr
               %td= on_the_spot_edit inventory_item, :description
-              %td= sprintf('%g' % inventory_item.quantity)
+              %td= on_the_spot_edit inventory_item, :quantity
               %td= inventory_item.serial_number
               %td= raw inventory_item.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ')
               %td.center_cell
