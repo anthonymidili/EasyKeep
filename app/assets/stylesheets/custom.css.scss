@@ -115,9 +115,17 @@ span.italic_text {
 .on_the_spot_editing {
   color: #00b200;
   form {
+    input {
+      min-width: 1em !important;
+    }
+
     button {
       padding: 1px 3px 1px 3px !important;
       margin: 0 4px 0 4px;
     }
   }
+}
+
+.on_the_spot_over {
+  background-color: yellow;
 }

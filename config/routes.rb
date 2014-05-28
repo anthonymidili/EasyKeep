@@ -25,6 +25,8 @@ EasyKeep::Application.routes.draw do
       put :add_services
       put :remove_services
       put :change_account_header
+      put :update_attribute_on_the_spot
+      get :get_attribute_on_the_spot
     end
     member do
       get :invoice_ready
