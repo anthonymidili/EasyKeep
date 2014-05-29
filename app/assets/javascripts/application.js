@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.datepicker
-//= require on_the_spot
 //= require foundation
 //= require_tree .
 

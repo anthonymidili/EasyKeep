@@ -1,7 +1,6 @@
 class InventoryItemsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin!
-  can_edit_on_the_spot
 
   def index
     if params[:tag]
