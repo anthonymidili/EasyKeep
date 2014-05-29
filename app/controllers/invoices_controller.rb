@@ -3,6 +3,7 @@ class InvoicesController < ApplicationController
   before_filter :require_admin!, except: [:show, :index]
   before_filter :set_current_account_id, only: [:index, :show]
   before_filter :require_no_payments, only: [:edit, :update, :destroy]
+  can_edit_on_the_spot
 
   def show
     @invoice = current_account.invoices.find(params[:id])

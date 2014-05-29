@@ -25,6 +25,8 @@ EasyKeep::Application.routes.draw do
       put :add_services
       put :remove_services
       put :change_account_header
+      put :update_attribute_on_the_spot
+      get :get_attribute_on_the_spot
     end
     member do
       get :invoice_ready
@@ -32,7 +34,12 @@ EasyKeep::Application.routes.draw do
     resources :payments, except: [:show, :index]
   end
 
-  resources :inventory_items
+  resources :inventory_items do
+    collection do
+      put :update_attribute_on_the_spot
+      get :get_attribute_on_the_spot
+    end
+  end
   get 'search_tag/:tag', to: 'inventory_items#index', as: :tag
 
   get 'developer/dashboard'
