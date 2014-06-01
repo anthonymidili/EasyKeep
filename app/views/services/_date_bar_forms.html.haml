@@ -17,7 +17,7 @@
   / Active Date Form
   = form_tag @account, method: :get do
     .small-6.medium-3.large-3.columns
-    /  = year_or_month_select
+      = year_or_month_select
 
     .small-6.medium-3.large-3.columns
       = submit_tag "Select #{view_by.to_s.capitalize} to View", class: 'tiny button radius', name: nil
