@@ -1,9 +1,9 @@
 class CompaniesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :require_owner!, only: [:edit, :update, :destroy, :delete_user]
-  before_filter :require_admin!, except: [:edit, :update, :destroy, :delete_user, :about]
-  before_filter :only_one_company, only: [:new, :create]
-  before_filter :set_view_quarter_cookie, only: [:income_report]
+  before_action :authenticate_user!
+  before_action :require_owner!, only: [:edit, :update, :destroy, :delete_user]
+  before_action :require_admin!, except: [:edit, :update, :destroy, :delete_user, :about]
+  before_action :only_one_company, only: [:new, :create]
+  before_action :set_view_quarter_cookie, only: [:income_report]
 
   def show
     @company = current_company
@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = current_user.build_company(params[:company])
+    @company = current_user.build_company(company_params)
 
     if @company.save && current_user.save
       redirect_to company_path, notice: 'Company was successfully created.'
@@ -32,7 +32,7 @@ class CompaniesController < ApplicationController
     @company = current_company
     @invoice = current_company.invoices.find_by_id(params[:invoice_id])
 
-      if @company.update_attributes(params[:company])
+      if @company.update_attributes(company_params)
         redirect_to_company_or_invoice
       else
         render 'edit'
@@ -67,6 +67,13 @@ class CompaniesController < ApplicationController
   end
 
 private
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def company_params
+    params.require(:company).permit(:address_1, :address_2, :city, :name, :fax, :phone, :state, :zip, :established_on,
+                                    :license_number, :service_provided, :service_summery, :website, :logo,
+                                    :remote_logo_url, :remove_logo, :logo_cache)
+  end
 
   def only_one_company
     redirect_to edit_company_path if current_company

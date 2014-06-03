@@ -1,5 +1,4 @@
 class Payment < ActiveRecord::Base
-  attr_accessible :amount, :received_on, :transaction_type, :memo
 
   before_validation { |payment| payment.amount = 0 if payment.amount.blank? }
 

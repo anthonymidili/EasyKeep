@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :require_admin!
-  before_filter :load_invoice
+  before_action :authenticate_user!
+  before_action :require_admin!
+  before_action :load_invoice
 
   def new
     @payment = @invoice.payments.build
@@ -9,7 +9,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @payment = @invoice.payments.build(params[:payment])
+    @payment = @invoice.payments.build(payment_params)
     @payment.company_id = current_company.id
     @payment.account_id = current_account.id
     @payments = @invoice.payments
@@ -29,7 +29,7 @@ class PaymentsController < ApplicationController
   def update
     @payment = @invoice.payments.find(params[:id])
 
-    if @payment.update_attributes(params[:payment])
+    if @payment.update_attributes(payment_params)
       redirect_to @invoice, notice: 'Payment was successfully updated.'
     else
       render action: 'edit'
@@ -44,6 +44,11 @@ class PaymentsController < ApplicationController
   end
 
 private
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def payment_params
+    params.require(:payment).permit(:amount, :received_on, :transaction_type, :memo)
+  end
 
   def load_invoice
     @invoice = current_account.invoices.find(params[:invoice_id])

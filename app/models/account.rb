@@ -1,6 +1,4 @@
 class Account < ActiveRecord::Base
-  attr_accessible :address_1, :address_2, :city, :fax, :name, :phone, :state, :zip,
-                  :uses_account_name, :uses_contact_name
 
   belongs_to :company
   
@@ -8,7 +6,6 @@ class Account < ActiveRecord::Base
   # in one place because they are all related to the User.
   belongs_to :user, dependent: :destroy
   accepts_nested_attributes_for :user
-  attr_accessible :user_attributes
 
   has_many :services, dependent: :destroy
   has_many :invoices, dependent: :destroy

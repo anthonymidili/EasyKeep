@@ -1,9 +1,9 @@
 class AccountsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :require_owner!, only: [:destroy]
-  before_filter :require_admin!, except: [:show, :edit, :update, :destroy]
-  before_filter :set_current_account_id
-  before_filter :authenticate_account!, only: [:show, :edit, :update]
+  before_action :authenticate_user!
+  before_action :require_owner!, only: [:destroy]
+  before_action :require_admin!, except: [:show, :edit, :update, :destroy]
+  before_action :set_current_account_id
+  before_action :authenticate_account!, only: [:show, :edit, :update]
 
   def index
     @accounts = current_company.accounts.page(params[:page]).per(10)
@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @account = current_company.accounts.build(params[:account])
+    @account = current_company.accounts.build(account_params)
     @account.user.company_id = current_company.id
     @account.user.skip_validation = true
 
@@ -41,7 +41,7 @@ class AccountsController < ApplicationController
     @account = current_account
     @account.user.skip_validation = true
 
-    if @account.update_attributes(params[:account])
+    if @account.update_attributes(account_params)
       redirect_to @account, notice: 'Account was successfully updated.'
     else
       render action: 'edit'
@@ -66,5 +66,11 @@ private
     unless current_user.is_admin? || current_account && current_user.account.id == current_account.id
       redirect_to account_path(current_user.account)
     end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def account_params
+    params.require(:account).permit(:address_1, :address_2, :city, :fax, :name, :phone, :state, :zip,
+                                    :uses_account_name, :uses_contact_name, :user_attributes)
   end
 end

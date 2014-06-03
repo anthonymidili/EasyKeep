@@ -1,5 +1,4 @@
 class Invoice < ActiveRecord::Base
-  attr_accessible :established_at, :sales_tax
 
   before_validation { |invoice| invoice.sales_tax = 0 if invoice.sales_tax.blank? || invoice.sales_tax < 0 }
 

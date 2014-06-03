@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_filter :require_owner!, only: [:destroy]
+  before_action :require_owner!, only: [:destroy]
 
   def destroy
     resource.company.destroy

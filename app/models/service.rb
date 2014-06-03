@@ -1,5 +1,4 @@
 class Service < ActiveRecord::Base
-  attr_accessible :memo, :performed_on, :cost
 
   before_validation { |service| service.cost = 0 if service.cost.blank? }
 

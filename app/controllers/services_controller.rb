@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :require_admin!
+  before_action :authenticate_user!
+  before_action :require_admin!
 
   def create
     @services = current_account.services
@@ -53,6 +53,11 @@ class ServicesController < ApplicationController
   end
 
 private
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def service_params
+    params.require(:service).permit(:memo, :performed_on, :cost)
+  end
 
   def redirect_to_account_or_invoice
     if params[:invoice_id] && !@service.invoice.nil?

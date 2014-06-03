@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  before_filter :admin_has_company?
+  before_action :admin_has_company?
 
   def home
     if user_signed_in?

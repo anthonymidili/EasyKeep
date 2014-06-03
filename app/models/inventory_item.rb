@@ -1,6 +1,4 @@
 class InventoryItem < ActiveRecord::Base
-  attr_accessible :company_id, :description, :serial_number, :quantity, :tag_list,
-                  :new_unit_type
 
   before_validation { |inventory_item| inventory_item.quantity = 0 if inventory_item.quantity.blank? }
 

@@ -1,8 +1,8 @@
 class InvoicesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :require_admin!, except: [:show, :index]
-  before_filter :set_current_account_id, only: [:index, :show]
-  before_filter :require_no_payments, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :require_admin!, except: [:show, :index]
+  before_action :set_current_account_id, only: [:index, :show]
+  before_action :require_no_payments, only: [:edit, :update, :destroy]
 
   def show
     @invoice = current_account.invoices.find(params[:id])
@@ -23,7 +23,7 @@ class InvoicesController < ApplicationController
     @invoice = current_account.invoices.find(params[:id])
     @services = current_account.services
 
-    if @invoice.update_attributes(params[:invoice])
+    if @invoice.update_attributes(invoice_params)
       redirect_to edit_invoice_path(@invoice), notice: 'Invoice was successfully updated.'
     else
       render 'edit'
@@ -82,6 +82,11 @@ invoices for #{current_account.name} Account."
   end
 
 private
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def invoice_params
+    params.require(:invoice).permit(:established_at, :sales_tax)
+  end
 
   def require_no_payments
     @invoice = current_account.invoices.find(params[:id])
