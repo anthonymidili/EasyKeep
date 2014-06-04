@@ -4,7 +4,7 @@ class ServicesController < ApplicationController
 
   def create
     @services = current_account.services
-    @service = current_account.services.build(params[:service])
+    @service = current_account.services.build(service_params)
     @account = current_account
 
     if @service.save
@@ -43,7 +43,7 @@ class ServicesController < ApplicationController
 
       if @invoice.save
         @services = current_account.services
-        @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
+        @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
 
         redirect_to invoice_path(@invoice)
       else

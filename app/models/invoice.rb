@@ -9,9 +9,9 @@ class Invoice < ActiveRecord::Base
   has_many :payments, dependent: :destroy
 
   validates :sales_tax, numericality: true
-  validates :established_at,
-            format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
-                      message: 'date must be formatted correctly (yyyy-mm-dd)' }
+  # validates :established_at,
+  #          format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
+  #                    message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
   default_scope { order('established_at DESC') }
 
@@ -20,7 +20,7 @@ class Invoice < ActiveRecord::Base
   end
 
   def sub_total
-    services.sum(&:cost)
+    services.sum(:cost)
   end
 
   def services_sales_tax
@@ -32,7 +32,7 @@ class Invoice < ActiveRecord::Base
   end
 
   def payments_total
-    payments.sum(&:amount)
+    payments.sum(:amount)
   end
 
   def balance_due

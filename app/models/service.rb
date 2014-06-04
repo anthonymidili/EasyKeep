@@ -6,9 +6,9 @@ class Service < ActiveRecord::Base
   belongs_to :invoice
 
   validates :cost, numericality: true
-  validates :performed_on,
-            format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
-                      message: 'date must be formatted correctly (yyyy-mm-dd)' }
+  # validates :performed_on,
+  #          format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
+  #                    message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
   default_scope { order('performed_on DESC') }
 

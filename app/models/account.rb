@@ -20,16 +20,16 @@ class Account < ActiveRecord::Base
   end
 
   def sum_services(view, date)
-    services_items(view, date).sum(&:cost)
+    services_items(view, date).sum(:cost)
   end
 
   def sum_invoiceable_services
-    services.where(invoice_id: nil).sum(&:cost)
+    services.where(invoice_id: nil).sum(:cost)
   end
 
   def total_account_payments(date, view_by)
     time_range = (date.send("beginning_of_#{view_by}")..date.send("end_of_#{view_by}"))
-    payments.where(received_on: time_range).sum(&:amount)
+    payments.where(received_on: time_range).sum(:amount)
   end
 
   def all_services_invoiced?

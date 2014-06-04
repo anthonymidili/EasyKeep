@@ -48,7 +48,7 @@ re-invoiced.'
       @invoice = current_account.invoices.find(params[:id])
       @services = current_account.services
 
-      @services.update_all({invoice_id: @invoice.id}, {id: params[:service_ids]})
+      @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
 
       redirect_to edit_invoice_path(@invoice), notice: 'Successfully added services to invoice.'
     end
@@ -58,7 +58,7 @@ re-invoiced.'
     ActiveRecord::Base.transaction do
       @invoice = current_account.invoices.find(params[:id])
 
-      @invoice.services.update_all({invoice_id: nil}, {id: params[:service_ids]})
+      @invoice.services.where(id: params[:service_ids]).update_all(invoice_id: nil)
 
       redirect_to edit_invoice_path(@invoice), notice: 'Successfully removed services from invoice.'
     end

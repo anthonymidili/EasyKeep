@@ -34,7 +34,7 @@ class Company < ActiveRecord::Base
 
   def total_company_payments(date, view_by)
     time_range = (date.send("beginning_of_#{view_by}")..date.send("end_of_#{view_by}"))
-    payments.where(received_on: time_range).sum(&:amount)
+    payments.where(received_on: time_range).sum(:amount)
   end
 
   def total_less_taxes(date, view_by)
