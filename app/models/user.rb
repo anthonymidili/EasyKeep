@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name
+  # attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   # attr_accessible :title, :body
   attr_accessor :skip_validation
   attr_accessor :require_email
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validate :unique_email_required
 
-  default_scope order: 'id ASC'
+  default_scope { order('id ASC') }
 
   def password_required?
     super unless @skip_validation

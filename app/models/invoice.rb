@@ -13,7 +13,7 @@ class Invoice < ActiveRecord::Base
             format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
-  default_scope order: 'established_at DESC'
+  default_scope { order('established_at DESC') }
 
   def sales_tax!
     sales_tax * 0.01
