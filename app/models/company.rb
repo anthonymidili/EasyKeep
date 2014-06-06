@@ -62,8 +62,8 @@ class Company < ActiveRecord::Base
 private
 
   def less_invoice_tax(time_range)
-    invoices.sum { |invoice|
-      invoice.payments.where(received_on: time_range).sum(&:amount) / (invoice.sales_tax! + 1)
-    }
+    invoices.map { |invoice|
+      invoice.payments.where(received_on: time_range).sum(:amount) / (invoice.sales_tax! + 1)
+    }.sum
   end
 end
