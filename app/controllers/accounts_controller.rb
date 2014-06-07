@@ -50,7 +50,7 @@ class AccountsController < ApplicationController
 
   def destroy
     @account = current_account
-    @account.user.destroy
+    @account.destroy
     redirect_to accounts_url, alert: 'Account and all account information was successfully deleted.'
   end
 
