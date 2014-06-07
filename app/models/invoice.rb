@@ -9,9 +9,9 @@ class Invoice < ActiveRecord::Base
   has_many :payments, dependent: :destroy
 
   validates :sales_tax, numericality: true
-  # validates :established_at,
-  #          format: { with: /^(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})$/,
-  #                    message: 'date must be formatted correctly (yyyy-mm-dd)' }
+  validates :established_at,
+            format: { with: /\A(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})\z/,
+                      message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
   default_scope { order('established_at DESC') }
 
