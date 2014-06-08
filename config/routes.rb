@@ -1,6 +1,7 @@
 EasyKeep::Application.routes.draw do
   devise_for :users,
              :controllers => { :registrations => 'users/registrations', :invitations => 'users/invitations' }
+
   resource :company do
     member do
       get :income_report
