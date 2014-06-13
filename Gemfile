@@ -29,7 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rmagick', '~> 2.13.2'
 # must stay this version to work properly
 gem 'carrierwave', '~> 0.9.0'
-gem 'fog', '~> 1.3.1'
+gem 'fog', '~> 1.0'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]

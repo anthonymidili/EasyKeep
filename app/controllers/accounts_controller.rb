@@ -72,6 +72,6 @@ private
   def account_params
     params.require(:account).permit(:address_1, :address_2, :city, :fax, :name, :phone, :state, :zip,
                                     :uses_account_name, :uses_contact_name,
-                                    user_attributes: [:email, :password, :password_confirmation, :remember_me, :name])
+                                    user_attributes: [:id, :email, :password, :password_confirmation, :remember_me, :name])
   end
 end
