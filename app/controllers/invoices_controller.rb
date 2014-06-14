@@ -74,7 +74,7 @@ re-invoiced.'
   def change_account_header
     ActiveRecord::Base.transaction do
       @invoice = current_account.invoices.find(params[:id])
-      current_account.update_attributes(params[:account])
+      current_account.update_attributes(account_params)
 
       redirect_to edit_invoice_path(@invoice), notice: "Account was successfully updated for all current and future
 invoices for #{current_account.name} Account."
@@ -86,6 +86,10 @@ private
   # Never trust parameters from the scary internet, only allow the white list through.
   def invoice_params
     params.require(:invoice).permit(:established_at, :sales_tax)
+  end
+
+  def account_params
+    params.require(:account).permit(:uses_account_name, :uses_contact_name)
   end
 
   def require_no_payments

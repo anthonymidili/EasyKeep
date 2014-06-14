@@ -25,10 +25,10 @@ EasyKeep::Application.routes.draw do
     collection do
       put :add_services
       put :remove_services
-      put :change_account_header
     end
     member do
       get :invoice_ready
+      patch :change_account_header
     end
     resources :payments, except: [:show, :index]
   end
