@@ -11,13 +11,13 @@
         %b= User.all.count
       %li
         Number of company owners:
-        %b= User.where(is_owner: true).count
+        %b= User.by_owner_user.count
 
     .scroll_overflow-x
       %table
         %thead
           %tr
-            %th User Name
+            %th Admin User Name
             %th Email
             %th ID
             %th Comp ID
@@ -26,7 +26,7 @@
             %th Sign in count
             %th Last sign in at
         %tbody
-          - @users.each do |user|
+          - @admin_users.each do |user|
             %tr
               %td= user.name
               %td= user.email
@@ -37,4 +37,4 @@
               %td= user.sign_in_count unless user.sign_in_count.nil?
               %td= user.last_sign_in_at.strftime('%Y-%b-%d @ %I:%M%p') unless user.last_sign_in_at.nil?
 
-    = paginate @users
+    = paginate @admin_users

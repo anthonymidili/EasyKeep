@@ -17,14 +17,14 @@ EasyKeep::Application.routes.draw do
 
   resources :services, except: [:show, :index, :new] do
     collection do
-      put :invoice
+      patch :invoice
     end
   end
 
   resources :invoices, except: [:new, :create] do
     collection do
-      put :add_services
-      put :remove_services
+      patch :add_services
+      patch :remove_services
     end
     member do
       get :invoice_ready

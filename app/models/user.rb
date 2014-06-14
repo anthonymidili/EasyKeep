@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
 
   default_scope { order('id ASC') }
 
+  scope :by_admin_user, -> { where(is_admin: true) }
+
+  scope :by_owner_user, -> { where(is_owner: true) }
+
   def password_required?
     super unless @skip_validation
   end
