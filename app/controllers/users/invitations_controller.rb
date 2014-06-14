@@ -1,6 +1,5 @@
 class Users::InvitationsController < Devise::InvitationsController
   before_action :require_owner!, only: [:new, :create]
-  before_action :require_admin!, except: [:new,:create]
 
   def create
     self.resource = invite_resource
