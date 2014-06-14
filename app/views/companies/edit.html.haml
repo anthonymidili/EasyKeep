@@ -12,5 +12,5 @@
         = link_to 'Destroy Company', @company,
         class: 'small alert button radius',
         method: :delete,
-        confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, ADMINS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!'
+        data: { confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, ADMINS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' }
       %li= link_to 'Accounts listing', accounts_path, class: 'small button radius'

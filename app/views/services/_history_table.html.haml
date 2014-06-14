@@ -29,5 +29,5 @@
                 %i.page.fi-page-edit
             %td.center_cell
               = link_to service, method: :delete,
-              confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' do
+              data: { confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' } do
                 %i.general.fi-x

@@ -27,7 +27,7 @@
                   %i.page.fi-page-edit
               %td.center_cell
                 = link_to service, method: :delete,
-                confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' do
+                data: { confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' } do
                   %i.general.fi-x
 
   = submit_tag 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin?

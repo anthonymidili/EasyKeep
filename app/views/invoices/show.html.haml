@@ -9,7 +9,7 @@
       - if current_user.is_owner? && !@invoice.payments.any?
         %li
           = link_to 'Delete Invoice', @invoice, class: 'small alert button radius',  method: :delete,
-          confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.'
+          data: { confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' }
 
     = render 'shared/company_info'
     %p

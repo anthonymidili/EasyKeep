@@ -7,7 +7,7 @@
       - if current_user.is_owner?
         %li
           = link_to 'Destroy Account', @account, class: 'small alert button radius', method: :delete,
-          confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!'
+          data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' }
 
     %h3.main_page_header= "#{@account.name} Account"
     = render 'shared/customer_info'

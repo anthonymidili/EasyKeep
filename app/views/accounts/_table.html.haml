@@ -31,6 +31,6 @@
         - if current_user.is_owner?
           %td.center_cell
             = link_to account, method: :delete,
-            confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!'  do
+            data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' }  do
               %i.general.fi-x
       = render 'accounts/contact_info_modal', account: account

@@ -21,7 +21,7 @@ class ServicesController < ApplicationController
   def update
     @service = current_account.services.find(params[:id])
 
-    if @service.update_attributes(params[:service])
+    if @service.update_attributes(service_params)
       redirect_to_account_or_invoice
     else
       render :edit
