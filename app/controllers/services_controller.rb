@@ -24,7 +24,7 @@ class ServicesController < ApplicationController
     if @service.update_attributes(params[:service])
       redirect_to_account_or_invoice
     else
-      render 'edit'
+      render :edit
     end
   end
 

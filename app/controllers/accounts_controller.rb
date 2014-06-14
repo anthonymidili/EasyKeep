@@ -29,7 +29,7 @@ class AccountsController < ApplicationController
     if @account.save
       redirect_to @account, notice: 'Account was successfully created.'
     else
-      render action: 'new'
+      render :new
     end
   end
 
@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
     if @account.update_attributes(account_params)
       redirect_to @account, notice: 'Account was successfully updated.'
     else
-      render action: 'edit'
+      render :edit
     end
   end
 

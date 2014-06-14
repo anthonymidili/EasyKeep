@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
     if @company.save && current_user.save
       redirect_to company_path, notice: 'Company was successfully created.'
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -35,7 +35,7 @@ class CompaniesController < ApplicationController
       if @company.update_attributes(company_params)
         redirect_to_company_or_invoice
       else
-        render 'edit'
+        render :edit
       end
   end
 
@@ -90,7 +90,7 @@ private
                   notice: 'Here is the Invoice you requested.'
     else
       flash[:alert] = "Could not find Invoice# #{params[:search]}."
-      render 'search_invoices'
+      render :search_invoices
     end
   end
 

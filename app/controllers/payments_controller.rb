@@ -32,7 +32,7 @@ class PaymentsController < ApplicationController
     if @payment.update_attributes(payment_params)
       redirect_to @invoice, notice: 'Payment was successfully updated.'
     else
-      render action: 'edit'
+      render :edit
     end
   end
 

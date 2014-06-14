@@ -26,7 +26,7 @@ class InvoicesController < ApplicationController
     if @invoice.update_attributes(invoice_params)
       redirect_to edit_invoice_path(@invoice), notice: 'Invoice was successfully updated.'
     else
-      render 'edit'
+      render :edit
     end
   end
 

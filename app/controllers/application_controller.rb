@@ -5,15 +5,11 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def require_owner!
-    if user_signed_in?
-      redirect_to root_path unless current_user.is_owner?
-    end
+    redirect_to root_path unless user_signed_in? && current_user.is_owner?
   end
 
   def require_admin!
-    if user_signed_in?
-      redirect_to root_path unless current_user.is_admin?
-    end
+    redirect_to root_path unless user_signed_in? && current_user.is_admin?
   end
 
   def current_company

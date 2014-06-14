@@ -24,7 +24,7 @@ class InventoryItemsController < ApplicationController
     if @inventory_item.save
       redirect_to inventory_items_path, notice: 'Inventory was successfully created.'
     else
-      render action: 'new'
+      render :new
     end
   end
 
@@ -38,7 +38,7 @@ class InventoryItemsController < ApplicationController
     if @inventory_item.update_attributes(inventory_item_params)
       redirect_to inventory_items_path, notice: 'Inventory was successfully updated.'
     else
-      render action: 'edit'
+      render :edit
     end
   end
 
