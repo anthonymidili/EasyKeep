@@ -25,6 +25,7 @@ gem 'uglifier', '~> 2.5.0'
 gem 'jquery-ui-sass-rails', '~> 4.0.3'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'rails_12factor', '~> 0.0.2'
 
 gem 'rmagick', '~> 2.13.2'
 # must stay this version to work properly
