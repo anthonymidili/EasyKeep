@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => ENV['SENDGRID_DOMAIN']
+  default :from => ENV['DEVISE_MAILER_SENDER']
 
   def invoice_ready_notice(invoice)
     @invoice = invoice
