@@ -1,4 +1,5 @@
 EasyKeep::Application.routes.draw do
+
   devise_for :users,
              :controllers => { :registrations => 'users/registrations', :invitations => 'users/invitations' }
 
@@ -11,8 +12,12 @@ EasyKeep::Application.routes.draw do
     end
   end
 
+  resources :dashboard, only: [:index]
+  get 'dashboard/developer', as: :developer_dashboard
+  get 'dashboard/developer/:all_users', to: 'dashboard#developer', as: :all_users
+
   resources :accounts do
-    post :invite_customer
+    post :invite_customer, on: :member
   end
 
   resources :services, except: [:show, :index, :new] do
@@ -36,12 +41,8 @@ EasyKeep::Application.routes.draw do
   resources :inventory_items
   get 'search_tag/:tag', to: 'inventory_items#index', as: :tag
 
-  get 'developer/dashboard'
-  get 'developer/dashboard/:all_users', to: 'developer#dashboard', as: :all_users
-
   get :about, to: 'welcome#about'
   get :contact_us, to: 'welcome#contact_us'
-
   get 'sitemap.xml' => 'welcome#sitemap', format: :xml, as: :sitemap
 
   root to: 'welcome#home'

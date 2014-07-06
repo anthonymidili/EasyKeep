@@ -1,3 +1,5 @@
+- provide(:title, 'Developer Dashboard')
+
 .row
   .small-12.columns
     = image_tag 'ManOnFire_WebDesign_Header_medium.png'
@@ -14,7 +16,9 @@
         %b= User.by_owner_user.count
 
 .row
-  .small-12.columns
+  .small-6.columns
+    %b= params[:all_users] ? 'Viewing all users' : 'Only viewing Admins'
+    |
     = admin_or_all_users
 
 = render :partial => 'users_table'

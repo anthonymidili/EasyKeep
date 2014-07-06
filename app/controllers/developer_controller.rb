@@ -1,8 +1,11 @@
-class DeveloperController < ApplicationController
+class DashboardController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_developer!
 
-  def dashboard
+  def index
+  end
+
+  def developer
+    authenticate_developer!
     @users = Kaminari.paginate_array(admins_or_all_users.sort_by(&:company_id)).page(params[:page]).per(10)
   end
 

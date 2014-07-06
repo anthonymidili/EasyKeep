@@ -31,6 +31,15 @@ class User < ActiveRecord::Base
     self.encrypted_password.present? || self.invitation_token.present? || @require_email
   end
 
+  def role
+    @role ||=
+        if is_admin?
+          :admin
+        else
+          :customer
+        end
+  end
+
 private
 
   def unique_email_required
