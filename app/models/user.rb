@@ -6,15 +6,13 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  # attr_accessible :email, :password, :password_confirmation, :remember_me, :name
-  # attr_accessible :title, :body
   attr_accessor :skip_validation
   attr_accessor :require_email
 
   has_one :account, dependent: :destroy
 
   belongs_to :company
+  accepts_nested_attributes_for :company
 
   validates :name, presence: true
   validate :unique_email_required

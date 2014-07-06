@@ -9,6 +9,11 @@
         = devise_error_messages!
         = f.label :name
         = f.text_field :name, autofocus: true
+
+        = f.fields_for(:company) do |company_f|
+          = company_f.label :name
+          = company_f.text_field :name
+
         = f.label :email
         = f.text_field :email
         = f.label :password

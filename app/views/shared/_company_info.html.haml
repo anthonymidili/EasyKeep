@@ -9,14 +9,16 @@
         %label
           %b Owner:
           = current_company.owner.name
-      %li
-        %label
-          %b Address:
-          = current_company.full_address
-      %li
-        %label
-          %b Phone:
-          = current_company.phone
+      - if current_company.full_address.present?
+        %li
+          %label
+            %b Address:
+            = current_company.full_address
+      - if current_company.phone.present?
+        %li
+          %label
+            %b Phone:
+            = current_company.phone
       - if current_company.fax.present?
         %li
           %label

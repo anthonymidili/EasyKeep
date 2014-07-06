@@ -10,11 +10,6 @@ class Company < ActiveRecord::Base
   mount_uploader :logo, LogoUploader
 
   validates :name, presence: true
-  validates :address_1, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
-  validates :zip, presence: true
-  validates :phone, presence: true
   # validates :established_on,
   #          format: { with: /\A(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})\z/,
   #                    message: 'date must be formatted correctly (yyyy-mm-dd)' }
