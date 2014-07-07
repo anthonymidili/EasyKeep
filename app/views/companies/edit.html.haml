@@ -1,11 +1,18 @@
 - provide(:title, 'Edit Company')
 
 .row
-  .small-12.medium-8.large-8.small-centered.columns
+  .small-12.columns
     %h1.main_page_header Editing Company
+    %br/
+
+    %h5 Company Header Preview
+    = render 'shared/company_info'
+    %hr/
 
     = render 'form'
 
+.row
+  .small-12.columns
     %ul.inline-list
       %li= link_to 'Company admins', company_path, class: 'small button radius'
       %li
