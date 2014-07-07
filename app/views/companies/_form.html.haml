@@ -2,7 +2,7 @@
   = render 'shared/error_messages', object: f.object
   = hidden_field_tag :invoice_id, @invoice.id if @invoice
   .row
-    .small-12.medium-6.large-7.columns
+    .small-12.medium-8.large-8.columns
       .row
         .small-12.medium-6.large-6.columns
           = f.label :name
@@ -21,11 +21,13 @@
           = f.label :established_on, 'Established on (yyyy-mm-dd)'
           = f.text_field :established_on, class: 'datePicker', placeholder: 'Date'
 
-    .small-12.medium-6.large-5.columns
+    .small-12.medium-4.large-4.columns
       .row
         .small-12.columns
           %h6
-            Have a logo you'd like to show off? Then Upload it.
+            Have a logo you'd like to show off?
+            %br/
+            Then Upload it.
           = f.file_field :logo
           = f.label :remote_logo_url, 'or image URL'
           = f.text_field :remote_logo_url
@@ -35,31 +37,7 @@
             Check box to remove Logo
   %hr/
 
-  .row
-    .small-12.columns
-      %h6
-        Tell EasyKeep what type of service you provide. That way when you create an invoice for your
-        customers, instead of just saying "Services" over the services listed on the invoice, it will say
-        "Cleaning Services" or "Lawn Care Services". Keep in mind that the word "Services" will be added after
-        the type of service you provide.
-
-  .row
-    .small-12.medium-6.large-6.columns
-      = f.label :service_provided
-      .row.collapse
-        .small-7.columns
-          = f.text_field :service_provided
-        .small-5.columns
-          %span.postfix.radius Services
-  %br/
-
-  .row
-    .small-12.columns
-      %h6
-        Let your customers know what you and your company are all about. Your customers will see this on your
-        About Company page.
-      = f.label :service_summery
-      = f.text_area :service_summery, placeholder: 'example: "Providing a service at a reasonable price..."'
+  = render'companies/services_form', f: f
 
   .row
     .small-12.medium-6.large-6.columns

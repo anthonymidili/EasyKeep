@@ -31,7 +31,7 @@ module CompaniesHelper
     if current_company.logo.present?
       image_tag current_company.logo_url(:thumb)
     else
-      image_tag 'business-shop.png', class: 'resize_photo'
+      image_tag 'default_logo.png', class: 'resize_photo'
     end
   end
 end
