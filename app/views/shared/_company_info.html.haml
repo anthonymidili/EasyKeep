@@ -3,7 +3,7 @@
     - if params[:controller] == 'companies' && params[:action] == 'edit'
       = logo_or_default
     - else
-      = image_tag current_company.logo_url(:thumb) if curent_company.logo.present?
+      = image_tag current_company.logo_url(:thumb) if current_company.logo.present?
 
   .small-12.medium-8.large-8.pull-4.columns
     %h3= current_company.name
