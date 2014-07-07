@@ -1,6 +1,6 @@
 .row
   .small-12.medium-4.large-4.push-8.columns
-    = image_tag current_company.logo_url(:thumb) if current_company.logo.present?
+    = logo_or_default
 
   .small-12.medium-8.large-8.pull-4.columns
     %h3= current_company.name
