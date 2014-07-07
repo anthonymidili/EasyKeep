@@ -4,12 +4,6 @@
   .small-12.columns
     = render 'shared/company_info'
 
-    - unless @company.accounts.any?
-      .row
-        .small-8.small-centered.columns
-          = link_to 'Ready to create your First Account? Click Here.', new_account_path,
-          class: 'large button radius expand alert'
-
     %ul.inline-list
       - if current_user.is_owner?
         %li= link_to 'Invite New Admin', new_user_invitation_path, class: 'small button radius'

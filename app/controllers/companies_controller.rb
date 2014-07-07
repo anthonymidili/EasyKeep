@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
     @company = current_user.build_company(company_params)
 
     if @company.save && current_user.save
-      redirect_to company_path, notice: 'Company was successfully created.'
+      redirect_to dashboard_index_path, notice: 'Company was successfully created.'
     else
       render :new
     end
