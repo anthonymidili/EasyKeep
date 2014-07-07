@@ -26,4 +26,12 @@ module CompaniesHelper
       else; 'year'
     end
   end
+
+  def logo_or_default
+    if current_company.logo.present?
+      image_tag current_company.logo_url(:thumb)
+    else
+      image_tag 'business-shop.png', class: 'logo_icon'
+    end
+  end
 end

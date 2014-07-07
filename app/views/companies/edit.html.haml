@@ -3,11 +3,10 @@
 .row
   .small-12.columns
     %h1.main_page_header Editing Company
-    %br/
 
-    %h5 Company Header Preview
-    = render 'shared/company_info'
-    %hr/
+    .outline
+      %label Company Header Preview
+      = render 'shared/company_info'
 
     = render 'form'
 
