@@ -25,11 +25,7 @@
       .row
         .small-12.columns
           %h6
-            Have a logo you'd like to show off? Then upload it.
-
-          = f.label :logo do
-            Upload your Logo
-            \#{image_tag(f.object.logo_url) if f.object.logo?}
+            Have a logo you'd like to show off? Then Upload it.
           = f.file_field :logo
           = f.label :remote_logo_url, 'or image URL'
           = f.text_field :remote_logo_url

@@ -1,6 +1,9 @@
 .row
   .small-12.medium-4.large-4.push-8.columns
-    = logo_or_default
+    .visible-for-small-only
+      = logo_or_default
+    .visible-for-medium-up
+      .right= logo_or_default
 
   .small-12.medium-8.large-8.pull-4.columns
     %h3= current_company.name
