@@ -1,0 +1,40 @@
+.row
+  .small-3.medium-3.large-2.columns
+    = logo_or_default
+
+  .small-9.medium-9.large-10.columns
+    %h3= current_company.name
+    %ul.small-text.no_bullets
+      %li
+        %label
+          %b Owner:
+          = current_company.owner.name
+      - if current_company.full_address.present?
+        %li
+          %label
+            %b Address:
+            = current_company.full_address
+      - if current_company.phone.present?
+        %li
+          %label
+            %b Phone:
+            = current_company.phone
+      - if current_company.fax.present?
+        %li
+          %label
+            %b Fax:
+            = current_company.fax
+      %li
+        %label
+          %b Email:
+          = current_company.owner.email
+      - if current_company.website.present?
+        %li
+          %label
+            %b Website:
+            = current_company.website
+      - if current_company.license_number.present?
+        %li
+          %label
+            %b License #:
+            = current_company.license_number
