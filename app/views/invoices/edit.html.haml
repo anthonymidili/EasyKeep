@@ -9,11 +9,11 @@
       %li= link_to 'Back to Invoice', invoice_path(@invoice), class: 'small button radius'
       %li= link_to 'Edit Company Header', edit_company_path(invoice_id: @invoice.id), class: 'small button radius'
 
-    = render 'shared/company_info'
+    = render 'companies/header'
     = render 'invoices/change_invoice_date'
     %b Invoice# #{@invoice.id}
     = render 'invoices/change_account_header'
-    = render 'shared/customer_info'
+    = render 'shared/customer_header'
     = render 'invoices/remove_services'
     = render 'invoices/totals'
     %hr/
