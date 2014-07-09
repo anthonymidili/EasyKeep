@@ -1,6 +1,12 @@
 @media print {
   html, body {overflow-x: inherit !important;}
 
+  @for $i from 1 through $total-columns {
+    .large-#{$i} {
+      width: percentage($i / $total-columns);
+    }
+  }
+
   .hide_on_print {
     display: none;
   }
