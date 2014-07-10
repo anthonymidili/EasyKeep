@@ -1,5 +1,7 @@
 @media print {
-  html, body {overflow-x: inherit !important;}
+  html, body {
+    overflow-x: visible !important;
+  }
 
   @for $i from 1 through $total-columns {
     .large-#{$i} {
@@ -12,11 +14,11 @@
   }
 
   div.panel {
-    border: 1px solid black;
+    border: 1px solid #b5b5b5;
   }
 
   table {
-    border: 1px solid black;
+    border: 1px solid #b5b5b5;
     page-break-inside: avoid;
   }
 }

@@ -1,8 +1,7 @@
 .row
-  .small-12.medium-4.large-4.push-8.columns
-    .visible-for-small-only.hide-on-print
-      = logo_or_default
-    .visible-for-medium-up
-      .right= logo_or_default
-
-  = render 'companies/info'
+  .small-12.columns
+    %ul.inline-list
+      %li
+        = logo_or_default
+      %li
+        = render 'companies/info'
