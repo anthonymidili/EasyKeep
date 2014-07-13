@@ -9,34 +9,4 @@
     .outline
       %b= link_to 'Accounts', accounts_path
 
-    .outline
-      %p
-        %b New Service
-      = form_for @service, url: services_dashboard_create_path, method: :post do |f|
-        = render 'shared/error_messages', object: f.object
-
-        .row
-          .small-12.columns
-            = f.label :account_id, 'Select Account'
-            = f.collection_select :account_id, current_company.accounts, :id, :name
-
-        .row
-          .small-12.medium-6.large-6.columns
-            = f.label :performed_on, 'Performed on (yyyy-mm-dd)'
-            = f.text_field :performed_on, class: 'datePicker', placeholder: 'Date'
-
-          .small-12.medium-6.large-6.columns
-            = f.label :cost
-            .row.collapse
-              .small-3.medium-2.large-2.columns
-                %span.prefix $
-              .small-9.medium-10.large-10.columns
-                = f.number_field :cost, step: 0.01, placeholder: '0.00'
-
-        .row
-          .small-12.medium-6.large-6.columns
-            = f.label :memo
-            = f.text_field :memo
-
-          .small-12.medium-6.large-6.columns
-            = f.submit class: 'small button small_button_down radius expand'
+    = render 'dashboard/new_service'
