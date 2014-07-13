@@ -4,6 +4,7 @@ class Service < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :invoice
+  belongs_to :company
 
   validates :cost, numericality: true
   validates :performed_on,

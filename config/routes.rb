@@ -13,6 +13,7 @@ EasyKeep::Application.routes.draw do
   end
 
   resources :dashboard, only: [:index]
+  post 'services/dashboard_create'
   get 'dashboard/developer', as: :developer_dashboard
   get 'dashboard/developer/:all_users', to: 'dashboard#developer', as: :all_users
 

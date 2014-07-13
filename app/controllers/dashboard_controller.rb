@@ -2,6 +2,8 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @service = current_company.services.build
+    @service.performed_on ||= Date.current
   end
 
   def developer

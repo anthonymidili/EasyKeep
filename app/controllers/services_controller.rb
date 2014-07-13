@@ -3,14 +3,27 @@ class ServicesController < ApplicationController
   before_action :require_admin!
 
   def create
+    @account = current_account
     @services = current_account.services
     @service = current_account.services.build(service_params)
-    @account = current_account
+    @service.company_id = current_company.id
 
     if @service.save
       redirect_to current_account, notice: 'Service was successfully created.'
     else
       render 'accounts/show'
+    end
+  end
+
+  def dashboard_create
+    account = current_company.accounts.find(params[:service][:account_id])
+    @service = account.services.build(service_params)
+    @service.company_id = current_company.id
+
+    if @service.save
+      redirect_to dashboard_index_path, notice: 'Service was successfully created.'
+    else
+      render 'dashboard/index'
     end
   end
 
