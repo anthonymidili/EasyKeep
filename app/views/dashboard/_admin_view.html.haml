@@ -7,15 +7,17 @@
         = render 'companies/header_preview'
 
     .outline
-      = link_to 'Accounts', accounts_path
+      %b= link_to 'Accounts', accounts_path
 
     .outline
-      %p Services
+      %p
+        %b New Service
       = form_for @service, url: services_dashboard_create_path, method: :post do |f|
         = render 'shared/error_messages', object: f.object
 
         .row
           .small-12.columns
+            = f.label :account_id, 'Select Account'
             = f.collection_select :account_id, current_company.accounts, :id, :name
 
         .row
