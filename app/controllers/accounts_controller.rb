@@ -2,8 +2,7 @@ class AccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_owner!, only: [:destroy]
   before_action :require_admin!, except: [:edit, :update, :destroy]
-  before_action :set_current_account_id
-  before_action :authenticate_account!, only: [:edit, :update]
+  before_action :authenticate_account!, except: [:index, :new, :create]
 
   def index
     @accounts = current_company.accounts.page(params[:page]).per(10)
@@ -71,7 +70,7 @@ private
   end
 
   def authenticate_account!
-    unless current_user.is_admin? || current_account && current_user.account.id == current_account.id
+    if current_account.nil?
       redirect_to root_path
     end
   end

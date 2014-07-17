@@ -26,15 +26,19 @@ class ApplicationController < ActionController::Base
           cookies[:current_account] = params[:id]
         elsif current_user.is_admin? && params[:account_id]
           cookies[:current_account] = params[:account_id]
-        elsif !current_user.is_admin?
-          cookies[:current_account] = current_user.account.id
         end
   end
 
-  # The current_account_id is set to the current_account the user is viewing.
+  # The current_account_id is set to the current_account the admin is viewing.
   # Find the current_account by id so if the account is not found it returns nil.
   def current_account
-    @current_account ||= current_company.accounts.find_by_id(cookies[:current_account]) if user_signed_in?
+    @current_account ||=
+        if current_user.is_admin?
+          set_current_account_id
+          current_company.accounts.find_by_id(cookies[:current_account])
+        else
+          current_user.account
+        end
   end; helper_method :current_account
 
   def active_date

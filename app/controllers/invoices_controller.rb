@@ -1,7 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin!, except: [:show, :index]
-  before_action :set_current_account_id, only: [:index, :show]
   before_action :require_no_payments!, only: [:edit, :update, :destroy]
 
   def show
