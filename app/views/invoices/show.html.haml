@@ -16,7 +16,7 @@
       %b= @invoice.established_at.strftime('%Y-%b-%d')
     %b Invoice# #{@invoice.id}
 
-    = render 'shared/customer_header'
+    .panel= render 'shared/customer_header'
 
     %h4= current_company.service_provided!
     %table

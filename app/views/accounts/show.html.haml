@@ -10,7 +10,7 @@
           data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' }
 
     %h3.main_page_header= "#{@account.name} Account"
-    = render 'shared/customer_header'
+    .panel= render 'shared/customer_header'
     = render 'services/new' if current_user.is_admin?
     = render 'services/invoiceable'
     = render 'services/history'

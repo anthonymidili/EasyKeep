@@ -1,3 +1,22 @@
 .row
   .small-12.columns
-    %h1 Customer Dashboard
+    %br/
+
+    .outline
+      = render 'companies/header_preview'
+
+    .outline
+      .row
+        .small-8.columns
+          %h5 Your contact information
+        .small-4.columns
+          = link_to edit_account_path(current_account) do
+            .right
+              Edit
+              %i.page.fi-page-edit
+      .row
+        .small-12.columns
+          = render 'shared/customer_header'
+
+    .outline
+      %h5 Recent Activity
