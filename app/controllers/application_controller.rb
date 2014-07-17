@@ -26,6 +26,8 @@ class ApplicationController < ActionController::Base
           cookies[:current_account] = params[:id]
         elsif current_user.is_admin? && params[:account_id]
           cookies[:current_account] = params[:account_id]
+        elsif !current_user.is_admin?
+          cookies[:current_account] = current_user.account.id
         end
   end
 

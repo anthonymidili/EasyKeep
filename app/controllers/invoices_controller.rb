@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin!, except: [:show, :index]
   before_action :set_current_account_id, only: [:index, :show]
-  before_action :require_no_payments, only: [:edit, :update, :destroy]
+  before_action :require_no_payments!, only: [:edit, :update, :destroy]
 
   def show
     @invoice = current_account.invoices.find(params[:id])
@@ -15,12 +15,10 @@ class InvoicesController < ApplicationController
   end
 
   def edit
-    @invoice = current_account.invoices.find(params[:id])
     @services = current_account.services
   end
 
   def update
-    @invoice = current_account.invoices.find(params[:id])
     @services = current_account.services
 
     if @invoice.update_attributes(invoice_params)
@@ -32,7 +30,6 @@ class InvoicesController < ApplicationController
 
   def destroy
     ActiveRecord::Base.transaction do
-      @invoice = current_account.invoices.find(params[:id])
       @services = current_account.services
 
       @services.update_all({invoice_id: nil}, {id: @invoice.services})
@@ -92,7 +89,7 @@ private
     params.require(:account).permit(:uses_account_name, :uses_contact_name)
   end
 
-  def require_no_payments
+  def require_no_payments!
     @invoice = current_account.invoices.find(params[:id])
     redirect_to @invoice if @invoice.payments.any?
   end

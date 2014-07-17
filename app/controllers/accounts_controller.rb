@@ -1,9 +1,9 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_owner!, only: [:destroy]
-  before_action :require_admin!, except: [:show, :edit, :update, :destroy]
+  before_action :require_admin!, except: [:edit, :update, :destroy]
   before_action :set_current_account_id
-  before_action :authenticate_account!, only: [:show, :edit, :update]
+  before_action :authenticate_account!, only: [:edit, :update]
 
   def index
     @accounts = current_company.accounts.page(params[:page]).per(10)
@@ -42,7 +42,7 @@ class AccountsController < ApplicationController
     @account.user.skip_validation = true
 
     if @account.update_attributes(account_params)
-      redirect_to @account, notice: 'Account was successfully updated.'
+      redirect_account_or_dashboard
     else
       render :edit
     end
@@ -62,9 +62,17 @@ class AccountsController < ApplicationController
 
 private
 
+  def redirect_account_or_dashboard
+    if current_user.is_admin?
+      redirect_to @account, notice: 'Account was successfully updated.'
+    else
+      redirect_to root_path, notice: 'Your account was successfully updated.'
+    end
+  end
+
   def authenticate_account!
     unless current_user.is_admin? || current_account && current_user.account.id == current_account.id
-      redirect_to account_path(current_user.account)
+      redirect_to root_path
     end
   end
 
