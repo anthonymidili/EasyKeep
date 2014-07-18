@@ -10,7 +10,7 @@
         %th Delete
 
   %tbody
-    - services_with_view_by_scope(@services).each do |service|
+    - services_with_view_by_scope(current_account.services).each do |service|
       - if service.persisted?
         %tr
           %td

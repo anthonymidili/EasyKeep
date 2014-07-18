@@ -2,7 +2,6 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @services = current_account.services unless current_account.nil?
     @service = current_company.services.build
     @service.performed_on ||= Date.current
   end
