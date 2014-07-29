@@ -11,9 +11,11 @@
 
     %h3.main_page_header= "#{@account.name} Account"
     .panel= render 'shared/customer_header'
-    = render 'services/new'
-    = render 'services/invoiceable'
-    = render 'services/history'
+
+    .outline= render 'services/new'
+    - if @services.by_not_used.any?
+      .outline= render 'services/invoiceable'
+    .outline= render 'services/history'
 
     %br/
 
