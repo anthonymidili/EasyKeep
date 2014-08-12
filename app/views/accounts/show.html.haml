@@ -1,16 +1,23 @@
 - provide(:title, raw("#{@account.name} Account"))
 
 .row
-  .small-12.small-centered.columns
-    %ul.inline-list.pad-top
-      %li= link_to 'Edit Account Info', edit_account_path(@account), class: 'small button radius'
-      - if current_user.is_owner?
-        %li
-          = link_to 'Destroy Account', @account, class: 'small alert button radius', method: :delete,
-          data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' }
-
-    %h3.main_page_header= "#{@account.name} Account"
-    .panel= render 'shared/customer_header'
+  .small-12.columns
+    %br/
+    .outline
+      .row
+        .small-8.columns
+          %h4= "#{@account.name} Account"
+        .small-4.columns
+          .pad-top.right
+            = link_to edit_account_path(@account), title: 'Edit' do
+              %i.page.fi-page-edit
+            - if current_user.is_owner?
+              = link_to @account, title: 'Delete', method: :delete,
+              data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' } do
+                %i.general.fi-x
+      .row
+        .small-12.columns
+          = render 'shared/customer_header'
 
     .outline= render 'services/new'
     - if @services.by_not_used.any?
