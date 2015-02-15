@@ -7,4 +7,6 @@
 
     = render 'form'
 
-    = link_to 'Back', accounts_path, class: 'small button radius'
+    %ul.inline-list
+      %li= link_to 'Dashboard', root_path, class: 'small button radius'
+      %li= link_to 'Accounts Listing', accounts_path, class: 'small button radius'

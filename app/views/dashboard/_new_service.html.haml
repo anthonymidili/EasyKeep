@@ -4,8 +4,10 @@
     = render 'shared/error_messages', object: f.object
 
     .row
-      .small-12.columns
-        = f.label :account_id, 'Select Account'
+      .small-12.medium-12.large-6.columns
+        = f.label :account_id do
+          Select Existing Account or
+          = link_to 'Create New Account', new_account_path
         = f.collection_select :account_id, current_company.accounts, :id, :name
 
     .row
