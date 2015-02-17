@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 ruby '2.1.2'
-gem 'rails', '~> 4.1.2.rc1'
+gem 'rails', '~> 4.2.0'
 
 gem 'jquery-rails', '~> 3.1.0'
-gem 'devise', '~> 3.2.4'
+gem 'devise', '~> 3.4.1'
 gem 'devise_invitable', '~> 1.3.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari', '~> 0.15.1'
@@ -34,3 +34,6 @@ gem 'fog', '~> 1.0'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+gem 'web-console', '~> 2.0'
+gem 'responders', '~> 2.0'
