@@ -78,7 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Devise mailer
-  config.action_mailer.default_url_options = { host: ENV['ACTIONMAILER_DEFAULT_HOST_PRODUCTION'] }
+  config.action_mailer.default_url_options = { host: ENV['ACTIONMAILER_DEFAULT_HOST_STAGING'] }
 
   ActionMailer::Base.smtp_settings = {
       :user_name =>           ENV["SENDGRID_USERNAME"],
