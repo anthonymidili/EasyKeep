@@ -24,6 +24,7 @@ doc/
 bundler_stubs/
 .idea/
 /public/uploads
+.ruby-version
 
 # Ignore ENV file
 .env
