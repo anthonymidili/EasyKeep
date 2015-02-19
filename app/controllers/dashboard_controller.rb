@@ -1,13 +1,14 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_developer!
 
   def index
     @service = current_company.services.build
     @service.performed_on ||= Date.current
+    @accounts = current_company.accounts
   end
 
   def developer
-    authenticate_developer!
     @users = Kaminari.paginate_array(admins_or_all_users.sort_by(&:company_id)).page(params[:page]).per(10)
   end
 

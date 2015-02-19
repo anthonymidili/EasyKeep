@@ -24,7 +24,7 @@
         %td.center_cell
           = link_to invoices_path(account_id: account.id) do
             %i.miscellaneous.fi-book
-        %td.center_cell= render 'user_status', account: account
+        %td.center_cell= render 'accounts/user_status', account: account
         %td.center_cell
           = link_to edit_account_path(account) do
             %i.page.fi-page-edit

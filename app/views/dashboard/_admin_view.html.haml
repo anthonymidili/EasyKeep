@@ -6,8 +6,6 @@
       .outline
         = render 'companies/header_preview'
 
-    .outline
-      = link_to accounts_path do
-        %h4 Accounts
+    = render 'dashboard/recent_accounts'
 
     = render 'dashboard/new_service'
