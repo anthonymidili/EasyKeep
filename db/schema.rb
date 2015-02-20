@@ -11,57 +11,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711220536) do
+ActiveRecord::Schema.define(version: 20150220222100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "accounts", force: true do |t|
-    t.string   "name"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "phone"
-    t.string   "fax"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+  create_table "accounts", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.string   "address_1",          limit: 255
+    t.string   "address_2",          limit: 255
+    t.string   "city",               limit: 255
+    t.string   "state",              limit: 255
+    t.string   "zip",                limit: 255
+    t.string   "phone",              limit: 255
+    t.string   "fax",                limit: 255
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.integer  "company_id"
     t.integer  "user_id"
-    t.boolean  "uses_account_name", default: true
-    t.boolean  "uses_contact_name", default: true
+    t.boolean  "uses_account_name",              default: true
+    t.boolean  "uses_contact_name",              default: true
+    t.datetime "recent_activity_at",                            null: false
   end
 
-  create_table "companies", force: true do |t|
-    t.string   "name"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "phone"
-    t.string   "fax"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+  create_table "companies", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.string   "address_1",        limit: 255
+    t.string   "address_2",        limit: 255
+    t.string   "city",             limit: 255
+    t.string   "state",            limit: 255
+    t.string   "zip",              limit: 255
+    t.string   "phone",            limit: 255
+    t.string   "fax",              limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.date     "established_on"
-    t.string   "license_number"
-    t.string   "service_provided"
+    t.string   "license_number",   limit: 255
+    t.string   "service_provided", limit: 255
     t.text     "service_summery"
-    t.string   "logo"
-    t.string   "website"
+    t.string   "logo",             limit: 255
+    t.string   "website",          limit: 255
   end
 
-  create_table "inventory_items", force: true do |t|
-    t.string   "description"
-    t.string   "serial_number"
+  create_table "inventory_items", force: :cascade do |t|
+    t.string   "description",   limit: 255
+    t.string   "serial_number", limit: 255
     t.integer  "company_id"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.decimal  "quantity",      precision: 19, scale: 3
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.decimal  "quantity",                  precision: 19, scale: 3
   end
 
-  create_table "invoices", force: true do |t|
+  create_table "invoices", force: :cascade do |t|
     t.integer  "account_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -70,19 +71,19 @@ ActiveRecord::Schema.define(version: 20140711220536) do
     t.integer  "sales_tax",      default: 7
   end
 
-  create_table "payments", force: true do |t|
-    t.string   "transaction_type"
+  create_table "payments", force: :cascade do |t|
+    t.string   "transaction_type", limit: 255
     t.date     "received_on"
-    t.decimal  "amount",           precision: 19, scale: 2
+    t.decimal  "amount",                       precision: 19, scale: 2
     t.integer  "invoice_id"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.text     "memo"
     t.integer  "account_id"
     t.integer  "company_id"
   end
 
-  create_table "services", force: true do |t|
+  create_table "services", force: :cascade do |t|
     t.date     "performed_on"
     t.decimal  "cost",         precision: 19, scale: 2
     t.text     "memo"
@@ -93,7 +94,7 @@ ActiveRecord::Schema.define(version: 20140711220536) do
     t.integer  "company_id"
   end
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "inventory_item_id"
     t.datetime "created_at",        null: false
@@ -103,37 +104,37 @@ ActiveRecord::Schema.define(version: 20140711220536) do
   add_index "taggings", ["inventory_item_id"], name: "index_taggings_on_inventory_item_id", using: :btree
   add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
-  create_table "tags", force: true do |t|
-    t.string   "name"
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.integer  "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "users", force: true do |t|
-    t.string   "email"
-    t.string   "encrypted_password",     default: ""
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255
+    t.string   "encrypted_password",     limit: 255, default: ""
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                      default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.integer  "company_id"
-    t.string   "invitation_token"
+    t.string   "invitation_token",       limit: 255
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
-    t.string   "invited_by_type"
-    t.string   "name"
-    t.boolean  "is_admin",               default: false
+    t.string   "invited_by_type",        limit: 255
+    t.string   "name",                   limit: 255
+    t.boolean  "is_admin",                           default: false
     t.datetime "invitation_created_at"
-    t.boolean  "is_owner",               default: false
+    t.boolean  "is_owner",                           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
