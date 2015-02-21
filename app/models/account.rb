@@ -13,7 +13,9 @@ class Account < ActiveRecord::Base
 
   validates :name, presence: true
 
-  default_scope { order('name ASC') }
+  scope :by_name, -> { order('name ASC') }
+  scope :by_recent_activity, -> { order('updated_at DESC') }
+  scope :by_limited_recent_activity, -> { order('updated_at DESC').limit(5) }
 
   def full_address
     [ address_1, address_2, city, state, zip ].select(&:present?).join(', ')

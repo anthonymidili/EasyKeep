@@ -5,7 +5,7 @@ class AccountsController < ApplicationController
   before_action :authenticate_account!, except: [:index, :new, :create]
 
   def index
-    @accounts = current_company.accounts.page(params[:page]).per(10)
+    @accounts = current_company.accounts.by_name.page(params[:page]).per(10)
   end
 
   def show
