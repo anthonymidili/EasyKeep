@@ -14,12 +14,15 @@
       %li
         Number of company owners:
         %b= User.by_owner_user.count
+  %hr/
 
 .row
   .small-6.columns
     %b= params[:all_users] ? 'Viewing all users' : 'Only viewing Admins'
     |
     = admin_or_all_users
+
+%br/
 
 = render :partial => 'users_table'
 

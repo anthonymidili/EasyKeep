@@ -1,36 +1,37 @@
-%table
-  %thead
-    %tr
-      %th= 'Account'.pluralize(@accounts.count)
-      %th Contact name
-      %th Contact info
-      %th All services invoiced
-      %th All invoices P.I.F.
-      %th Invoices
-      %th User status
-      %th Edit
-      - if current_user.is_owner?
-        %th Destroy
-  %tbody
-    - @accounts.each do |account|
+.scroll_overflow-x
+  %table
+    %thead
       %tr
-        %td= link_to account.name, account
-        %td= account.user.name
-        %td.center_cell
-          = link_to '#', 'data-reveal-id' => "contactInfoModal#{account.id}" do
-            %i.general.fi-mail
-        %td= yes_or_no(account.all_services_invoiced?)
-        %td= yes_or_no(account.paid_in_full?)
-        %td.center_cell
-          = link_to invoices_path(account_id: account.id) do
-            %i.miscellaneous.fi-book
-        %td.center_cell= render 'accounts/user_status', account: account
-        %td.center_cell
-          = link_to edit_account_path(account) do
-            %i.page.fi-page-edit
+        %th= 'Account'.pluralize(@accounts.count)
+        %th Contact name
+        %th Contact info
+        %th All services invoiced
+        %th All invoices P.I.F.
+        %th Invoices
+        %th User status
+        %th Edit
         - if current_user.is_owner?
+          %th Destroy
+    %tbody
+      - @accounts.each do |account|
+        %tr
+          %td= link_to account.name, account
+          %td= account.user.name
           %td.center_cell
-            = link_to account, method: :delete,
-            data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' }  do
-              %i.general.fi-x
-      = render 'accounts/contact_info_modal', account: account
+            = link_to '#', 'data-reveal-id' => "contactInfoModal#{account.id}" do
+              %i.general.fi-mail
+          %td= yes_or_no(account.all_services_invoiced?)
+          %td= yes_or_no(account.paid_in_full?)
+          %td.center_cell
+            = link_to invoices_path(account_id: account.id) do
+              %i.miscellaneous.fi-book
+          %td.center_cell= render 'accounts/user_status', account: account
+          %td.center_cell
+            = link_to edit_account_path(account) do
+              %i.page.fi-page-edit
+          - if current_user.is_owner?
+            %td.center_cell
+              = link_to account, method: :delete,
+              data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' }  do
+                %i.general.fi-x
+        = render 'accounts/contact_info_modal', account: account
