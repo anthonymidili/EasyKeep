@@ -2,7 +2,7 @@ class Invoice < ActiveRecord::Base
 
   before_validation { |invoice| invoice.sales_tax = 0 if invoice.sales_tax.blank? || invoice.sales_tax < 0 }
 
-  belongs_to :account
+  belongs_to :account, touch: true
   belongs_to :company
 
   has_many :services

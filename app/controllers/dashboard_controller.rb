@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
   def index
     @service = current_company.services.build
     @service.performed_on ||= Date.current
-    @accounts = current_company.accounts
+    @accounts = current_company.accounts.reorder('updated_at DESC')
   end
 
   def developer
