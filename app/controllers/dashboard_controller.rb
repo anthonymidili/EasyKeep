@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
   def index
     @service = current_company.services.build
     @service.performed_on ||= Date.current
-    @accounts = current_company.accounts.by_limited_recent_activity
+    @accounts = current_company.accounts.by_recent_activity.with_limit
   end
 
   def developer

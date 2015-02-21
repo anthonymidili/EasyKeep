@@ -3,13 +3,12 @@
     %br/
 
     .outline
-      .row
-        .small-8.columns
-          = render 'companies/header_preview'
-        .small-4.columns
-          .pad-top.right
-            = link_to edit_company_path, title: 'Edit Company' do
-              %i.page.fi-page-edit
+      .right
+        = link_to edit_company_path, title: 'Edit Company' do
+          Edit
+          %i.page.fi-page-edit
+
+      = render 'companies/header_preview'
 
     = render 'dashboard/recent_accounts'
 
