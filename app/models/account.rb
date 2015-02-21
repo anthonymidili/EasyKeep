@@ -1,7 +1,5 @@
 class Account < ActiveRecord::Base
 
-  before_save :set_recent_activity_at
-
   belongs_to :company
   
   # Keeping belongs_to, accepts_nested_attrubtes_for and attr_accessible all
@@ -40,10 +38,6 @@ class Account < ActiveRecord::Base
 
   def paid_in_full?
     invoices.all?(&:paid_in_full?)
-  end
-
-  def set_recent_activity_at
-    self.recent_activity_at = Time.current
   end
 
 private
