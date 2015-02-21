@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_developer!
+  before_action :authenticate_developer!, only: [:developer]
 
   def index
     @service = current_company.services.build
