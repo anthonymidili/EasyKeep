@@ -3,10 +3,12 @@
 .row
   .small-12.columns
     %br/
+
     .outline
       .row
         .small-8.columns
           %h4= "#{@account.name} Account"
+
         .small-4.columns
           .pad-top.right
             = link_to edit_account_path(@account), title: 'Edit' do
@@ -20,8 +22,11 @@
           = render 'shared/customer_header'
 
     .outline= render 'services/new'
-    - if @services.by_not_used.any?
-      .outline= render 'services/invoiceable'
+
+    = render 'services/invoiceable' if @services.by_not_used.any?
+
+    = render 'accounts/outstanding_invoices' unless @account.paid_in_full?
+
     .outline= render 'services/history'
 
     %br/

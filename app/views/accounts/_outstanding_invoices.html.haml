@@ -1,0 +1,6 @@
+.outline
+  %h4 Outstanding Invoices
+
+  = render 'invoices/table'
+
+  .label_size=link_to "All #{@account.name} Invoices", invoices_path

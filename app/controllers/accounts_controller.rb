@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
     @services = @account.services
     @service = @account.services.build
     @service.performed_on ||= Date.current
+    @invoices = @account.invoices.by_outstanding
   end
 
   def new

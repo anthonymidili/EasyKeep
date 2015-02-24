@@ -15,6 +15,8 @@ class Invoice < ActiveRecord::Base
 
   default_scope { order('established_at DESC') }
 
+  scope :by_outstanding, -> { all.reject(&:paid_in_full?) }
+
   def sales_tax!
     sales_tax * 0.01
   end
