@@ -25,7 +25,7 @@
 
     = render 'services/invoiceable' if @services.by_not_used.any?
 
-    = render 'accounts/outstanding_invoices' unless @account.paid_in_full?
+    = render 'invoices/outstanding' unless @account.paid_in_full?
 
     .outline= render 'services/history'
 

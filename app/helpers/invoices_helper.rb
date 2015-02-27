@@ -4,6 +4,11 @@ module InvoicesHelper
   end
 
   def pif_or_balance_due(item)
-    !item.paid_in_full? ? number_to_currency(item.balance_due) : 'P. I. F.'
+    if item.paid_in_full?
+      'P. I. F.'
+    else
+      link_to number_to_currency(item.balance_due), new_invoice_payment_path(item),
+              title: 'Apply Payment',remote: true if current_user.is_admin?
+    end
   end
 end

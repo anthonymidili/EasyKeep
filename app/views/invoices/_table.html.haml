@@ -12,7 +12,7 @@
 
     %tbody
       - @invoices.each do |invoice|
-        %tr
+        %tr{id: "table_row_#{invoice.id}"}
           %td.center_cell
             = link_to invoice_path(invoice) do
               %i.page.fi-page

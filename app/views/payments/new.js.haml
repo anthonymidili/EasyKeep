@@ -1,2 +1,3 @@
-$('#apply_payment').hide().after('#{j render('new')}');
+$('#apply_payment_invoice_#{@invoice.id}').hide().after('#{j render('new')}');
+$('#table_row_#{@invoice.id}').after('<tr><td colspan="6">#{j render('new')}</td></tr>');
 $(".inline-tiny-button input[type='submit']").css("width", "100%").css("width", "-=30px");

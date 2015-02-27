@@ -2,12 +2,17 @@
 
 .row
   .small-12.columns
-    %h3.main_page_header New payment
+    %h4.main_page_header
+      New payment - #{@invoice.account.name} Account
+      %br/
+      Invoice# #{@invoice.id}
+
     .panel
+      %ul.inline-list
+        %li
+          Balance Due:
+          %span.red_text= number_to_currency(@invoice.balance_due)
+
       = render 'payments/form'
-      - if @payment.errors.any?
-        %ul.inline-list
-          %li
-            Balance Due:
-            %span.red_text= number_to_currency(@invoice.balance_due)
-          %li= link_to 'Back', @invoice
+
+      .label_size= link_to "#{@invoice.account.name} - Invoice# #{@invoice.id}", @invoice
