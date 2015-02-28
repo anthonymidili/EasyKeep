@@ -11,10 +11,10 @@
 
         .small-4.columns
           .pad-top.right
-            = link_to edit_account_path(@account), title: 'Edit' do
+            = link_to edit_account_path(@account), title: 'Edit Account' do
               %i.page.fi-page-edit
             - if current_user.is_owner?
-              = link_to @account, title: 'Delete', method: :delete,
+              = link_to @account, title: 'Delete Account', method: :delete,
               data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' } do
                 %i.general.fi-x
       .row
