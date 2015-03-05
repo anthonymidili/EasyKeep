@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.0'
 gem 'rails', '~> 4.2.0'
 
-gem 'jquery-rails', '~> 3.1.0'
+gem 'jquery-rails', '~> 4.0.3'
 gem 'devise', '~> 3.4.1'
 gem 'devise_invitable', '~> 1.3.5'
 gem 'bcrypt', '~> 3.1.7'

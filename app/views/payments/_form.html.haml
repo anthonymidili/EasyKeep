@@ -4,7 +4,8 @@
   .row
     .small-12.medium-12.large-3.columns
       = f.label :received_on, '*Received on (yyyy-mm-dd)'
-      = f.text_field :received_on, class: 'datePicker', placeholder: 'Date'
+      .datePicker
+        = f.text_field :received_on, id: "datePicker#{f.object.invoice.id}", placeholder: 'Date'
 
     .small-6.medium-6.large-2.columns
       = f.label :transaction_type, 'Type'

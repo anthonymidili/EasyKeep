@@ -44,5 +44,5 @@
     .row
       .small-12.columns.hide_on_print
         = link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small button radius',
-        id: "apply_payment_invoice_#{@invoice.id}", remote: true if current_user.is_admin?
+        id: "applyPaymentLink#{@invoice.id}", remote: true if current_user.is_admin?
     = render 'payments/history' if @invoice.payments.any?
