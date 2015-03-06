@@ -9,6 +9,12 @@ table {
   tr.divider-line {
     td {border-top: 2px solid #dddddd;}
   }
+
+  tr.applyPaymentTR {
+    form {
+      width: calc(100% - 2px);
+    }
+  }
 }
 
 .scroll_overflow-x {overflow-x: auto;}
