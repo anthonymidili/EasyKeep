@@ -1,0 +1,6 @@
+$('<%= "#applyPaymentLink#{@invoice.id}" %>').hide().after("<%= j render('payments/new') %>");
+
+$('tr.applyPaymentTR').remove();
+$('<%= "#tableRow#{@invoice.id}" %>').after('<tr class="applyPaymentTR" id="applyPaymentTR<%= @invoice.id %>"><td colspan="6"><%= j render('payments/form') %></td></tr>');
+
+$(".inline-tiny-button input[type='submit']").css("width", "100%").css("width", "-=30px");
