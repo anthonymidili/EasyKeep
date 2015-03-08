@@ -1,0 +1,30 @@
+- provide(:title, raw("#{@account.name} Account"))
+
+.row
+  .small-12.columns
+    %br/
+
+    .outline
+      .row
+        .small-8.columns
+          %h4= "#{@account.name} Account"
+
+        .small-4.columns
+          .pad-top.right
+            = link_to edit_account_path(@account), title: 'Edit Account' do
+              %i.page.fi-page-edit
+            - if current_user.is_owner?
+              = link_to @account, title: 'Delete Account', method: :delete,
+              data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' } do
+                %i.general.fi-x
+      .row
+        .small-12.columns
+          = render 'shared/customer_header'
+
+    .outline= render 'services/history'
+
+    %br/
+
+    %ul.inline-list
+      %li= link_to 'Account Listings', accounts_path, class: 'small button radius'
+      %li= link_to "#{@account.name} Invoices", invoices_path, class: 'small button radius'

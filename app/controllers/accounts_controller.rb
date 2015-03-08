@@ -60,6 +60,10 @@ class AccountsController < ApplicationController
     redirect_to account_path(@account), notice: 'Successfully sent invitation.'
   end
 
+  def service_history_search
+    @account = current_account
+  end
+
 private
 
   def redirect_account_or_dashboard

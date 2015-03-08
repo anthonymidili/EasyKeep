@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :accounts do
     post :invite_customer, on: :member
+    get :service_history_search, on: :member
   end
 
   resources :services, except: [:show, :index, :new] do
