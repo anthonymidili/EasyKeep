@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_owner!, only: [:destroy]
-  before_action :require_admin!, except: [:edit, :update, :destroy]
+  before_action :require_admin!, except: [:edit, :update, :destroy, :service_history]
   before_action :authenticate_account!, except: [:index, :new, :create]
 
   def index
