@@ -2,7 +2,7 @@ class WelcomeController < ApplicationController
   before_action :create_new_company
 
   def home
-    redirect_to dashboard_index_path if user_signed_in?
+    redirect_to dashboard_path if user_signed_in?
   end
 
   def about

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :dashboard, only: [:index]
+  get :dashboard, to: 'dashboard#home'
   post 'services/dashboard_create'
   get 'dashboard/developer', as: :developer_dashboard
   get 'dashboard/developer/:all_users', to: 'dashboard#developer', as: :all_users

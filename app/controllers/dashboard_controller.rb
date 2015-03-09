@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_developer!, only: [:developer]
 
-  def index
+  def home
     @service = current_company.services.build
     @service.performed_on ||= Date.current
     @accounts = current_company.accounts.by_recent_activity.with_limit
