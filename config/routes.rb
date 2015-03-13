@@ -21,12 +21,12 @@ Rails.application.routes.draw do
 
   resources :accounts do
     post :invite_customer, on: :member
-    get :service_history, on: :member
   end
 
   resources :services, except: [:show, :index, :new] do
     collection do
       patch :invoice
+      get :search_history
     end
   end
 

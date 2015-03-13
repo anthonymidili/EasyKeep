@@ -1,11 +1,39 @@
-%h4 Service History Search
-= render 'services/date_bar_forms'
+.outline
+  %h4 Service History
 
-.row
-  .small-12.columns.total_amount
-    %label
-      = "Cost of Services this #{view_by.capitalize}:"
-      %span.large_red_text= number_to_currency(current_account.sum_services(view_by, active_date))
+  .scroll_overflow-x
+    %table
+      %thead
+        %tr
+          %th Invoice#
+          %th Performed on
+          %th Memo
+          %th Cost
+          - if current_user.is_admin?
+            %th Edit
+            %th Delete
 
-.hide-for-medium-up= render 'services/history_badges'
-.show-for-medium-up= render 'services/history_table'
+      %tbody
+        - @services.each do |service|
+          - if service.persisted?
+            %tr
+              %td
+                - if service.invoice_id.present?
+                  = link_to invoice_path(service.invoice_id) do
+                    %i.page.fi-page
+                      %b= service.invoice_id
+                - else
+                  %i not invoiced
+              %td= service.performed_on.strftime('%Y-%b-%d')
+              %td= service.memo
+              %td= number_to_currency(service.cost, unit: '$')
+              - if current_user.is_admin?
+                %td.center_cell
+                  = link_to edit_service_path(service) do
+                    %i.page.fi-page-edit
+                %td.center_cell
+                  = link_to service, method: :delete,
+                  data: { confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' } do
+                    %i.general.fi-x
+
+  .label_size= link_to "Search #{current_account.name} service history", search_history_services_path

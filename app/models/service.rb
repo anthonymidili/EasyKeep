@@ -22,4 +22,7 @@ class Service < ActiveRecord::Base
   }
 
   scope :by_not_used, -> { where(invoice_id: nil) }
+
+  scope :with_limit, -> { limit(5) }
+
 end

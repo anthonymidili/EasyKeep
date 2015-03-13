@@ -7,8 +7,8 @@ module InvoicesHelper
     if item.paid_in_full?
       'P. I. F.'
     else
-      link_to number_to_currency(item.balance_due), new_invoice_payment_path(item),
-              title: 'Apply Payment', remote: true if current_user.is_admin?
+      link_to_if current_user.is_admin?, number_to_currency(item.balance_due), new_invoice_payment_path(item),
+              title: 'Apply Payment', remote: true
     end
   end
 end

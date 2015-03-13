@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin!
+  before_action :require_admin!, except: [:search_history]
 
   def create
     @account = current_account
@@ -23,7 +23,7 @@ class ServicesController < ApplicationController
     if @service.save
       redirect_to dashboard_index_path, notice: 'Service was successfully created.'
     else
-      render 'dashboard/index'
+      render 'dashboard/home'
     end
   end
 
@@ -63,6 +63,10 @@ class ServicesController < ApplicationController
         redirect_to current_account, alert: 'There was a problem creating a new invoice. Please try again.'
       end
     end
+  end
+
+  def search_history
+    @account = current_account
   end
 
 private

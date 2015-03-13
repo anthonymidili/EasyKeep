@@ -31,10 +31,10 @@ class InvoicesController < ApplicationController
     ActiveRecord::Base.transaction do
       @services = current_account.services
 
-      @services.update_all({invoice_id: nil}, {id: @invoice.services})
+      @invoice.services.update_all(invoice_id: nil)
       @invoice.destroy
 
-      redirect_to invoices_path, alert: 'Invoice was successfully deleted. Services on invoice are ready to be
+      redirect_to account_path(current_account), alert: 'Invoice was successfully deleted. Services on invoice are ready to be
 re-invoiced.'
     end
   end
