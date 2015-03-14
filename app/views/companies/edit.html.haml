@@ -6,8 +6,7 @@
     %br/
 
     %label Company Header Preview
-    .outline
-      = render 'companies/header_preview'
+    .outline= render 'companies/header_preview'
 
     = render 'form'
 
@@ -21,4 +20,3 @@
         class: 'small alert button radius',
         method: :delete,
         data: { confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, ADMINS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' }
-      %li= link_to 'Accounts listing', accounts_path, class: 'small button radius'

@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
   def home
     @service = current_company.services.build
     @service.performed_on ||= Date.current
-    @services = current_account.services.with_limit
+    @services = current_account.services.with_limit unless current_account.nil?
     @accounts = current_company.accounts.by_recent_activity.with_limit
   end
 
