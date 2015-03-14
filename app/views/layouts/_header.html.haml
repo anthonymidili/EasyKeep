@@ -28,6 +28,7 @@
               %ul.dropdown
                 %li= link_to 'Account', current_account if current_user.is_admin?
                 %li= link_to 'Invoices', invoices_path
+                %li= link_to 'Service history search', history_search_services_path
                 %li= link_to 'Edit account', edit_account_path(current_account)
 
           - if current_company && current_company.persisted?

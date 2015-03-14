@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resources :services, except: [:show, :index, :new] do
     collection do
       patch :invoice
-      get :search_history
+      get :history_search
     end
   end
 

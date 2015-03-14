@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin!, except: [:search_history]
+  before_action :require_admin!, except: [:history_search]
 
   def create
     @account = current_account
@@ -65,7 +65,7 @@ class ServicesController < ApplicationController
     end
   end
 
-  def search_history
+  def history_search
     @account = current_account
   end
 

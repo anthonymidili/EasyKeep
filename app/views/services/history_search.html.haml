@@ -13,7 +13,7 @@
       .row
         .small-12.columns.total_amount
           %label
-            = "Cost of Services this #{view_by.capitalize}:"
+            = "Total Cost of Services for the Selected #{view_by.capitalize}:"
             %span.large_red_text= number_to_currency(current_account.sum_services(view_by, active_date))
 
       = render 'services/history_table'
