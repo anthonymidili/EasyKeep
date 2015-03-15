@@ -1,5 +1,8 @@
 = form_tag invoice_services_path, method: :patch do
 
+  = label :invoice, :established_at, 'Invoice Date (yyyy-mm-dd)'
+  = text_field :invoice, :established_at, class: 'datePicker', placeholder: 'Date', value: Date.current
+
   .scroll_overflow-x
     %table
       %thead

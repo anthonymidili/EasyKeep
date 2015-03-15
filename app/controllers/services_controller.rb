@@ -7,6 +7,7 @@ class ServicesController < ApplicationController
     @services = current_account.services
     @service = current_account.services.build(service_params)
     @service.company_id = current_company.id
+    @invoices = @account.invoices.by_outstanding
 
     if @service.save
       redirect_to current_account, notice: 'Service was successfully created.'
@@ -50,9 +51,9 @@ class ServicesController < ApplicationController
 
   def invoice
     ActiveRecord::Base.transaction do
-      @invoice = current_account.invoices.build(params[:invoice])
+      @invoice = current_account.invoices.build(invoice_params)
       @invoice.company_id = current_company.id
-      @invoice.established_at = Date.current
+      @invoice.established_at = params[:invoice][:established_at] ||= Date.current
 
       if @invoice.save
         @services = current_account.services
@@ -74,6 +75,10 @@ private
   # Never trust parameters from the scary internet, only allow the white list through.
   def service_params
     params.require(:service).permit(:memo, :performed_on, :cost)
+  end
+
+  def invoice_params
+    params.require(:invoice).permit(:established_at, :sales_tax)
   end
 
   def redirect_to_account_or_invoice
