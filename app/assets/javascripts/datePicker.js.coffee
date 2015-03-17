@@ -5,9 +5,6 @@ jQuery ->
         selectYears: true
         selectMonths: true
         format: 'yyyy-mm-dd'
-        today: 'Today'
-        clear: 'Clear selection'
-        close: 'Cancel'
 
   $(document).on 'click', (e) ->
     $('.applyPaymentTR').each ->
