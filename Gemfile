@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ruby '2.2.0'
 gem 'rails', '~> 4.2.0'
 
-gem 'jquery-rails', '~> 4.0.3'
 gem 'devise', '~> 3.4.1'
 gem 'devise_invitable', '~> 1.4.1'
 gem 'bcrypt', '~> 3.1.7'
@@ -22,7 +21,8 @@ gem 'foundation-rails', '~> 5.5.1'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '~> 2.7.1'
-gem 'jquery-ui-sass-rails', '~> 4.0.3'
+gem 'jquery-rails', '~> 4.0.3'
+gem 'pickadate-rails', '~> 3.5.5'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_12factor', '~> 0.0.2'

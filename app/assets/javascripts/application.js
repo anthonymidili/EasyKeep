@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.datepicker
+//= require pickadate/picker
+//= require pickadate/picker.date
+//= require pickadate/picker.time
 //= require foundation
 //= require_tree .
 

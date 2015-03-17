@@ -112,3 +112,11 @@ span.italic_text {
 .label_size {
   font-size: 0.875rem !important;
 }
+
+select[class^='picker__select'] {
+  height: auto !important;
+}
+
+button[class^='picker__button'] {
+  color: black !important;
+}

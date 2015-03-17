@@ -1,9 +1,9 @@
 @import 'foundation_and_overrides';
 @import 'foundation-icons';
 
-@import 'jquery.ui.core';
-@import 'jquery.ui.theme';
-@import 'jquery.ui.datepicker';
+@import 'pickadate/default';
+@import 'pickadate/default.date';
+@import 'pickadate/default.time';
 
 @import 'error_alert';
 @import 'custom.css.scss';

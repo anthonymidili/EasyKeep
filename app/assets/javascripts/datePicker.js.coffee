@@ -1,11 +1,13 @@
 jQuery ->
   $('body').on 'focus', '.datePicker:not(.hasDatepicker)', ->
     $('.datePicker').each ->
-      $(this).datepicker
-        changeYear: true
-        changeMonth: true
-        dateFormat: 'yy-mm-dd'
-        altField: $("[id^='datePicker']")
+      $(this).pickadate
+        selectYears: true
+        selectMonths: true
+        format: 'yyyy-mm-dd'
+        today: 'Today'
+        clear: 'Clear selection'
+        close: 'Cancel'
 
   $(document).on 'click', (e) ->
     $('.applyPaymentTR').each ->
