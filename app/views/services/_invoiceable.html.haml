@@ -1,9 +1,11 @@
 .outline
-  %h4 Invoiceable Services
   .row
-    .small-12.columns.total_amount
+    .small-12.medium-6.large-6.columns
+      %h4 Invoiceable Services
+    .small-12.medium-6.large-6.columns
       %label
-        Invoiceable Cost Total:
+        Invoiceable Total:
         %span.large_red_text= number_to_currency(@account.sum_invoiceable_services)
+      %br/
 
-  = render 'services/invoiceable_table'
+  = render 'services/invoiceable_form'

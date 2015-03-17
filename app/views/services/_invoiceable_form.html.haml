@@ -2,8 +2,10 @@
 
   = render 'shared/error_messages', object: f.object
 
-  = f.label :established_at, 'Invoice Date (yyyy-mm-dd)'
-  = f.text_field :established_at, class: 'datePicker', placeholder: 'Date'
+  .row
+    .small-12.medium-6.large-6.columns
+      = f.label :established_at, 'Invoice Date (yyyy-mm-dd)'
+      = f.text_field :established_at, class: 'datePicker', placeholder: 'Date'
 
   .scroll_overflow-x
     %table
