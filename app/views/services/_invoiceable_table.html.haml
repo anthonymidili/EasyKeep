@@ -1,7 +1,9 @@
-= form_tag invoice_services_path, method: :patch do
+= form_for @invoice, url: invoice_services_path, method: :patch do |f|
 
-  = label :invoice, :established_at, 'Invoice Date (yyyy-mm-dd)'
-  = text_field :invoice, :established_at, class: 'datePicker', placeholder: 'Date', value: Date.current
+  = render 'shared/error_messages', object: f.object
+
+  = f.label :established_at, 'Invoice Date (yyyy-mm-dd)'
+  = f.text_field :established_at, class: 'datePicker', placeholder: 'Date'
 
   .scroll_overflow-x
     %table
@@ -34,4 +36,4 @@
                   data: { confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' } do
                     %i.general.fi-x
 
-  = submit_tag 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin?
+  = f.submit 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin?

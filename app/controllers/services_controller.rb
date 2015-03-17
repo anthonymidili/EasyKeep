@@ -7,6 +7,7 @@ class ServicesController < ApplicationController
     @services = current_account.services
     @service = current_account.services.build(service_params)
     @service.company_id = current_company.id
+    @invoice = current_account.invoices.build
     @invoices = @account.invoices.by_outstanding
 
     if @service.save
@@ -18,6 +19,7 @@ class ServicesController < ApplicationController
 
   def dashboard_create
     account = current_company.accounts.find(params[:service][:account_id])
+    @accounts = current_company.accounts.by_recent_activity.with_limit
     @service = account.services.build(service_params)
     @service.company_id = current_company.id
 
@@ -51,17 +53,21 @@ class ServicesController < ApplicationController
 
   def invoice
     ActiveRecord::Base.transaction do
+      @account = current_account
+      @service = @account.services.build
+      @service.performed_on ||= Date.current
+      @services = @account.services.with_limit
+      @invoices = @account.invoices.by_outstanding
       @invoice = current_account.invoices.build(invoice_params)
       @invoice.company_id = current_company.id
-      @invoice.established_at = params[:invoice][:established_at] ||= Date.current
 
       if @invoice.save
         @services = current_account.services
         @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
 
-        redirect_to invoice_path(@invoice)
+        redirect_to invoice_path(@invoice), notice: "#{'Service'.pluralize(params[:service_ids].count)} successfully invoiced."
       else
-        redirect_to current_account, alert: 'There was a problem creating a new invoice. Please try again.'
+        render 'accounts/show'
       end
     end
   end
