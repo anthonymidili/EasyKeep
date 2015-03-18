@@ -1,5 +1,5 @@
 .outline
-  %h4 Service History
+  %h4 Recent Service History
 
   .scroll_overflow-x
     %table
@@ -14,7 +14,7 @@
             %th Delete
 
       %tbody
-        - @services.each do |service|
+        - @services.with_limit.each do |service|
           - if service.persisted?
             %tr
               %td
