@@ -1,6 +1,7 @@
 class ServicesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin!, except: [:history_search]
+  before_action :require_no_payments!, only: [:edit, :update, :destroy]
 
   def create
     @account = current_account
@@ -94,4 +95,12 @@ private
       redirect_to current_account, notice: 'Service was successfully updated.'
     end
   end
+
+  def require_no_payments!
+    @service = current_account.services.find(params[:id])
+    @invoice = @service.invoice
+
+    redirect_to @invoice, alert: 'SERVICES can only be EDITED or DELETED when no payments are applied!' if @service.invoice_id.present? && @invoice.payments.any?
+  end
+
 end

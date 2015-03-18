@@ -45,7 +45,7 @@ class Invoice < ActiveRecord::Base
     balance_due == 0.00
   end
 
-  def has_payment
+  def disable_if_payment
     'disable_link gray_text' if payments.any?
   end
 end

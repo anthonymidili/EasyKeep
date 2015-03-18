@@ -23,9 +23,9 @@
             = pif_or_balance_due(invoice)
           - if current_user.is_admin?
             %td.center_cell
-              = link_to edit_invoice_path(invoice), class: invoice.has_payment do
+              = link_to edit_invoice_path(invoice), class: invoice.disable_if_payment do
                 %i.page.fi-page-edit
             %td.center_cell
-              = link_to invoice, class: invoice.has_payment, method: :delete,
+              = link_to invoice, class: invoice.disable_if_payment, method: :delete,
               data: { confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' } do
                 %i.general.fi-x

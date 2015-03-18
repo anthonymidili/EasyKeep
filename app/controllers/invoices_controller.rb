@@ -90,6 +90,6 @@ private
 
   def require_no_payments!
     @invoice = current_account.invoices.find(params[:id])
-    redirect_to @invoice if @invoice.payments.any?
+    redirect_to @invoice, alert: 'INVOICES can only be EDITED or DELETED when no payments are applied!' if @invoice.payments.any?
   end
 end

@@ -25,4 +25,7 @@ class Service < ActiveRecord::Base
 
   scope :with_limit, -> { limit(5) }
 
+  def disable_if_payment
+    'disable_link gray_text' if invoice_id.present? && invoice.payments.any?
+  end
 end
