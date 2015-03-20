@@ -25,7 +25,7 @@ class ServicesController < ApplicationController
     @service.company_id = current_company.id
 
     if @service.save
-      redirect_to dashboard_path, notice: "Service was successfully created for #{account.name}."
+      redirect_to dashboard_path, notice: "Service was successfully created for #{account.name} Account."
     else
       render 'dashboard/home'
     end
