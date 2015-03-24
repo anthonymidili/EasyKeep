@@ -1,5 +1,9 @@
 [![Code Climate](https://codeclimate.com/github/anthonymidili/EasyKeep.png)](https://codeclimate.com/github/anthonymidili/EasyKeep)
 
+**PullReview Badge** is tracking the **EasyKeep 3.0.0** branch
+
+[![PullReview stats](https://www.pullreview.com/github/anthonymidili/EasyKeep/badges/easykeep300-wip.svg?)](https://www.pullreview.com/github/anthonymidili/EasyKeep/reviews/easykeep300-wip)
+
 # EasyKeep *v-2.0.2*
 
 **Easykeep** Started out to be an app to help my mom with her house keeping business. After doing that I wanted
