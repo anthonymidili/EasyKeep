@@ -15,6 +15,10 @@ table {
       width: calc(100% - 2px);
     }
   }
+
+  tr.active_row {
+    background-color: #efffee;
+  }
 }
 
 .scroll_overflow-x {overflow-x: auto;}
