@@ -53,15 +53,15 @@ class ServicesController < ApplicationController
   end
 
   def invoice
-    ActiveRecord::Base.transaction do
-      @account = current_account
-      @service = @account.services.build
-      @service.performed_on ||= Date.current
-      @services = @account.services
-      @invoices = @account.invoices.by_outstanding
-      @invoice = @account.invoices.build(invoice_params)
-      @invoice.company_id = current_company.id
+    @account = current_account
+    @service = @account.services.build
+    @service.performed_on ||= Date.current
+    @services = @account.services
+    @invoices = @account.invoices.by_outstanding
+    @invoice = @account.invoices.build(invoice_params)
+    @invoice.company_id = current_company.id
 
+    ActiveRecord::Base.transaction do
       if @invoice.save
         @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
 
