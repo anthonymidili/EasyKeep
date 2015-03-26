@@ -18,4 +18,6 @@
         .small-12.columns
           = render 'shared/customer_header'
 
+    = render 'invoices/outstanding' unless @account.paid_in_full?
+
     = render 'services/recent_history'

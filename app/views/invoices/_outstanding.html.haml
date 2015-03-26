@@ -1,5 +1,11 @@
 .outline
-  %h4 Outstanding Invoices
+  .row
+    .small-12.medium-6.large-6.columns
+      %h4 Outstanding Invoices
+    .small-12.medium-6.large-6.columns
+      %label
+        Total Owed:
+        %span.large_red_text= number_to_currency(current_account.total_outstanding_invoices)
 
   = render 'invoices/table'
 

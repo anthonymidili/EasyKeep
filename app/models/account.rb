@@ -42,6 +42,10 @@ class Account < ActiveRecord::Base
     invoices.all?(&:paid_in_full?)
   end
 
+  def total_outstanding_invoices
+    invoices.by_outstanding.sum(&:balance_due)
+  end
+
 private
 
   def services_items(view_by, active_date)
