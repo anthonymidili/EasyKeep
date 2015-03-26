@@ -57,13 +57,12 @@ class ServicesController < ApplicationController
       @account = current_account
       @service = @account.services.build
       @service.performed_on ||= Date.current
-      @services = @account.services.with_limit
+      @services = @account.services
       @invoices = @account.invoices.by_outstanding
-      @invoice = current_account.invoices.build(invoice_params)
+      @invoice = @account.invoices.build(invoice_params)
       @invoice.company_id = current_company.id
 
       if @invoice.save
-        @services = current_account.services
         @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
 
         redirect_to invoice_path(@invoice), notice: "#{'Service'.pluralize(params[:service_ids].count)} successfully invoiced."

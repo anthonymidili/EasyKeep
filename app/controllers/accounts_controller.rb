@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
     @service = @account.services.build
     @service.performed_on ||= Date.current
     @services = @account.services
-    @invoice = current_account.invoices.build
+    @invoice = @account.invoices.build
     @invoice.established_at ||= Date.current
     @invoices = @account.invoices.by_outstanding
   end
