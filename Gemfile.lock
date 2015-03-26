@@ -77,7 +77,7 @@ GEM
       dotenv (= 2.0.0)
     dynamic_sitemaps (2.0.0)
     erubis (2.7.0)
-    excon (0.44.4)
+    excon (0.45.0)
     execjs (2.4.0)
     fission (0.5.0)
       CFPropertyList (~> 2.2)

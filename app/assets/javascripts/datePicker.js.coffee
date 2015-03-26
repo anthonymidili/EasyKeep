@@ -1,5 +1,5 @@
 jQuery ->
-  $('body').on 'focus', '.datePicker:not(.hasDatepicker)', ->
+  $('body').on 'focus', '.datePicker', ->
     $('.datePicker').each ->
       $(this).pickadate
         selectYears: true
