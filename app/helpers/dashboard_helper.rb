@@ -1,4 +1,5 @@
 module DashboardHelper
+  # Change link according to the view the developer has requested
   def admin_or_all_users
     if params[:all_users]
       link_to 'Show only admin users', developer_dashboard_path
