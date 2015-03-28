@@ -68,7 +68,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise_invitable (1.4.1)
+    devise_invitable (1.4.2)
       actionmailer (>= 3.2.6, < 5)
       devise (>= 3.2.0)
     diff-lcs (1.2.5)
@@ -77,7 +77,7 @@ GEM
       dotenv (= 2.0.0)
     dynamic_sitemaps (2.0.0)
     erubis (2.7.0)
-    excon (0.45.0)
+    excon (0.45.1)
     execjs (2.4.0)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
@@ -300,8 +300,6 @@ GEM
     tilt (1.4.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2015.2)
-      tzinfo (>= 1.0.0)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -345,6 +343,5 @@ DEPENDENCIES
   rspec-rails (~> 3.2.1)
   sass-rails (~> 5.0.1)
   sdoc (~> 0.4.0)
-  tzinfo-data
   uglifier (~> 2.7.1)
   web-console (~> 2.1.2)

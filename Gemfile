@@ -17,11 +17,9 @@ gem 'better_errors'
 gem 'binding_of_caller'
 gem 'hirb'
 gem 'sass-rails', '~> 5.0.1'
-
 # foundation Locked at 5.5.1.0. 5.5.1.1 breaks javascript.
 gem 'foundation-rails', '5.5.1.0'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
-
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '~> 2.7.1'
 gem 'jquery-rails', '~> 4.0.3'
@@ -36,7 +34,7 @@ gem 'carrierwave', '~> 0.9.0'
 gem 'fog', '~> 1.0'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'web-console', '~> 2.1.2'
 gem 'responders', '~> 2.0'
