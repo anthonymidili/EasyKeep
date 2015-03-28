@@ -33,7 +33,7 @@ gem 'jquery-rails', '~> 4.0.3'
 gem 'pickadate-rails', '~> 3.5.5'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'rails_12factor', '~> 0.0.2'
+gem 'rails_12factor', '~> 0.0.2', group: [:production, :staging]
 
 gem 'rmagick', '~> 2.13.2'
 # must stay this version to work properly
