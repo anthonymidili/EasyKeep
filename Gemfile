@@ -3,8 +3,11 @@ source 'https://rubygems.org'
 ruby '2.2.0'
 gem 'rails', '~> 4.2.1'
 
-# Puma inplace of Webrick
+# puma inplace of Default Webrick
 gem 'puma'
+# rack timeout needed for puma
+gem 'rack-timeout'
+
 gem 'devise', '~> 3.4.1'
 gem 'devise_invitable', '~> 1.4.1'
 gem 'bcrypt', '~> 3.1.7'
