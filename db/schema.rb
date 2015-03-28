@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314163235) do
+ActiveRecord::Schema.define(version: 20150328173440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 20150314163235) do
     t.boolean  "uses_account_name",             default: true
     t.boolean  "uses_contact_name",             default: true
   end
+
+  add_index "accounts", ["company_id"], name: "index_accounts_on_company_id", using: :btree
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",             limit: 255
@@ -61,6 +64,8 @@ ActiveRecord::Schema.define(version: 20150314163235) do
     t.decimal  "quantity",                  precision: 19, scale: 3
   end
 
+  add_index "inventory_items", ["company_id"], name: "index_inventory_items_on_company_id", using: :btree
+
   create_table "invoices", force: :cascade do |t|
     t.integer  "account_id"
     t.datetime "created_at",                 null: false
@@ -69,6 +74,9 @@ ActiveRecord::Schema.define(version: 20150314163235) do
     t.integer  "company_id"
     t.integer  "sales_tax",      default: 7
   end
+
+  add_index "invoices", ["account_id"], name: "index_invoices_on_account_id", using: :btree
+  add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.string   "transaction_type", limit: 255
@@ -82,6 +90,10 @@ ActiveRecord::Schema.define(version: 20150314163235) do
     t.integer  "company_id"
   end
 
+  add_index "payments", ["account_id"], name: "index_payments_on_account_id", using: :btree
+  add_index "payments", ["company_id"], name: "index_payments_on_company_id", using: :btree
+  add_index "payments", ["invoice_id"], name: "index_payments_on_invoice_id", using: :btree
+
   create_table "services", force: :cascade do |t|
     t.date     "performed_on"
     t.decimal  "cost",         precision: 19, scale: 2
@@ -92,6 +104,10 @@ ActiveRecord::Schema.define(version: 20150314163235) do
     t.integer  "invoice_id"
     t.integer  "company_id"
   end
+
+  add_index "services", ["account_id"], name: "index_services_on_account_id", using: :btree
+  add_index "services", ["company_id"], name: "index_services_on_company_id", using: :btree
+  add_index "services", ["invoice_id"], name: "index_services_on_invoice_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -109,6 +125,8 @@ ActiveRecord::Schema.define(version: 20150314163235) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "tags", ["company_id"], name: "index_tags_on_company_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255
@@ -136,6 +154,7 @@ ActiveRecord::Schema.define(version: 20150314163235) do
     t.boolean  "is_owner",                           default: false
   end
 
+  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
