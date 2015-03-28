@@ -7,6 +7,6 @@
         Total Owed:
         %span.large_red_text= number_to_currency(current_account.total_outstanding_invoices)
 
-  = render 'invoices/table'
+  = render 'invoices/table' unless @account.paid_in_full?
 
   .label_size=link_to "All #{@account.name} Invoices", invoices_path
