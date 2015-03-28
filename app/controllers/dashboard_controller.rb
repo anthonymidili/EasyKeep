@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_developer!, only: [:developer]
   before_action :load_if_current_account, only: [:home]
 
+  # both admin and customer users dashboard
   def home
     @accounts = current_company.accounts.by_recent_activity.with_limit
     @service = current_company.services.build
@@ -19,6 +20,7 @@ private
     redirect_to root_path unless current_user.email == ENV['DEVELOPER_EMAIL']
   end
 
+  # developer can view admin users or all users
   def admins_or_all_users
     params[:all_users] ? User.all : User.by_admin_user
   end

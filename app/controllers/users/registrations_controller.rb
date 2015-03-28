@@ -1,12 +1,14 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :require_owner!, only: [:destroy]
 
+  # modify default devise method to build the company when user is created
   def new
     build_resource({})
     self.resource.build_company
     respond_with self.resource
   end
 
+  # modify default devise method to destroy a company when user is destroyed
   def destroy
     resource.company.destroy
     resource.destroy

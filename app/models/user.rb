@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
     self.encrypted_password.present? || self.invitation_token.present? || @require_email
   end
 
+  # is the user an admin or a customer?
   def role
     @role ||=
         if is_admin?

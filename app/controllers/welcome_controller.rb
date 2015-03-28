@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
   before_action :create_new_company
 
+  # root route of the application
   def home
     redirect_to dashboard_path if user_signed_in?
   end

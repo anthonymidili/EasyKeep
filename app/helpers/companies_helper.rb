@@ -27,6 +27,7 @@ module CompaniesHelper
     end
   end
 
+  # display the company logo or the default example logo
   def logo_or_default
     if current_company.logo.present?
       image_tag current_company.logo_url(:thumb)

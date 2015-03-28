@@ -18,14 +18,15 @@ class ServicesController < ApplicationController
     end
   end
 
+  # Create a new service from the admin dashboard
   def dashboard_create
-    account = current_company.accounts.find(params[:service][:account_id])
+    @account = current_company.accounts.find(params[:service][:account_id])
     @accounts = current_company.accounts.by_recent_activity.with_limit
-    @service = account.services.build(service_params)
+    @service = @account.services.build(service_params)
     @service.company_id = current_company.id
 
     if @service.save
-      redirect_to dashboard_path, notice: "Service was successfully created for #{account.name} Account."
+      redirect_to dashboard_path, notice: "Service was successfully created for #{@account.name} Account."
     else
       render 'dashboard/home'
     end
