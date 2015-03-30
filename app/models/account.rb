@@ -39,7 +39,7 @@ class Account < ActiveRecord::Base
   end
 
   def paid_in_full?
-    invoices.select(&:persisted?).all?(&:paid_in_full?)
+    invoices.all?(&:paid_in_full?)
   end
 
   def total_outstanding_invoices
