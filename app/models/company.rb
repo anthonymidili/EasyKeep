@@ -19,7 +19,7 @@ class Company < ActiveRecord::Base
   #                    message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
   def full_address
-    [ address_1, address_2, city, state, zip ].select(&:present?).join(', ')
+    [address_1, address_2, city, state, zip].select(&:present?).join(', ')
   end
 
   def owner
@@ -51,7 +51,6 @@ class Company < ActiveRecord::Base
   def available_tags
     tags.map(&:name).join(', ')
   end
-
 
   def tagged_with(name)
     inventory_items.joins(:tags).where('tags.name' => name)

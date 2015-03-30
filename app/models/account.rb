@@ -18,7 +18,7 @@ class Account < ActiveRecord::Base
   scope :with_limit, -> { limit(5) }
 
   def full_address
-    [ address_1, address_2, city, state, zip ].select(&:present?).join(', ')
+    [address_1, address_2, city, state, zip].select(&:present?).join(', ')
   end
 
   def sum_services(view, date)
