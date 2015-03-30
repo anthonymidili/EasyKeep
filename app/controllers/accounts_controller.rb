@@ -15,6 +15,7 @@ class AccountsController < ApplicationController
     @services = @account.services
     @invoice = @account.invoices.build
     @invoice.established_at ||= Date.current
+    @invoice.sales_tax ||= current_company.sales_tax
     @invoices = @account.invoices.by_outstanding
   end
 

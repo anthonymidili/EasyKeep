@@ -72,7 +72,7 @@ private
   def company_params
     params.require(:company).permit(:address_1, :address_2, :city, :name, :fax, :phone, :state, :zip, :established_on,
                                     :license_number, :service_provided, :service_summery, :website, :logo,
-                                    :remote_logo_url, :remove_logo, :logo_cache)
+                                    :remote_logo_url, :remove_logo, :logo_cache, :sales_tax)
   end
 
   def only_one_company

@@ -1,5 +1,7 @@
 class Company < ActiveRecord::Base
 
+  before_validation { |company| company.sales_tax = 0 if company.sales_tax.blank? || company.sales_tax < 0 }
+
   has_many :users
   has_many :accounts, dependent: :destroy
   has_many :payments
@@ -10,6 +12,7 @@ class Company < ActiveRecord::Base
 
   mount_uploader :logo, LogoUploader
 
+  validates :sales_tax, numericality: true
   validates :name, presence: true
   # validates :established_on,
   #          format: { with: /\A(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})\z/,

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328173440) do
+ActiveRecord::Schema.define(version: 20150328204941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,14 +45,15 @@ ActiveRecord::Schema.define(version: 20150328173440) do
     t.string   "zip",              limit: 255
     t.string   "phone",            limit: 255
     t.string   "fax",              limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.date     "established_on"
     t.string   "license_number",   limit: 255
     t.string   "service_provided", limit: 255
     t.text     "service_summery"
     t.string   "logo",             limit: 255
     t.string   "website",          limit: 255
+    t.integer  "sales_tax",                    default: 0
   end
 
   create_table "inventory_items", force: :cascade do |t|
@@ -68,11 +69,11 @@ ActiveRecord::Schema.define(version: 20150328173440) do
 
   create_table "invoices", force: :cascade do |t|
     t.integer  "account_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.date     "established_at"
     t.integer  "company_id"
-    t.integer  "sales_tax",      default: 7
+    t.integer  "sales_tax"
   end
 
   add_index "invoices", ["account_id"], name: "index_invoices_on_account_id", using: :btree
