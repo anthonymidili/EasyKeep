@@ -5,6 +5,6 @@
     %h1.main_page_header= "Editing #{@account.name} Account"
     %br/
 
-    = render 'form'
+    = render 'form', account: @account
 
     = link_to 'Back', account_path(@account), class: 'small button radius'

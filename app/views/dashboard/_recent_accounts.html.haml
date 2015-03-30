@@ -3,7 +3,7 @@
     Accounts
     %small - Recent Activity
 
-  = render 'accounts/table' if current_company.accounts.any?
+  = render 'accounts/table', accounts: @accounts if current_company.accounts.any?
 
   .label_size
     = link_to 'View All Accounts', accounts_path

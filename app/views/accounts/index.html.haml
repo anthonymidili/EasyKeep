@@ -3,7 +3,7 @@
 .row
   .small-12.small-centered.columns
     %h1.main_page_header= "#{current_company.name} Accounts Listing"
-    = render 'table'
+    = render 'table', accounts: @accounts
 
     = paginate @accounts
     %br/
