@@ -28,3 +28,5 @@ bundler_stubs/
 
 # Ignore ENV file
 .env
+
+Gemfile.lock
