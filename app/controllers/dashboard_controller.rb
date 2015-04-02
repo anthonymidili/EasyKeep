@@ -27,7 +27,7 @@ private
 
   def load_if_current_account
     if current_account
-      @account = current_accounte
+      @account = current_account
       @services = current_account.services
       @invoices = current_account.invoices.by_outstanding
     end
