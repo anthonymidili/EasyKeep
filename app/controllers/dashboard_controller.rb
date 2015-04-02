@@ -17,7 +17,7 @@ class DashboardController < ApplicationController
 private
 
   def authenticate_developer!
-    redirect_to root_path unless current_user.email == ENV['DEVELOPER_EMAIL'].gsub(/\r?\n?/,'')
+    redirect_to root_path unless current_user.email == ENV['DEVELOPER_EMAIL']
   end
 
   # developer can view admin users or all users
