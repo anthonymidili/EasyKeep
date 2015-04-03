@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.2.0'
 gem 'rails', '~> 4.2.1'
 
 # puma inplace of Default Webrick
@@ -16,9 +15,6 @@ gem 'pg', '~> 0.18.1'
 gem 'dynamic_sitemaps', '~> 2.0.0'
 gem 'haml', '~> 4.0.5'
 gem 'haml-rails', '~> 0.9.0'
-# https://github.com/bkeepers/dotenv
-# https://github.com/ddollar/heroku-config to manage heroku config vars
-gem 'dotenv-rails', '~> 2.0.0'
 gem 'rspec-rails', '~> 3.2.1'
 gem 'better_errors'
 gem 'binding_of_caller'
@@ -45,3 +41,5 @@ gem 'fog', '~> 1.0'
 
 gem 'web-console', '~> 2.1.2'
 gem 'responders', '~> 2.0'
+
+ruby '2.2.0'
