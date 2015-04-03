@@ -7,6 +7,9 @@ gem 'puma'
 # rack timeout needed for puma
 gem 'rack-timeout'
 
+# https://github.com/laserlemon/figaro
+gem 'figaro', '~> 1.1.0'
+
 gem 'devise', '~> 3.4.1'
 gem 'devise_invitable', '~> 1.4.1'
 gem 'bcrypt', '~> 3.1.7'

@@ -26,7 +26,8 @@ bundler_stubs/
 /public/uploads
 .ruby-version
 
-# Ignore ENV file
-.env
-
+# Ignore Gemfile.lock
 Gemfile.lock
+
+# Ignore application configuration
+/config/application.yml
