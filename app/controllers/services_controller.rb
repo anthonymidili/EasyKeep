@@ -66,8 +66,7 @@ class ServicesController < ApplicationController
   end
 
   def history_search
-    @account = current_account
-    @services = @account.services
+    @services = current_account.services
   end
 
 private
