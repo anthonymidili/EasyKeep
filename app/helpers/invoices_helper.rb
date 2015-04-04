@@ -11,10 +11,10 @@ module InvoicesHelper
 
   def pif_or_invoice(invoice)
     case invoice.paid_in_full?
-      when true
-        'P. I. F.'
-      else
-        link_to number_to_currency(invoice.balance_due), invoice_path(invoice, account_id: invoice.account_id)
+    when true
+      'P. I. F.'
+    else
+      link_to number_to_currency(invoice.balance_due), invoice_path(invoice, account_id: invoice.account_id)
     end
   end
 end
