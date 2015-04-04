@@ -32,3 +32,5 @@
                 = link_to service, method: :delete, class: service.disable_if_payment,
                 data: { confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' } do
                   %i.general.fi-x
+
+= paginate @services
