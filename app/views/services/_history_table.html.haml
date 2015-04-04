@@ -11,7 +11,7 @@
           %th Delete
 
     %tbody
-      - services_with_view_by_scope(@services).each do |service|
+      - @services.each do |service|
         - if service.persisted?
           %tr
             %td

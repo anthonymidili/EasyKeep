@@ -66,7 +66,7 @@ class ServicesController < ApplicationController
   end
 
   def history_search
-    @services = current_account.services
+    @services = current_account.services.by_selected_range(active_date, view_by)
   end
 
 private
