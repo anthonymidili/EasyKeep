@@ -8,9 +8,4 @@ module ServicesHelper
     end
   end
 
-  def services_with_view_by_scope(items)
-    # @services.by_year(active_date)
-    # or @services.by_month(active_date)
-    items.send(:"by_#{view_by}", active_date)
-  end
 end
