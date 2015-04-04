@@ -120,3 +120,9 @@ select[class^='picker__select'] {
 button[class^='picker__button'] {
   color: black !important;
 }
+
+.no_action_required_false, .no_action_required_false a:link {
+  color: red;
+  a { text-decoration: underline }
+  a:hover { color: #2ba6cb }
+}
