@@ -34,7 +34,7 @@
                     %b= invoice.id
               %td= invoice.established_at.strftime('%Y-%b-%d')
               %td= number_to_currency(invoice.total_cost)
-              %td{class: red_text?(invoice)}
-                = pif_or_balance_due(invoice)
+              %td{class: "no_action_required_#{invoice.paid_in_full?}"}
+                = pif_or_invoice(invoice)
 
     = paginate @invoices

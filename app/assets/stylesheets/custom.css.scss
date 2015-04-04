@@ -121,8 +121,17 @@ button[class^='picker__button'] {
   color: black !important;
 }
 
-.no_action_required_false, .no_action_required_false a:link {
+.no_action_required_false, .no_action_required_false a {
   color: red;
   a { text-decoration: underline }
   a:hover { color: #2ba6cb }
+}
+
+/* Anchor links render too high due to the fixed header.
+Use a div before the anchor div on the same level to move anchor down on the page. */
+.anchor {
+  display: block;
+  height: 45px; /*same height as header*/
+  margin-top: -45px; /*same height as header*/
+  visibility: hidden;
 }

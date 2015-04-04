@@ -62,15 +62,7 @@ class ServicesController < ApplicationController
     @invoice = @account.invoices.build(invoice_params)
     @invoice.company_id = current_company.id
 
-    ActiveRecord::Base.transaction do
-      if @invoice.save
-        @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
-
-        redirect_to invoice_path(@invoice), notice: "#{'Service'.pluralize(params[:service_ids].count)} successfully invoiced."
-      else
-        render 'accounts/show'
-      end
-    end
+    create_invoice
   end
 
   def history_search
@@ -102,6 +94,18 @@ private
     @invoice = @service.invoice
 
     redirect_to @invoice, alert: 'SERVICES can only be EDITED or DELETED when no payments are applied!' if @service.invoice_id.present? && @invoice.payments.any?
+  end
+
+  def create_invoice
+    ActiveRecord::Base.transaction do
+      if @invoice.save
+        @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
+
+        redirect_to invoice_path(@invoice), notice: "#{'Service'.pluralize(params[:service_ids].count)} successfully invoiced."
+      else
+        render 'accounts/show'
+      end
+    end
   end
 
 end
