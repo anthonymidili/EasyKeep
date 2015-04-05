@@ -29,9 +29,8 @@ class Account < ActiveRecord::Base
     services.where(invoice_id: nil).sum(:cost)
   end
 
-  def total_account_payments(date, view_by)
-    time_range = (date.send("beginning_of_#{view_by}")..date.send("end_of_#{view_by}"))
-    payments.where(received_on: time_range).sum(:amount)
+  def total_account_payments(view_by, active_date)
+    payments.by_selected_range(view_by, active_date).sum(:amount)
   end
 
   def all_services_invoiced?

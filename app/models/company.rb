@@ -34,18 +34,17 @@ class Company < ActiveRecord::Base
     service_provided.present? ? "#{service_provided} Services" : 'Services'
   end
 
-  def total_company_payments(date, view_by)
-    time_range = (date.send("beginning_of_#{view_by}")..date.send("end_of_#{view_by}"))
-    payments.where(received_on: time_range).sum(:amount)
+  def total_company_payments(view_by, active_date)
+    payments.by_selected_range(view_by, active_date).sum(:amount)
   end
 
-  def total_less_taxes(date, view_by)
-    time_range = (date.send("beginning_of_#{view_by}")..date.send("end_of_#{view_by}"))
+  def total_less_taxes(view_by, active_date)
+    time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
     less_invoice_tax(time_range)
   end
 
-  def taxes_applied(date, view_by)
-    total_company_payments(date, view_by) - total_less_taxes(date, view_by)
+  def taxes_applied(view_by, active_date)
+    total_company_payments(view_by, active_date) - total_less_taxes(view_by, active_date)
   end
 
   def available_tags

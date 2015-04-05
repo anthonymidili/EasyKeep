@@ -16,24 +16,24 @@
           - @accounts.each do |account|
             %tr
               %td= account.name
-              %td= number_to_currency(account.total_account_payments(start_of_quarter_date(1), 'quarter'))
-              %td= number_to_currency(account.total_account_payments(start_of_quarter_date(4), 'quarter'))
-              %td= number_to_currency(account.total_account_payments(start_of_quarter_date(7), 'quarter'))
-              %td= number_to_currency(account.total_account_payments(start_of_quarter_date(10), 'quarter'))
-              %td= number_to_currency(account.total_account_payments(active_date, 'year'))
+              %td= number_to_currency(account.total_account_payments('quarter', start_of_quarter_date(1)))
+              %td= number_to_currency(account.total_account_payments('quarter', start_of_quarter_date(4)))
+              %td= number_to_currency(account.total_account_payments('quarter', start_of_quarter_date(7)))
+              %td= number_to_currency(account.total_account_payments('quarter', start_of_quarter_date(10)))
+              %td= number_to_currency(account.total_account_payments('year', active_date))
           %tr.divider-line
             %td
               %b Totals
             %td
-              %b= number_to_currency(current_company.total_company_payments(start_of_quarter_date(1), 'quarter'))
+              %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(1)))
             %td
-              %b= number_to_currency(current_company.total_company_payments(start_of_quarter_date(4), 'quarter'))
+              %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(4)))
             %td
-              %b= number_to_currency(current_company.total_company_payments(start_of_quarter_date(7), 'quarter'))
+              %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(7)))
             %td
-              %b= number_to_currency(current_company.total_company_payments(start_of_quarter_date(10), 'quarter'))
+              %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(10)))
             %td.red_text
-              %b= number_to_currency(current_company.total_company_payments(active_date, quarter_or_year))
+              %b= number_to_currency(current_company.total_company_payments(quarter_or_year, active_date))
 
 .row
   .small-12.columns.total_amount
@@ -42,14 +42,14 @@
         %label
           = "#{active_date.year} total amount received:"
           %span.large_red_text
-            = number_to_currency(current_company.total_company_payments(view_quarter_date, quarter_or_year))
+            = number_to_currency(current_company.total_company_payments(quarter_or_year, view_quarter_date))
       %li
         %label
           Total less taxes applied:
           %span.large_red_text
-            = number_to_currency(current_company.total_less_taxes(view_quarter_date, quarter_or_year))
+            = number_to_currency(current_company.total_less_taxes(quarter_or_year, view_quarter_date))
       %li
         %label
           Taxes applied to total:
           %span.large_red_text
-            = number_to_currency(current_company.taxes_applied(view_quarter_date, quarter_or_year))
+            = number_to_currency(current_company.taxes_applied(quarter_or_year, view_quarter_date))
