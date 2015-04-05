@@ -13,16 +13,6 @@ class Service < ActiveRecord::Base
 
   default_scope { order('performed_on DESC') }
 
-  # method can be replaced with by_selected
-  scope :by_year, -> active_date {
-    where(performed_on: active_date.beginning_of_year..active_date.end_of_year)
-  }
-
-  # method can be replaced with by_selected
-  scope :by_month, -> active_date {
-    where(performed_on: active_date.beginning_of_month..active_date.end_of_month)
-  }
-
   scope :by_selected_range, -> view_by, active_date {
     time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
     where(performed_on: time_range)
