@@ -21,8 +21,8 @@ class Account < ActiveRecord::Base
     [address_1, address_2, city, state, zip].select(&:present?).join(', ')
   end
 
-  def sum_services(view, date)
-    services_items(view, date).sum(:cost)
+  def sum_services(view_by, active_date)
+    services.by_selected_range(view_by, active_date).sum(:cost)
   end
 
   def sum_invoiceable_services
@@ -44,11 +44,5 @@ class Account < ActiveRecord::Base
 
   def total_outstanding_invoices
     invoices.by_outstanding.sum(&:balance_due)
-  end
-
-private
-
-  def services_items(view_by, active_date)
-    services.send(:"by_#{view_by}", active_date)
   end
 end

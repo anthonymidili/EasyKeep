@@ -23,8 +23,8 @@ class Service < ActiveRecord::Base
     where(performed_on: active_date.beginning_of_month..active_date.end_of_month)
   }
 
-  scope :by_selected_range, -> date, view_by {
-    time_range = (date.send("beginning_of_#{view_by}")..date.send("end_of_#{view_by}"))
+  scope :by_selected_range, -> view_by, active_date {
+    time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
     where(performed_on: time_range)
   }
 
