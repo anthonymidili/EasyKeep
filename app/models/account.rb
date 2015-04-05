@@ -34,7 +34,7 @@ class Account < ActiveRecord::Base
   end
 
   def all_services_invoiced?
-    !services.where(invoice_id: nil).present?
+    !services.by_invoiceable.present?
   end
 
   def paid_in_full?
