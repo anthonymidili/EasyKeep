@@ -11,12 +11,10 @@ class Service < ActiveRecord::Base
             format: { with: /\A(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})\z/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
+  include SelectedRange
+
   default_scope { order('performed_on DESC') }
 
-  scope :by_selected_range, -> view_by, active_date {
-    time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
-    where(performed_on: time_range)
-  }
   scope :by_invoiceable, -> { where(invoice_id: nil) }
   scope :with_limit, -> { limit(5) }
 
