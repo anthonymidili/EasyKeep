@@ -29,7 +29,7 @@
             %th Delete
 
       %tbody
-        - @services.by_not_used.each do |service|
+        - @services.by_invoiceable.each do |service|
           - if service.persisted?
             %tr
               - if current_user.is_admin?

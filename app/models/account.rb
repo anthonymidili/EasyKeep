@@ -26,7 +26,7 @@ class Account < ActiveRecord::Base
   end
 
   def sum_invoiceable_services
-    services.where(invoice_id: nil).sum(:cost)
+    services.by_invoiceable.sum(:cost)
   end
 
   def total_account_payments(view_by, active_date)

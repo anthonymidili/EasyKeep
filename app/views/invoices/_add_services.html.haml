@@ -9,7 +9,7 @@
         %th Memo
         %th Service cost
 
-    - @services.by_not_used.reverse_order.each do |service|
+    - @services.by_invoiceable.reverse_order.each do |service|
       - if service.persisted?
         %tbody
           %tr

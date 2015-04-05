@@ -17,9 +17,7 @@ class Service < ActiveRecord::Base
     time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
     where(performed_on: time_range)
   }
-
-  scope :by_not_used, -> { where(invoice_id: nil) }
-
+  scope :by_invoiceable, -> { where(invoice_id: nil) }
   scope :with_limit, -> { limit(5) }
 
   def disable_if_payment

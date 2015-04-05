@@ -8,7 +8,7 @@
 
     .outline= render 'services/new'
 
-    = render 'services/invoiceable' if @services.by_not_used.any?
+    = render 'services/invoiceable' if @services.by_invoiceable.any?
 
     = render 'invoices/outstanding'
 
