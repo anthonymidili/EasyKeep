@@ -1,0 +1,36 @@
+%ul.no_bullets
+  - if current_account.uses_account_name?
+    %li
+      %label
+        %b Account:
+        = current_account.name
+  - if current_account.uses_contact_name?
+    %li
+      %label
+        %b Contact:
+        = current_account.user.name
+  - if current_account.full_address.present?
+    %li
+      %label
+        %b Address:
+        = current_account.full_address
+  - if current_account.phone.present?
+    %li
+      %label
+        %b Phone:
+        = current_account.phone
+  - if current_account.fax.present?
+    %li
+      %label
+        %b Fax:
+        = current_account.fax
+  - if current_account.user.email.present?
+    %li
+      %label
+        %b Email:
+        = current_account.user.email
+  - if current_user.is_admin?
+    %li.hide_on_print
+      %label
+        %b User status:
+        = render 'accounts/user_status', account: current_account

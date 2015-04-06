@@ -2,9 +2,9 @@ class Payment < ActiveRecord::Base
 
   before_validation { |payment| payment.amount = 0 if payment.amount.blank? }
 
-  belongs_to :invoice
+  belongs_to :account, touch: true
   belongs_to :company
-  belongs_to :account
+  belongs_to :invoice
 
   validates :amount, numericality: true
   validates :transaction_type, presence: true
@@ -12,6 +12,12 @@ class Payment < ActiveRecord::Base
             format: { with: /\A(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})\z/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
   validate :no_credit_allowed
+
+  include SelectedRange
+  # def by_selected_range(view_by, active_date)
+  #   time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
+  #   where(:received_on => time_range)
+  # end
 
   default_scope { order('received_on DESC') }
 

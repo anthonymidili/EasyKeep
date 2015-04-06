@@ -6,15 +6,13 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  # attr_accessible :email, :password, :password_confirmation, :remember_me, :name
-  # attr_accessible :title, :body
   attr_accessor :skip_validation
   attr_accessor :require_email
 
   has_one :account, dependent: :destroy
 
   belongs_to :company
+  accepts_nested_attributes_for :company
 
   validates :name, presence: true
   validate :unique_email_required
@@ -22,7 +20,6 @@ class User < ActiveRecord::Base
   default_scope { order('id ASC') }
 
   scope :by_admin_user, -> { where(is_admin: true) }
-
   scope :by_owner_user, -> { where(is_owner: true) }
 
   def password_required?
@@ -31,6 +28,16 @@ class User < ActiveRecord::Base
   
   def email_required?
     self.encrypted_password.present? || self.invitation_token.present? || @require_email
+  end
+
+  # is the user an admin or a customer?
+  def role
+    @role ||=
+        if is_admin?
+          :admin
+        else
+          :customer
+        end
   end
 
 private

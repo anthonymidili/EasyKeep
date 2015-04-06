@@ -1,0 +1,25 @@
+- provide(:title, raw("#{current_account.name} Account - Service History"))
+
+.row
+  .small-12.columns
+    %br/
+
+    .outline= render 'accounts/edit_customer_header'
+
+    .outline
+      %h4 Service History Search
+      = render 'services/date_bar_forms'
+
+      .row
+        .small-12.columns.total_amount
+          %label
+            = "Total Cost of Services for the Selected #{view_by.capitalize}:"
+            %span.large_red_text= number_to_currency(current_account.sum_services(view_by, active_date))
+
+      = render 'services/history_table'
+
+    %br/
+
+    %ul.inline-list
+      %li= link_to "#{current_account.name} Account", current_account, class: 'small button radius'
+      %li= link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius'

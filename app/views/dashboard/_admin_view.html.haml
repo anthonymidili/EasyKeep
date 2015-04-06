@@ -1,0 +1,15 @@
+.row
+  .small-12.columns
+    %br/
+
+    .outline
+      .right
+        = link_to edit_company_path, title: 'Edit Company' do
+          Edit
+          %i.page.fi-page-edit
+
+      = render 'companies/header_preview'
+
+    = render 'dashboard/recent_accounts'
+
+    = render 'dashboard/new_service'

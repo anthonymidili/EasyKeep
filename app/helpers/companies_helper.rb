@@ -13,17 +13,26 @@ module CompaniesHelper
 
   def quarter_name
     case view_quarter
-      when 1; 'First'
-      when 4; 'Second'
-      when 7; 'Third'
-      else; 'Fourth'
+    when 1; 'First'
+    when 4; 'Second'
+    when 7; 'Third'
+    else; 'Fourth'
     end
   end
 
   def quarter_or_year
     case view_by
-      when :month; 'quarter'
-      else; 'year'
+    when :month; 'quarter'
+    else; 'year'
+    end
+  end
+
+  # display the company logo or the default example logo
+  def logo_or_default
+    if current_company.logo.present?
+      image_tag current_company.logo_url(:thumb)
+    else
+      image_tag 'default_logo.png', class: 'resize_photo'
     end
   end
 end

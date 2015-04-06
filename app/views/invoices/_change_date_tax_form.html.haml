@@ -1,0 +1,7 @@
+.outline
+  = form_for @invoice do |f|
+    = render 'shared/error_messages', object: f.object
+
+    = render 'services/date_tax_fields', f: f
+
+    = f.submit 'Update Date and Sales Tax', class: 'tiny button radius'

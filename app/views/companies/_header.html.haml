@@ -1,0 +1,7 @@
+.row
+  .small-12.columns
+    %ul.inline-list
+      %li
+        = image_tag current_company.logo_url(:thumb) if current_company.logo.present?
+      %li
+        = render 'companies/info'

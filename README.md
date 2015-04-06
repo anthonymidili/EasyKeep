@@ -1,8 +1,10 @@
 [![Code Climate](https://codeclimate.com/github/anthonymidili/EasyKeep.png)](https://codeclimate.com/github/anthonymidili/EasyKeep)
+[![PullReview stats](https://www.pullreview.com/github/anthonymidili/EasyKeep/badges/master.svg?)](https://www.pullreview.com/github/anthonymidili/EasyKeep/reviews/master)
+# EasyKeep *v-3.0.0*
 
-# EasyKeep *v-2.0.2*
+---
 
-**Easykeep** Started out to be an app to help my mom with her house keeping business. After doing that I wanted
+**EasyKeep** Started out to be an app to help my mom with her house keeping business. After doing that I wanted
 to help others with there small business.
 
 **EasyKeep** will help you keep track of all your:

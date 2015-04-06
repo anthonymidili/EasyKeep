@@ -1,0 +1,38 @@
+= form_for @invoice, url: invoice_services_path, method: :patch do |f|
+
+  = render 'shared/error_messages', object: f.object
+
+  = render 'services/date_tax_fields', f: f
+
+  .scroll_overflow-x
+    %table
+      %thead
+        %tr
+          - if current_user.is_admin?
+            %th Invoice?
+          %th Performed on
+          %th Memo
+          %th Cost
+          - if current_user.is_admin?
+            %th Edit
+            %th Delete
+
+      %tbody
+        - @services.by_invoiceable.each do |service|
+          - if service.persisted?
+            %tr
+              - if current_user.is_admin?
+                %td= check_box_tag 'service_ids[]', service.id, service.invoice_id.nil?
+              %td= service.performed_on.strftime('%Y-%b-%d')
+              %td= service.memo
+              %td= number_to_currency(service.cost, unit: '$')
+              - if current_user.is_admin?
+                %td.center_cell
+                  = link_to edit_service_path(service) do
+                    %i.page.fi-page-edit
+                %td.center_cell
+                  = link_to service, method: :delete,
+                  data: { confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' } do
+                    %i.general.fi-x
+
+  = f.submit 'Invoice Checked Services', class: 'tiny button radius' if current_user.is_admin?

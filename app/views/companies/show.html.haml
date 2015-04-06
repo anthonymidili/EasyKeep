@@ -2,19 +2,16 @@
 
 .row
   .small-12.columns
-    = render 'shared/company_info'
+    %h1.main_page_header User Roles
+    %br/
 
-    - unless @company.accounts.any?
-      .row
-        .small-8.small-centered.columns
-          = link_to 'Ready to create your First Account? Click Here.', new_account_path,
-          class: 'large button radius expand alert'
+    .outline= render 'companies/header'
 
     %ul.inline-list
+      %li= link_to 'Dashboard', dashboard_path, class: 'small button radius'
       - if current_user.is_owner?
-        %li= link_to 'Invite New Admin', new_user_invitation_path, class: 'small button radius'
         %li= link_to 'Edit Company', edit_company_path, class: 'small button radius'
-      %li= link_to 'Accounts Listing', accounts_path, class: 'small button radius'
+        %li= link_to 'Invite New Admin', new_user_invitation_path, class: 'small button radius'
 
     - if @company.by_admin.count > 1
 
@@ -39,4 +36,4 @@
                     data: { confirm: 'Are you sure? This will permanently DELETE your Admin and all there information' } do
                       %i.general.fi-x
 
-= render :partial => 'roles_explanation'
+= render 'roles_explanation'

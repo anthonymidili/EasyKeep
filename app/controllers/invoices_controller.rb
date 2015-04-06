@@ -1,8 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin!, except: [:show, :index]
-  before_action :set_current_account_id, only: [:index, :show]
-  before_action :require_no_payments, only: [:edit, :update, :destroy]
+  before_action :require_no_payments!, only: [:edit, :update, :destroy]
 
   def show
     @invoice = current_account.invoices.find(params[:id])
@@ -11,16 +10,14 @@ class InvoicesController < ApplicationController
   end
 
   def index
-    @invoices = current_account.invoices.page(params[:page]).per(10)
+    @invoices = current_account.invoices.page(params[:page]).per(20)
   end
 
   def edit
-    @invoice = current_account.invoices.find(params[:id])
     @services = current_account.services
   end
 
   def update
-    @invoice = current_account.invoices.find(params[:id])
     @services = current_account.services
 
     if @invoice.update_attributes(invoice_params)
@@ -32,13 +29,12 @@ class InvoicesController < ApplicationController
 
   def destroy
     ActiveRecord::Base.transaction do
-      @invoice = current_account.invoices.find(params[:id])
       @services = current_account.services
 
-      @services.update_all({invoice_id: nil}, {id: @invoice.services})
+      @invoice.services.update_all(invoice_id: nil)
       @invoice.destroy
 
-      redirect_to invoices_path, alert: 'Invoice was successfully deleted. Services on invoice are ready to be
+      redirect_to account_path(current_account), alert: 'Invoice was successfully deleted. Services on invoice are ready to be
 re-invoiced.'
     end
   end
@@ -92,8 +88,8 @@ private
     params.require(:account).permit(:uses_account_name, :uses_contact_name)
   end
 
-  def require_no_payments
+  def require_no_payments!
     @invoice = current_account.invoices.find(params[:id])
-    redirect_to @invoice if @invoice.payments.any?
+    redirect_to @invoice, alert: 'INVOICES can only be EDITED or DELETED when no payments are applied!' if @invoice.payments.any?
   end
 end

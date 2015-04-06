@@ -1,0 +1,13 @@
+#outstanding.anchor
+.outline
+  .row
+    .small-12.medium-6.large-6.columns
+      %h4 Outstanding Invoices
+    .small-12.medium-6.large-6.columns
+      %label
+        Total Owed:
+        %span.large_red_text= number_to_currency(current_account.total_outstanding_invoices)
+
+  = render 'invoices/table' unless @account.paid_in_full?
+
+  .label_size=link_to "All #{@account.name} Invoices", invoices_path

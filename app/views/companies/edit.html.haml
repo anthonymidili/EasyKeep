@@ -1,16 +1,22 @@
 - provide(:title, 'Edit Company')
 
 .row
-  .small-12.medium-8.large-8.small-centered.columns
+  .small-12.columns
     %h1.main_page_header Editing Company
     %br/
 
+    %label Company Header Preview
+    .outline= render 'companies/header_preview'
+
     = render 'form'
+
+.row
+  .small-12.columns
     %ul.inline-list
+      %li= link_to 'Dashboard', dashboard_path, class: 'small button radius'
       %li= link_to 'Company admins', company_path, class: 'small button radius'
       %li
         = link_to 'Destroy Company', @company,
         class: 'small alert button radius',
         method: :delete,
         data: { confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, ADMINS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' }
-      %li= link_to 'Accounts listing', accounts_path, class: 'small button radius'

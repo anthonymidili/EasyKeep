@@ -4,37 +4,7 @@
   .small-12.small-centered.columns
     %h1.main_page_header #{current_account.name} Invoices
 
-    .scroll_overflow-x
-      %table
-        %thead
-          %tr
-            %th Invoice#
-            %th Date
-            %th Total
-            %th Balance Due
-            - if current_user.is_admin?
-              %th Edit
-              %th Destroy
-
-        %tbody
-          - @invoices.each do |invoice|
-            %tr
-              %td.center_cell
-                = link_to invoice_path(invoice) do
-                  %i.page.fi-page
-                    %b= invoice.id
-              %td= invoice.established_at.strftime('%Y-%b-%d')
-              %td= number_to_currency(invoice.total_cost)
-              %td{class: red_text?(invoice)}
-                = pif_or_balance_due(invoice)
-              - if current_user.is_admin?
-                %td.center_cell
-                  = link_to edit_invoice_path(invoice), class: invoice.has_payment do
-                    %i.page.fi-page-edit
-                %td.center_cell
-                  = link_to invoice, class: invoice.has_payment, method: :delete,
-                  data: { confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' } do
-                    %i.general.fi-x
+    = render 'table'
 
     = paginate @invoices
     %br/

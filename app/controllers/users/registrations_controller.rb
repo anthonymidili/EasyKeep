@@ -1,6 +1,14 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :require_owner!, only: [:destroy]
 
+  # modify default devise method to build the company when user is created
+  def new
+    build_resource({})
+    self.resource.build_company
+    respond_with self.resource
+  end
+
+  # modify default devise method to destroy a company when user is destroyed
   def destroy
     resource.company.destroy
     resource.destroy
@@ -20,4 +28,10 @@ protected
     self.resource.is_admin = true
   end
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation,
+                                                            company_attributes: [:id, :name]) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :current_password, :password,
+                                                                   :password_confirmation) }
+  end
 end

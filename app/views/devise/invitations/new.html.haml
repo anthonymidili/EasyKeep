@@ -18,7 +18,10 @@
         %p
           = f.label field
           = f.text_field field
-      %p= f.submit t("devise.invitations.new.submit_button"), class: 'small button radius expand'
+      %p
+        = f.submit t("devise.invitations.new.submit_button"), class: 'small button radius expand'
+        = link_to 'Cancel Request', company_path, class: 'small button secondary radius expand'
+
 
   .small-12.medium-8.large-8.columns.disable_link
     = render 'admin_preview'

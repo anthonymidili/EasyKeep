@@ -1,0 +1,23 @@
+.row
+  .small-12.columns
+    %br/
+
+    .outline
+      = render 'companies/header'
+
+    .outline
+      .row
+        .small-8.columns
+          %h4 Your contact information
+        .small-4.columns
+          = link_to edit_account_path(current_account) do
+            .pad-top.right
+              Edit
+              %i.page.fi-page-edit
+      .row
+        .small-12.columns
+          = render 'shared/customer_header'
+
+    = render 'invoices/outstanding' unless @account.paid_in_full?
+
+    = render 'services/recent_history'

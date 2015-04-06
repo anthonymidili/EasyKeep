@@ -13,36 +13,35 @@ class Account < ActiveRecord::Base
 
   validates :name, presence: true
 
-  default_scope { order('name ASC') }
+  scope :by_name, -> { order('name ASC') }
+  scope :by_recent_activity, -> { order('updated_at DESC') }
+  scope :with_limit, -> { limit(5) }
 
   def full_address
-    [ address_1, address_2, city, state, zip ].select(&:present?).join(', ')
+    [address_1, address_2, city, state, zip].select(&:present?).join(', ')
   end
 
-  def sum_services(view, date)
-    services_items(view, date).sum(:cost)
+  def sum_services(view_by, active_date)
+    services.by_selected_range(view_by, active_date).sum(:cost)
   end
 
   def sum_invoiceable_services
-    services.where(invoice_id: nil).sum(:cost)
+    services.by_invoiceable.sum(:cost)
   end
 
-  def total_account_payments(date, view_by)
-    time_range = (date.send("beginning_of_#{view_by}")..date.send("end_of_#{view_by}"))
-    payments.where(received_on: time_range).sum(:amount)
+  def total_account_payments(view_by, active_date)
+    payments.by_selected_range(view_by, active_date).sum(:amount)
   end
 
   def all_services_invoiced?
-    !services.where(invoice_id: nil).present?
+    !services.by_invoiceable.present?
   end
 
   def paid_in_full?
     invoices.all?(&:paid_in_full?)
   end
 
-private
-
-  def services_items(view_by, active_date)
-    services.send(:"by_#{view_by}", active_date)
+  def total_outstanding_invoices
+    invoices.by_outstanding.sum(&:balance_due)
   end
 end

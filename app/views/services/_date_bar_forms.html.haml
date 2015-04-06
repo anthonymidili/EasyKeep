@@ -1,6 +1,6 @@
 .row
   / View By Form
-  = form_tag @account, id: :view_by_selection, method: :get do
+  = form_tag history_search_services_path, id: :view_by_selection, method: :get do
     .small-12.medium-6.large-6.columns
       %label Search by:
       %ul.inline-list
@@ -15,7 +15,7 @@
         %li= submit_tag 'View By', class: 'tiny button radius', name: nil
 
   / Active Date Form
-  = form_tag @account, method: :get do
+  = form_tag history_search_services_path, method: :get do
     .small-6.medium-3.large-3.columns
       = year_or_month_select
 

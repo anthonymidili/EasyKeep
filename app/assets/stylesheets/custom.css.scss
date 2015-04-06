@@ -43,18 +43,6 @@ ul.no_bullets {
   list-style-type: none;
 }
 
-.inline-tiny-button {
-  position: relative;
-  height: 57px;
-  margin-bottom: 17px;
-  input {
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 0;
-    height: 35px;
-  }
-}
-
 .user_status_button {
   width: 8em;
   padding-top: 3px !important;
@@ -110,4 +98,40 @@ span.italic_text {
   .s { font-size: 0.8em; }
   .m { font-size: 1.2em; }
   .l { font-size: 1.8em; }
+}
+
+.tiny_button_down {
+  margin-top: 21px !important;
+}
+
+.small_button_down {
+  margin-top: 14px !important;
+  margin-bottom: 16px !important;
+}
+
+.label_size {
+  font-size: 0.875rem !important;
+}
+
+select[class^='picker__select'] {
+  height: auto !important;
+}
+
+button[class^='picker__button'] {
+  color: black !important;
+}
+
+.no_action_required_false, .no_action_required_false a {
+  color: red;
+  a { text-decoration: underline }
+  a:hover { color: #2ba6cb }
+}
+
+/* Anchor links render too high due to the fixed header.
+Use a div before the anchor div on the same level to move anchor down on the page. */
+.anchor {
+  display: block;
+  height: 45px; /*same height as header*/
+  margin-top: -45px; /*same height as header*/
+  visibility: hidden;
 }

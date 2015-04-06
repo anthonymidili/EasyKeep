@@ -1,17 +1,56 @@
 = form_for @company, url: company_path, :html => { :multipart => true } do |f|
   = render 'shared/error_messages', object: f.object
   = hidden_field_tag :invoice_id, @invoice.id if @invoice
-
   .row
-    .small-12.medium-6.large-6.columns
-      = f.label :name
-      = f.text_field :name, autofocus: true
-    .small-12.medium-6.large-6.columns
-      = f.label :website
-      = f.text_field :website
+    .small-12.medium-12.large-8.columns
+      .row
+        .small-12.medium-6.large-6.columns
+          = f.label :name
+          = f.text_field :name, autofocus: true
+        .small-12.medium-6.large-6.columns
+          = f.label :website
+          = f.text_field :website
 
-  = render 'shared/address_fields', f: f
-  = render 'optional_company_field', f: f
+      = render 'shared/address_fields', f: f
+
+      .row
+        .small-12.medium-6.large-6.columns
+          = f.label :license_number
+          = f.text_field :license_number
+        .small-12.medium-6.large-6.columns
+          = f.label :established_on, 'Established on (yyyy-mm-dd)'
+          = f.text_field :established_on, class: 'datePicker', placeholder: 'Date'
+
+    .small-12.medium-12.large-4.columns
+      .row
+        .small-12.medium-6.medium-push-6.large-12.large-reset-order.columns
+          = f.label :sales_tax, 'Regional sales tax'
+          .row.collapse
+            .small-4.columns
+              = f.number_field :sales_tax
+            .small-8.columns
+              %span.postfix % Sales Tax
+
+        .small-12.medium-6.medium-pull-6.large-12.large-reset-order.columns
+          .outline
+            = f.label :logo do
+              Have a logo you'd like to show off?
+              %br/
+              Then Upload it.
+              %br/
+              .visible-for-small-only
+                #{image_tag(f.object.logo_url(:thumb)) if f.object.logo?}
+            %br/
+            = f.file_field :logo
+            = f.label :remote_logo_url, 'or image URL'
+            = f.text_field :remote_logo_url
+            = f.hidden_field :logo_cache
+            %label.checkbox
+              = f.check_box :remove_logo
+              Check box to remove Logo
+  %hr/
+
+  = render'companies/services_form', f: f
 
   .row
     .small-12.medium-6.large-6.columns

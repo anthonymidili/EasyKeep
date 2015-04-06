@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
     @company = current_user.build_company(company_params)
 
     if @company.save && current_user.save
-      redirect_to company_path, notice: 'Company was successfully created.'
+      redirect_to dashboard_path, notice: 'Company was successfully created.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class CompaniesController < ApplicationController
     @invoice = current_company.invoices.find_by_id(params[:invoice_id])
 
       if @company.update_attributes(company_params)
-        redirect_to_company_or_invoice
+      redirect_edit_or_invoice
       else
         render :edit
       end
@@ -56,7 +56,7 @@ class CompaniesController < ApplicationController
   end
 
   def search_invoices
-    @invoices = current_company.invoices.order('id DESC').limit(100).page(params[:page]).per(10)
+    @invoices = current_company.invoices.order('id DESC').limit(100).page(params[:page]).per(20)
     @invoice = current_company.invoices.find_by_id(params[:search])
 
     found_invoice if params[:search]
@@ -72,7 +72,7 @@ private
   def company_params
     params.require(:company).permit(:address_1, :address_2, :city, :name, :fax, :phone, :state, :zip, :established_on,
                                     :license_number, :service_provided, :service_summery, :website, :logo,
-                                    :remote_logo_url, :remove_logo, :logo_cache)
+                                    :remote_logo_url, :remove_logo, :logo_cache, :sales_tax)
   end
 
   def only_one_company
@@ -94,7 +94,7 @@ private
     end
   end
 
-  def redirect_to_company_or_invoice
+  def redirect_edit_or_invoice
     if @invoice
       redirect_to edit_invoice_path(@invoice), notice: 'Company was successfully updated.'
     else

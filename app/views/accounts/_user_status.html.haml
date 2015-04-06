@@ -4,18 +4,22 @@
   class: 'tiny button radius user_status_button',
   title: 'to view there account information'
   = render 'accounts/invite_customer_modal', account: account
+
 - elsif account.user.encrypted_password.present?
   %b.green_text Active
-  - if @invoice
+
+  - if @invoice && @invoice.persisted?
     %br/
     = link_to "Notify #{@invoice.account.user.name} that invoice is ready for viewing", '#',
     'data-reveal-id' => "invoiceReadyModal#{@invoice.id}",
     class: 'tiny button radius send_user_email_button'
     = render 'accounts/invoice_ready_modal', invoice: @invoice
+
 - elsif account.user.email.present?
   = link_to 'Invite', '#', 'data-reveal-id' => "inviteCustomerModal#{account.id}",
   class: 'tiny button radius user_status_button',
   title: 'to view there account information'
   = render 'accounts/invite_customer_modal', account: account
+
 - else
   no email

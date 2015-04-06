@@ -11,12 +11,13 @@
           = link_to 'Delete Invoice', @invoice, class: 'small alert button radius',  method: :delete,
           data: { confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' }
 
-    = render 'shared/company_info'
-    %p
-      %b= @invoice.established_at.strftime('%Y-%b-%d')
-    %b Invoice# #{@invoice.id}
+    = render 'companies/header'
 
-    = render 'shared/customer_info'
+    %h2= "Invoice# #{@invoice.id}"
+
+    %b= "Date: #{@invoice.established_at.strftime('%Y-%b-%d')}"
+
+    .panel= render 'shared/customer_header'
 
     %h4= current_company.service_provided!
     %table
@@ -44,5 +45,5 @@
     .row
       .small-12.columns.hide_on_print
         = link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small button radius',
-        id: 'apply_payment', remote: true if current_user.is_admin?
-    = render 'payments/payments' if @invoice.payments.any?
+        id: "applyPaymentLink#{@invoice.id}", remote: true if current_user.is_admin?
+    = render 'payments/history' if @invoice.payments.any?

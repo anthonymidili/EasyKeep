@@ -2,7 +2,15 @@
 
 .row
   .small-12.medium-8.large-8.small-centered.columns
-    %h1.main_page_header New Company
-    %br/
+    %h1.main_page_header Create Your Company
+    .panel
+      = form_for @company, url: company_path do |f|
+        = render 'shared/error_messages', object: f.object
 
-    = render 'form'
+        .row
+          .small-12.medium-12.large-6.columns
+            = f.label :name
+            = f.text_field :name, autofocus: true
+
+          .small-12.medium-12.large-6.columns
+            = f.submit class: 'large button radius expand'

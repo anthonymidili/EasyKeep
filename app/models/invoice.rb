@@ -2,7 +2,7 @@ class Invoice < ActiveRecord::Base
 
   before_validation { |invoice| invoice.sales_tax = 0 if invoice.sales_tax.blank? || invoice.sales_tax < 0 }
 
-  belongs_to :account
+  belongs_to :account, touch: true
   belongs_to :company
 
   has_many :services
@@ -14,6 +14,8 @@ class Invoice < ActiveRecord::Base
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
   default_scope { order('established_at DESC') }
+
+  scope :by_outstanding, -> { all.reject(&:paid_in_full?) }
 
   def sales_tax!
     sales_tax * 0.01
@@ -43,7 +45,7 @@ class Invoice < ActiveRecord::Base
     balance_due == 0.00
   end
 
-  def has_payment
+  def disable_if_payment
     'disable_link gray_text' if payments.any?
   end
 end
