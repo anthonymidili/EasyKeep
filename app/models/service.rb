@@ -12,6 +12,10 @@ class Service < ActiveRecord::Base
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
   include SelectedRange
+  # def by_selected_range(view_by, active_date)
+  #   time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
+  #   where(:performed_on => time_range)
+  # end
 
   default_scope { order('performed_on DESC') }
 

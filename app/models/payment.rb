@@ -14,6 +14,10 @@ class Payment < ActiveRecord::Base
   validate :no_credit_allowed
 
   include SelectedRange
+  # def by_selected_range(view_by, active_date)
+  #   time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
+  #   where(:received_on => time_range)
+  # end
 
   default_scope { order('received_on DESC') }
 
