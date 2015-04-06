@@ -2,27 +2,24 @@
 
 .row
   .small-12.small-centered.columns
-    %h1.main_page_header Editing Invoice
+    %h1.main_page_header= "Editing Invoice# #{@invoice.id}"
     %br/
 
     %ul.inline-list
       %li= link_to 'Back to Invoice', invoice_path(@invoice), class: 'small button radius'
-      %li= link_to 'Edit Company Header', edit_company_path(invoice_id: @invoice.id), class: 'small button radius'
+      %li= link_to "#{current_account.name} Account", current_account, class: 'small button radius'
+      %li= link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius'
 
-    = render 'companies/header'
-    = render 'invoices/change_invoice_date'
-    %b Invoice# #{@invoice.id}
-    = render 'invoices/change_account_header'
-    .panel= render 'shared/customer_header'
+    .outline
+      = render 'companies/header'
+      .label_size= link_to 'Edit company header', edit_company_path(invoice_id: @invoice.id)
+
+    = render 'invoices/change_date_tax_form'
+
+    .outline
+      = render 'invoices/change_account_header'
+      .panel= render 'shared/customer_header'
+      .label_size= link_to 'Edit account information', edit_account_path(current_account)
+
     = render 'invoices/remove_services'
-    %hr/
     = render 'invoices/add_services'
-    %hr/
-    = render 'invoices/totals'
-    %br/
-
-    %ul.inline-list
-      %li
-        = link_to "#{current_account.name} Account", current_account, class: 'small button radius'
-      %li
-        = link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius'

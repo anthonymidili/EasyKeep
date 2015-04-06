@@ -1,21 +1,22 @@
-%h4 Add Services to your Invoice
+.outline
+  %h4 Add Services to your Invoice
 
-= form_tag add_services_invoices_path(id: @invoice.id), method: :patch do
-  %table
-    %thead
-      %tr
-        %th
-        %th Date performed
-        %th Memo
-        %th Service cost
+  = form_tag add_services_invoices_path(id: @invoice.id), method: :patch do
+    %table
+      %thead
+        %tr
+          %th
+          %th Date performed
+          %th Memo
+          %th Service cost
 
-    - @services.by_invoiceable.reverse_order.each do |service|
-      - if service.persisted?
-        %tbody
-          %tr
-            %td= check_box_tag 'service_ids[]', service.id
-            %td= service.performed_on.strftime('%Y-%b-%d')
-            %td= service.memo
-            %td= number_to_currency(service.cost)
+      - @services.by_invoiceable.reverse_order.each do |service|
+        - if service.persisted?
+          %tbody
+            %tr
+              %td= check_box_tag 'service_ids[]', service.id
+              %td= service.performed_on.strftime('%Y-%b-%d')
+              %td= service.memo
+              %td= number_to_currency(service.cost)
 
-  = submit_tag 'Add Checked Services', class: 'tiny button radius'
+    = submit_tag 'Add Checked Services', class: 'tiny button radius'

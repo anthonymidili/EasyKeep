@@ -10,7 +10,7 @@ class InvoicesController < ApplicationController
   end
 
   def index
-    @invoices = current_account.invoices.page(params[:page]).per(10)
+    @invoices = current_account.invoices.page(params[:page]).per(20)
   end
 
   def edit

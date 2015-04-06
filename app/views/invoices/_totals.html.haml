@@ -1,16 +1,12 @@
 .row
-  .small-12.medium-7.large-6.columns.total_amount
+  .small-12.medium-8.large-6.columns.total_amount
     %table
       %tbody
         %tr
           %td Sub Total:
           %td.totals= number_to_currency(@invoice.sub_total)
         %tr
-          %td
-            - if params[:action] == 'edit' || params[:action] == 'update'
-              = render 'invoices/change_sales_tax'
-            - else
-              #{@invoice.sales_tax}% Sales Tax:
+          %td= "#{@invoice.sales_tax}% Sales Tax:"
           %td= number_to_currency(@invoice.services_sales_tax)
         %tr
           %td Total Due:

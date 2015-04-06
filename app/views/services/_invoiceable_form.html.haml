@@ -2,18 +2,7 @@
 
   = render 'shared/error_messages', object: f.object
 
-  .row
-    .small-12.medium-6.large-6.columns
-      = f.label :established_at, 'Invoice Date (yyyy-mm-dd)'
-      = f.text_field :established_at, class: 'datePicker', placeholder: 'Date'
-
-    .small-12.medium-6.large-6.columns
-      = f.label :sales_tax, 'Sales Tax to be Applied'
-      .row.collapse
-        .small-4.columns
-          = f.number_field :sales_tax
-        .small-8.columns
-          %span.postfix % Sales Tax
+  = render 'services/date_tax_fields', f: f
 
   .scroll_overflow-x
     %table
