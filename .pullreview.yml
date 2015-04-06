@@ -1,0 +1,12 @@
+---
+rules:
+  ignore:
+  - avoid_global_variable
+  - avoid_using_curly_braces_for_multi-line_blocks
+  - indent_when_as_deep_as_case
+  - missing_class_documentation
+  - missing_method_documentation
+  - no_instance_variable_in_partial
+  - no_params_in_view
+  - no_session_in_view
+  - uses_spaces_instead_of_tabs
