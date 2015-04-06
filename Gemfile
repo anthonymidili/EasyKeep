@@ -34,7 +34,7 @@ gem 'pickadate-rails', '~> 3.5.5'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_12factor', '~> 0.0.2', group: [:production, :staging]
 
-gem 'rmagick', '~> 2.13.2'
+gem 'rmagick', '~> 2.14.0'
 # must stay this version to work properly
 gem 'carrierwave', '~> 0.9.0'
 gem 'fog', '~> 1.0'
