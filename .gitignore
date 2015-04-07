@@ -26,7 +26,7 @@ bundler_stubs/
 /public/uploads
 .ruby-version
 
-# Ignore Gemfile.lock
+# Ignore Gemfile.lock file
 Gemfile.lock
 
 # Ignore application configuration
