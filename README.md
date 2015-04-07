@@ -1,5 +1,4 @@
 [![Code Climate](https://codeclimate.com/github/anthonymidili/EasyKeep.png)](https://codeclimate.com/github/anthonymidili/EasyKeep)
-[![PullReview stats](https://www.pullreview.com/github/anthonymidili/EasyKeep/badges/master.svg?)](https://www.pullreview.com/github/anthonymidili/EasyKeep/reviews/master)
 # EasyKeep *v-3.0.0*
 
 ---
