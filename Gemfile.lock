@@ -46,10 +46,11 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    carrierwave (0.9.0)
+    carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
+      mime-types (>= 1.16)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -321,7 +322,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
-  carrierwave (~> 0.9.0)
+  carrierwave (~> 0.10.0)
   coffee-rails (~> 4.1.0)
   devise (~> 3.4.1)
   devise_invitable (~> 1.4.1)

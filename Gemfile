@@ -36,7 +36,7 @@ gem 'rails_12factor', '~> 0.0.2', group: [:production, :staging]
 
 gem 'rmagick', '~> 2.14.0'
 # must stay this version to work properly
-gem 'carrierwave', '~> 0.9.0'
+gem 'carrierwave', '~> 0.10.0'
 gem 'fog', '~> 1.0'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
