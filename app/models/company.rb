@@ -43,8 +43,9 @@ class Company < ActiveRecord::Base
   end
 
   def total_less_taxes(view_by, active_date)
-    time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
-    less_invoice_tax(time_range)
+    invoices.map { |invoice|
+      invoice.payments.by_selected_range(view_by, active_date).sum(:amount) / (invoice.sales_tax! + 1)
+    }.sum
   end
 
   def taxes_applied(view_by, active_date)
@@ -61,13 +62,5 @@ class Company < ActiveRecord::Base
 
   def tag_counts
     tags.joins(:taggings).select('tags.*, count(tag_id)').group('tags.id').order('count DESC')
-  end
-
-private
-
-  def less_invoice_tax(time_range)
-    invoices.map { |invoice|
-      invoice.payments.where(received_on: time_range).sum(:amount) / (invoice.sales_tax! + 1)
-    }.sum
   end
 end
