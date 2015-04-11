@@ -2,6 +2,12 @@
   .small-12.columns
     %br/
 
+    - unless current_company.accounts.any?
+      .alert-box.warning.radius
+        Be sure to #{link_to 'edit your company', edit_company_path} information to add your
+        logo, address, phone number, ect. that will be applied to your invoices headers.
+        Next feel free to #{link_to 'create you first account', new_account_path}.
+
     .outline
       .right
         = link_to edit_company_path, title: 'Edit Company' do
