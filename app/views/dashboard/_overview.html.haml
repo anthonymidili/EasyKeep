@@ -1,0 +1,10 @@
+.outline
+  %h4
+    Overview
+
+  Company Accounts:
+  = current_company.accounts.count
+
+  %br/
+  This year's Income:
+  = number_to_currency(current_company.total_company_payments(:year, Date.current))

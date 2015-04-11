@@ -12,6 +12,7 @@ gem 'figaro', '~> 1.1.0'
 
 gem 'devise', '~> 3.4.1'
 gem 'devise_invitable', '~> 1.4.1'
+
 gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari', '~> 0.16.3'
 gem 'pg', '~> 0.18.1'
@@ -23,8 +24,8 @@ gem 'better_errors'
 gem 'binding_of_caller'
 gem 'hirb'
 gem 'sass-rails', '~> 5.0.1'
-# foundation Locked at 5.5.1.0. 5.5.1.1 breaks javascript.
-gem 'foundation-rails', '5.5.1.0'
+# https://github.com/zurb/foundation-rails
+gem 'foundation-rails', '5.5.1.2'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '~> 2.7.1'
