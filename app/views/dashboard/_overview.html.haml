@@ -2,13 +2,27 @@
   %h4
     Overview
 
-  Company Accounts:
-  = current_company.accounts.count
+  .row
+    .small-12.columns
+      %p
+        %b Company Accounts:
+        = current_company.accounts.count
 
-  %br/
-  #{Date.current.year} Money received:
-  = number_to_currency(current_company.total_company_payments(:year, Date.current))
+  .row
+    .small-12.medium-6.large-6.columns
+      %p
+        %b Money received this year:
+        = number_to_currency(current_company.total_company_payments(:year, Date.current))
 
-  %br/
-  #{Date.current.year} Money owed:
-  %span.red_text= number_to_currency(current_company.total_company_balance_due(:year, Date.current))
+        %br/
+        %b Money owed this year:
+        %span.red_text= number_to_currency(current_company.total_company_balance_due(:year, Date.current))
+
+    .small-12.medium-6.large-6.columns
+      %p
+        %b Money received this month:
+        = number_to_currency(current_company.total_company_payments(:month, Date.current))
+
+        %br/
+        %b Money owed this month:
+        %span.red_text= number_to_currency(current_company.total_company_balance_due(:month, Date.current))
