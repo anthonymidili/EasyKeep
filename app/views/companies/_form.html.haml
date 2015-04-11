@@ -6,7 +6,7 @@
       .row
         .small-12.medium-6.large-6.columns
           = f.label :name
-          = f.text_field :name, autofocus: true
+          = f.text_field :name
         .small-12.medium-6.large-6.columns
           = f.label :website
           = f.text_field :website
@@ -24,6 +24,7 @@
     .small-12.medium-12.large-4.columns
       .row
         .small-12.medium-6.medium-push-6.large-12.large-reset-order.columns
+          #regional_sales_tax.anchor
           = f.label :sales_tax, 'Regional sales tax'
           .row.collapse
             .small-4.columns

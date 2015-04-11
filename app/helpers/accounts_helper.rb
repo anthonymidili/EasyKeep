@@ -4,7 +4,7 @@ module AccountsHelper
     when true
       'Yes'
     else
-      link_to 'No', account_path(account, anchor: 'invoiceable')
+      link_to 'No', account_path(account, anchor: :invoiceable)
     end
   end
 
@@ -13,7 +13,7 @@ module AccountsHelper
     when true
       'Yes'
     else
-      link_to 'No', account_path(account, anchor: 'outstanding')
+      link_to 'No', account_path(account, anchor: :outstanding)
     end
   end
 end
