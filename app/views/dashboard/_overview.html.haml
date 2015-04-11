@@ -6,5 +6,9 @@
   = current_company.accounts.count
 
   %br/
-  This year's Income:
+  #{Date.current.year}'s Income:
   = number_to_currency(current_company.total_company_payments(:year, Date.current))
+
+  %br/
+  #{Date.current.year}'s Outstanding Payments:
+  = number_to_currency(current_company.total_company_balance_due(:year, Date.current))

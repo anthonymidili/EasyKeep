@@ -18,6 +18,8 @@ module SelectedRange
             :performed_on
           elsif self.name == 'Payment'
             :received_on
+          elsif self.name == 'Invoice'
+            :established_at
           end
     end
 

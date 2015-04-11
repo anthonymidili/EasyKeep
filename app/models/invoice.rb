@@ -13,6 +13,12 @@ class Invoice < ActiveRecord::Base
             format: { with: /\A(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})\z/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
 
+  include SelectedRange
+  # def by_selected_range(view_by, active_date)
+  #   time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
+  #   where(:established_at => time_range)
+  # end
+
   default_scope { order('established_at DESC') }
 
   scope :by_outstanding, -> { all.reject(&:paid_in_full?) }

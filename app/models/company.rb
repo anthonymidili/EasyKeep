@@ -38,6 +38,10 @@ class Company < ActiveRecord::Base
     payments.by_selected_range(view_by, active_date).sum(:amount)
   end
 
+  def total_company_balance_due(view_by, active_date)
+    invoices.by_selected_range(view_by, active_date).by_outstanding.sum(&:balance_due)
+  end
+
   def total_less_taxes(view_by, active_date)
     time_range = (active_date.send("beginning_of_#{view_by}")..active_date.send("end_of_#{view_by}"))
     less_invoice_tax(time_range)
