@@ -24,13 +24,10 @@ Rails.application.routes.draw do
   end
 
   resources :services, except: [:show, :index, :new] do
-    collection do
-      patch :invoice
-      get :history_search
-    end
+    get :history_search, on: :collection
   end
 
-  resources :invoices, except: [:new, :create] do
+  resources :invoices, except: [:new] do
     collection do
       patch :add_services
       patch :remove_services
