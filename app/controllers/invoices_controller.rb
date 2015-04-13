@@ -13,6 +13,18 @@ class InvoicesController < ApplicationController
     @invoices = current_account.invoices.page(params[:page]).per(20)
   end
 
+  def create
+    @account = current_account
+    @service = @account.services.build
+    @service.performed_on ||= Date.current
+    @services = @account.services
+    @invoices = @account.invoices.by_outstanding
+    @invoice = @account.invoices.build(invoice_params)
+    @invoice.company_id = current_company.id
+
+    create_invoice
+  end
+
   def edit
     @services = current_account.services
   end
@@ -92,4 +104,17 @@ private
     @invoice = current_account.invoices.find(params[:id])
     redirect_to @invoice, alert: 'INVOICES can only be EDITED or DELETED when no payments are applied!' if @invoice.payments.any?
   end
+
+  def create_invoice
+    ActiveRecord::Base.transaction do
+      if @invoice.save
+        @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
+
+        redirect_to invoice_path(@invoice), notice: "#{'Service'.pluralize(params[:service_ids].count)} successfully invoiced."
+      else
+        render 'accounts/show'
+      end
+    end
+  end
+
 end

@@ -53,18 +53,6 @@ class ServicesController < ApplicationController
     redirect_to current_account, alert: 'Service history item successfully deleted.'
   end
 
-  def invoice
-    @account = current_account
-    @service = @account.services.build
-    @service.performed_on ||= Date.current
-    @services = @account.services
-    @invoices = @account.invoices.by_outstanding
-    @invoice = @account.invoices.build(invoice_params)
-    @invoice.company_id = current_company.id
-
-    create_invoice
-  end
-
   def history_search
     @services = current_account.services.by_selected_range(view_by, active_date).page(params[:page]).per(20)
   end
@@ -93,18 +81,6 @@ private
     @invoice = @service.invoice
 
     redirect_to @invoice, alert: 'SERVICES can only be EDITED or DELETED when no payments are applied!' if @service.invoice_id.present? && @invoice.payments.any?
-  end
-
-  def create_invoice
-    ActiveRecord::Base.transaction do
-      if @invoice.save
-        @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
-
-        redirect_to invoice_path(@invoice), notice: "#{'Service'.pluralize(params[:service_ids].count)} successfully invoiced."
-      else
-        render 'accounts/show'
-      end
-    end
   end
 
 end

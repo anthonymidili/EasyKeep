@@ -1,8 +1,8 @@
-= form_for @invoice, url: invoice_services_path, method: :patch do |f|
+= form_for @invoice do |f|
 
   = render 'shared/error_messages', object: f.object
 
-  = render 'services/date_tax_fields', f: f
+  = render 'invoices/date_tax_fields', f: f
 
   .scroll_overflow-x
     %table
