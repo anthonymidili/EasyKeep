@@ -33,12 +33,10 @@ class ServicesController < ApplicationController
   end
 
   def edit
-    @service = current_account.services.find(params[:id])
+
   end
 
   def update
-    @service = current_account.services.find(params[:id])
-
     if @service.update_attributes(service_params)
       redirect_to_account_or_invoice
     else
@@ -47,7 +45,6 @@ class ServicesController < ApplicationController
   end
 
   def destroy
-    @service = current_account.services.find(params[:id])
     @service.destroy
 
     redirect_to current_account, alert: 'Service history item successfully deleted.'
