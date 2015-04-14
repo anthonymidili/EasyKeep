@@ -59,7 +59,6 @@ class Invoice < ActiveRecord::Base
 private
 
   def set_invoice_number
-    raise
     self.number = (company.invoices.maximum(:number).to_i).succ
   end
 
