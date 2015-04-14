@@ -64,10 +64,6 @@ private
     params.require(:service).permit(:memo, :performed_on, :cost)
   end
 
-  def invoice_params
-    params.require(:invoice).permit(:established_at, :sales_tax)
-  end
-
   def redirect_to_account_or_invoice
     if params[:invoice_id] && !@service.invoice.nil?
       redirect_to edit_invoice_path(@service.invoice), notice: 'Service was successfully updated.'
