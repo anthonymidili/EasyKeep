@@ -16,19 +16,6 @@ class ApplicationController < ActionController::Base
     @current_company ||= current_user.company if user_signed_in?
   end; helper_method :current_company
 
-  # If on the accounts_controller or an :account_id is passed in the params by an admin,
-  # the current_account cookie will be updated for the current_account.
-  # If going to a controller action outside of the accounts controller before the current_account cookie is set,
-  # you will need to pass the :account_id as a param in your link.
-  def set_current_account_id
-    @set_current_account_id ||=
-        if params[:controller] == 'accounts' && params[:id]
-          cookies[:current_account] = params[:id]
-        elsif current_user.is_admin? && params[:account_id]
-          cookies[:current_account] = params[:account_id]
-        end
-  end
-
   # The current_account_id is set to the current_account the admin is viewing.
   # Find the current_account by id so if the account is not found it returns nil.
   def current_account
@@ -66,6 +53,19 @@ class ApplicationController < ActionController::Base
   end; helper_method :view_quarter
 
 protected
+
+  # If on the accounts_controller or an :account_id is passed in the params by an admin,
+  # the current_account cookie will be updated for the current_account.
+  # If going to a controller action outside of the accounts controller before the current_account cookie is set,
+  # you will need to pass the :account_id as a param in your link.
+  def set_current_account_id
+    @set_current_account_id ||=
+        if params[:controller] == 'accounts' && params[:id]
+          cookies[:current_account] = params[:id]
+        elsif current_user.is_admin? && params[:account_id]
+          cookies[:current_account] = params[:account_id]
+        end
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:invite) << :name
