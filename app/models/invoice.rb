@@ -1,6 +1,7 @@
 class Invoice < ActiveRecord::Base
 
   before_validation { |invoice| invoice.sales_tax = 0 if invoice.sales_tax.blank? || invoice.sales_tax < 0 }
+  before_create :set_invoice_number
 
   belongs_to :account, touch: true
   belongs_to :company
@@ -22,10 +23,6 @@ class Invoice < ActiveRecord::Base
   default_scope { order('established_at DESC') }
 
   scope :by_outstanding, -> { all.reject(&:paid_in_full?) }
-
-  def self.set_invoice_number(current_company)
-    (current_company.invoices.maximum(:number).to_i).succ
-  end
 
   def sales_tax!
     sales_tax * 0.01
@@ -57,6 +54,13 @@ class Invoice < ActiveRecord::Base
 
   def disable_if_payment
     'disable_link gray_text' if payments.any?
+  end
+
+private
+
+  def set_invoice_number
+    raise
+    self.number = (company.invoices.maximum(:number).to_i).succ
   end
 
 end

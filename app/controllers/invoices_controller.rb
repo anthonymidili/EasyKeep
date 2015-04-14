@@ -21,7 +21,6 @@ class InvoicesController < ApplicationController
     @invoices = @account.invoices.by_outstanding
     @invoice = @account.invoices.build(invoice_params)
     @invoice.company_id = current_company.id
-    @invoice.number = Invoice.set_invoice_number(current_company)
 
     create_invoice
   end
