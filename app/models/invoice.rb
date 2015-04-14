@@ -23,6 +23,10 @@ class Invoice < ActiveRecord::Base
 
   scope :by_outstanding, -> { all.reject(&:paid_in_full?) }
 
+  def self.set_invoice_number(current_company)
+    (current_company.invoices.maximum(:number).to_i).succ
+  end
+
   def sales_tax!
     sales_tax * 0.01
   end
@@ -54,4 +58,5 @@ class Invoice < ActiveRecord::Base
   def disable_if_payment
     'disable_link gray_text' if payments.any?
   end
+
 end
