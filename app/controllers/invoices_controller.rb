@@ -1,10 +1,10 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin!, except: [:show, :index]
+  before_action :load_invoice, only: [:show, :add_services, :remove_services, :invoice_ready, :change_account_header]
   before_action :require_no_payments!, only: [:edit, :update, :destroy]
 
   def show
-    @invoice = current_account.invoices.find(params[:id])
     @services = @invoice.services
     @payments = @invoice.payments
   end
@@ -53,7 +53,6 @@ re-invoiced.'
 
   def add_services
     ActiveRecord::Base.transaction do
-      @invoice = current_account.invoices.find(params[:id])
       @services = current_account.services
 
       @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
@@ -64,8 +63,6 @@ re-invoiced.'
 
   def remove_services
     ActiveRecord::Base.transaction do
-      @invoice = current_account.invoices.find(params[:id])
-
       @invoice.services.where(id: params[:service_ids]).update_all(invoice_id: nil)
 
       redirect_to edit_invoice_path(@invoice), notice: 'Successfully removed services from invoice.'
@@ -73,7 +70,6 @@ re-invoiced.'
   end
 
   def invoice_ready
-    @invoice = current_account.invoices.find(params[:id])
     UserMailer.invoice_ready_notice(@invoice).deliver
 
     redirect_to @invoice, notice: "Email has been successfully sent to #{@invoice.account.user.name}."
@@ -81,7 +77,6 @@ re-invoiced.'
 
   def change_account_header
     ActiveRecord::Base.transaction do
-      @invoice = current_account.invoices.find(params[:id])
       current_account.update_attributes(account_params)
 
       redirect_to edit_invoice_path(@invoice), notice: "Account was successfully updated for all current and future
@@ -100,8 +95,12 @@ private
     params.require(:account).permit(:uses_account_name, :uses_contact_name)
   end
 
+  def load_invoice
+    @invoice = current_account.invoices.friendly.find(params[:id])
+  end
+
   def require_no_payments!
-    @invoice = current_account.invoices.find(params[:id])
+    @invoice = current_account.invoices.friendly.find(params[:id])
     redirect_to @invoice, alert: 'INVOICES can only be EDITED or DELETED when no payments are applied!' if @invoice.payments.any?
   end
 

@@ -31,6 +31,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '~> 2.7.1'
 gem 'jquery-rails', '~> 4.0.3'
 gem 'pickadate-rails', '~> 3.5.5'
+#https://github.com/norman/friendly_id
+gem 'friendly_id', '~> 5.1.0'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_12factor', '~> 0.0.2', group: [:production, :staging]

@@ -1,5 +1,8 @@
 class Invoice < ActiveRecord::Base
 
+  extend FriendlyId
+  friendly_id :number
+
   before_validation { |invoice| invoice.sales_tax = 0 if invoice.sales_tax.blank? || invoice.sales_tax < 0 }
   before_create :set_invoice_number
 
