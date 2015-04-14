@@ -5,7 +5,7 @@
     %h4.main_page_header
       New payment - #{@invoice.account.name} Account
       %br/
-      Invoice# #{@invoice.id}
+      Invoice# #{@invoice.number}
 
     .panel
       %ul.inline-list
@@ -15,4 +15,4 @@
 
       = render 'payments/form'
 
-      .label_size= link_to "#{@invoice.account.name} - Invoice# #{@invoice.id}", @invoice
+      .label_size= link_to "#{@invoice.account.name} - Invoice# #{@invoice.number}", @invoice
