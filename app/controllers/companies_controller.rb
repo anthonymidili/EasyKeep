@@ -57,7 +57,7 @@ class CompaniesController < ApplicationController
 
   def search_invoices
     @invoices = current_company.invoices.order('id DESC').limit(100).page(params[:page]).per(20)
-    @invoice = current_company.invoices.find_by_id(params[:search])
+    @invoice = current_company.invoices.find_by_number(params[:search])
 
     found_invoice if params[:search]
   end

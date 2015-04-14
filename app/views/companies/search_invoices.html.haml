@@ -31,7 +31,7 @@
               %td.center_cell
                 = link_to invoice_path(invoice, account_id: invoice.account_id) do
                   %i.page.fi-page
-                    %b= invoice.id
+                    %b= invoice.number
               %td= invoice.established_at.strftime('%Y-%b-%d')
               %td= number_to_currency(invoice.total_cost)
               %td{class: "no_action_required_#{invoice.paid_in_full?}"}

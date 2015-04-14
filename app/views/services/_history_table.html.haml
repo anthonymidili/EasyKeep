@@ -18,7 +18,7 @@
               - if service.invoice_id.present?
                 = link_to invoice_path(service.invoice) do
                   %i.page.fi-page
-                    %b= service.invoice_id
+                    %b= service.invoice.number
               - else
                 %i not invoiced
             %td= service.performed_on.strftime('%Y-%b-%d')

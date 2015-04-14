@@ -13,8 +13,7 @@
 
     = render 'companies/header'
 
-    %h2= "Invoice# #{@invoice.id}"
-    %h2= "Invoice Number #{@invoice.number}"
+    %h2= "Invoice# #{@invoice.number}"
 
     %b= "Date: #{@invoice.established_at.strftime('%Y-%b-%d')}"
 
