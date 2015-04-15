@@ -25,12 +25,7 @@ class ServicesController < ApplicationController
     @service = @account.services.build(service_params)
     @service.company_id = current_company.id
 
-    if @service.save
-      set_current_account
-      redirect_to dashboard_path, notice: "Service was successfully created for #{@account.name} Account."
-    else
-      render 'dashboard/home'
-    end
+    set_current_account_cookie
   end
 
   def edit
@@ -77,8 +72,13 @@ private
     redirect_to @invoice, alert: 'SERVICES can only be EDITED or DELETED when no payments are applied!' if @service.invoice_id.present? && @invoice.payments.any?
   end
 
-  def set_current_account
-    cookies[:current_account] = @account.id if current_user.is_admin?
+  def set_current_account_cookie
+    if @service.save
+      cookies[:current_account] = @account.id if current_user.is_admin?
+      redirect_to dashboard_path, notice: "Service was successfully created for #{@account.name} Account."
+    else
+      render 'dashboard/home'
+    end
   end
 
 end

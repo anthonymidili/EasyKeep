@@ -22,7 +22,7 @@ class InvoicesController < ApplicationController
     @invoice = @account.invoices.build(invoice_params)
     @invoice.company_id = current_company.id
 
-    create_invoice
+    apply_invoice_ids
   end
 
   def edit
@@ -104,7 +104,7 @@ private
     redirect_to @invoice, alert: 'INVOICES can only be EDITED or DELETED when no payments are applied!' if @invoice.payments.any?
   end
 
-  def create_invoice
+  def apply_invoice_ids
     ActiveRecord::Base.transaction do
       if @invoice.save
         @services.where(id: params[:service_ids]).update_all(invoice_id: @invoice.id)
