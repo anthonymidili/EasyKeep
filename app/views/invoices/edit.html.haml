@@ -14,7 +14,7 @@
       = render 'companies/header'
       .label_size= link_to 'Edit company header', edit_company_path(invoice_id: @invoice.id)
 
-    = render 'invoices/change_date_tax_form'
+    = render 'invoices/update_form'
 
     .outline
       = render 'invoices/change_account_header'

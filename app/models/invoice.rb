@@ -16,6 +16,8 @@ class Invoice < ActiveRecord::Base
   validates :established_at,
             format: { with: /\A(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})\z/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
+  validate :invoice_number_presence, on: :update
+  validate :invoice_number_unique, on: :update
 
   include SelectedRange
   # def by_selected_range(view_by, active_date)
@@ -61,8 +63,38 @@ class Invoice < ActiveRecord::Base
 
 private
 
+  # Sets the invoice number just before the invoice is created.
   def set_invoice_number
     self.number = (company.invoices.maximum(:number).to_i).succ
+  end
+
+  # Validates the invoice number is present.
+  # If not the invoice number is rescued to avoid routing errors.
+  def invoice_number_presence
+    unless number
+      rescue_invoice_number
+      errors.add(:invoice_number, "can't be blank.")
+    end
+  end
+
+  # Validates that the invoice number being updated is not used by another
+  # company invoice, if the invoice number has been changed.
+  # If so the invoice number is rescued to avoid routing errors.
+  def invoice_number_unique
+    if number && number != current_invoice.number && company.invoices.pluck(:number).include?(number)
+      rescue_invoice_number
+      errors.add(:invoice_number, "already exists.")
+    end
+  end
+
+  # Finds the user's invoice they are currently editing.
+  def current_invoice
+    company.invoices.find(self.id)
+  end
+
+  # Resets the user's invoice number they are currently editing, if an error occurs.
+  def rescue_invoice_number
+    self.number = current_invoice.number
   end
 
 end

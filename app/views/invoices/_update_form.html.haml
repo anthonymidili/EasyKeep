@@ -1,0 +1,15 @@
+.outline
+  = form_for @invoice do |f|
+    = render 'shared/error_messages', object: f.object
+
+    = render 'invoices/date_tax_fields', f: f
+
+    .row
+      .small-12.medium-6.large-6.columns
+        %small
+          %i
+            (NO LEADING ZEROS - A number like "0001" will be converted to "1")
+        = f.label :number, 'Invoice number'
+        = f.number_field :number
+
+    = f.submit 'Update Invoice', class: 'tiny button radius'

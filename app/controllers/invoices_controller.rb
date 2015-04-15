@@ -88,7 +88,7 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def invoice_params
-    params.require(:invoice).permit(:established_at, :sales_tax)
+    params.require(:invoice).permit(:established_at, :sales_tax, :number)
   end
 
   def account_params
