@@ -26,7 +26,7 @@ class ServicesController < ApplicationController
     @service.company_id = current_company.id
 
     if @service.save
-      cookies[:current_account] = @service.account_id if current_user.is_admin?
+      cookies[:current_account] = @account.id if current_user.is_admin?
       redirect_to dashboard_path, notice: "Service was successfully created for #{@account.name} Account."
     else
       render 'dashboard/home'
