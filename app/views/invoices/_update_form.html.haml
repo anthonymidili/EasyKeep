@@ -9,7 +9,9 @@
         %small
           %i
             (NO LEADING ZEROS - A number like "0001" will be converted to "1")
-        = f.label :number, 'Invoice number'
+        = f.label :number do
+          Invoice number or
+          = link_to 'edit Invoice number format', edit_account_path(current_account, anchor: :format_invoice_number)
         = f.number_field :number
 
     = f.submit 'Update Invoice', class: 'tiny button radius'
