@@ -19,18 +19,22 @@
         just enter a space in the divider symbol.
 
   .row
-    .small-3.columns
+    .small-4.medium-3.large-3.columns
       = f.label :prefix
-      = f.text_field :prefix, placeholder: 'prefix'
+      = f.text_field :prefix, placeholder: 'Prefix'
 
-    .small-3.center.columns
+    .small-4.medium-3.large-3.center.columns
       .down_to_text_field
         [INVOICE#]
 
-    .small-3.columns
+    .small-4.medium-3.large-3.columns
       = f.label :postfix
-      = f.text_field :postfix, placeholder: 'postfix'
+      = f.text_field :postfix, placeholder: 'Postfix'
 
-    .small-3.columns
-      = f.label :divider, 'Divider symbol'
-      = f.text_field :divider, placeholder: 'divider symbol'
+    .hide-for-small-only.medium-1.large-1.center.columns
+      .down_to_text_field
+        |
+
+    .small-2.medium-2.large-2.left.columns
+      = f.label :divider
+      = f.text_field :divider, placeholder: 'Divider'

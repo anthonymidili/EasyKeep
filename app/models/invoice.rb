@@ -87,7 +87,7 @@ private
   def invoice_number_unique
     if number && (company.invoices.pluck(:number) - [current_invoice.number]).include?(number)
       rescue_invoice_number
-      errors.add(:invoice_number, "already exists.")
+      errors.add(:invoice_number, 'already exists.')
     end
   end
 
