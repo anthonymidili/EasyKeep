@@ -48,4 +48,6 @@ gem 'fog', '~> 1.0'
 gem 'web-console', '~> 2.1.2'
 gem 'responders', '~> 2.0'
 
+gem 'newrelic_rpm'
+
 ruby '2.2.0'
