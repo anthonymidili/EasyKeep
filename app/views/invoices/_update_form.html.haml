@@ -11,7 +11,7 @@
             (NO LEADING ZEROS - A number like "0001" will be converted to "1")
         = f.label :number do
           Invoice number or
-          = link_to edit_account_path(current_account, anchor: :format_invoice_number) do
+          = link_to edit_account_path(current_account, invoice_id: @invoice.id, anchor: :format_invoice_number) do
             format Invoice number - currently [
             %b= @invoice.pre_post_number
             ]

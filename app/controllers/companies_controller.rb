@@ -32,11 +32,11 @@ class CompaniesController < ApplicationController
     @company = current_company
     @invoice = current_company.invoices.find_by_id(params[:invoice_id])
 
-      if @company.update_attributes(company_params)
-      redirect_edit_or_invoice
-      else
-        render :edit
-      end
+    if @company.update_attributes(company_params)
+      redirect_company_or_invoice
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -94,7 +94,7 @@ private
     end
   end
 
-  def redirect_edit_or_invoice
+  def redirect_company_or_invoice
     if @invoice
       redirect_to edit_invoice_path(@invoice), notice: 'Company was successfully updated.'
     else

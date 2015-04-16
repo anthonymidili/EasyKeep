@@ -6,7 +6,7 @@
   .small-12.medium-6.large-6.columns
     = f.label :sales_tax do
       Invoice Sales Tax or
-      = link_to 'Set Company Regional Sales Tax', edit_company_path(anchor: :regional_sales_tax)
+      = link_to 'Set Company Regional Sales Tax', edit_company_path(invoice_id: @invoice.id, anchor: :regional_sales_tax)
     .row.collapse
       .small-4.columns
         = f.number_field :sales_tax
