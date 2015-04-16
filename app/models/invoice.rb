@@ -85,7 +85,7 @@ private
   # company invoice, if the invoice number has been changed.
   # If so the invoice number is rescued to avoid routing errors.
   def invoice_number_unique
-    if number && number != current_invoice.number && company.invoices.pluck(:number).include?(number)
+    if number && (company.invoices.pluck(:number) - [current_invoice.number]).include?(number)
       rescue_invoice_number
       errors.add(:invoice_number, "already exists.")
     end
@@ -93,7 +93,8 @@ private
 
   # Finds the user's invoice they are currently editing.
   def current_invoice
-    company.invoices.find(self.id)
+    @current_invoice ||=
+        company.invoices.find(self.id)
   end
 
   # Resets the user's invoice number they are currently editing, if an error occurs.
