@@ -49,9 +49,8 @@
             %label.checkbox
               = f.check_box :remove_logo
               Check box to remove Logo
-  %hr/
 
-  = render'companies/services_form', f: f
+  .outline= render'companies/services_fields', f: f
 
   .row
     .small-12.medium-6.large-6.columns

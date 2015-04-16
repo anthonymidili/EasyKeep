@@ -1,0 +1,35 @@
+.outline
+  .row
+    .small-12.columns
+      %p.label_size
+        %b Account Invoice Number Option -
+        You can enter a prefix and/or postfix to all of this account's invoice numbers.
+      %p.label_size
+        %b Examples:
+        %br/
+        [prefix = "ROOF"] [postfix = "JOB"] =
+        %b ROOF###JOB
+        %br/
+        [prefix = "Home"] [divider symbol = "-"] =
+        %b Home-###
+        %br/
+        If you want something like
+        %b ROOF ### JOB
+        just enter a space in the divider symbol.
+
+  .row
+    .small-3.columns
+      = f.label :prefix
+      = f.text_field :prefix, placeholder: 'prefix'
+
+    .small-3.center.columns
+      .down_to_text_field
+        [INVOICE#]
+
+    .small-3.columns
+      = f.label :postfix
+      = f.text_field :postfix, placeholder: 'postfix'
+
+    .small-3.columns
+      = f.label :divider, 'Divider symbol'
+      = f.text_field :divider, placeholder: 'divider symbol'

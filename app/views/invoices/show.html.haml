@@ -1,4 +1,4 @@
-- provide(:title, raw("#{current_account.name} Invoice #{@invoice.id}"))
+- provide(:title, raw("#{current_account.name} Invoice #{@invoice.number}"))
 
 .row
   .small-12.small-centered.columns
@@ -13,7 +13,7 @@
 
     = render 'companies/header'
 
-    %h2= "Invoice# #{@invoice.number}"
+    %h2= "Invoice# #{@invoice.pre_post_number}"
 
     %b= "Date: #{@invoice.established_at.strftime('%Y-%b-%d')}"
 

@@ -29,6 +29,10 @@ class Invoice < ActiveRecord::Base
 
   scope :by_outstanding, -> { all.reject(&:paid_in_full?) }
 
+  def pre_post_number
+    [account.prefix, self.number, account.postfix].select(&:present?).join(account.divider)
+  end
+
   def sales_tax!
     sales_tax * 0.01
   end
