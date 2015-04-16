@@ -7,11 +7,13 @@
       .small-12.medium-6.large-6.columns
         = f.label :name
         = f.text_field :name, placeholder: 'Smith House'
+
     .row
       .small-12.medium-12.large-6.columns
         %label
           = f.check_box :uses_account_name
           Use Account/Company name on invoices
+
       .small-12.medium-12.large-6.columns
         %label
           = f.check_box :uses_contact_name
@@ -22,14 +24,14 @@
       .small-12.medium-6.large-6.columns
         = user_f.label :name, "Contact's (Full name)"
         = user_f.text_field :name, placeholder: 'John Smith'
+
       .small-12.medium-6.large-6.columns
         = user_f.label :email
-        = user_f.text_field :email,
+        = user_f.text_field :email, title: edit_email_address(@account.user),
           disabled: @account.user.encrypted_password.present?
 
   = render 'shared/address_fields', f: f
-
-  = render 'accounts/pre_post_fields', f: f
+  = render 'accounts/pre_post_fields', f: f if current_user.is_admin?
 
   .row
     .small-12.medium-6.large-6.columns
