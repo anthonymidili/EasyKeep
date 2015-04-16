@@ -50,4 +50,6 @@ gem 'responders', '~> 2.0'
 
 gem 'newrelic_rpm'
 
+gem 'bullet', group: :development
+
 ruby '2.2.0'
