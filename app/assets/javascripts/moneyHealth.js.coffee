@@ -3,7 +3,7 @@ jQuery ->
     chart: type: 'bar'
     title: text: 'Money Health'
     xAxis: categories: ['Invoiced', 'Received', 'Owed']
-    yAxis: title: text: 'Dollars'
+    yAxis: title: text: false
     series: [
       {
         name: 'Amount'

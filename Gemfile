@@ -48,8 +48,10 @@ gem 'fog', '~> 1.0'
 gem 'web-console', '~> 2.1.2'
 gem 'responders', '~> 2.0'
 
+# App monitoring
 gem 'newrelic_rpm'
 
-gem 'highcharts-rails', '~> 3.0.0'
+# Pure javascript charts and graphs
+gem 'highcharts-rails', '~> 4.1.5'
 
 ruby '2.2.0'
