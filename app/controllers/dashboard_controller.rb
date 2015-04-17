@@ -8,6 +8,9 @@ class DashboardController < ApplicationController
     @accounts = current_company.accounts.by_recent_activity.with_limit
     @service = current_company.services.build
     @service.performed_on ||= Date.current
+    @money_health = [current_company.total_company_invoiced(:month, Date.current).to_f,
+                     current_company.total_company_payments(:month, Date.current).to_f,
+                     current_company.total_company_balance_due(:month, Date.current).to_f]
   end
 
   def developer
@@ -32,4 +35,5 @@ private
       @invoices = current_account.invoices.by_outstanding
     end
   end
+
 end

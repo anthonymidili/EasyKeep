@@ -7,7 +7,7 @@ jQuery ->
     series: [
       {
         name: 'Amount'
-        data: [1, 4, 7]
+        data: $('#money_health').data('amounts')
       }
     ]
   return

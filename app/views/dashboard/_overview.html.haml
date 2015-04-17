@@ -9,24 +9,5 @@
         = current_company.accounts.count
 
   .row
-    .small-12.medium-6.large-6.columns
-      %p
-        %b Money received this year:
-        = number_to_currency(current_company.total_company_payments(:year, Date.current))
-
-        %br/
-        %b Money owed this year:
-        %span.red_text= number_to_currency(current_company.total_company_balance_due(:year, Date.current))
-
-    .small-12.medium-6.large-6.columns
-      %p
-        %b Money received this month:
-        = number_to_currency(current_company.total_company_payments(:month, Date.current))
-
-        %br/
-        %b Money owed this month:
-        %span.red_text= number_to_currency(current_company.total_company_balance_due(:month, Date.current))
-
-  .row
     .small-12.columns
-      = content_tag :div, '', id: 'money_health', style: 'width:100%; height:200px;', data: { results: @test_results }
+      = content_tag :div, '', id: 'money_health', style: 'width:100%; height:200px;', data: { amounts: @money_health }
