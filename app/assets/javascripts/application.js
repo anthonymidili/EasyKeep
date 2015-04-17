@@ -16,6 +16,8 @@
 //= require pickadate/picker
 //= require pickadate/picker.date
 //= require pickadate/picker.time
+//= require highcharts
+//= require highcharts/highcharts-more
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

@@ -26,3 +26,7 @@
         %br/
         %b Money owed this month:
         %span.red_text= number_to_currency(current_company.total_company_balance_due(:month, Date.current))
+
+  .row
+    .small-12.columns
+      = content_tag :div, '', id: 'money_health', style: 'width:100%; height:200px;', data: { results: @test_results }

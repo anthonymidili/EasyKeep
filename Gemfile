@@ -50,4 +50,6 @@ gem 'responders', '~> 2.0'
 
 gem 'newrelic_rpm'
 
+gem 'highcharts-rails', '~> 3.0.0'
+
 ruby '2.2.0'
