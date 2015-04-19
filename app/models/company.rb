@@ -34,6 +34,10 @@ class Company < ActiveRecord::Base
     service_provided.present? ? "#{service_provided} Services" : 'Services'
   end
 
+  def total_company_invoiced(view_by, active_date)
+    invoices.by_selected_range(view_by, active_date).map(&:total_cost).sum
+  end
+
   def total_company_payments(view_by, active_date)
     payments.by_selected_range(view_by, active_date).sum(:amount)
   end
