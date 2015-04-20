@@ -31,7 +31,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '~> 2.7.1'
 gem 'jquery-rails', '~> 4.0.3'
 gem 'pickadate-rails', '~> 3.5.5'
-#https://github.com/norman/friendly_id
+#https://github.com/norman/friendly_id turns ids into friendly addresses
 gem 'friendly_id', '~> 5.1.0'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -54,6 +54,7 @@ gem 'newrelic_rpm'
 # Pure javascript charts and graphs
 gem 'highcharts-rails', '~> 4.1.5'
 
+# N+1 Finder
 gem 'bullet', group: :development
 
 ruby '2.2.0'
