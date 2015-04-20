@@ -53,6 +53,7 @@ Rails.application.configure do
       :openssl_verify_mode => ENV['SMTP_OPENSSL_VERIFY_MODE']
   }
 
+  # Bullet - N+1 finder
   config.after_initialize do
     Bullet.enable = true
     Bullet.alert = true

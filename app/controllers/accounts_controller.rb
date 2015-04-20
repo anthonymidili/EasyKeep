@@ -6,17 +6,17 @@ class AccountsController < ApplicationController
   before_action :load_account, only: [:show, :edit, :update, :destroy, :invite_customer]
 
   def index
-    @accounts = current_company.accounts.by_name.page(params[:page]).per(10)
+    @accounts = current_company.accounts.by_name.page(params[:page]).per(10).includes(:invoices, user: :company)
   end
 
   def show
     @service = @account.services.build
     @service.performed_on ||= Date.current
-    @services = @account.services
+    @services = @account.services.includes(:invoice)
     @invoice = @account.invoices.build
     @invoice.established_at ||= Date.current
     @invoice.sales_tax ||= current_company.sales_tax
-    @invoices = @account.invoices.by_outstanding
+    @invoices = @account.invoices.includes(:payments, :account).by_outstanding
   end
 
   def new
