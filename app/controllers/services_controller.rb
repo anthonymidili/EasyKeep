@@ -47,7 +47,12 @@ class ServicesController < ApplicationController
   end
 
   def history_search
-    @services = current_account.services.by_selected_range(view_by, active_date).page(params[:page]).per(20).includes(invoice: [:account, :payments])
+    @services =
+        if current_user.is_admin?
+          current_account.services.by_selected_range(view_by, active_date).page(params[:page]).per(20).includes(invoice: [:account, :payments])
+        else
+          current_account.services.by_selected_range(view_by, active_date).page(params[:page]).per(20).includes(invoice: :account)
+        end
   end
 
 private

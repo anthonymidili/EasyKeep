@@ -10,7 +10,12 @@ class InvoicesController < ApplicationController
   end
 
   def index
-    @invoices = current_account.invoices.page(params[:page]).per(20).includes(:payments)
+    @invoices =
+        if current_user.is_admin?
+          current_account.invoices.page(params[:page]).per(20).includes(:payments)
+        else
+          current_account.invoices.page(params[:page]).per(20)
+        end
   end
 
   def create
