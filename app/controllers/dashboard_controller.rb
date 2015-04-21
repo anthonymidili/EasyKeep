@@ -8,7 +8,6 @@ class DashboardController < ApplicationController
     @accounts = current_company.accounts.by_recent_activity.with_limit.includes(:invoices, user: :company)
     @service = current_company.services.build
     @service.performed_on ||= Date.current
-    @money_health = current_company.money_health_data(:month, Date.current)
   end
 
   def developer
