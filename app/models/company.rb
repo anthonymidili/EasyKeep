@@ -56,6 +56,12 @@ class Company < ActiveRecord::Base
     total_company_payments(view_by, active_date) - total_less_taxes(view_by, active_date)
   end
 
+  def money_health_data(view_by, active_date)
+    [total_company_invoiced(view_by, active_date).to_f,
+     total_company_payments(view_by, active_date).to_f,
+     total_company_balance_due(view_by, active_date).to_f]
+  end
+
   def available_tags
     tags.map(&:name).join(', ')
   end
