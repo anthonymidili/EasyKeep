@@ -12,6 +12,6 @@
         .small-6.medium-3.large-3.medium-pull-6.large-pull-6.columns
           = submit_tag 'Search for Invoice', class: 'tiny button radius', :name => nil
 
-    = render 'invoices/company_invoices_table'
+    = render 'companies/invoices_table'
 
     = paginate @invoices
