@@ -12,29 +12,6 @@
         .small-6.medium-3.large-3.medium-pull-6.large-pull-6.columns
           = submit_tag 'Search for Invoice', class: 'tiny button radius', :name => nil
 
-    .scroll_overflow-x
-      %table
-        %thead
-          %tr
-            %th Account
-            %th Contact name
-            %th Invoice #
-            %th Date
-            %th Total
-            %th Balance due
-
-        %tbody
-          - @invoices.each do |invoice|
-            %tr
-              %td= link_to invoice.account.name, account_path(invoice.account)
-              %td= invoice.account.user.name
-              %td.center_cell
-                = link_to invoice_path(invoice, account_id: invoice.account_id) do
-                  %i.page.fi-page
-                    %b= invoice.pre_post_number
-              %td= invoice.established_at.strftime('%Y-%b-%d')
-              %td= number_to_currency(invoice.total_cost)
-              %td{class: "no_action_required_#{invoice.paid_in_full?}"}
-                = pif_or_invoice(invoice)
+    = render 'invoices/company_invoices_table'
 
     = paginate @invoices
