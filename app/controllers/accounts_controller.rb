@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
   before_action :load_account, only: [:show, :edit, :update, :destroy, :invite_customer]
 
   def index
-    @accounts = current_company.accounts.by_name.page(params[:page]).per(10).includes(:invoices, :user)
+    @accounts = current_company.accounts.by_name.page(params[:page]).per(10).includes(:invoices, user: [:company])
   end
 
   def show

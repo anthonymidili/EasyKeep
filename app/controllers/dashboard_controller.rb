@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
 
   # both admin and customer users dashboard
   def home
-    @accounts = current_company.accounts.by_recent_activity.with_limit.includes(:invoices, :user)
+    @accounts = current_company.accounts.by_recent_activity.with_limit.includes(:invoices, user: [:company])
     @service = current_company.services.build
     @service.performed_on ||= Date.current
   end
