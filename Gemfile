@@ -54,4 +54,4 @@ gem 'newrelic_rpm'
 # Pure javascript charts and graphs
 gem 'highcharts-rails', '~> 4.1.5'
 
-ruby '2.2.0'
+ruby '2.2.2'
