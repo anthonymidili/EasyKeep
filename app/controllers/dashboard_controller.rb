@@ -1,16 +1,13 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_developer!, only: [:developer]
-  before_action :load_if_current_account, only: [:home]
+  before_action :load_current_account, only: [:home]
 
   # both admin and customer users dashboard
   def home
-    @accounts = current_company.accounts.by_recent_activity.with_limit
+    @accounts = current_company.accounts.by_recent_activity.with_limit.includes(:invoices, user: [:company])
     @service = current_company.services.build
     @service.performed_on ||= Date.current
-    @money_health = [current_company.total_company_invoiced(:month, Date.current).to_f,
-                     current_company.total_company_payments(:month, Date.current).to_f,
-                     current_company.total_company_balance_due(:month, Date.current).to_f]
   end
 
   def developer
@@ -28,10 +25,10 @@ private
     params[:all_users] ? User.all : User.by_admin_user
   end
 
-  def load_if_current_account
+  def load_current_account
     if current_account
       @account = current_account
-      @services = current_account.services
+      @services = current_account.services.includes(invoice: :account)
       @invoices = current_account.invoices.by_outstanding
     end
   end

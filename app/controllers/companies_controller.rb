@@ -46,7 +46,7 @@ class CompaniesController < ApplicationController
   end
 
   def income_report
-    @accounts = current_company.accounts
+    @accounts = current_company.accounts.includes(company: :invoices)
   end
 
   def delete_user
@@ -56,10 +56,10 @@ class CompaniesController < ApplicationController
   end
 
   def search_invoices
-    @invoices = current_company.invoices.order('id DESC').limit(100).page(params[:page]).per(20)
+    @invoices = current_company.invoices.order('id DESC').limit(100).page(params[:page]).per(20).includes(account: :user)
     @invoice = current_company.invoices.find_by_number(params[:search])
 
-    found_invoice if params[:search]
+    found_invoice
   end
 
   def about
@@ -88,7 +88,7 @@ private
     if @invoice
       redirect_to invoice_path(@invoice, account_id: @invoice.account_id),
                   notice: 'Here is the Invoice you requested.'
-    else
+    elsif params[:search]
       flash[:alert] = "Could not find Invoice# #{params[:search]}."
       render :search_invoices
     end
