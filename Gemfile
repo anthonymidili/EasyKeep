@@ -13,8 +13,8 @@ gem 'figaro', '~> 1.1.0'
 gem 'foundation-rails', '~> 5.5.2'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
-gem 'devise', '~> 3.4.1'
-gem 'devise_invitable', '~> 1.4.1'
+gem 'devise', '~> 3.5.1'
+gem 'devise_invitable', '~> 1.5.0'
 
 gem 'haml', '~> 4.0.5'
 gem 'haml-rails', '~> 0.9.0'

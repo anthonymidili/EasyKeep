@@ -63,14 +63,14 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     debug_inspector (0.0.2)
-    devise (3.4.1)
+    devise (3.5.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise_invitable (1.4.2)
+    devise_invitable (1.5.0)
       actionmailer (>= 3.2.6, < 5)
       devise (>= 3.2.0)
     diff-lcs (1.2.5)
@@ -335,8 +335,8 @@ DEPENDENCIES
   bullet
   carrierwave (~> 0.10.0)
   coffee-rails (~> 4.1.0)
-  devise (~> 3.4.1)
-  devise_invitable (~> 1.4.1)
+  devise (~> 3.5.1)
+  devise_invitable (~> 1.5.0)
   dynamic_sitemaps (~> 2.0.0)
   figaro (~> 1.1.0)
   fog (~> 1.0)
