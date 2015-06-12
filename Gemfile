@@ -45,7 +45,7 @@ gem 'fog', '~> 1.0'
 
 gem 'rails_12factor', '~> 0.0.2', group: [:production, :staging]
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'rspec-rails', '~> 3.2.1', group: [:development, :test]
+gem 'rspec-rails', '~> 3.3.0', group: [:development, :test]
 
 group :development do
   # N+1 Finder
