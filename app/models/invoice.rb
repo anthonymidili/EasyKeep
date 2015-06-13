@@ -61,11 +61,15 @@ class Invoice < ActiveRecord::Base
     balance_due == 0.00
   end
 
-  def disable_if_payment
-    'disable_link gray_text' if payments.any?
+  def archived?
+    payments.any?
   end
 
-private
+  def disable_link_if_archived?
+    'disable_link gray_text' if archived?
+  end
+
+  private
 
   # Sets the invoice number just before the invoice is created.
   def set_invoice_number

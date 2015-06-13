@@ -22,7 +22,7 @@ class Service < ActiveRecord::Base
   scope :by_invoiceable, -> { where(invoice_id: nil) }
   scope :with_limit, -> { limit(5) }
 
-  def disable_if_payment
+  def disable_link_if_archived?
     'disable_link gray_text' if invoice_id.present? && invoice.payments.any?
   end
 end
