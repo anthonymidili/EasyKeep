@@ -5,6 +5,9 @@
 
     .hide_on_print
       %br/
+
+      = render 'status', invoice: @invoice
+
       .row
         .small-12.columns
           = link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small button radius',
