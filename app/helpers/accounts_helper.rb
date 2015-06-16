@@ -16,5 +16,4 @@ module AccountsHelper
       link_to 'No', account_path(account, anchor: :outstanding)
     end
   end
-
 end

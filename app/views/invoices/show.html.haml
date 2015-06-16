@@ -2,20 +2,32 @@
 
 .row
   .small-12.columns
-    .pad-top
 
-    .right.hide_on_print
-      - unless @invoice.archived?
-        - if current_user.is_admin?
-          = link_to edit_invoice_path(@invoice), title: 'Edit Invoice' do
-            %i.page.fi-page-edit
+    .hide_on_print
+      %br/
+      .row
+        .small-12.columns
+          = link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small button radius',
+            id: "applyPaymentLink#{@invoice.id}", remote: true if current_user.is_admin?
 
-        - if current_user.is_owner?
-          = link_to @invoice, title: 'Delete Invoice', method: :delete,
-          data: { confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' } do
-            %i.general.fi-x
+    .row
+      .hide-on-print
+        .small-12.columns
+          .right
+            - unless @invoice.archived?
+              - if current_user.is_admin?
+                = link_to edit_invoice_path(@invoice), title: 'Edit Invoice' do
+                  Edit Invoice
+                  %i.page.fi-page-edit
 
-    = render 'companies/header'
+              - if current_user.is_owner?
+                = link_to @invoice, title: 'Delete Invoice', class: 'pad-left red_link', method: :delete,
+                data: { confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' } do
+                  Delete Invoice
+                  %i.general.fi-x
+
+      .small-12.columns
+        = render 'companies/header'
 
     %h2= "Invoice# #{@invoice.pre_post_number}"
 
@@ -46,8 +58,4 @@
       %li
         = link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius'
 
-    .row
-      .small-12.columns.hide_on_print
-        = link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small button radius',
-        id: "applyPaymentLink#{@invoice.id}", remote: true if current_user.is_admin?
     = render 'payments/history' if @invoice.archived?

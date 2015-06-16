@@ -7,5 +7,4 @@ module ServicesHelper
       select_date(active_date, discard_month: true, discard_day: true)
     end
   end
-
 end

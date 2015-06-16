@@ -33,6 +33,11 @@ span.red_text {
   color: #14b100;
 }
 
+a.red_link {
+  color: #f4361e;
+  &:hover { color: #b52716; }
+}
+
 ul.small-text {
   li {
     font-size: 70%;
@@ -73,7 +78,7 @@ ul.no_bullets {
   height: 11.55rem !important;
 }
 
-.pad-logo {
+.pad-left {
   padding-left: 1em;
 }
 
@@ -127,8 +132,8 @@ button[class^='picker__button'] {
 
 .no_action_required_false, .no_action_required_false a {
   color: red;
-  a { text-decoration: underline }
-  a:hover { color: #2ba6cb }
+  a { text-decoration: underline; }
+  a:hover { color: #b52716; }
 }
 
 /* Anchor links render too high due to the fixed header.

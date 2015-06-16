@@ -17,5 +17,4 @@ module UsersHelper
       "Once a customer becomes an Active user, admins will not be able to edit the customer's Email. This is to prevent the customer from not being able to log on to their account."
     end
   end
-
 end

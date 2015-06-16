@@ -1,7 +1,7 @@
+/* Remove apply payment link from invoice show page and render new payments partial. */
 $('<%= "#applyPaymentLink#{@invoice.id}" %>').hide().after("<%= j render('payments/new') %>");
 
+/* Replace apply payment TR with newly selected TR on account show page. */
 $('tr.applyPaymentTR').remove();
 $('tr').removeClass('active_row');
 $('<%= "#tableRow#{@invoice.id}" %>').addClass('active_row').after('<tr class="applyPaymentTR active_row" id="applyPaymentTR<%= @invoice.id %>"><td colspan="6"><%= j render('payments/form') %></td></tr>');
-
-$(".inline-tiny-button input[type='submit']").css("width", "100%").css("width", "-=30px");
