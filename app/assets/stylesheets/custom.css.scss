@@ -67,7 +67,7 @@ ul.no_bullets {
 }
 
 .gray_text {
-  color: #a9a9a9;
+  color: #a9a9a9 !important;
 }
 
 .text_area_height {
@@ -131,7 +131,7 @@ button[class^='picker__button'] {
 }
 
 .no_action_required_false, .no_action_required_false a {
-  color: red;
+  color: #f4361e;
   a { text-decoration: underline; }
   a:hover { color: #b52716; }
 }

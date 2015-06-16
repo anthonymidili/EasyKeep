@@ -1,15 +1,18 @@
 .row
-  .small-8.columns
+  .small-12.columns
+    .right
+      = link_to edit_account_path(current_account), title: 'Edit Account' do
+        Edit ACCT
+        %i.page.fi-page-edit
+
+      - if current_user.is_owner?
+        = link_to current_account, title: 'Delete Account', class: 'pad-left red_link', method: :delete,
+        data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' } do
+          Delete ACCT
+          %i.general.fi-x
+
+.row
+  .small-12.columns
     %h4= "#{current_account.name} Account"
 
-  .small-4.columns
-    .pad-top.right
-      = link_to edit_account_path(current_account), title: 'Edit Account' do
-        %i.page.fi-page-edit
-      - if current_user.is_owner?
-        = link_to current_account, title: 'Delete Account', method: :delete,
-              data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' } do
-          %i.general.fi-x
-  .row
-    .small-12.columns
-      = render 'shared/customer_header'
+    = render 'shared/customer_header'

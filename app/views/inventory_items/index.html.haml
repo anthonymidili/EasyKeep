@@ -35,7 +35,7 @@
                 = link_to edit_inventory_item_path(inventory_item) do
                   %i.page.fi-page-edit
               %td.center_cell
-                = link_to inventory_item, method: :delete,
+                = link_to inventory_item, class: 'red_link', method: :delete,
                 data: { confirm: 'Are you sure? This will permanently DELETE your Inventory Item!' } do
                   %i.general.fi-x
 

@@ -14,6 +14,6 @@
       = link_to edit_service_path(service), class: service.disable_link_if_archived? do
         %i.page.fi-page-edit
     %td.center_cell
-      = link_to service, method: :delete, class: service.disable_link_if_archived?,
-                  data: { confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' } do
+      = link_to service, class: "#{service.disable_link_if_archived?} red_link", method: :delete,
+      data: { confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' } do
         %i.general.fi-x

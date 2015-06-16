@@ -26,6 +26,6 @@
               = link_to edit_invoice_path(invoice), class: invoice.disable_link_if_archived? do
                 %i.page.fi-page-edit
             %td.center_cell
-              = link_to invoice, class: invoice.disable_link_if_archived?, method: :delete,
+              = link_to invoice, class: "#{invoice.disable_link_if_archived?} red_link", method: :delete,
               data: { confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' } do
                 %i.general.fi-x

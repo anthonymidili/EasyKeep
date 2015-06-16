@@ -31,7 +31,7 @@
                   = link_to edit_service_path(service) do
                     %i.page.fi-page-edit
                 %td.center_cell
-                  = link_to service, method: :delete,
+                  = link_to service, class: 'red_link', method: :delete,
                   data: { confirm: 'Are you sure? This will permanently DELETE your SERVICE history record!' } do
                     %i.general.fi-x
 
