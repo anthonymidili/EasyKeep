@@ -4,30 +4,32 @@
   .small-12.columns
 
     .hide_on_print
-      %br/
-
       = render 'status', invoice: @invoice
 
-      .row
-        .small-12.columns
-          = link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small button radius',
-            id: "applyPaymentLink#{@invoice.id}", remote: true if current_user.is_admin?
+      %ul.inline-list
+        %li= link_to "#{current_account.name} Account", current_account, class: 'small button radius'
+        %li= link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius'
+        %li{ id: "applyPaymentLink#{@invoice.id}" }
+          = link_to 'Apply Payment', new_invoice_payment_path(@invoice), class: 'small success button radius',
+          remote: true if current_user.is_admin? && !@invoice.paid_in_full?
+      #applyPaymentDIV
+
+      %hr/
 
     .row
-      .hide-on-print
-        .small-12.columns
-          .right
-            - unless @invoice.archived?
-              - if current_user.is_admin?
-                = link_to edit_invoice_path(@invoice), title: 'Edit Invoice' do
-                  Edit INV
-                  %i.page.fi-page-edit
+      .small-12.columns.hide-on-print
+        .right
+          - unless @invoice.archived?
+            - if current_user.is_admin?
+              = link_to edit_invoice_path(@invoice), title: 'Edit Invoice' do
+                Edit INV
+                %i.page.fi-page-edit
 
-              - if current_user.is_owner?
-                = link_to @invoice, title: 'Delete Invoice', class: 'pad-left red_link', method: :delete,
-                data: { confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' } do
-                  Delete INV
-                  %i.general.fi-x
+            - if current_user.is_owner?
+              = link_to @invoice, title: 'Delete Invoice', class: 'pad-left red_link', method: :delete,
+              data: { confirm: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.' } do
+                Delete INV
+                %i.general.fi-x
 
       .small-12.columns
         = render 'companies/header'
@@ -54,11 +56,5 @@
               %td.totals= number_to_currency(service.cost)
 
     = render 'invoices/totals'
-
-    %ul.inline-list.hide_on_print
-      %li
-        = link_to "#{current_account.name} Account", current_account, class: 'small button radius'
-      %li
-        = link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius'
 
     = render 'payments/history' if @invoice.archived?

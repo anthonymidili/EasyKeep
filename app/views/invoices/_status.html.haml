@@ -1,4 +1,17 @@
 .row
   .small-12.columns
-    .stamp_font.red_text
-      [archived]
+    %ul.inline-list
+      %li.pad-top-medium
+        Invoice Status:
+
+      - if invoice.archived?
+        %li.stamp_font.blue_text
+          {archived}
+
+      - else
+        %li.stamp_font.green_text
+          {open}
+
+      - if invoice.paid_in_full?
+        %li.stamp_font.red_text
+          [paid_in_full]
