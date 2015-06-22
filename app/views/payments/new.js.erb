@@ -1,6 +1,8 @@
-/* Remove apply payment link from invoice show page and render new payments partial. */
-$('<%= "#applyPaymentLink#{@invoice.id}" %>').hide();
-$('#applyPaymentDIV').after("<%= j render('payments/new') %>");
+/* Remove apply payment link from invoice show page and render new payments partial if form does not exist. */
+if (!document.getElementById('newPaymentForm')) {
+  $('<%= "#applyPaymentLink#{@invoice.id}" %>').hide();
+  $('#applyPaymentDIV').after("<%= j render('payments/new') %>");
+}
 
 /* Replace apply payment TR with newly selected TR on account show page. */
 $('tr.applyPaymentTR').remove();
