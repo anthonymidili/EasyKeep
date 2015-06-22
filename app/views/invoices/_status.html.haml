@@ -5,7 +5,7 @@
         Invoice Status:
 
       - if invoice.archived?
-        %li.stamp_font.blue_text
+        %li{ class: %w[stamp_font blue_text], title: 'INVOICES can only be EDITED or DELETED when no payments are applied!' }
           {archived}
 
       - else
