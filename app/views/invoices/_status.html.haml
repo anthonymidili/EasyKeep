@@ -7,7 +7,6 @@
       - if invoice.archived?
         %li{ class: %w[stamp_font blue_text], title: 'INVOICES can only be EDITED or DELETED when no payments are applied!' }
           {archived}
-
       - else
         %li.stamp_font.green_text
           {open}
@@ -15,3 +14,6 @@
       - if invoice.paid_in_full?
         %li.stamp_font.red_text
           [paid_in_full]
+      - else
+        %li.stamp_font.red_text
+          [bal_due:_#{number_to_currency(invoice.balance_due)}]
