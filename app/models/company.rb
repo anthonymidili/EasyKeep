@@ -31,7 +31,7 @@ class Company < ActiveRecord::Base
   end
 
   def service_provided!
-    service_provided.present? ? "#{service_provided} Services" : 'Services'
+    [service_provided, 'Services'].select(&:present?).join(' ')
   end
 
   def total_company_invoiced(view_by, active_date)
