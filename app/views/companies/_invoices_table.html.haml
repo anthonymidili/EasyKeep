@@ -11,7 +11,7 @@
 
     %tbody
       - @invoices.each do |invoice|
-        %tr
+        %tr{id: "tableRow#{invoice.id}"}
           %td= link_to invoice.account.name, account_path(invoice.account)
           %td= invoice.account.user.name
           %td.center_cell
@@ -21,4 +21,4 @@
           %td= invoice.established_at.strftime('%Y-%b-%d')
           %td= number_to_currency(invoice.total_cost)
           %td{class: "no_action_required_#{invoice.paid_in_full?}"}
-            = pif_or_invoice(invoice)
+            = pif_or_balance_due(invoice)

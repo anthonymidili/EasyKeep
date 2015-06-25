@@ -63,7 +63,6 @@ class CompaniesController < ApplicationController
   end
 
   def about
-
   end
 
 private
