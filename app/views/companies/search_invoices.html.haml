@@ -5,13 +5,25 @@
     %h1.main_page_header Search Invoices
     %br/
 
-    .row
-      = form_tag search_invoices_company_path, method: :get do
-        .small-6.medium-3.large-3.columns
-          = number_field_tag :search, params[:search], placeholder: 'Enter Invoice#'
-        .small-6.medium-3.large-3.medium-pull-6.large-pull-6.columns
-          = submit_tag 'Search for Invoice', class: 'tiny button radius', name: nil
+    %p
+      Only enter the
+      = succeed "." do
+        %b INVOICE#
+      Do not use the Prefix and/or Postfix characters.
+      %br/
+      %span.red_text Prefix
+      %b
+        [INVOICE#]
+      %span.red_text Postfix
+.row
+  = form_tag search_invoices_company_path, method: :get do
+    .small-6.medium-3.large-3.columns
+      = number_field_tag :search, params[:search], placeholder: 'Enter INVOICE#'
+    .small-6.medium-9.large-9.columns
+      = submit_tag 'Search for Invoice', class: 'tiny button radius', name: nil
 
+.row
+  .small-12.columns
     = render 'companies/invoices_table'
 
     = paginate @invoices
