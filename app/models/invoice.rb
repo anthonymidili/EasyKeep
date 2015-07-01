@@ -28,6 +28,7 @@ class Invoice < ActiveRecord::Base
   default_scope { order('established_at DESC') }
 
   scope :by_outstanding, -> { all.reject(&:paid_in_full?) }
+  scope :by_most_recent, -> { order('established_at DESC') }
 
   def pre_post_number
     [account.prefix, self.number, account.postfix].select(&:present?).join(account.divider)
