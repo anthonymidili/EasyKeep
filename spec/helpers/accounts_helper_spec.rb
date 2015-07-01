@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
 # the AccountsHelper. For example:
@@ -6,10 +6,10 @@ require 'spec_helper'
 # describe AccountsHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
+#       expect(helper.concat_strings("this","that")).to eq("this that")
 #     end
 #   end
 # end
-describe AccountsHelper do
+RSpec.describe AccountsHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
