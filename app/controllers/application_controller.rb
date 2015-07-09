@@ -30,21 +30,14 @@ class ApplicationController < ActionController::Base
 
   def active_date
     @active_date ||=
-        if params[:date]
-          cookies[:active_date] =
-              Date.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
-        else
-          cookies[:active_date] ? cookies[:active_date].to_date : Date.current
-        end
+        set_active_date_cookie if params[:date]
+        (cookies[:active_date] || Date.current).to_date
   end; helper_method :active_date
 
   def view_by
     @view_by ||=
-        if params[:view_by]
-          cookies[:view_by] = params[:view_by].to_sym
-        else
-          cookies[:view_by] ? cookies[:view_by].to_sym : :year
-        end
+        set_view_by_cookie if params[:view_by]
+        (cookies[:view_by] || :year).to_sym
   end; helper_method :view_by
 
   def view_quarter
@@ -63,9 +56,20 @@ protected
     @set_current_account_id ||=
         if params[:controller] == 'accounts' && params[:id]
           cookies[:current_account] = params[:id]
-        elsif current_user.is_admin? && params[:account_id]
+        elsif params[:account_id]
           cookies[:current_account] = params[:account_id]
         end
+  end
+
+  def set_active_date_cookie
+    @set_active_date_cookie ||=
+        cookies[:active_date] =
+            Date.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
+  end
+
+  def set_view_by_cookie
+    @set_view_by_cookie ||=
+        cookies[:view_by] = params[:view_by].to_sym
   end
 
   def set_view_quarter_cookie
