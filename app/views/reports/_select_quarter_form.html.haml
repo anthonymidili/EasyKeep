@@ -1,5 +1,5 @@
 .row.hide_on_print
-  = form_tag income_report_company_path, method: :get do
+  = form_tag accounts_income_reports_path, method: :get do
     .small-12.medium-3.large-3.columns
       = label_tag 'date_year', 'Year'
       = select_date(active_date, discard_month: true, discard_day: true)

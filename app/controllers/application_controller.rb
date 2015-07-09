@@ -49,7 +49,8 @@ class ApplicationController < ActionController::Base
 
   def view_quarter
     @view_quarter ||=
-          cookies[:view_quarter] ? cookies[:view_quarter].to_i : 1
+        set_view_quarter_cookie if params[:view_quarter]
+        (cookies[:view_quarter] || 1).to_i
   end; helper_method :view_quarter
 
 protected
@@ -65,6 +66,11 @@ protected
         elsif current_user.is_admin? && params[:account_id]
           cookies[:current_account] = params[:account_id]
         end
+  end
+
+  def set_view_quarter_cookie
+    @set_view_quarter_cookie ||=
+        cookies[:view_quarter] = params[:view_quarter]
   end
 
   def configure_permitted_parameters

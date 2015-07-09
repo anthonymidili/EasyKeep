@@ -9,9 +9,11 @@
       = render 'companies/header'
 
     %p
-      %b Income Report -
+      = link_to income_reports_path do
+        %b Income Report -
       View company totals by either selected year or quarter.
 
     %p
-      %b Accounts Income Report -
+      = link_to accounts_income_reports_path do
+        %b Accounts Income Report -
       View company totals broken down by each company account by selected year or quarter.

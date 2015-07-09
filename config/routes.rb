@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   resource :company do
     member do
-      get :income_report
       get :search_invoices
       get :about
       delete 'delete_user/:id', to: 'companies#delete_user', as: :delete_user

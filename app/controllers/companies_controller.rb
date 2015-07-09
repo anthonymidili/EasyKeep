@@ -3,7 +3,6 @@ class CompaniesController < ApplicationController
   before_action :require_owner!, only: [:edit, :update, :destroy, :delete_user]
   before_action :require_admin!, except: [:edit, :update, :destroy, :delete_user, :about]
   before_action :only_one_company, only: [:new, :create]
-  before_action :set_view_quarter_cookie, only: [:income_report]
 
   def show
     @company = current_company
@@ -45,10 +44,6 @@ class CompaniesController < ApplicationController
     redirect_to new_company_path
   end
 
-  def income_report
-    @accounts = current_company.accounts.includes(company: :invoices)
-  end
-
   def delete_user
     @user = current_company.users.find(params[:id])
     @user.destroy
@@ -76,11 +71,6 @@ private
 
   def only_one_company
     redirect_to edit_company_path if current_company
-  end
-
-  def set_view_quarter_cookie
-    @set_view_quarter_cookie ||=
-        cookies[:view_quarter] = params[:view_quarter] if params[:view_quarter]
   end
 
   def found_invoice
