@@ -2,5 +2,16 @@
 
 .row
   .small-12.columns
-    %h1 Reports#index
-    %p Find me in app/views/reports/index.html.haml
+    %h1.main_page_header Reports
+
+    %br/
+    .outline
+      = render 'companies/header'
+
+    %p
+      %b Income Report -
+      View company totals by either selected year or quarter.
+
+    %p
+      %b Accounts Income Report -
+      View company totals broken down by each company account by selected year or quarter.

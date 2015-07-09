@@ -39,7 +39,12 @@ Rails.application.routes.draw do
     resources :payments, except: [:show, :index]
   end
 
-  resources :reports, only: [:index]
+  resources :reports, only: [:index] do
+    collection do
+      get :income
+      get :accounts_income
+    end
+  end
 
   resources :inventory_items
   get 'search_tag/:tag', to: 'inventory_items#index', as: :tag

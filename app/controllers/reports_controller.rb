@@ -4,4 +4,11 @@ class ReportsController < ApplicationController
 
   def index
   end
+
+  def income
+  end
+
+  def accounts_income
+    @accounts = current_company.accounts.includes(company: :invoices)
+  end
 end
