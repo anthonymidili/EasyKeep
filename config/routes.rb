@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     resources :payments, except: [:show, :index]
   end
 
+  resources :reports, only: [:index]
+
   resources :inventory_items
   get 'search_tag/:tag', to: 'inventory_items#index', as: :tag
 
