@@ -1,13 +1,13 @@
-.row.hide_on_print
+.row
   = form_tag accounts_income_reports_path, method: :get do
     .small-12.medium-3.large-3.columns
-      = label_tag 'date_year', 'Year'
+      = label_tag 'date_year', 'Select Year'
       = select_date(active_date, discard_month: true, discard_day: true)
 
     .small-12.medium-3.large-3.columns
-      = label_tag :view_quarter, 'Quarter'
+      = label_tag :view_quarter, 'Select Quarter'
       = select_tag :view_quarter,
       options_for_select([['1st', 1], ['2nd', 4], ['3rd', 7], ['4th', 10]], selected: view_quarter)
 
     .small-12.medium-3.large-3.medium-pull-3.large-pull-3.columns
-      = submit_tag 'Select Quarter to View', class: 'tiny button radius expand tiny_button_down', name: nil
+      = submit_tag 'Submit', class: 'tiny button radius expand tiny_button_down', name: nil

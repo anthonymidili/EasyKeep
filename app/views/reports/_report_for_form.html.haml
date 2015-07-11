@@ -1,14 +1,13 @@
-.row.hide_on_print
+.row
   = form_tag accounts_income_reports_path, id: :view_by_selection, method: :get do
     .small-12.columns
-      %label Report for the:
       %ul.inline-list
         %li
-          %label
+          %span
             = radio_button_tag 'view_by', :month, view_by == :month
-            Quarter
+            Quarterly Report
         %li
-          %label
+          %span
             = radio_button_tag 'view_by', :year, view_by == :year
-            Year
+            Yearly Report
         %li= submit_tag 'View By', class: 'tiny button radius', name: nil
