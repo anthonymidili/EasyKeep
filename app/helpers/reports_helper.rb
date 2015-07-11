@@ -1,14 +1,14 @@
 module ReportsHelper
-  def month_in_quarter_date(integer)
-    Date.new(active_date.year, view_quarter + integer, 1)
+  def month_in_quarter_date(quarter_integer)
+    Date.new(active_date.year, view_quarter + quarter_integer, 1)
   end
 
-  def view_quarter_date
+  def date_to_view
     Date.new(active_date.year, view_quarter, 1)
   end
 
-  def start_of_quarter_date(quarter_for)
-    Date.new(active_date.year, quarter_for, 1)
+  def start_of_quarter_date(quarter_integer)
+    Date.new(active_date.year, quarter_integer, 1)
   end
 
   def quarter_name
