@@ -3,6 +3,13 @@ module ReportsHelper
     Date.new(active_date.year, view_quarter + quarter_integer, 1)
   end
 
+  def date_range(quarter_integer)
+    range = Date.new(active_date.year, quarter_integer, 1)
+    beginning_date = range.beginning_of_quarter
+    end_date = range.end_of_quarter
+    "#{beginning_date.strftime('%Y-%b-%d')} - #{end_date.strftime('%Y-%b-%d')}"
+  end
+
   def date_to_view
     Date.new(active_date.year, view_quarter, 1)
   end
