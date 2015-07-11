@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
   def income
   end
 
-  def accounts_income
+  def income_accounts
     @accounts = current_company.accounts.includes(company: :invoices)
   end
 end

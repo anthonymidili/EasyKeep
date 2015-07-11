@@ -1,10 +1,11 @@
-- provide(:title, 'Income Report')
+- provide(:title, 'Income Report - Accounts')
 
 .row
   .small-12.columns
     %br/
     .hide_on_print.outline
-      %h4 Income Report
+      %h4 Income Report - Accounts
       = render 'select_month_or_year_form'
       = render "select_#{quarter_or_year}_form"
     = render 'companies/header'
+    = render "reports/accounts/report_for_#{quarter_or_year}"

@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   resources :reports, only: [:index] do
     collection do
       get :income
-      get :accounts_income
+      get :income_accounts, path: '/income/accounts'
     end
   end
 
