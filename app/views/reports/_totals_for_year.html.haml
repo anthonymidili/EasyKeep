@@ -4,20 +4,24 @@
     %hr/
 
     %p
-      %b First Quarter
-      (#{date_range(1)}):
-      = number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(1)))
+      %small= date_range(1)
+      %br/
+      First Quarter:
+      %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(1)))
     %p
-      %b Second Quarter
-      (#{date_range(4)}):
-      = number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(4)))
+      %small= date_range(4)
+      %br/
+      Second Quarter:
+      %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(4)))
     %p
-      %b Third Quarter
-      (#{date_range(7)}):
-      = number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(7)))
+      %small= date_range(7)
+      %br/
+      Third Quarter:
+      %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(7)))
     %p
-      %b Fourth Quarter
-      (#{date_range(10)}):
-      = number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(10)))
+      %small= date_range(10)
+      %br/
+      Fourth Quarter:
+      %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(10)))
 
     = render 'totals'
