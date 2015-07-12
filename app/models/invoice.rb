@@ -87,13 +87,18 @@ class Invoice < ActiveRecord::Base
   end
 
   # Validates that the invoice number being updated is not used by another
-  # company invoice, if the invoice number has been changed.
+  # company invoice if the invoice number has been changed.
   # If so the invoice number is rescued to avoid routing errors.
   def invoice_number_unique
-    if number && (company.invoices.pluck(:number) - [current_invoice.number]).include?(number)
+    if number && invoice_number_exists?
       rescue_invoice_number
       errors.add(:invoice_number, 'already exists.')
     end
+  end
+
+  # Finds if invoice number is already exists.
+  def invoice_number_exists?
+    (company.invoices.pluck(:number) - [current_invoice.number]).include?(number)
   end
 
   # Finds the user's invoice they are currently editing.
