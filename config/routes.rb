@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     collection do
       get :income
       get :income_accounts, path: '/income/accounts'
+      get :income_graph, path: '/income/graph'
     end
   end
 

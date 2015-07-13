@@ -4,6 +4,7 @@ jQuery ->
     title: text: 'Money Health'
     xAxis: categories: ['Invoiced', 'Received', 'Owed']
     yAxis: title: text: false
+    tooltip: valuePrefix: '$'
     series: [
       {
         name: 'Amount'

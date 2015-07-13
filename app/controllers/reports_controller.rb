@@ -11,4 +11,7 @@ class ReportsController < ApplicationController
   def income_accounts
     @accounts = current_company.accounts.includes(company: :invoices)
   end
+
+  def income_graph
+  end
 end
