@@ -4,7 +4,7 @@ jQuery ->
     title: text: 'Income Over Time'
     subtitle: text: if document.ontouchstart == undefined then 'Click and drag in the plot area to zoom in' else 'Pinch the chart to zoom in'
     xAxis: type: 'datetime'
-    yAxis: title: text: 'Money'
+    yAxis: title: text: 'Money Amount'
     tooltip: valuePrefix: '$'
     legend: enabled: false
     plotOptions: area:
