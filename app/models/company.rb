@@ -62,6 +62,16 @@ class Company < ActiveRecord::Base
      total_company_balance_due(view_by, active_date).to_f]
   end
 
+  def graph_totals(view_by, active_date)
+    payments.by_selected_range(view_by, active_date).group_by { |p|
+      p.received_on.beginning_of_month
+    } .sort.map { |month, payments|
+      m = DateTime.parse(month.to_s).to_i * 1000
+      p = payments.map(&:amount).sum.to_f
+      [m, p].to_a
+    }
+  end
+
   def available_tags
     tags.map(&:name).join(', ')
   end

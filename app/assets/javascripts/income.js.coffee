@@ -1,29 +1,35 @@
 jQuery ->
-  $('#income_graph').highcharts
-    title:
-      text: 'Monthly Company Income'
-      x: 0
-    subtitle:
-      text: ''
-      x: 0
-    xAxis: categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    yAxis:
-      title: text: 'Money Received'
-      plotLines: [ {
-        value: 0
-        width: 1
-        color: '#808080'
-      } ]
-    tooltip: valuePrefix: '$'
-    legend:
-      layout: 'vertical'
-      align: 'right'
-      verticalAlign: 'middle'
-      borderWidth: 0
-    series: [
-      {
-        name: 'Income'
-        data: $('#income_graph').data('amounts')
-      }
-    ]
+  $('#graph_money').highcharts
+    chart: zoomType: 'x'
+    title: text: 'Income Over Time'
+    subtitle: text: if document.ontouchstart == undefined then 'Click and drag in the plot area to zoom in' else 'Pinch the chart to zoom in'
+    xAxis: type: 'datetime'
+    yAxis: title: text: 'Exchange rate'
+    legend: enabled: false
+    plotOptions: area:
+      fillColor:
+        linearGradient:
+          x1: 0
+          y1: 0
+          x2: 0
+          y2: 1
+        stops: [
+          [
+            0
+            Highcharts.getOptions().colors[0]
+          ]
+          [
+            1
+            Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')
+          ]
+        ]
+      marker: radius: 2
+      lineWidth: 1
+      states: hover: lineWidth: 1
+      threshold: null
+    series: [ {
+      type: 'area'
+      name: 'Income'
+      data: $('#graph_money').data('amounts')
+    } ]
   return

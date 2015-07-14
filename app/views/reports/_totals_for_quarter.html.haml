@@ -5,12 +5,12 @@
 
     %p
       = "Month of #{month_in_quarter_date(0).strftime('%B')}:"
-      %b= number_to_currency(current_company.total_company_payments('month', month_in_quarter_date(0)))
+      %b= number_to_currency(current_company.total_company_payments(:month, month_in_quarter_date(0)))
     %p
       = "Month of #{month_in_quarter_date(1).strftime('%B')}:"
-      %b= number_to_currency(current_company.total_company_payments('month', month_in_quarter_date(1)))
+      %b= number_to_currency(current_company.total_company_payments(:month, month_in_quarter_date(1)))
     %p
       = "Month of #{month_in_quarter_date(2).strftime('%B')}:"
-      %b= number_to_currency(current_company.total_company_payments('month', month_in_quarter_date(2)))
+      %b= number_to_currency(current_company.total_company_payments(:month, month_in_quarter_date(2)))
 
     = render 'totals'

@@ -16,20 +16,20 @@
           - @accounts.each do |account|
             %tr
               %td= account.name
-              %td= number_to_currency(account.total_account_payments('month', month_in_quarter_date(0)))
-              %td= number_to_currency(account.total_account_payments('month', month_in_quarter_date(1)))
-              %td= number_to_currency(account.total_account_payments('month', month_in_quarter_date(2)))
-              %td= number_to_currency(account.total_account_payments('quarter', date_to_view))
+              %td= number_to_currency(account.total_account_payments(:month, month_in_quarter_date(0)))
+              %td= number_to_currency(account.total_account_payments(:month, month_in_quarter_date(1)))
+              %td= number_to_currency(account.total_account_payments(:month, month_in_quarter_date(2)))
+              %td= number_to_currency(account.total_account_payments(:quarter, date_to_view))
           %tr.divider-line
             %td
               %b Totals
             %td
-              %b= number_to_currency(current_company.total_company_payments('month', month_in_quarter_date(0)))
+              %b= number_to_currency(current_company.total_company_payments(:month, month_in_quarter_date(0)))
             %td
-              %b= number_to_currency(current_company.total_company_payments('month', month_in_quarter_date(1)))
+              %b= number_to_currency(current_company.total_company_payments(:month, month_in_quarter_date(1)))
             %td
-              %b= number_to_currency(current_company.total_company_payments('month', month_in_quarter_date(2)))
+              %b= number_to_currency(current_company.total_company_payments(:month, month_in_quarter_date(2)))
             %td.red_text
-              %b= number_to_currency(current_company.total_company_payments('quarter', date_to_view))
+              %b= number_to_currency(current_company.total_company_payments(:quarter, date_to_view))
 
 = render 'inline_totals'

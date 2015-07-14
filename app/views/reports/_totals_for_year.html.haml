@@ -7,21 +7,21 @@
       %small= date_range(1)
       %br/
       First Quarter:
-      %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(1)))
+      %b= number_to_currency(current_company.total_company_payments(:quarter, start_of_quarter_date(1)))
     %p
       %small= date_range(4)
       %br/
       Second Quarter:
-      %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(4)))
+      %b= number_to_currency(current_company.total_company_payments(:quarter, start_of_quarter_date(4)))
     %p
       %small= date_range(7)
       %br/
       Third Quarter:
-      %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(7)))
+      %b= number_to_currency(current_company.total_company_payments(:quarter, start_of_quarter_date(7)))
     %p
       %small= date_range(10)
       %br/
       Fourth Quarter:
-      %b= number_to_currency(current_company.total_company_payments('quarter', start_of_quarter_date(10)))
+      %b= number_to_currency(current_company.total_company_payments(:quarter, start_of_quarter_date(10)))
 
     = render 'totals'
