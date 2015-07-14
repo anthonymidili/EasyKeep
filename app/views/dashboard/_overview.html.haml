@@ -3,7 +3,7 @@
 
   .row
     .small-12.columns
-      %p
+      .label_size
         %b Company Accounts:
         = @accounts.count
 
@@ -11,3 +11,5 @@
     .small-12.columns
       = content_tag :div, '', id: 'moneyHealth', style: 'width:100%; height:200px;',
       data: { amounts: current_company.money_health(:month, Date.current) }
+
+  .label_size= link_to 'View company reports', reports_path

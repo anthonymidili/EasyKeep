@@ -10,3 +10,5 @@
 
     = content_tag :div, '', id: 'moneyOverTime', style: 'width:100%; height:500px;',
       data: { amounts: current_company.total_payments_over_time(quarter_or_year, date_to_view) }
+
+    = render 'inline_totals'
