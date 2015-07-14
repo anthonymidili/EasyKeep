@@ -4,12 +4,9 @@
   .small-12.columns
     %br/
     .hide_on_print.outline
-      %h4 Income Report Graph
+      %h4 Graph Income
       = render 'select_month_or_year_form'
       = render "select_#{quarter_or_year}_form"
 
-    = content_tag :div, '', id: 'graph_money', style: 'width:100%; height:500px;',
-      data: { amounts: current_company.graph_totals(view_by, active_date) }
-
-    = current_company.graph_totals(view_by, active_date)
-
+    = content_tag :div, '', id: 'moneyOverTime', style: 'width:100%; height:500px;',
+      data: { amounts: current_company.total_payments_over_time(quarter_or_year, date_to_view) }

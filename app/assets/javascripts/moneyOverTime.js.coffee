@@ -1,10 +1,11 @@
 jQuery ->
-  $('#graph_money').highcharts
+  $('#moneyOverTime').highcharts
     chart: zoomType: 'x'
     title: text: 'Income Over Time'
     subtitle: text: if document.ontouchstart == undefined then 'Click and drag in the plot area to zoom in' else 'Pinch the chart to zoom in'
     xAxis: type: 'datetime'
-    yAxis: title: text: 'Exchange rate'
+    yAxis: title: text: 'Money'
+    tooltip: valuePrefix: '$'
     legend: enabled: false
     plotOptions: area:
       fillColor:
@@ -30,6 +31,6 @@ jQuery ->
     series: [ {
       type: 'area'
       name: 'Income'
-      data: $('#graph_money').data('amounts')
+      data: $('#moneyOverTime').data('amounts')
     } ]
   return

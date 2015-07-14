@@ -1,5 +1,5 @@
 jQuery ->
-  $('#money_health').highcharts
+  $('#moneyHealth').highcharts
     chart: type: 'bar'
     title: text: 'Money Health'
     xAxis: categories: ['Invoiced', 'Received', 'Owed']
@@ -8,7 +8,7 @@ jQuery ->
     series: [
       {
         name: 'Amount'
-        data: $('#money_health').data('amounts')
+        data: $('#moneyHealth').data('amounts')
       }
     ]
   return
