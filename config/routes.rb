@@ -41,9 +41,9 @@ Rails.application.routes.draw do
   resources :reports, only: [:index] do
     collection do
       get :income
-      get :income_accounts, path: '/income/accounts'
-      get :income_line_graph, path: '/income/line_graph'
-      get :income_bar_graph, path: '/income/bar_graph'
+      get 'income/accounts', to: 'reports#income_accounts'
+      get 'income/line_graph', to: 'reports#income_line_graph'
+      get 'income/bar_graph', to: 'reports#income_bar_graph'
     end
   end
 
