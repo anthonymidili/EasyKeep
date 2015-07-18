@@ -1,5 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/anthonymidili/EasyKeep.png)](https://codeclimate.com/github/anthonymidili/EasyKeep)
-# EasyKeep *v-3.2.4*
+# EasyKeep *v-3.2.5*
 
 ---
 
