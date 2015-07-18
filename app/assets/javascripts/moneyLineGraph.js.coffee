@@ -1,5 +1,5 @@
 jQuery ->
-  $('#moneyOverTime').highcharts
+  $('#moneyOverTimeLine').highcharts
     chart: zoomType: 'x'
     title: text: 'Income Over Time'
     subtitle: text: if document.ontouchstart == undefined then 'Click and drag in the plot area to zoom in' else 'Pinch the chart to zoom in'
@@ -31,6 +31,6 @@ jQuery ->
     series: [ {
       type: 'area'
       name: 'Income'
-      data: $('#moneyOverTime').data('amounts')
+      data: $('#moneyOverTimeLine').data('amounts')
     } ]
   return
