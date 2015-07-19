@@ -21,7 +21,7 @@ private
       invitable.company_id = current_user.company_id
       invitable.is_admin = true
       invitable.require_email = true
-      invitable.save
+      invitable.save!
     end
   end
 end
