@@ -82,10 +82,12 @@ re-invoiced.'
 
   def change_account_header
     ActiveRecord::Base.transaction do
-      current_account.update_attributes!(account_params)
-
-      redirect_to edit_invoice_path(@invoice), notice: "Account was successfully updated for all current and future
+      if current_account.update_attributes(account_params)
+        redirect_to edit_invoice_path(@invoice), notice: "Account was successfully updated for all current and future
 invoices for #{current_account.name} Account."
+      else
+        redirect_to edit_invoice_path(@invoice), alert: 'Something went wrong. Please try again.'
+      end
     end
   end
 
