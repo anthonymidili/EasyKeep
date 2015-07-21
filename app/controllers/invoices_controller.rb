@@ -1,7 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin!, except: [:show, :index]
-  before_action :load_invoice, only: [:show, :add_services, :remove_services, :invoice_ready, :change_account_header]
+  before_action :load_invoice, only: [:show, :update_apply_services, :update_remove_services, :invoice_ready, :change_account_header]
   before_action :require_no_payments!, only: [:edit, :update, :destroy]
 
   def show
@@ -69,7 +69,7 @@ re-invoiced.'
     end
   end
 
-  def add_services
+  def update_apply_services
     ActiveRecord::Base.transaction do
       @services = current_account.services
 
@@ -79,7 +79,7 @@ re-invoiced.'
     end
   end
 
-  def remove_services
+  def update_remove_services
     ActiveRecord::Base.transaction do
       @invoice.services.where(id: params[:service_ids]).update_all(invoice_id: nil)
 

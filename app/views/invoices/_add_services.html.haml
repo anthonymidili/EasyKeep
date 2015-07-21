@@ -1,7 +1,7 @@
 .outline
   %h4 Add Services to your Invoice
 
-  = form_tag add_services_invoices_path(id: @invoice.id), method: :patch do
+  = form_tag update_apply_services_invoice_path(@invoice), method: :patch do
     %table
       %thead
         %tr
