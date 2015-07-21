@@ -38,7 +38,7 @@ gem 'highcharts-rails', '~> 4.1.5'
 # App monitoring
 gem 'newrelic_rpm', '~> 3.12.1'
 
-gem 'rmagick', '~> 2.15.2'
+gem 'rmagick', '~> 2.15.3'
 # must stay this version to work properly
 gem 'carrierwave', '~> 0.10.0'
 gem 'fog', '~> 1.32'

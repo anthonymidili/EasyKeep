@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   resources :invoices, except: [:new] do
     collection do
+      post :create_apply_services
       patch :add_services
       patch :remove_services
     end

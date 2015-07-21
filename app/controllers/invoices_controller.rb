@@ -19,11 +19,24 @@ class InvoicesController < ApplicationController
   end
 
   def create
+    raise # Use create action with new page.
     @account = current_account
     @service = @account.services.build
     @service.performed_on ||= Date.current
     @services = @account.services
     @invoices = @account.invoices.by_outstanding
+    @invoice = @account.invoices.build(invoice_params)
+    @invoice.company_id = current_company.id
+
+    apply_invoice_ids
+  end
+
+  def create_apply_services
+    @account = current_account
+    @service = @account.services.build
+    @service.performed_on ||= Date.current
+    @services = @account.services.includes(:invoice)
+    @invoices = @account.invoices.includes(:payments, :account).by_outstanding
     @invoice = @account.invoices.build(invoice_params)
     @invoice.company_id = current_company.id
 
@@ -122,5 +135,4 @@ private
       end
     end
   end
-
 end
