@@ -1,0 +1,13 @@
+- provide(:title, 'New Invoice')
+
+.row
+  .small-12.columns
+    %h1.main_page_header New Invoice
+    %br/
+
+    .outline
+      = render 'companies/header'
+      .label_size= link_to 'Edit company header', edit_company_path
+
+    .panel
+      %h4 Invoice For:

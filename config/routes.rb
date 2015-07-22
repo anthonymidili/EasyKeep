@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get :history_search, on: :collection
   end
 
-  resources :invoices, except: [:new] do
+  resources :invoices do
     collection do
       post :create_apply_services
     end
