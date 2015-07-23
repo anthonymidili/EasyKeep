@@ -11,3 +11,12 @@
 
     .panel
       %h4 Invoice For:
+
+    = form_for @invoice do |f|
+      = render 'shared/error_messages', object: f.object
+
+      = render 'date_tax_fields', f: f
+
+      .row
+        .small-12.columns
+          = f.submit class: 'tiny button radius'

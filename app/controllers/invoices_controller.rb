@@ -19,10 +19,19 @@ class InvoicesController < ApplicationController
   end
 
   def new
-
+    @invoice = current_company.invoices.build
+    @invoice.established_at ||= Date.current
+    @invoice.sales_tax ||= current_company.sales_tax
   end
 
   def create
+    @invoice = current_company.invoices.build(invoice_params)
+
+    if @invoice.save
+      redirect_to invoice_path(@invoice), notice: 'Invoice was successfully created.'
+    else
+      render :new
+    end
   end
 
   def create_apply_services
