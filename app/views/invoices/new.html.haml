@@ -23,6 +23,12 @@
             = account_f.label :name
             = account_f.text_field :name, placeholder: 'Smith House'
 
+        = account_f.fields_for(:user, @invoice.account.user) do |user_f|
+          .row
+            .small-12.medium-6.large-6.columns
+              = user_f.label :name, "Contact's (Full name)"
+              = user_f.text_field :name, placeholder: 'John Smith'
+
       .row
         .small-12.columns
           = f.submit class: 'tiny button radius'

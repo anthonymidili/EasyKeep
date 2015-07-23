@@ -21,6 +21,7 @@ class InvoicesController < ApplicationController
   def new
     @invoice = current_company.invoices.build
     @invoice.build_account
+    @invoice.account.build_user
     @invoice.established_at ||= Date.current
     @invoice.sales_tax ||= current_company.sales_tax
   end
@@ -28,6 +29,8 @@ class InvoicesController < ApplicationController
   def create
     @invoice = current_company.invoices.build(invoice_params)
     @invoice.account.company_id = current_company.id
+    @invoice.account.user.company_id = current_company.id
+    @invoice.account.user.skip_validation = true
 
     if @invoice.save
       cookies[:current_account] = @invoice.account.id if current_user.is_admin?
@@ -115,9 +118,10 @@ private
   # Never trust parameters from the scary internet, only allow the white list through.
   def invoice_params
     params.require(:invoice).permit(:established_at, :sales_tax, :number,
-                                    account_attributes: [:address_1, :address_2, :city, :fax, :name, :phone, :state,
-                                                         :zip, :uses_account_name, :uses_contact_name,
-                                                         :prefix, :postfix, :divider])
+                                    account_attributes: [:address_1, :address_2, :city, :fax, :name, :phone, :state, :zip,
+                                                         :uses_account_name, :uses_contact_name, :prefix, :postfix, :divider,
+                                                         user_attributes: [:email, :password, :password_confirmation,
+                                                                           :remember_me, :name]])
   end
 
   def account_params
