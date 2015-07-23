@@ -17,6 +17,12 @@
 
       = render 'date_tax_fields', f: f
 
+      = f.fields_for(:account, @invoice.account) do |account_f|
+        .row
+          .small-12.medium-6.large-6.columns
+            = account_f.label :name
+            = account_f.text_field :name, placeholder: 'Smith House'
+
       .row
         .small-12.columns
           = f.submit class: 'tiny button radius'

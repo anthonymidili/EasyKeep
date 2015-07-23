@@ -20,14 +20,17 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = current_company.invoices.build
+    @invoice.build_account
     @invoice.established_at ||= Date.current
     @invoice.sales_tax ||= current_company.sales_tax
   end
 
   def create
     @invoice = current_company.invoices.build(invoice_params)
+    @invoice.account.company_id = current_company.id
 
     if @invoice.save
+      cookies[:current_account] = @invoice.account.id if current_user.is_admin?
       redirect_to invoice_path(@invoice), notice: 'Invoice was successfully created.'
     else
       render :new
@@ -111,7 +114,10 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def invoice_params
-    params.require(:invoice).permit(:established_at, :sales_tax, :number)
+    params.require(:invoice).permit(:established_at, :sales_tax, :number,
+                                    account_attributes: [:address_1, :address_2, :city, :fax, :name, :phone, :state,
+                                                         :zip, :uses_account_name, :uses_contact_name,
+                                                         :prefix, :postfix, :divider])
   end
 
   def account_params

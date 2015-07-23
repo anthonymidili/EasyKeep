@@ -7,6 +7,8 @@ class Invoice < ActiveRecord::Base
   before_create :set_invoice_number
 
   belongs_to :account, touch: true
+  accepts_nested_attributes_for :account
+
   belongs_to :company
 
   has_many :services
