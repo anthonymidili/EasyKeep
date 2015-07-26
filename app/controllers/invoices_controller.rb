@@ -2,6 +2,7 @@ class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin!, except: [:show, :index]
   before_action :load_invoice, only: [:show, :update_apply_services, :update_remove_services, :invoice_ready, :change_account_header]
+  before_action :find_or_create_account, only: [:create]
   before_action :require_no_payments!, only: [:edit, :update, :destroy]
 
   def show
@@ -27,10 +28,8 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    @invoice = current_company.invoices.build(invoice_params)
-    @invoice.account.company_id = current_company.id
-    @invoice.account.user.company_id = current_company.id
-    @invoice.account.user.skip_validation = true
+    @invoice = @account.invoices.build(invoice_params)
+    @invoice.company_id = current_company.id
 
     if @invoice.save
       cookies[:current_account] = @invoice.account.id if current_user.is_admin?
@@ -118,10 +117,10 @@ private
   # Never trust parameters from the scary internet, only allow the white list through.
   def invoice_params
     params.require(:invoice).permit(:established_at, :sales_tax, :number,
-                                    account_attributes: [:address_1, :address_2, :city, :fax, :name, :phone, :state, :zip,
+                                    account_attributes: [:id, :name, :address_1, :address_2, :city, :fax, :phone, :state, :zip,
                                                          :uses_account_name, :uses_contact_name, :prefix, :postfix, :divider,
-                                                         user_attributes: [:email, :password, :password_confirmation,
-                                                                           :remember_me, :name]])
+                                                         user_attributes: [:id, :name, :email, :password, :password_confirmation,
+                                                                           :remember_me]])
   end
 
   def account_params
@@ -130,6 +129,14 @@ private
 
   def load_invoice
     @invoice = current_account.invoices.friendly.find(params[:id])
+  end
+
+  def find_or_create_account
+    @account = current_company.accounts.find_or_initialize_by(name: invoice_params[:account_attributes][:name]) do |account|
+      account.update_attributes(invoice_params[:account_attributes])
+      account.user.company_id = current_company.id
+      account.user.skip_validation = true
+    end
   end
 
   def require_no_payments!

@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   belongs_to :company
   accepts_nested_attributes_for :company
 
-  validates :name, presence: true
+  # validates :name, presence: true
   validate :unique_email_required
 
   default_scope { order('id ASC') }

@@ -21,9 +21,9 @@ class ServicesController < ApplicationController
   # Create a new service from the admin dashboard
   def dashboard_create
     @account = current_company.accounts.find(params[:service][:account_id])
-    @accounts = current_company.accounts.by_recent_activity.with_limit
     @service = @account.services.build(service_params)
     @service.company_id = current_company.id
+    @accounts = current_company.accounts.by_recent_activity.with_limit
 
     set_current_account_cookie
   end
@@ -79,5 +79,4 @@ private
       render 'dashboard/home'
     end
   end
-
 end

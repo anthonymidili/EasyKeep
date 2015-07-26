@@ -1,0 +1,16 @@
+- if current_user.is_admin?
+  .row
+    .small-12.medium-6.large-6.columns
+      = f.label :name
+      = f.text_field :name, placeholder: 'Smith House'
+
+  .row
+    .small-12.medium-12.large-6.columns
+      %label
+        = f.check_box :uses_account_name
+        Use Account/Company name on invoices
+
+    .small-12.medium-12.large-6.columns
+      %label
+        = f.check_box :uses_contact_name
+        Use Contact's (Full name) on invoices
