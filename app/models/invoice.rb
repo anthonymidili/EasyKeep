@@ -72,7 +72,7 @@ class Invoice < ActiveRecord::Base
     'disable_link gray_text' if archived?
   end
 
-  private
+private
 
   # Sets the invoice number just before the invoice is created.
   def set_invoice_number
@@ -98,7 +98,7 @@ class Invoice < ActiveRecord::Base
     end
   end
 
-  # Finds if invoice number is already exists.
+  # Finds if invoice number already exists.
   def invoice_number_exists?
     (company.invoices.pluck(:number) - [current_invoice.number]).include?(number)
   end
@@ -113,5 +113,4 @@ class Invoice < ActiveRecord::Base
   def rescue_invoice_number
     self.number = current_invoice.number
   end
-
 end

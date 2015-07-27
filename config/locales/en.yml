@@ -18,6 +18,8 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
+#
+# Note: for nested attributes, a "/" is needed. Account.user becomes account/user:.
 
 en:
   description_content: 'EasyKeep - This app is geared for small businesses! Manage your accounts on the go. Create invoices with the push of a button. Invite customers to view their account history. Ideal for businesses with no overhead and provides a service such as house keeping, interior design, lawn care, baby sitting, etc.'
@@ -25,6 +27,8 @@ en:
   activerecord:
     attributes:
       user:
+        name: 'Full name'
+      account/user:
         name: 'Full name'
       account:
         name: 'Account/Company name'

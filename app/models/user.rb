@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   belongs_to :company
   accepts_nested_attributes_for :company
 
-  # validates :name, presence: true
+  validate :name_required
   validate :unique_email_required
 
   default_scope { order('id ASC') }
@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
   end
 
 private
+
+  def name_required
+    errors.add(:name, "can't be blank when email is present") if name.blank? && email?
+  end
 
   def unique_email_required
     if @require_email && company.users.find_by_email(email)
