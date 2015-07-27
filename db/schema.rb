@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416002358) do
+ActiveRecord::Schema.define(version: 20150727210127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150416002358) do
     t.string   "divider"
   end
 
+  add_index "accounts", ["company_id", "name"], name: "index_accounts_on_company_id_and_name", unique: true, using: :btree
   add_index "accounts", ["company_id"], name: "index_accounts_on_company_id", using: :btree
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 

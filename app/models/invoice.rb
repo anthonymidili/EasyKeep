@@ -19,7 +19,7 @@ class Invoice < ActiveRecord::Base
             format: { with: /\A(?<year>\d{4})\-(?<month>\d{1,2})\-(?<day>\d{1,2})\z/,
                       message: 'date must be formatted correctly (yyyy-mm-dd)' }
   validate :invoice_number_presence, on: :update
-  validate :invoice_number_unique, on: :update
+  validate :company_invoice_number_unique, on: :update
 
   include SelectedRange
   # def by_selected_range(view_by, active_date)
@@ -79,37 +79,36 @@ private
     self.number = (company.invoices.maximum(:number).to_i).succ
   end
 
-  # Validates the invoice number is present.
-  # If not the invoice number is rescued to avoid routing errors.
+  # Validates that the invoice [number] is present.
+  # If not the invoice [number] is rescued to avoid routing errors.
   def invoice_number_presence
     unless number
       rescue_invoice_number
-      errors.add(:invoice_number, "can't be blank.")
+      errors.add(:invoice_number, "can't be blank")
     end
   end
 
-  # Validates that the invoice number being updated is not used by another
-  # company invoice if the invoice number has been changed.
-  # If so the invoice number is rescued to avoid routing errors.
-  def invoice_number_unique
+  # Validates that the invoice [number] being updated is not used by another
+  # Company Invoice if the invoice [number] has been changed.
+  # If so it's rescued to avoid routing errors.
+  def company_invoice_number_unique
     if number && invoice_number_exists?
       rescue_invoice_number
-      errors.add(:invoice_number, 'already exists.')
+      errors.add(:invoice_number, 'already exists')
     end
   end
 
-  # Finds if invoice number already exists.
+  # Finds if the invoice [number] already exists.
   def invoice_number_exists?
     (company.invoices.pluck(:number) - [current_invoice.number]).include?(number)
   end
 
   # Finds the user's invoice they are currently editing.
   def current_invoice
-    @current_invoice ||=
-        company.invoices.find(self.id)
+    @current_invoice ||= company.invoices.find(self.id)
   end
 
-  # Resets the user's invoice number they are currently editing, if an error occurs.
+  # Resets the user's invoice [number] they are currently editing, if an error occurs.
   def rescue_invoice_number
     self.number = current_invoice.number
   end

@@ -12,6 +12,7 @@ class Account < ActiveRecord::Base
   has_many :payments
 
   validates :name, presence: true
+  validate :company_account_name_unique
 
   scope :by_name, -> { order('name ASC') }
   scope :by_recent_activity, -> { order('updated_at DESC') }
@@ -43,5 +44,25 @@ class Account < ActiveRecord::Base
 
   def total_outstanding_invoices
     invoices.by_outstanding.sum(&:balance_due)
+  end
+
+private
+
+  # Check for Company Account name uniqueness.
+  def company_account_name_unique
+    errors.add(:name, 'already exists') if name && account_name_exists?
+  end
+
+  # If account is being updated, find the current account the user is updating and remove that account's name
+  # from the array. Then check if the form [name] being submitted is present. This allows account to be updated
+  # while validating the form [name] submitted is unique.
+  # If account is being created, there is no [id], and no names will be removed from the array.
+  def account_name_exists?
+    (company.accounts.pluck(:name) - [current_account.try(:name)]).include?(name)
+  end
+
+  # Use find_by :id method so if there is no [id] present, current_account returns nil.
+  def current_account
+    @current_account ||= company.accounts.find_by(id: self.id)
   end
 end
