@@ -4,7 +4,7 @@
       %label
         %b Account:
         = current_account.name
-  - if current_account.uses_contact_name?
+  - if current_account.uses_contact_name? && current_account.user.name.present?
     %li
       %label
         %b Contact:

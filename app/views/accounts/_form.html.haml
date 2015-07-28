@@ -2,7 +2,7 @@
   = render 'shared/error_messages', object: f.object
   = hidden_field_tag :invoice_id, @invoice.id if @invoice
 
-  = render 'accounts/fields_for_account', f: f
+  = render 'accounts/fields_for_account', f: f if current_user.is_admin?
 
   = f.fields_for(:user, @account.user) do |user_f|
     .row
