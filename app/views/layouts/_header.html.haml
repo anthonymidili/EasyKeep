@@ -43,8 +43,16 @@
                   %li= link_to 'Company admins', company_path
                   %li= link_to 'Reports', reports_path
                   %li= link_to 'Inventory', inventory_items_path
-                  %li= link_to 'Search invoices', search_invoices_company_path
                   %li= link_to 'About Company', about_company_path
+
+              / Invoices drop-down
+              %li.divider
+              %li.has-dropdown
+                = link_to 'Invoices', '#'
+                %ul.dropdown
+                  %li= link_to 'New invoice', new_invoice_path
+                  %li= link_to 'Search invoices', search_invoices_company_path
+
             - else
               %li.divider
               %li= link_to 'About company', about_company_path
