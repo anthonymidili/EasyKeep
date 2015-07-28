@@ -10,10 +10,11 @@
         After that feel free to #{link_to 'create you first account', new_account_path}.
 
     .outline
-      .right
-        = link_to edit_company_path, title: 'Edit Company' do
-          Edit
-          %i.page.fi-page-edit
+      - if current_user.is_owner?
+        .right
+          = link_to edit_company_path, title: 'Edit Company' do
+            Edit
+            %i.page.fi-page-edit
 
       = render 'companies/header_preview'
 
