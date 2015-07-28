@@ -17,17 +17,20 @@
       = f.fields_for(:account, @invoice.account) do |account_f|
         = render 'accounts/fields_for_account', f: account_f
 
-        = account_f.fields_for(:user, @invoice.account.user) do |user_f|
-          .row
-            .small-12.medium-6.large-6.columns
-              = user_f.label :name, "Contact's (Full name)"
-              = user_f.text_field :name, placeholder: 'John Smith'
+        %p= link_to 'show/hide additional fields for new account', '#', id: 'toggle', remote: true
 
-            .small-12.medium-6.large-6.columns
-              = user_f.label :email
-              = user_f.text_field :email
+        .hide
+          = account_f.fields_for(:user, @invoice.account.user) do |user_f|
+            .row
+              .small-12.medium-6.large-6.columns
+                = user_f.label :name, "Contact's (Full name)"
+                = user_f.text_field :name, placeholder: 'John Smith'
 
-        = render 'shared/address_fields', f: account_f
+              .small-12.medium-6.large-6.columns
+                = user_f.label :email
+                = user_f.text_field :email
+
+          = render 'shared/address_fields', f: account_f
 
       .row
         .small-12.columns
