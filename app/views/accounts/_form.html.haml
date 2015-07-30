@@ -2,7 +2,13 @@
   = render 'shared/error_messages', object: f.object
   = hidden_field_tag :invoice_id, @invoice.id if @invoice
 
-  = render 'accounts/fields_for_account', f: f if current_user.is_admin?
+  - if current_user.is_admin?
+    .row
+      .small-12.medium-6.large-6.columns
+        = f.label :name
+        = f.text_field :name, placeholder: 'Smith House'
+
+      = render 'accounts/checkbox_fields', f: f
 
   = f.fields_for(:user, @account.user) do |user_f|
     .row

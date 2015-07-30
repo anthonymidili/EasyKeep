@@ -2,7 +2,6 @@ class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin!, except: [:show, :index]
   before_action :load_invoice, only: [:show, :update_apply_services, :update_remove_services, :invoice_ready, :change_account_header]
-  before_action :find_or_create_account, only: [:create]
   before_action :require_no_payments!, only: [:edit, :update, :destroy]
 
   def show
@@ -28,6 +27,7 @@ class InvoicesController < ApplicationController
   end
 
   def create
+    @account = current_company.find_or_create_account(invoice_params[:account_attributes])
     @invoice = @account.invoices.build(invoice_params)
     @invoice.company_id = current_company.id
 
@@ -129,14 +129,6 @@ private
 
   def load_invoice
     @invoice = current_account.invoices.friendly.find(params[:id])
-  end
-
-  def find_or_create_account
-    @account = current_company.accounts.find_or_initialize_by(name: invoice_params[:account_attributes][:name]) do |account|
-      account.update_attributes(invoice_params[:account_attributes])
-      account.user.company_id = current_company.id
-      account.user.skip_validation = true
-    end
   end
 
   def require_no_payments!

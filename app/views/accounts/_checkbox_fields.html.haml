@@ -1,0 +1,12 @@
+.small-12.medium-6.large-6.columns
+  %label Used on Invoices:
+
+  %ul.inline-list.pad-top
+    %li
+      %label
+        = f.check_box :uses_account_name
+        Account/Company name
+    %li
+      %label
+        = f.check_box :uses_contact_name
+        Contact's (Full name)

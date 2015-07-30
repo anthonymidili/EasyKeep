@@ -70,6 +70,14 @@ class Company < ActiveRecord::Base
     }
   end
 
+  def find_or_create_account(account_params)
+    accounts.find_or_initialize_by(name: account_params[:name]) do |account|
+      account.update_attributes(account_params)
+      account.user.company_id = self.id
+      account.user.skip_validation = true
+    end
+  end
+
   def available_tags
     tags.map(&:name).join(', ')
   end
