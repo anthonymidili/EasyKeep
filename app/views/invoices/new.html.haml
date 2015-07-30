@@ -15,7 +15,23 @@
       = render 'date_tax_fields', f: f
 
       = f.fields_for(:account, @invoice.account) do |account_f|
-        = render 'accounts/fields_for_account', f: account_f
+        .row
+          .small-12.medium-6.large-6.columns
+            = account_f.label :name
+            = account_f.text_field :name, id: 'account_name', data: {autocomplete_source: current_company.accounts.order(:name).pluck(:name)}
+
+          .small-12.medium-6.large-6.columns
+            %label Used on Invoices:
+
+            %ul.inline-list.pad-top
+              %li
+                %label
+                  = account_f.check_box :uses_account_name
+                  Account/Company name
+              %li
+                %label
+                  = account_f.check_box :uses_contact_name
+                  Contact's (Full name)
 
         %p= link_to 'show/hide additional fields for new account', '#', id: 'toggle', remote: true
 
