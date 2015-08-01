@@ -21,11 +21,15 @@
             = account_f.text_field :name, id: 'account_name',
             data: { autocomplete_source: current_company.accounts.order(:name).pluck(:name) }
 
-          = render 'accounts/checkbox_fields', f: account_f
+          .newAccountFields.hide= render 'accounts/checkbox_fields', f: account_f
 
-        %p= link_to 'show/hide additional fields for new account', '#', id: 'toggle', remote: true
+        %p= link_to 'show/hide additional fields for creating a New Account', '#', id: 'toggle', remote: true
 
-        .hide
+        .newAccountFields.hide
+          %h4
+            Create New Account Form
+            %small (Account/Company name not found)
+
           = account_f.fields_for(:user, @invoice.account.user) do |user_f|
             .row
               .small-12.medium-6.large-6.columns
