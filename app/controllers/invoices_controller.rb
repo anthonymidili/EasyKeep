@@ -33,7 +33,7 @@ class InvoicesController < ApplicationController
 
     if @invoice.save
       cookies[:current_account] = @invoice.account.id if current_user.is_admin?
-      redirect_to invoice_path(@invoice), notice: 'Invoice was successfully created.'
+      redirect_to edit_invoice_path(@invoice), notice: 'Invoice was successfully created.'
     else
       render :new
     end
