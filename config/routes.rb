@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   end
 
   get :dashboard, to: 'dashboard#home'
-  post 'services/dashboard_create'
   get 'dashboard/developer', as: :developer_dashboard
   get 'dashboard/developer/:all_users', to: 'dashboard#developer', as: :all_users
 
@@ -23,7 +22,11 @@ Rails.application.routes.draw do
   end
 
   resources :services, except: [:show, :index, :new] do
-    get :history_search, on: :collection
+    collection do
+      post :dashboard_create
+      post :invoice_create
+      get :history_search
+    end
   end
 
   resources :invoices do

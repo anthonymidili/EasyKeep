@@ -28,6 +28,20 @@ class ServicesController < ApplicationController
     set_current_account_cookie
   end
 
+  def invoice_create
+    @invoice = current_account.invoices.friendly.find(params[:invoice_id])
+    @service = current_account.services.build(service_params)
+    @service.company_id = current_company.id
+    @service.invoice_id = @invoice.id
+    @services = current_account.services
+
+    if @service.save
+      redirect_to edit_invoice_path(@invoice), notice: 'Service was successfully created.'
+    else
+      render 'invoices/edit'
+    end
+  end
+
   def edit
   end
 

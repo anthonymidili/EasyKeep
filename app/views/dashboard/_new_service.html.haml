@@ -1,6 +1,6 @@
 .outline
   %h4 New Service
-  = form_for @service, url: services_dashboard_create_path, method: :post do |f|
+  = form_for @service, url: dashboard_create_services_path, method: :post do |f|
     = render 'shared/error_messages', object: f.object
 
     .row

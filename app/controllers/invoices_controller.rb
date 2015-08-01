@@ -53,6 +53,8 @@ class InvoicesController < ApplicationController
 
   def edit
     @services = current_account.services
+    @service = current_account.services.build
+    @service.performed_on ||= Date.current
   end
 
   def update

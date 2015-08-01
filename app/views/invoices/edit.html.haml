@@ -6,7 +6,7 @@
     %br/
 
     %ul.inline-list
-      %li= link_to 'Back to Invoice', invoice_path(@invoice), class: 'small button radius'
+      %li= link_to 'Finished Editing Invoice', invoice_path(@invoice), class: 'small button success radius'
       %li= link_to "#{current_account.name} Account", current_account, class: 'small button radius'
       %li= link_to "#{current_account.name} Invoices", invoices_path, class: 'small button radius'
 
@@ -21,5 +21,16 @@
       .panel= render 'shared/customer_header'
       .label_size= link_to 'Edit account information', edit_account_path(current_account)
 
-    = render 'invoices/remove_services'
+    .outline
+      .row
+        .small-12.columns
+          %h4 New Service
+
+          = form_for @service, url: invoice_create_services_path do |f|
+            = render 'shared/error_messages', object: f.object
+            = hidden_field_tag :invoice_id, @invoice.id if @invoice
+
+            = render 'services/fields', f: f
+
     = render 'invoices/add_services'
+    = render 'invoices/remove_services'
