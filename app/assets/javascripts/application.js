@@ -19,6 +19,7 @@
 //= require pickadate/picker.time
 //= require highcharts
 //= require highcharts/highcharts-more
+//= require cocoon
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

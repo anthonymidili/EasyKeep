@@ -1,7 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin!, except: [:show, :index]
-  before_action :load_invoice, only: [:show, :update_apply_services, :update_remove_services, :invoice_ready, :change_account_header]
+  before_action :load_invoice, only: [:show, :apply_services_update, :remove_services_update, :invoice_ready, :change_account_header]
   before_action :require_no_payments!, only: [:edit, :update, :destroy]
 
   def show
@@ -39,7 +39,7 @@ class InvoicesController < ApplicationController
     end
   end
 
-  def create_apply_services
+  def apply_checked_services_create
     @account = current_account
     @service = @account.services.build
     @service.performed_on ||= Date.current
@@ -67,19 +67,7 @@ class InvoicesController < ApplicationController
     end
   end
 
-  def destroy
-    ActiveRecord::Base.transaction do
-      @services = current_account.services
-
-      @invoice.services.update_all(invoice_id: nil)
-      @invoice.destroy
-
-      redirect_to account_path(current_account), alert: 'Invoice was successfully deleted. Services on invoice are ready to be
-re-invoiced.'
-    end
-  end
-
-  def update_apply_services
+  def apply_services_update
     ActiveRecord::Base.transaction do
       @services = current_account.services
 
@@ -89,11 +77,23 @@ re-invoiced.'
     end
   end
 
-  def update_remove_services
+  def remove_services_update
     ActiveRecord::Base.transaction do
       @invoice.services.where(id: params[:service_ids]).update_all(invoice_id: nil)
 
       redirect_to edit_invoice_path(@invoice), notice: 'Successfully removed services from invoice.'
+    end
+  end
+
+  def destroy
+    ActiveRecord::Base.transaction do
+      @services = current_account.services
+
+      @invoice.services.update_all(invoice_id: nil)
+      @invoice.destroy
+
+      redirect_to account_path(current_account), alert: 'Invoice was successfully deleted. Services on invoice are ready to be
+re-invoiced.'
     end
   end
 
@@ -121,8 +121,8 @@ private
     params.require(:invoice).permit(:established_at, :sales_tax, :number,
                                     account_attributes: [:id, :name, :address_1, :address_2, :city, :fax, :phone, :state, :zip,
                                                          :uses_account_name, :uses_contact_name, :prefix, :postfix, :divider,
-                                                         user_attributes: [:id, :name, :email, :password, :password_confirmation,
-                                                                           :remember_me]])
+                                                         user_attributes: [:id, :name, :email, :password,
+                                                                           :password_confirmation, :remember_me]])
   end
 
   def account_params

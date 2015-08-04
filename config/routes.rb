@@ -31,13 +31,13 @@ Rails.application.routes.draw do
 
   resources :invoices do
     collection do
-      post :create_apply_services
+      post :apply_checked_services_create
     end
     member do
       get :invoice_ready
       patch :change_account_header
-      patch :update_apply_services
-      patch :update_remove_services
+      patch :apply_services_update
+      patch :remove_services_update
     end
     resources :payments, except: [:show, :index]
   end

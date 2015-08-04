@@ -12,6 +12,8 @@ class Invoice < ActiveRecord::Base
   belongs_to :company
 
   has_many :services
+  accepts_nested_attributes_for :services, reject_if: :all_blank
+
   has_many :payments, dependent: :destroy
 
   validates :sales_tax, numericality: true

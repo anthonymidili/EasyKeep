@@ -38,6 +38,8 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'highcharts-rails', '~> 4.1.5'
 # App monitoring
 gem 'newrelic_rpm', '~> 3.12.1'
+# Dynamic nested forms using jQuery
+gem 'cocoon', '~> 1.2.6'
 
 gem 'rmagick', '~> 2.15.3'
 # must stay this version to work properly
