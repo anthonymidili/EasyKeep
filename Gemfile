@@ -37,7 +37,7 @@ gem 'friendly_id', '~> 5.1.0'
 # Pure javascript charts and graphs
 gem 'highcharts-rails', '~> 4.1.5'
 # App monitoring
-gem 'newrelic_rpm', '~> 3.12.1'
+gem 'newrelic_rpm', '~> 3.13.0'
 # Dynamic nested forms using jQuery
 gem 'cocoon', '~> 1.2.6'
 

@@ -1,7 +1,8 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin!, except: [:show, :index]
-  before_action :load_invoice, only: [:show, :apply_services_update, :remove_services_update, :invoice_ready, :change_account_header]
+  before_action :load_invoice, only: [:show, :apply_services_update, :remove_services_update,
+                                      :invoice_ready, :change_account_header]
   before_action :require_no_payments!, only: [:edit, :update, :destroy]
 
   def show
@@ -20,20 +21,22 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = current_company.invoices.build
-    @invoice.build_account
-    @invoice.account.build_user
     @invoice.established_at ||= Date.current
     @invoice.sales_tax ||= current_company.sales_tax
+    @invoice.build_account
+    @invoice.account.build_user
+    @invoice.services.build
   end
 
   def create
     @account = current_company.find_or_create_account(invoice_params[:account_attributes])
     @invoice = @account.invoices.build(invoice_params)
-    @invoice.company_id = current_company.id
+    @invoice.company = current_company
+    @invoice.services.each { |s| s.company = current_company; s.account = @account }
 
     if @invoice.save
       cookies[:current_account] = @invoice.account.id if current_user.is_admin?
-      redirect_to edit_invoice_path(@invoice), notice: 'Invoice was successfully created. Next add New Services to Invoice.'
+      redirect_to invoice_path(@invoice), notice: 'Invoice was successfully created.'
     else
       render :new
     end
@@ -122,7 +125,8 @@ private
                                     account_attributes: [:id, :name, :address_1, :address_2, :city, :fax, :phone, :state, :zip,
                                                          :uses_account_name, :uses_contact_name, :prefix, :postfix, :divider,
                                                          user_attributes: [:id, :name, :email, :password,
-                                                                           :password_confirmation, :remember_me]])
+                                                                           :password_confirmation, :remember_me]],
+                                    services_attributes: [:id, :memo, :performed_on, :cost])
   end
 
   def account_params
