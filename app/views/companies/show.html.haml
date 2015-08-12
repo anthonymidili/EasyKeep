@@ -32,8 +32,7 @@
                 %td= user.email
                 - if current_user.is_owner?
                   %td.center_cell
-                    = link_to delete_user_company_path(user), method: :delete,
-                    data: { confirm: 'Are you sure? This will permanently DELETE your Admin and all there information' } do
+                    = link_to delete_user_company_path(user), method: :delete, data: { confirm: t(:confirm_delete_admin) } do
                       %i.general.fi-x
 
 = render 'roles_explanation'

@@ -25,6 +25,15 @@ en:
   description_content: 'EasyKeep - This app is geared for small businesses! Manage your accounts on the go. Create invoices with the push of a button. Invite customers to view their account history. Ideal for businesses with no overhead and provides a service such as house keeping, interior design, lawn care, baby sitting, etc.'
   account_name_title: 'Account/Company names must be unique! Spelling and Case count!'
 
+  confirm_delete_ek_account: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, ADMINS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY! As well as your PERSONAL ACCOUNT with us!'
+  confirm_delete_company: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, ADMINS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!'
+  confirm_delete_account: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!'
+  confirm_delete_invoice: 'Are you sure? This will permanently DELETE your INVOICE information and all PAYMENTS applied to the INVOICE! Any SERVICES applied to the INVOICE will become available to be invoiced again on the clients ACCOUNT page.'
+  confirm_delete_service: 'Are you sure? This will permanently DELETE your SERVICE history record!'
+  confirm_delete_payment: 'Are you sure? This will permanently DELETE your PAYMENT history record!'
+  confirm_delete_admin: 'Are you sure? This will permanently DELETE your Admin and all there information'
+  confirm_delete_inventory_item: 'Are you sure? This will permanently DELETE your Inventory Item!'
+
   activerecord:
     attributes:
       user:

@@ -7,7 +7,7 @@
 
       - if current_user.is_owner?
         = link_to current_account, title: 'Delete Account', class: 'pad-left red_link', method: :delete,
-        data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' } do
+        data: { confirm: t(:confirm_delete_account) } do
           Delete ACCT
           %i.general.fi-x
 

@@ -29,7 +29,6 @@
               %i.page.fi-page-edit
           - if current_user.is_owner?
             %td.center_cell
-              = link_to account, class: 'red_link', method: :delete,
-              data: { confirm: 'Are you sure? This will permanently DELETE your ACCOUNT information and all SERVICES, INVOICES, and PAYMENTS applied to the ACCOUNT!' }  do
+              = link_to account, class: 'red_link', method: :delete, data: { confirm: t(:confirm_delete_account) }  do
                 %i.general.fi-x
         = render 'accounts/contact_info_modal', account: account

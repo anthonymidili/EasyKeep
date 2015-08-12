@@ -16,7 +16,5 @@
       %li= link_to 'Dashboard', dashboard_path, class: 'small button radius'
       %li= link_to 'Company admins', company_path, class: 'small button radius'
       %li
-        = link_to 'Destroy Company', @company,
-        class: 'small alert button radius',
-        method: :delete,
-        data: { confirm: 'Are you sure? This will permanently DELETE your COMPANY information and all ACCOUNTS, ADMINS, CUSTOMERS, SERVICES, INVOICES, and PAYMENTS attached to your COMPANY!' }
+        = link_to 'Destroy Company', @company, class: 'small alert button radius', method: :delete,
+        data: { confirm: t(:confirm_delete_company) }
