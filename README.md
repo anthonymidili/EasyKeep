@@ -23,7 +23,7 @@ to help others with there small business.
 
 Have someone you want to over see your accounts? No problem. Invite them to become an admin over your accounts.
 Different user roles have different role permissions. An Owner of course has total control. An Admin has total control
-over the accounts. A Customer can only view there own account information and they can also change there contact
+over the accounts. A Customer can only view their own account information and they can also change there contact
 information so you can always have current information.
 
 This app is geared for small businesses with no overhead and provides a service such as:
