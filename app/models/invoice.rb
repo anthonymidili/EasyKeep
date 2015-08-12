@@ -12,7 +12,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :company
 
   has_many :services
-  accepts_nested_attributes_for :services # , reject_if: proc { |service| service['cost'] = 0 }
+  accepts_nested_attributes_for :services, reject_if: proc { |service| service['cost'].blank? }
 
   has_many :payments, dependent: :destroy
 

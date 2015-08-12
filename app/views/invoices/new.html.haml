@@ -17,8 +17,8 @@
       = f.fields_for(:account, @invoice.account) do |account_f|
         .row
           .small-12.medium-6.large-6.columns
-            = account_f.label :name
-            = account_f.text_field :name, id: 'account_name',
+            = account_f.label :name, 'Account/Company name (Case Sensitive)'
+            = account_f.text_field :name, id: 'account_name', placeholder: 'Smith House', title: t(:account_name_title),
             data: { autocomplete_source: current_company.accounts.order(:name).pluck(:name) }
 
           .newAccountFields.hide= render 'accounts/checkbox_fields', f: account_f
@@ -50,7 +50,6 @@
       .links
         = link_to_add_association 'add another service', f, :services
       %br/
-
 
       .row
         .small-12.columns

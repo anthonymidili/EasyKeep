@@ -1,6 +1,10 @@
 .nested-fields
   .outline
     .row
+      .small-12.columns
+        = link_to_remove_association 'remove service', f, class: 'red_link'
+
+    .row
       .small-12.medium-6.large-6.columns
         = f.label :performed_on, 'Performed on (yyyy-mm-dd)'
         = f.text_field :performed_on, class: 'datePicker', placeholder: 'Date', value: f.object.performed_on ||= Date.current
@@ -17,6 +21,3 @@
       .small-12.medium-6.large-6.columns
         = f.label :memo
         = f.text_field :memo
-
-      .small-12.medium-6.large-6.columns
-        .down_to_text_field= link_to_remove_association 'remove service', f
