@@ -72,8 +72,8 @@ class Company < ActiveRecord::Base
 
   def find_or_create_account(account_params)
     accounts.find_or_initialize_by(name: account_params[:name]) do |account|
-      account.update_attributes(account_params)
-      account.user.company_id = self.id
+      account.build_user(account_params[:user_attributes])
+      account.user.company = self
       account.user.skip_validation = true
     end
   end
