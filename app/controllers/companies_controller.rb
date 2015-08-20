@@ -24,12 +24,12 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = current_company
-    @invoice = current_company.invoices.find_by_id(params[:invoice_id])
+    @invoice = current_company.invoices.find_by(id: params[:invoice_id])
   end
 
   def update
     @company = current_company
-    @invoice = current_company.invoices.find_by_id(params[:invoice_id])
+    @invoice = current_company.invoices.find_by(id: params[:invoice_id])
 
     if @company.update_attributes(company_params)
       redirect_company_or_invoice
@@ -52,7 +52,7 @@ class CompaniesController < ApplicationController
 
   def search_invoices
     @invoices = current_company.invoices.by_most_recent.page(params[:page]).per(20).includes(account: :user)
-    @invoice = current_company.invoices.find_by_number(params[:search])
+    @invoice = current_company.invoices.find_by(number: params[:search])
 
     found_invoice
   end

@@ -19,7 +19,7 @@
     .outline
       = render 'invoices/change_account_header'
       .panel= render 'shared/customer_header'
-      .label_size= link_to 'Edit account information', edit_account_path(current_account)
+      .label_size= link_to 'Edit account information', edit_account_path(current_account, invoice_id: @invoice.id)
 
     .outline
       .row

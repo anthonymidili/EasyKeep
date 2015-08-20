@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     @current_account ||=
         if current_user.is_admin?
           set_current_account_id
-          current_company.accounts.find_by_id(cookies[:current_account])
+          current_company.accounts.find_by(id: cookies[:current_account])
         else
           current_user.account
         end

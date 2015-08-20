@@ -37,12 +37,12 @@ class AccountsController < ApplicationController
   end
 
   def edit
-    @invoice = current_company.invoices.find_by_id(params[:invoice_id])
+    @invoice = current_company.invoices.find_by(id: params[:invoice_id])
   end
 
   def update
     @account.user.skip_validation = true
-    @invoice = current_company.invoices.find_by_id(params[:invoice_id])
+    @invoice = current_company.invoices.find_by(id: params[:invoice_id])
 
     if @account.update_attributes(account_params)
       redirect_account_or_invoice

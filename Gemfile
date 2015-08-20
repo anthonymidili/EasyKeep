@@ -32,7 +32,7 @@ gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'pickadate-rails', '~> 3.5.6'
 gem 'web-console', '~> 2.2.1'
 gem 'responders', '~> 2.1'
-#https://github.com/norman/friendly_id turns ids into friendly addresses
+# https://github.com/norman/friendly_id turns ids into friendly addresses
 gem 'friendly_id', '~> 5.1.0'
 # Pure javascript charts and graphs
 gem 'highcharts-rails', '~> 4.1.5'
