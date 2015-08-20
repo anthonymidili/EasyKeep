@@ -28,6 +28,8 @@ class ApplicationController < ActionController::Base
         end
   end; helper_method :current_account
 
+  # Use this in an (if save) methods when creating a new service,
+  # invoice, ect. related to an account to re-set the current_account helper.
   def set_current_account_after_save(account_id)
     cookies[:current_account] = account_id if current_user.is_admin?
   end
