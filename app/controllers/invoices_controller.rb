@@ -35,7 +35,7 @@ class InvoicesController < ApplicationController
     @invoice.services.each { |s| s.company = current_company; s.account = @account }
 
     if @invoice.save
-      cookies[:current_account] = @invoice.account.id if current_user.is_admin?
+      set_current_account_after_save(@invoice.account_id)
       redirect_to invoice_path(@invoice), notice: 'Invoice was successfully created.'
     else
       render :new

@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
         end
   end; helper_method :current_account
 
+  def set_current_account_after_save(account_id)
+    cookies[:current_account] = account_id if current_user.is_admin?
+  end
+
   def active_date
     @active_date ||=
         set_active_date_cookie if params[:date]
