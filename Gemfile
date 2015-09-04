@@ -5,7 +5,7 @@ gem 'rails', '~> 4.2.3'
 # puma inplace of Default Webrick
 gem 'puma', '~> 2.13.4'
 # rack timeout needed for puma
-gem 'rack-timeout', '~> 0.2.4'
+gem 'rack-timeout', '~> 0.3.1'
 
 # https://github.com/laserlemon/figaro
 gem 'figaro', '~> 1.1.1'
