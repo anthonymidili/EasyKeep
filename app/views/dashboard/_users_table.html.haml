@@ -13,13 +13,19 @@
             %th Sign in count
             %th Last sign in at
         %tbody
-          - @users.each do |user|
-            %tr
-              %td= user.name
-              %td= user.email
-              %td= user.id
-              %td= user.company_id
-              %td= yes_or_no(user.is_owner?)
-              %td= yes_or_no(user.is_admin?)
-              %td= user.sign_in_count unless user.sign_in_count.nil?
-              %td= user.last_sign_in_at.strftime('%Y-%b-%d @ %I:%M%p') unless user.last_sign_in_at.nil?
+          - @users.group_by(&:company).each do |company, users|
+            %tr.subject
+              %td{class: 'center', colspan: 8}
+                %b Company name:
+                = company.name
+
+            - for user in users
+              %tr
+                %td= user.name
+                %td= user.email
+                %td= user.id
+                %td= user.company_id
+                %td= yes_or_no(user.is_owner?)
+                %td= yes_or_no(user.is_admin?)
+                %td= user.sign_in_count unless user.sign_in_count.nil?
+                %td= user.last_sign_in_at.strftime('%Y-%b-%d @ %I:%M%p') unless user.last_sign_in_at.nil?

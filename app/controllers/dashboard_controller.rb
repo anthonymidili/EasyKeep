@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
   end
 
   def developer
-    @users = Kaminari.paginate_array(admins_or_all_users.sort_by(&:company_id)).page(params[:page]).per(20)
+    @users = Kaminari.paginate_array(admins_or_all_users.includes(:company).sort_by(&:company_id)).page(params[:page]).per(20)
   end
 
 private

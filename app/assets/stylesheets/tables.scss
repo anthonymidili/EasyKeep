@@ -19,6 +19,10 @@ table {
   tr.active_row {
     background-color: #efffee;
   }
+
+  tr.subject {
+    background-color: skyblue;
+  }
 }
 
 .scroll_overflow-x {overflow-x: auto;}
