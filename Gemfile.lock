@@ -361,7 +361,7 @@ DEPENDENCIES
   pickadate-rails (~> 3.5.6)
   puma (~> 2.13.4)
   rack-timeout (~> 0.3.1)
-  rails (~> 4.2.3)
+  rails (~> 4.2.4)
   rails_12factor (~> 0.0.3)
   responders (~> 2.1)
   rmagick (~> 2.15.3)
