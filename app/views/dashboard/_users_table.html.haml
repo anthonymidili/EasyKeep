@@ -15,7 +15,7 @@
         %tbody
           - @users.group_by(&:company).each do |company, users|
             %tr.subject
-              %td{class: 'center', colspan: 8}
+              %td{colspan: 8}
                 %b Company name:
                 = company.name
 
