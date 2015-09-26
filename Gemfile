@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.2.4'
 
 # puma inplace of Default Webrick
-gem 'puma', '~> 2.13.4'
+gem 'puma', '~> 2.14.0'
 # rack timeout needed for puma
 gem 'rack-timeout', '~> 0.3.1'
 
