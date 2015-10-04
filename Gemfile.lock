@@ -364,7 +364,7 @@ DEPENDENCIES
   rails (~> 4.2.4)
   rails_12factor (~> 0.0.3)
   responders (~> 2.1)
-  rmagick (~> 2.15.3)
+  rmagick (~> 2.15.4)
   rspec-rails (~> 3.3.2)
   sass-rails (~> 5.0.3)
   sdoc (~> 0.4.1)
