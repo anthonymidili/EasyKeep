@@ -10,7 +10,7 @@ gem 'rack-timeout', '~> 0.3.1'
 # https://github.com/laserlemon/figaro
 gem 'figaro', '~> 1.1.1'
 
-gem 'foundation-rails', '~> 5.5.2'
+gem 'foundation-rails', '5.5.2.1'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
 gem 'devise', '~> 3.5.1'
