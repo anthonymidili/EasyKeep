@@ -11,7 +11,7 @@ gem 'rack-timeout', '~> 0.3.1'
 gem 'figaro', '~> 1.1.1'
 
 # Locking foundation at 5.5.2.1 because 5.5.3.1 is breaking javascript.
-gem 'foundation-rails', '5.5.2.1'
+gem 'foundation-rails', '~> 5.5.3.2'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
 gem 'devise', '~> 3.5.1'
