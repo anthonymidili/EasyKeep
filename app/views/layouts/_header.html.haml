@@ -32,6 +32,7 @@
                 %li= link_to 'Service history search', history_search_services_path
 
           - if current_company && current_company.persisted?
+
             / Company drop-down
             - if current_user.is_admin?
               %li.divider
@@ -40,9 +41,10 @@
                 %ul.dropdown
                   - if current_user.is_owner?
                     %li= link_to 'Edit Company', edit_company_path
-                  %li= link_to 'Company admins', company_path
+                  %li= link_to 'All accounts', accounts_path
                   %li= link_to 'Reports', reports_path
                   %li= link_to 'Inventory', inventory_items_path
+                  %li= link_to 'Company admins', company_path
                   %li= link_to 'About Company', about_company_path
 
               / Invoices drop-down
