@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.4'
+gem 'rails', '~> 4.2.5'
 
 # puma inplace of Default Webrick
-gem 'puma', '~> 2.14.0'
+gem 'puma', '~> 2.15.3'
 # rack timeout needed for puma
 gem 'rack-timeout', '~> 0.3.2'
 
@@ -46,7 +46,7 @@ gem 'fog', '~> 1.35'
 
 gem 'rails_12factor', '~> 0.0.3', group: [:production, :staging]
 gem 'sdoc', '~> 0.4.1', group: :doc
-gem 'rspec-rails', '~> 3.3.3', group: [:development, :test]
+gem 'rspec-rails', '~> 3.4.0', group: [:development, :test]
 
 group :development do
   # N+1 Finder
