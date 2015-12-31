@@ -30,7 +30,7 @@ gem 'uglifier', '~> 2.7.2'
 gem 'jquery-rails', '~> 4.0.5'
 gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'pickadate-rails', '~> 3.5.6'
-gem 'web-console', '~> 2.2.1'
+gem 'web-console', '~> 3.0.0'
 gem 'responders', '~> 2.1'
 # https://github.com/norman/friendly_id turns ids into friendly addresses
 gem 'friendly_id', '~> 5.1.0'
