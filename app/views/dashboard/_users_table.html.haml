@@ -18,6 +18,9 @@
               %td{colspan: 8}
                 %b Company name:
                 = company.name
+                \| # of accounts
+                = surround '"' do
+                  = company.accounts.count
 
             - for user in users
               %tr

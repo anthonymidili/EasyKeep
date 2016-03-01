@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.2.5'
 
 # puma inplace of Default Webrick
-gem 'puma', '~> 2.16.0'
+gem 'puma', '~> 3.0.2'
 # rack timeout needed for puma
 gem 'rack-timeout', '~> 0.3.2'
 
@@ -36,7 +36,7 @@ gem 'friendly_id', '~> 5.1.0'
 # Pure javascript charts and graphs
 gem 'highcharts-rails', '~> 4.1.8'
 # Dynamic nested forms using jQuery
-gem 'cocoon', '~> 1.2.7'
+gem 'cocoon', '~> 1.2.8'
 
 gem 'rmagick', '~> 2.15.4'
 # must stay this version to work properly
@@ -45,7 +45,7 @@ gem 'fog', '~> 1.35'
 
 gem 'rails_12factor', '~> 0.0.3', group: [:production, :staging]
 gem 'sdoc', '~> 0.4.1', group: :doc
-gem 'rspec-rails', '~> 3.4.1', group: [:development, :test]
+gem 'rspec-rails', '~> 3.4.2', group: [:development, :test]
 
 group :development do
   gem 'web-console', '~> 3.1.1'
