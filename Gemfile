@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.5'
+gem 'rails', '~> 4.2.6'
 
 # puma inplace of Default Webrick
-gem 'puma', '~> 3.0.2'
+gem 'puma', '~> 3.2.0'
 # rack timeout needed for puma
 gem 'rack-timeout', '~> 0.3.2'
 
@@ -26,7 +26,7 @@ gem 'dynamic_sitemaps', '~> 2.0.0'
 gem 'sass-rails', '~> 5.0.4'
 # https://github.com/zurb/foundation-rails
 gem 'coffee-rails', '~> 4.1.0'
-gem 'uglifier', '~> 2.7.2'
+gem 'uglifier', '~> 3.0.0'
 gem 'jquery-rails', '~> 4.1.0'
 gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'pickadate-rails', '~> 3.5.6'
@@ -36,7 +36,7 @@ gem 'friendly_id', '~> 5.1.0'
 # Pure javascript charts and graphs
 gem 'highcharts-rails', '~> 4.1.8'
 # Dynamic nested forms using jQuery
-gem 'cocoon', '~> 1.2.8'
+gem 'cocoon', '~> 1.2.9'
 
 gem 'rmagick', '~> 2.15.4'
 # must stay this version to work properly
