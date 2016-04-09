@@ -3,9 +3,9 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.2.6'
 
 # puma inplace of Default Webrick
-gem 'puma', '~> 3.2.0'
+gem 'puma', '~> 3.4.0'
 # rack timeout needed for puma
-gem 'rack-timeout', '~> 0.3.2'
+gem 'rack-timeout', '~> 0.4.2'
 
 # https://github.com/laserlemon/figaro
 gem 'figaro', '~> 1.1.1'
@@ -34,13 +34,13 @@ gem 'responders', '~> 2.1'
 # https://github.com/norman/friendly_id turns ids into friendly addresses
 gem 'friendly_id', '~> 5.1.0'
 # Pure javascript charts and graphs
-gem 'highcharts-rails', '~> 4.1.8'
+gem 'highcharts-rails', '~> 4.2.3'
 # Dynamic nested forms using jQuery
 gem 'cocoon', '~> 1.2.9'
 
 gem 'rmagick', '~> 2.15.4'
 # must stay this version to work properly
-gem 'carrierwave', '~> 0.10.0'
+gem 'carrierwave', '~> 0.11.0'
 gem 'fog', '~> 1.35'
 
 gem 'rails_12factor', '~> 0.0.3', group: [:production, :staging]
