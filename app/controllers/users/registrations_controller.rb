@@ -29,9 +29,13 @@ protected
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation,
-                                                            company_attributes: [:id, :name]) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :current_password, :password,
-                                                                   :password_confirmation) }
+    devise_parameter_sanitizer.permit(:sign_up) do |u|
+      u.permit(:name, :email, :password, :password_confirmation,
+               company_attributes: [:id, :name])
+    end
+
+    devise_parameter_sanitizer.permit(:account_update) do |u|
+      u.permit(:name, :email, :current_password, :password, :password_confirmation)
+    end
   end
 end

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.6'
 
-# puma inplace of Default Webrick
+# puma in place of Default Webrick
 gem 'puma', '~> 3.4.0'
 # rack timeout needed for puma
 gem 'rack-timeout', '~> 0.4.2'
@@ -13,8 +13,8 @@ gem 'figaro', '~> 1.1.1'
 gem 'foundation-rails', '~> 5.5.3'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
-gem 'devise', '~> 3.5.6'
-gem 'devise_invitable', '~> 1.5.3'
+gem 'devise', '~> 4.1.1'
+gem 'devise_invitable', '~> 1.6.0'
 
 gem 'haml', '~> 4.0.7'
 gem 'haml-rails', '~> 0.9.0'
@@ -40,8 +40,8 @@ gem 'cocoon', '~> 1.2.9'
 
 gem 'rmagick', '~> 2.15.4'
 # must stay this version to work properly
-gem 'carrierwave', '~> 0.11.0'
-gem 'fog', '~> 1.35'
+gem 'carrierwave', '~> 0.11.2'
+gem 'fog', '~> 1.38'
 
 gem 'rails_12factor', '~> 0.0.3', group: [:production, :staging]
 gem 'sdoc', '~> 0.4.1', group: :doc
@@ -56,4 +56,4 @@ group :development do
   gem 'hirb'
 end
 
-ruby '2.3.0'
+ruby '2.3.1'
