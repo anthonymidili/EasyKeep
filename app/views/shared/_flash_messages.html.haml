@@ -1,8 +1,15 @@
-- if flash[:alert]
-  .alert-box.alert.hide_on_print{data: {alert: true}}
-    = flash[:alert]
-    %a.close{href: "#"} &times;
-- if flash[:notice]
-  .alert-box.hide_on_print{data: {alert: true}}
-    = flash[:notice]
-    %a.close{href: "#"} &times;
+.row
+  .small-12.columns
+    %br/
+
+    - if flash[:alert]
+      .alert.callout{data: {closable: true}}
+        = flash[:alert]
+        %button.close-button{aria: {label: 'Dismiss alert'}, data: {close: true}, type: 'button'}
+          %span{aria: {hidden: 'true'}} ×
+
+    - if flash[:notice]
+      .primary.callout{data: {closable: true}}
+        = flash[:notice]
+        %button.close-button{aria: {label: 'Dismiss alert'}, data: {close: true}, type: 'button'}
+          %span{aria: {hidden: 'true'}} ×

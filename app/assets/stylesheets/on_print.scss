@@ -3,9 +3,9 @@
     overflow-x: visible !important;
   }
 
-  @for $i from 1 through $total-columns {
-    .large-#{$i} {
-      width: percentage($i / $total-columns);
+  @for $n from 1 through $grid-column-count {
+    .large-#{$n} {
+      width: percentage($n / $grid-column-count);
     }
   }
 

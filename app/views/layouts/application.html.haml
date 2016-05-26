@@ -22,7 +22,6 @@
     %title= content_for?(:title) ? "EasyKeep | #{yield(:title)}" : 'EasyKeep | Making Small Business Easy'
 
     = stylesheet_link_tag 'application', :media => :all
-    = javascript_include_tag 'vendor/modernizr'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
