@@ -4,7 +4,7 @@ html, body {height: 100%;}
 
 #main {padding-bottom: 92px;} /* must be same height as the footer */
 
-footer {
+#footer {
   position: relative;
   margin-top: -92px; /* negative value of footer height */
   height: 92px;

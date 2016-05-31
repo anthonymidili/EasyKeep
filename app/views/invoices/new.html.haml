@@ -21,11 +21,11 @@
             = account_f.text_field :name, id: 'account_name', placeholder: 'Smith House', title: t(:account_name_title),
             data: { autocomplete_source: current_company.accounts.order(:name).pluck(:name) }
 
-          .newAccountFields.hide= render 'accounts/checkbox_fields', f: account_f
+          .newAccountFields.hidden= render 'accounts/checkbox_fields', f: account_f
 
         %p= link_to 'show/hide additional fields for creating a New Account', '#', id: 'toggle', remote: true
 
-        .newAccountFields.hide
+        .newAccountFields.hidden
           %h4
             Create New Account Form
             %small (Account/Company name not found)

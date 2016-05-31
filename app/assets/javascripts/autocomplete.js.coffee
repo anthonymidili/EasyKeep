@@ -1,7 +1,7 @@
 jQuery ->
   textBox = $('#account_name')
   nameAray = textBox.data('autocomplete-source')
-  accountFields = $('.newAccountFields.hide')
+  accountFields = $('.newAccountFields.hidden')
 
   # jQuery-ui autocomplete data source.
   textBox.autocomplete source: nameAray
