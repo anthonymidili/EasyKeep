@@ -17,7 +17,7 @@
           %td= link_to account.name, account
           %td= account.user.name
           %td.center_cell
-            = link_to '#', 'data-reveal-id' => "contactInfoModal#{account.id}" do
+            = link_to '#', data: { open: "contactInfoModal#{account.id}" } do
               %i.general.fi-mail
           %td{class: "no_action_required_#{account.all_services_invoiced?}"}
             = invoiceable_or_not(account)

@@ -1,6 +1,6 @@
 - if account.user.invitation_token.present?
   Invited
-  = link_to 'Re-invite', '#', 'data-reveal-id' => "inviteCustomerModal#{account.id}",
+  = link_to 'Re-invite', '#', data: { open: "inviteCustomerModal#{account.id}" },
   class: 'tiny button radius user_status_button',
   title: 'to view there account information'
   = render 'accounts/invite_customer_modal', account: account
@@ -11,12 +11,12 @@
   - if @invoice && @invoice.persisted?
     %br/
     = link_to "Notify #{@invoice.account.user.name} that invoice is ready for viewing", '#',
-    'data-reveal-id' => "invoiceReadyModal#{@invoice.id}",
+    data: { open: "invoiceReadyModal#{@invoice.id}" },
     class: 'tiny button radius send_user_email_button'
     = render 'accounts/invoice_ready_modal', invoice: @invoice
 
 - elsif account.user.email.present?
-  = link_to 'Invite', '#', 'data-reveal-id' => "inviteCustomerModal#{account.id}",
+  = link_to 'Invite', '#', data: { open: "inviteCustomerModal#{account.id}" },
   class: 'tiny button radius user_status_button',
   title: 'to view there account information'
   = render 'accounts/invite_customer_modal', account: account

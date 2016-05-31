@@ -1,44 +1,34 @@
-.fixed.hide_on_print
-  %nav.top-bar{data: {topbar: true}}
-    %ul.title-area
-      / Title Area
-      %li.name
-        %h1= link_to 'EasyKeep', root_path
-
-      / Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
-      %li.toggle-topbar.menu-icon
-        = link_to '#' do
-          %span Menu
-
-    %section.top-bar-section
-      / Right Nav Section
-      %ul.right
-        %li.divider
+.top-bar
+  .top-bar-title
+    %span{data: {hide_for: 'medium', responsive_toggle: 'responsive-menu'}}
+      %button.menu-icon.dark{data: {toggle: true}, type: 'button'}
+    %strong= link_to 'EasyKeep', root_path
+  #responsive-menu
+    .top-bar-right
+      %ul.dropdown.menu{data: {dropdown_menu: true}}
         %li= link_to 'Home', root_path
 
         - if user_signed_in?
 
           / Account drop-down
           - if current_company && current_account
-            %li.divider
-            %li.has-dropdown
+            %li
               = link_to '#' do
                 %i.miscellaneous.fi-at-sign
                   = current_account.name
-              %ul.dropdown
+              %ul.menu.vertical
                 %li= link_to 'Account', current_account if current_user.is_admin?
                 %li= link_to 'Edit account', edit_account_path(current_account)
                 %li= link_to 'Invoices', invoices_path
                 %li= link_to 'Service history search', history_search_services_path
 
-          - if current_company && current_company.persisted?
+          - if current_company.try(:persisted?)
 
             / Company drop-down
             - if current_user.is_admin?
-              %li.divider
-              %li.has-dropdown
+              %li
                 = link_to 'Company', '#'
-                %ul.dropdown
+                %ul.menu.vertical
                   - if current_user.is_owner?
                     %li= link_to 'Edit Company', edit_company_path
                   %li= link_to 'All accounts', accounts_path
@@ -48,31 +38,26 @@
                   %li= link_to 'About Company', about_company_path
 
               / Invoices drop-down
-              %li.divider
-              %li.has-dropdown
+              %li
                 = link_to 'Invoices', '#'
-                %ul.dropdown
+                %ul.menu.vertical
                   %li= link_to 'New invoice', new_invoice_path
                   %li= link_to 'Search invoices', search_invoices_company_path
 
             - else
-              %li.divider
               %li= link_to 'About company', about_company_path
 
           / User drop-down
-          %li.divider
-          %li.has-dropdown
+          %li
             = link_to '#' do
               %i.people.fi-torso>
               User
-            %ul.dropdown
+            %ul.menu.vertical
               %li= link_to 'User Settings', edit_user_registration_path
               %li= link_to 'Sign out', destroy_user_session_path, method: :delete
               - if current_user.email == ENV['DEVELOPER_EMAIL']
                 %li= link_to 'DeveloperDashboard', developer_dashboard_path
 
         - else
-          %li.divider
           %li= link_to 'Sign in', new_user_session_path
-          %li.divider
           %li= link_to 'Sign up', new_user_registration_path

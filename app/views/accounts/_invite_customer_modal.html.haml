@@ -1,4 +1,4 @@
-%div{id: "inviteCustomerModal#{account.id}", class: 'reveal-modal medium', data: { reveal: true }}
+%div{id: "inviteCustomerModal#{account.id}", class: 'reveal medium', data: { reveal: true }}
   %h1 Invitation Preview
 
   %hr/
@@ -8,4 +8,5 @@
   %hr/
 
   = link_to 'Send Invitation', invite_customer_account_path(account), method: :post, class: 'tiny button radius'
-  %a.close-reveal-modal &times;
+  %button.close-button{aria: {label: 'Close modal'}, data: {close: true}, type: 'button'}
+    %span{aria: {hidden: 'true'}} ×

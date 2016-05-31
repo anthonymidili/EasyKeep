@@ -1,4 +1,4 @@
-%div{id: "invoiceReadyModal#{invoice.id}", class: 'reveal-modal medium', data: { reveal: true }}
+%div{id: "invoiceReadyModal#{invoice.id}", class: 'reveal medium', data: { reveal: true }}
   %h1 Notification Preview
   %hr/
 
@@ -6,4 +6,5 @@
   %hr/
 
   = link_to 'Send Notification', invoice_ready_invoice_path(invoice), class: 'tiny button radius'
-  %a.close-reveal-modal &times;
+  %button.close-button{aria: {label: 'Close modal'}, data: {close: true}, type: 'button'}
+    %span{aria: {hidden: 'true'}} ×

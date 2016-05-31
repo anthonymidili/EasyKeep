@@ -23,16 +23,14 @@
 
     .small-12.medium-12.large-4.columns
       .row
-        .small-12.medium-6.medium-push-6.large-12.large-reset-order.columns
+        .small-12.medium-6.medium-push-6.large-12.large-push-0.columns
           #regional_sales_tax.anchor
           = f.label :sales_tax, 'Regional sales tax'
-          .row.collapse
-            .small-4.columns
-              = f.number_field :sales_tax
-            .small-8.columns
-              %span.postfix % Sales Tax
+          .input-group
+            = f.number_field :sales_tax, class: 'input-group-field'
+            %span.input-group-label % Sales Tax
 
-        .small-12.medium-6.medium-pull-6.large-12.large-reset-order.columns
+        .small-12.medium-6.medium-pull-6.large-12.large-pull-0.columns
           .outline
             = f.label :logo do
               Have a logo you'd like to show off?
@@ -54,4 +52,4 @@
 
   .row
     .small-12.medium-6.large-6.columns
-      = f.submit class: 'button radius expand'
+      = f.submit class: 'button radius expanded'

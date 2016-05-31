@@ -16,11 +16,10 @@
 
     .small-12.medium-12.large-2.columns
       = f.label :amount
-      .row.collapse
-        .small-3.medium-2.large-2.columns
-          %span.prefix $
-        .small-9.medium-10.large-10.columns
-          = f.number_field :amount, step: 0.01, placeholder: '0.00', value: amount_or_balance_due(f.object)
+      .input-group
+        %span.input-group-label $
+        = f.number_field :amount, step: 0.01, placeholder: '0.00',
+        value: amount_or_balance_due(f.object), class: 'input-group-field'
 
     .small-12.medium-12.large-3.columns
-      = f.submit class: 'tiny button radius expand tiny_button_down'
+      = f.submit class: 'tiny button radius expanded tiny_button_down'

@@ -7,8 +7,6 @@
     = f.label :sales_tax do
       Invoice Sales Tax or
       = link_to 'Set Company Regional Sales Tax', edit_company_path(invoice_id: @invoice.id, anchor: :regional_sales_tax)
-    .row.collapse
-      .small-4.columns
-        = f.number_field :sales_tax
-      .small-8.columns
-        %span.postfix % Sales Tax
+    .input-group
+      = f.number_field :sales_tax, class: 'input-group-field'
+      %span.input-group-label % Sales Tax
