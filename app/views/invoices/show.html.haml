@@ -18,7 +18,7 @@
 
     .row
       .small-12.columns.hide-on-print
-        .right
+        .float-right
           - unless @invoice.archived?
             - if current_user.is_admin?
               = link_to edit_invoice_path(@invoice), title: 'Edit Invoice' do
