@@ -10,7 +10,7 @@ gem 'rack-timeout', '~> 0.4.2'
 # https://github.com/laserlemon/figaro
 gem 'figaro', '~> 1.1.1'
 
-gem 'foundation-rails', '~> 6.2.1'
+gem 'foundation-rails', '~> 6.2.3'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
 gem 'devise', '~> 4.1.1'
@@ -20,7 +20,7 @@ gem 'haml', '~> 4.0.7'
 gem 'haml-rails', '~> 0.9.0'
 
 gem 'bcrypt', '~> 3.1.10'
-gem 'kaminari', '~> 0.16.3'
+gem 'kaminari', '~> 0.17.0'
 gem 'pg', '~> 0.18.3'
 gem 'dynamic_sitemaps', '~> 2.0.0'
 gem 'sass-rails', '~> 5.0.4'
