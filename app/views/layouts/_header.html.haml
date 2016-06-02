@@ -1,11 +1,11 @@
-#top-bar.top-bar
+.top-bar
   .top-bar-title
     %span{data: {hide_for: 'medium', responsive_toggle: 'responsive-menu'}}
       %button.menu-icon.dark{data: {toggle: true}, type: 'button'}
     %strong= link_to 'EasyKeep', root_path
   #responsive-menu
     .top-bar-right
-      %ul.dropdown.menu{data: {dropdown_menu: true}}
+      %ul.menu.vertical.medium-horizontal{data: {responsive_menu: 'accordion medium-dropdown'}}
         %li= link_to 'Home', root_path
 
         - if user_signed_in?

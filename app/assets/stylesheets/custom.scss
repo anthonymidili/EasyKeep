@@ -1,3 +1,17 @@
+.top-bar {
+  a {
+    color: $black;
+    &:hover {
+      color: $light-black;
+    }
+  }
+
+  .top-bar-title {
+    line-height: 40px;
+    font-size: 30px;
+  }
+}
+
 .center {
   text-align: center !important;
 }

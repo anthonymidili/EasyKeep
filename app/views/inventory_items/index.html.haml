@@ -2,10 +2,11 @@
 
 .row
   .small-12.columns
-    %ul.inline-list.pad-top
-      %li= link_to 'New Inventory Item', new_inventory_item_path, class: 'small button radius'
-      - if params[:tag]
-        %li= link_to 'Clear Search', inventory_items_path, class: 'small button radius alert'
+    .pad-top
+      %ul.inline-list
+        %li= link_to 'New Inventory Item', new_inventory_item_path, class: 'small button radius'
+        - if params[:tag]
+          %li= link_to 'Clear Search', inventory_items_path, class: 'small button radius alert'
 
     #tag_cloud
       - tag_cloud current_company.tag_counts, %w[s m l] do |tag, css_class|
