@@ -184,3 +184,10 @@ ul.inline-list > li {
 .hidden {
   display: none;
 }
+
+/* Display Kaminari pagination links inline */
+nav.pagination {
+  span {
+    display: inline-block;
+  }
+}
