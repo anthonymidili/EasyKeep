@@ -17,8 +17,8 @@
       %hr/
 
     .row
-      .small-12.columns.hide-on-print
-        .float-right
+      .small-12.columns
+        .float-right.hide_on_print
           - unless @invoice.archived?
             - if current_user.is_admin?
               = link_to edit_invoice_path(@invoice), title: 'Edit Invoice' do
