@@ -1,9 +1,10 @@
-- if object.errors.any?
-  .callout.alert{data: {closable: true}}
-    %h2
-      Form contains #{pluralize(object.errors.count, 'error')}
-    %ul
-      - object.errors.full_messages.each do |msg|
-        %li= msg
-    %button.close-button{aria: {label: 'Dismiss alert'}, data: {close: true}, type: 'button'}
-      %span{aria: {hidden: 'true'}} ×
+.hide_on_print
+  - if object.errors.any?
+    .callout.alert{data: {closable: true}}
+      %h2
+        Form contains #{pluralize(object.errors.count, 'error')}
+      %ul
+        - object.errors.full_messages.each do |msg|
+          %li= msg
+      %button.close-button{aria: {label: 'Dismiss alert'}, data: {close: true}, type: 'button'}
+        %span{aria: {hidden: 'true'}} ×
