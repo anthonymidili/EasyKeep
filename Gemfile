@@ -48,7 +48,7 @@ gem 'sdoc', '~> 0.4.1', group: :doc
 gem 'rspec-rails', '~> 3.4.2', group: [:development, :test]
 
 group :development do
-  gem 'web-console', '~> 3.1.1'
+  gem 'web-console', '~> 3.3.0'
   # N+1 Finder
   gem 'bullet'
   gem 'better_errors'
