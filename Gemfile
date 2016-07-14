@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.6'
+gem 'rails', '~> 4.2.7'
 
 # puma in place of Default Webrick
 gem 'puma', '~> 3.4.0'
