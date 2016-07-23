@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.7'
+gem 'rails', '~> 5.0.0'
 
 # puma in place of Default Webrick
 gem 'puma', '~> 3.4.0'
@@ -45,7 +45,7 @@ gem 'fog', '~> 1.38'
 
 gem 'rails_12factor', '~> 0.0.3', group: [:production, :staging]
 gem 'sdoc', '~> 0.4.1', group: :doc
-gem 'rspec-rails', '~> 3.4.2', group: [:development, :test]
+gem 'rspec-rails', '~> 3.5.1', group: [:development, :test]
 
 group :development do
   gem 'web-console', '~> 3.3.0'
