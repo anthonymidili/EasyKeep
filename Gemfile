@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.0'
 
 # puma in place of Default Webrick
-gem 'puma', '~> 3.4.0'
+gem 'puma', '~> 3.6.0'
 # rack timeout needed for puma
 gem 'rack-timeout', '~> 0.4.2'
 
@@ -13,7 +13,7 @@ gem 'figaro', '~> 1.1.1'
 gem 'foundation-rails', '~> 6.2.3'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
-gem 'devise', '~> 4.1.1'
+gem 'devise', '~> 4.2.0'
 gem 'devise_invitable', '~> 1.6.0'
 
 gem 'haml', '~> 4.0.7'
@@ -25,8 +25,8 @@ gem 'pg', '~> 0.18.3'
 gem 'dynamic_sitemaps', '~> 2.0.0'
 gem 'sass-rails', '~> 5.0.4'
 # https://github.com/zurb/foundation-rails
-gem 'coffee-rails', '~> 4.1.0'
-gem 'uglifier', '~> 3.0.0'
+gem 'coffee-rails', '~> 4.2.1'
+gem 'uglifier', '~> 3.0.1'
 gem 'jquery-rails', '~> 4.1.0'
 gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'pickadate-rails', '~> 3.5.6'
