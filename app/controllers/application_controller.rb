@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def require_owner!
     redirect_to root_path unless user_signed_in? && current_user.is_owner?
@@ -81,9 +80,5 @@ protected
   def set_view_quarter_cookie
     @set_view_quarter_cookie ||=
         cookies[:view_quarter] = params[:view_quarter]
-  end
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:invite) << :name
   end
 end

@@ -47,7 +47,7 @@ private
   end
 
   def unique_email_required
-    if @require_email && company.users.find_by_email(email)
+    if @require_email && company.users.find_by(email: email)
       errors.add(:user, 'email has already been taken') unless email.blank?
     end
   end

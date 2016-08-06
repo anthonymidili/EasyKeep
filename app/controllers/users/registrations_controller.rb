@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :require_owner!, only: [:destroy]
 
   # modify default devise method to build the company when user is created

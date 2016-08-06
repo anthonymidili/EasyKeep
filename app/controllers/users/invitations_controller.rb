@@ -1,4 +1,5 @@
 class Users::InvitationsController < Devise::InvitationsController
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :require_owner!, only: [:new, :create]
 
   def create
@@ -21,7 +22,15 @@ private
       invitable.company_id = current_user.company_id
       invitable.is_admin = true
       invitable.require_email = true
-      invitable.save!
+      invitable.save
+    end
+  end
+
+protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:invite) do |u|
+      u.permit(:name, :email)
     end
   end
 end
