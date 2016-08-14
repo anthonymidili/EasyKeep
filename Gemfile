@@ -14,7 +14,7 @@ gem 'foundation-rails', '~> 6.2.3'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
 gem 'devise', '~> 4.2.0'
-gem 'devise_invitable', '~> 1.6.0'
+gem 'devise_invitable', '~> 1.7.0'
 
 gem 'haml', '~> 4.0.7'
 gem 'haml-rails', '~> 0.9.0'
