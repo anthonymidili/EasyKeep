@@ -10,7 +10,7 @@ gem 'rack-timeout', '~> 0.4.2'
 # https://github.com/laserlemon/figaro
 gem 'figaro', '~> 1.1.1'
 
-gem 'foundation-rails', '~> 6.2.3'
+gem 'foundation-rails', '~> 6.2.4'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
 gem 'devise', '~> 4.2.0'
@@ -21,12 +21,12 @@ gem 'haml-rails', '~> 0.9.0'
 
 gem 'bcrypt', '~> 3.1.10'
 gem 'kaminari', '~> 0.17.0'
-gem 'pg', '~> 0.18.3'
+gem 'pg', '~> 0.19.0'
 gem 'dynamic_sitemaps', '~> 2.0.0'
 gem 'sass-rails', '~> 5.0.4'
 # https://github.com/zurb/foundation-rails
 gem 'coffee-rails', '~> 4.2.1'
-gem 'uglifier', '~> 3.0.2'
+gem 'uglifier', '~> 3.0.3'
 gem 'jquery-rails', '~> 4.2.1'
 gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'pickadate-rails', '~> 3.5.6'
@@ -44,11 +44,11 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'fog', '~> 1.38'
 
 gem 'rails_12factor', '~> 0.0.3', group: [:production, :staging]
-gem 'sdoc', '~> 0.4.1', group: :doc
+gem 'sdoc', '~> 0.4.2', group: :doc
 gem 'rspec-rails', '~> 3.5.2', group: [:development, :test]
 
 group :development do
-  gem 'web-console', '~> 3.3.0'
+  gem 'web-console', '~> 3.4.0'
   # N+1 Finder
   gem 'bullet'
   gem 'better_errors'
