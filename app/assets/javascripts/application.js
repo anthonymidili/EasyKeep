@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui/autocomplete
+//= require jquery-ui/widgets/autocomplete
 //= require foundation
 //= require pickadate/picker
 //= require pickadate/picker.date

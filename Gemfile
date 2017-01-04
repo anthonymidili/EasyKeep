@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.0.1'
 
 # puma in place of Default Webrick
 gem 'puma', '~> 3.6.0'
@@ -10,7 +10,7 @@ gem 'rack-timeout', '~> 0.4.2'
 # https://github.com/laserlemon/figaro
 gem 'figaro', '~> 1.1.1'
 
-gem 'foundation-rails', '~> 6.2.4'
+gem 'foundation-rails', '~> 6.3.0'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
 gem 'devise', '~> 4.2.0'
@@ -27,20 +27,19 @@ gem 'sass-rails', '~> 5.0.4'
 # https://github.com/zurb/foundation-rails
 gem 'coffee-rails', '~> 4.2.1'
 gem 'uglifier', '~> 3.0.3'
-gem 'jquery-rails', '~> 4.2.1'
-gem 'jquery-ui-rails', '~> 5.0.5'
+gem 'jquery-rails', '~> 4.2.2'
+gem 'jquery-ui-rails', '~> 6.0.1'
 gem 'pickadate-rails', '~> 3.5.6'
 gem 'responders', '~> 2.3'
 # https://github.com/norman/friendly_id turns ids into friendly addresses
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id', '~> 5.2.0'
 # Pure javascript charts and graphs
 gem 'highcharts-rails', '~> 4.2.3'
 # Dynamic nested forms using jQuery
 gem 'cocoon', '~> 1.2.9'
 
 gem 'rmagick', '~> 2.16.0'
-# must stay this version to work properly
-gem 'carrierwave', '~> 0.11.2'
+gem 'carrierwave', '~> 1.0.0'
 gem 'fog', '~> 1.38'
 
 gem 'rails_12factor', '~> 0.0.3', group: [:production, :staging]
@@ -56,4 +55,4 @@ group :development do
   gem 'hirb'
 end
 
-ruby '2.3.1'
+ruby '2.3.3'
