@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727210127) do
+ActiveRecord::Schema.define(version: 20170104194852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +33,10 @@ ActiveRecord::Schema.define(version: 20150727210127) do
     t.string   "prefix"
     t.string   "postfix"
     t.string   "divider"
+    t.index ["company_id", "name"], name: "index_accounts_on_company_id_and_name", unique: true, using: :btree
+    t.index ["company_id"], name: "index_accounts_on_company_id", using: :btree
+    t.index ["user_id"], name: "index_accounts_on_user_id", using: :btree
   end
-
-  add_index "accounts", ["company_id", "name"], name: "index_accounts_on_company_id_and_name", unique: true, using: :btree
-  add_index "accounts", ["company_id"], name: "index_accounts_on_company_id", using: :btree
-  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",             limit: 255
@@ -49,15 +47,15 @@ ActiveRecord::Schema.define(version: 20150727210127) do
     t.string   "zip",              limit: 255
     t.string   "phone",            limit: 255
     t.string   "fax",              limit: 255
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
     t.date     "established_on"
     t.string   "license_number",   limit: 255
     t.string   "service_provided", limit: 255
     t.text     "service_summery"
     t.string   "logo",             limit: 255
     t.string   "website",          limit: 255
-    t.integer  "sales_tax",                    default: 0
+    t.decimal  "sales_tax",                    precision: 7, scale: 4, default: "0.0"
   end
 
   create_table "inventory_items", force: :cascade do |t|
@@ -67,23 +65,21 @@ ActiveRecord::Schema.define(version: 20150727210127) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.decimal  "quantity",                  precision: 19, scale: 3
+    t.index ["company_id"], name: "index_inventory_items_on_company_id", using: :btree
   end
-
-  add_index "inventory_items", ["company_id"], name: "index_inventory_items_on_company_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
     t.integer  "account_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.date     "established_at"
     t.integer  "company_id"
-    t.integer  "sales_tax"
+    t.decimal  "sales_tax",      precision: 7, scale: 4
     t.integer  "number"
+    t.index ["account_id"], name: "index_invoices_on_account_id", using: :btree
+    t.index ["company_id", "number"], name: "index_invoices_on_company_id_and_number", unique: true, using: :btree
+    t.index ["company_id"], name: "index_invoices_on_company_id", using: :btree
   end
-
-  add_index "invoices", ["account_id"], name: "index_invoices_on_account_id", using: :btree
-  add_index "invoices", ["company_id", "number"], name: "index_invoices_on_company_id_and_number", unique: true, using: :btree
-  add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.string   "transaction_type", limit: 255
@@ -95,11 +91,10 @@ ActiveRecord::Schema.define(version: 20150727210127) do
     t.text     "memo"
     t.integer  "account_id"
     t.integer  "company_id"
+    t.index ["account_id"], name: "index_payments_on_account_id", using: :btree
+    t.index ["company_id"], name: "index_payments_on_company_id", using: :btree
+    t.index ["invoice_id"], name: "index_payments_on_invoice_id", using: :btree
   end
-
-  add_index "payments", ["account_id"], name: "index_payments_on_account_id", using: :btree
-  add_index "payments", ["company_id"], name: "index_payments_on_company_id", using: :btree
-  add_index "payments", ["invoice_id"], name: "index_payments_on_invoice_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.date     "performed_on"
@@ -110,30 +105,27 @@ ActiveRecord::Schema.define(version: 20150727210127) do
     t.datetime "updated_at",                            null: false
     t.integer  "invoice_id"
     t.integer  "company_id"
+    t.index ["account_id"], name: "index_services_on_account_id", using: :btree
+    t.index ["company_id"], name: "index_services_on_company_id", using: :btree
+    t.index ["invoice_id"], name: "index_services_on_invoice_id", using: :btree
   end
-
-  add_index "services", ["account_id"], name: "index_services_on_account_id", using: :btree
-  add_index "services", ["company_id"], name: "index_services_on_company_id", using: :btree
-  add_index "services", ["invoice_id"], name: "index_services_on_invoice_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "inventory_item_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.index ["inventory_item_id"], name: "index_taggings_on_inventory_item_id", using: :btree
+    t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
   end
-
-  add_index "taggings", ["inventory_item_id"], name: "index_taggings_on_inventory_item_id", using: :btree
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.integer  "company_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.index ["company_id"], name: "index_tags_on_company_id", using: :btree
   end
-
-  add_index "tags", ["company_id"], name: "index_tags_on_company_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255
@@ -159,12 +151,11 @@ ActiveRecord::Schema.define(version: 20150727210127) do
     t.boolean  "is_admin",                           default: false
     t.datetime "invitation_created_at"
     t.boolean  "is_owner",                           default: false
+    t.index ["company_id"], name: "index_users_on_company_id", using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
-  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -27,7 +27,7 @@
           #regional_sales_tax.anchor
           = f.label :sales_tax, 'Regional sales tax'
           .input-group
-            = f.number_field :sales_tax, class: 'input-group-field'
+            = f.number_field :sales_tax, class: 'input-group-field', step: :any
             %span.input-group-label % Sales Tax
 
         .small-12.medium-6.medium-pull-6.large-12.large-pull-0.columns
