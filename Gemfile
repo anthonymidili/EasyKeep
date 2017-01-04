@@ -42,7 +42,7 @@ gem 'rmagick', '~> 2.16.0'
 gem 'carrierwave', '~> 1.0.0'
 gem 'fog', '~> 1.38'
 
-gem 'rails_12factor', '~> 0.0.3', group: [:production, :staging]
+gem 'rails_12factor', '~> 0.0.3', group: [:production]
 gem 'sdoc', '~> 0.4.2', group: :doc
 gem 'rspec-rails', '~> 3.5.2', group: [:development, :test]
 
