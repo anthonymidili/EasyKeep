@@ -40,7 +40,7 @@ gem 'cocoon', '~> 1.2.9'
 
 gem 'rmagick', '~> 2.16.0'
 gem 'carrierwave', '~> 1.0.0'
-gem 'fog', '~> 1.38'
+gem 'fog-aws', '~> 1.3.0'
 
 gem 'rails_12factor', '~> 0.0.3', group: [:production]
 gem 'sdoc', '~> 0.4.2', group: :doc
@@ -55,4 +55,4 @@ group :development do
   gem 'hirb'
 end
 
-ruby '2.3.3'
+ruby '2.3.4'
