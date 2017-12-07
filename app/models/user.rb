@@ -33,11 +33,11 @@ class User < ActiveRecord::Base
   # is the user an admin or a customer?
   def role
     @role ||=
-        if is_admin?
-          :admin
-        else
-          :customer
-        end
+      if is_admin?
+        :admin
+      else
+        :customer
+      end
   end
 
 private
