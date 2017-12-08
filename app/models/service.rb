@@ -2,9 +2,9 @@ class Service < ActiveRecord::Base
 
   before_validation { |service| service.cost = 0 if service.cost.blank? }
 
-  belongs_to :account, touch: true
-  belongs_to :invoice
-  belongs_to :company
+  belongs_to :account, touch: true, optional: true
+  belongs_to :invoice, optional: true
+  belongs_to :company, optional: true
 
   validates :cost, numericality: true
   validates :performed_on,
