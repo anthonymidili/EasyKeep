@@ -13,13 +13,13 @@ module SelectedRange
 
     def column_name
       @column_name ||=
-          if self.name == 'Service'
-            :performed_on
-          elsif self.name == 'Payment'
-            :received_on
-          elsif self.name == 'Invoice'
-            :established_at
-          end
+        if self.name == 'Service'
+          :performed_on
+        elsif self.name == 'Payment'
+          :received_on
+        elsif self.name == 'Invoice'
+          :established_at
+        end
     end
 
   end

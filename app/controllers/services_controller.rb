@@ -7,7 +7,7 @@ class ServicesController < ApplicationController
     @account = current_account
     @services = current_account.services
     @service = current_account.services.build(service_params)
-    @service.company_id = current_company.id
+    @service.company = current_company
     @invoice = current_account.invoices.build
     @invoices = @account.invoices.by_outstanding
 
@@ -22,7 +22,7 @@ class ServicesController < ApplicationController
   def dashboard_create
     @account = current_company.accounts.find(params[:service][:account_id])
     @service = @account.services.build(service_params)
-    @service.company_id = current_company.id
+    @service.company = current_company
     @accounts = current_company.accounts.by_recent_activity.with_limit
 
     if @service.save
@@ -36,8 +36,8 @@ class ServicesController < ApplicationController
   def invoice_create
     @invoice = current_account.invoices.friendly.find(params[:invoice_id])
     @service = current_account.services.build(service_params)
-    @service.company_id = current_company.id
-    @service.invoice_id = @invoice.id
+    @service.company = current_company
+    @service.invoice = @invoice
     @services = current_account.services
 
     if @service.save

@@ -343,7 +343,7 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rbvmomi (1.11.5)
+    rbvmomi (1.11.6)
       builder (~> 3.0)
       json (>= 1.8)
       nokogiri (~> 1.5)
