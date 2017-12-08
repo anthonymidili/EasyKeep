@@ -28,6 +28,7 @@ bundler_stubs/
 
 # Ignore application configuration
 /config/application.yml
+.env
 
 # Ignore personal refferances of past migrations
 db/migration_history

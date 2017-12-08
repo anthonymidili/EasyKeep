@@ -5,9 +5,6 @@ gem 'rails', '~> 5.1.4'
 # puma in place of Default Webrick
 gem 'puma', '~> 3.11.0'
 
-# https://github.com/laserlemon/figaro
-gem 'figaro', '~> 1.1.1'
-
 gem 'foundation-rails', '~> 6.3.0'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
