@@ -21,7 +21,7 @@ gem 'dynamic_sitemaps', '~> 2.0.0'
 gem 'sass-rails', '~> 5.0.4'
 # https://github.com/zurb/foundation-rails
 gem 'coffee-rails', '~> 4.2.1'
-gem 'uglifier', '~> 4.0.1'
+gem 'uglifier', '~> 4.1.8'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '~> 4.3.1'
