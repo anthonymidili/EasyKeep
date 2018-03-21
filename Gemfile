@@ -35,7 +35,7 @@ gem 'highcharts-rails'
 # Dynamic nested forms using jQuery
 gem 'cocoon', '~> 1.2.9'
 
-gem 'rmagick', '~> 2.16.0'
+gem 'mini_magick', '~> 4.8.0'
 gem 'carrierwave', '~> 1.2.1'
 gem 'fog', '~> 1.41.0'
 

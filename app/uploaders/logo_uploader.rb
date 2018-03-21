@@ -3,8 +3,8 @@
 class LogoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  # include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :fog if Rails.env.production?
@@ -31,8 +31,17 @@ class LogoUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  # Rotates the image based on the EXIF Orientation
+  def auto_orient
+    manipulate! do |image|
+      image.tap(&:auto_orient)
+    end
+  end
+
+
   # Create different versions of your uploaded files:
   version :thumb do
+    process :auto_orient
     process resize_to_limit: [300, 200]
   end
 
