@@ -313,7 +313,7 @@ DEPENDENCIES
   devise_invitable (~> 1.7.5)
   dotenv-rails (~> 2.6.0)
   dynamic_sitemaps (~> 2.0.0)
-  fog-aws
+  fog-aws (~> 3.3.0)
   foundation-icons-sass-rails (~> 3.0.0)
   foundation-rails (~> 6.3.0)
   friendly_id (~> 5.2.5)
