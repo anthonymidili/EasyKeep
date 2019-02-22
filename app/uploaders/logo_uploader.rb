@@ -7,8 +7,8 @@ class LogoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :fog if Rails.env.production?
-  storage :file if Rails.env.development?
+  storage :fog # if Rails.env.production?
+  # storage :file if Rails.env.development?
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -38,10 +38,10 @@ class LogoUploader < CarrierWave::Uploader::Base
     end
   end
 
+  process :auto_orient
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :auto_orient
     process resize_to_limit: [300, 200]
   end
 

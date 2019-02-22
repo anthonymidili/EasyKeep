@@ -37,7 +37,7 @@ gem 'cocoon', '~> 1.2.12'
 
 gem 'mini_magick', '~> 4.9.2'
 gem 'carrierwave', '~> 1.3.1'
-gem 'fog', '~> 2.1.0'
+gem 'fog-aws', '~> 3.3.0'
 
 gem 'sdoc', '~> 1.0.0', group: :doc
 gem 'rspec-rails', '~> 3.8.2', group: [:development, :test]
