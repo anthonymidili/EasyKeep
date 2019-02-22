@@ -22,7 +22,7 @@ doc/
 .project
 .DS_Store
 bundler_stubs/
-.idea/
+.tool-versions
 /public/uploads
 .ruby-version
 
@@ -32,3 +32,6 @@ bundler_stubs/
 
 # Ignore personal refferances of past migrations
 db/migration_history
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
