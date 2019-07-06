@@ -62,4 +62,4 @@ group :development do
   gem 'bullet'
 end
 
-ruby '2.6.0'
+ruby '2.6.3'
