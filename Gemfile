@@ -8,7 +8,7 @@ gem 'puma', '~> 3.12.0'
 gem 'foundation-rails', '~> 6.3.0'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 
-gem 'devise', '~> 4.6.1'
+gem 'devise', '~> 4.7.1'
 gem 'devise_invitable', '~> 1.7.5'
 
 gem 'haml', '~> 5.0.4'
