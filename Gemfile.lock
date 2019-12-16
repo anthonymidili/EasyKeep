@@ -87,7 +87,7 @@ GEM
     dynamic_sitemaps (2.0.0)
     erubi (1.8.0)
     erubis (2.7.0)
-    excon (0.62.0)
+    excon (0.71.0)
     execjs (2.7.0)
     ffi (1.9.25)
     fog-aws (3.3.0)
