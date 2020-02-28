@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.2.2'
 
 # puma in place of Default Webrick
-gem 'puma', '~> 3.12.0'
+gem 'puma', '~> 3.12.3'
 
 gem 'foundation-rails', '~> 6.3.0'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
