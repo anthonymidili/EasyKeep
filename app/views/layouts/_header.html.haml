@@ -1,63 +1,63 @@
 .top-bar
-  .top-bar-title
+  .title-bar-left
+    .title-bar-title
+      %strong= link_to 'EasyKeep', root_path
+  .title-bar-right
     %span{data: {hide_for: 'medium', responsive_toggle: 'responsive-menu'}}
-      %button.menu-icon.dark{data: {toggle: true}, type: 'button'}
-    %strong= link_to 'EasyKeep', root_path
-  #responsive-menu
-    .top-bar-right
-      %ul.menu.vertical.medium-horizontal{data: {responsive_menu: 'accordion medium-dropdown'}}
-        %li= link_to 'Home', root_path
+      %span.menu-icon.dark{data: {toggle: true}}
+  #responsive-menu.top-bar-right
+    %ul.menu.mainmenu.vertical.medium-horizontal{data: {responsive_menu: 'accordion medium-dropdown'}}
+      %li= link_to 'Home', root_path
 
-        - if user_signed_in?
+      - if user_signed_in?
 
-          / Account drop-down
-          - if current_company && current_account
-            %li
-              = link_to '#' do
-                %i.miscellaneous.fi-at-sign
-                  = current_account.name
-              %ul.menu.vertical
-                %li= link_to 'Account', current_account if current_user.is_admin?
-                %li= link_to 'Edit account', edit_account_path(current_account)
-                %li= link_to 'Invoices', invoices_path
-                %li= link_to 'Service history search', history_search_services_path
-
-          - if current_company.try(:persisted?)
-
-            / Company drop-down
-            - if current_user.is_admin?
-              %li
-                = link_to 'Company', '#'
-                %ul.menu.vertical
-                  - if current_user.is_owner?
-                    %li= link_to 'Edit Company', edit_company_path
-                  %li= link_to 'All accounts', accounts_path
-                  %li= link_to 'Reports', reports_path
-                  %li= link_to 'Inventory', inventory_items_path
-                  %li= link_to 'Company admins', company_path
-                  %li= link_to 'About Company', about_company_path
-
-              / Invoices drop-down
-              %li
-                = link_to 'Invoices', '#'
-                %ul.menu.vertical
-                  %li= link_to 'New invoice', new_invoice_path
-                  %li= link_to 'Search invoices', search_invoices_company_path
-
-            - else
-              %li= link_to 'About company', about_company_path
-
-          / User drop-down
-          %li
+        / Account drop-down
+        - if current_company && current_account
+          %li.has-submenu
             = link_to '#' do
-              %i.people.fi-torso>
-              User
-            %ul.menu.vertical
-              %li= link_to 'User Settings', edit_user_registration_path
-              %li= link_to 'Sign out', destroy_user_session_path, method: :delete
-              - if current_user.email == ENV['DEVELOPER_EMAIL']
-                %li= link_to 'DeveloperDashboard', developer_dashboard_path
+              %i.fas.fa-at
+              %em= current_account.name
+            %ul.submenu.menu.vertical{data: {submenu: true}}
+              %li= link_to 'Account', current_account if current_user.is_admin?
+              %li= link_to 'Edit account', edit_account_path(current_account)
+              %li= link_to 'Invoices', invoices_path
+              %li= link_to 'Service history search', history_search_services_path
 
-        - else
-          %li= link_to 'Sign in', new_user_session_path
-          %li= link_to 'Sign up', new_user_registration_path
+        - if current_company.try(:persisted?)
+          / Company drop-down
+          - if current_user.is_admin?
+            %li.has-submenu
+              = link_to 'Company', '#'
+              %ul.submenu.menu.vertical{data: {submenu: true}}
+                - if current_user.is_owner?
+                  %li= link_to 'Edit Company', edit_company_path
+                %li= link_to 'All accounts', accounts_path
+                %li= link_to 'Reports', reports_path
+                %li= link_to 'Inventory', inventory_items_path
+                %li= link_to 'Company admins', company_path
+                %li= link_to 'About Company', about_company_path
+
+            / Invoices drop-down
+            %li.has-submenu
+              = link_to 'Invoices', '#'
+              %ul.submenu.menu.vertical{data: {submenu: true}}
+                %li= link_to 'New invoice', new_invoice_path
+                %li= link_to 'Search invoices', search_invoices_company_path
+
+          - else
+            %li= link_to 'About company', about_company_path
+
+        / User drop-down
+        %li.has-submenu
+          = link_to '#' do
+            %i.fas.fa-user
+            User
+          %ul.submenu.menu.vertical{data: {submenu: true}}
+            %li= link_to 'User Settings', edit_user_registration_path
+            %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+            - if current_user.email == ENV['DEVELOPER_EMAIL']
+              %li= link_to 'DeveloperDashboard', developer_dashboard_path
+
+      - else
+        %li= link_to 'Sign in', new_user_session_path
+        %li= link_to 'Sign up', new_user_registration_path

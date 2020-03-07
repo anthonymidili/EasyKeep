@@ -8,33 +8,21 @@ gem 'rails', '~> 6.0.2'
 # puma in place of Default Webrick
 gem 'puma', '~> 4.3.3'
 
-gem 'foundation-rails', '~> 6.6.1'
-gem 'foundation-icons-sass-rails', '~> 3.0.0'
-
 gem 'devise', '~> 4.7.1'
 gem 'devise_invitable', '~> 2.0.1'
 
-gem 'haml', '~> 5.1.2'
 gem 'haml-rails', '~> 2.0.1'
 
 gem 'bcrypt', '~> 3.1.10'
 gem 'kaminari', '~> 1.2.0'
 gem 'pg', '~> 1.2.2'
 gem 'dynamic_sitemaps', '~> 2.0.0'
-gem 'sassc-rails', '~> 2.1.0'
 # https://github.com/zurb/foundation-rails
-gem 'coffee-rails', '~> 5.0.0'
-gem 'uglifier', '~> 4.2.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.8'
-gem 'jquery-rails', '~> 4.3.3'
-gem 'jquery-ui-rails', '~> 6.0.1'
-gem 'pickadate-rails', '~> 3.5.6'
 gem 'responders', '~> 3.0'
 # https://github.com/norman/friendly_id turns ids into friendly addresses
 gem 'friendly_id', '~> 5.3.0'
-# Pure javascript charts and graphs
-gem 'highcharts-rails'
 # Dynamic nested forms using jQuery
 gem 'cocoon', '~> 1.2.12'
 
@@ -46,6 +34,8 @@ gem 'sdoc', '~> 1.0.0', group: :doc
 gem 'rspec-rails', '~> 3.9.0', group: [:development, :test]
 
 gem 'bootsnap', '~> 1.4.0'
+
+gem 'webpacker', '~> 4.x'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -23,13 +23,13 @@
             - if current_user.is_admin?
               = link_to edit_invoice_path(@invoice), title: 'Edit Invoice' do
                 Edit INV
-                %i.page.fi-page-edit
+                %i.fas.fa-edit
 
             - if current_user.is_owner?
               = link_to @invoice, title: 'Delete Invoice', class: 'pad-left red_link', method: :delete,
               data: { confirm: t(:confirm_delete_invoice) } do
                 Delete INV
-                %i.general.fi-x
+                %i.fas.fa-trash
 
       .small-12.columns
         = render 'companies/header'

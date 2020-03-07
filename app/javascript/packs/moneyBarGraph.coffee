@@ -1,4 +1,4 @@
-jQuery ->
+document.addEventListener 'turbolinks:load', ->
   $('#moneyOverTimeBar').highcharts
     chart: type: 'column'
     title: text: 'Income Over Time'

@@ -18,11 +18,11 @@
     / For search engine description
     %meta{content: t(:description_content), name: 'description'}/
 
-    = favicon_link_tag('favicon.ico')
+    = favicon_link_tag asset_pack_path('media/images/favicon.ico')
     %title= content_for?(:title) ? "EasyKeep | #{yield(:title)}" : 'EasyKeep | Making Small Business Easy'
 
-    = stylesheet_link_tag 'application', :media => :all
-    = javascript_include_tag 'application'
+    = stylesheet_pack_tag 'application', media: :all, 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': true
     = csrf_meta_tags
 
   %body
@@ -34,4 +34,4 @@
         = yield
 
     = render 'layouts/footer'
-    = render 'layouts/development_debugger' if Rails.env.development?
+    -# = render 'layouts/development_debugger' if Rails.env.development?

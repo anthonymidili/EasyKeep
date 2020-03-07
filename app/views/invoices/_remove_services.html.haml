@@ -21,6 +21,6 @@
               %td= number_to_currency(service.cost)
               %td
                 = link_to edit_service_path(service, invoice_id: service.invoice_id) do
-                  %i.page.fi-page-edit
+                  %i.fas.fa-edit
 
     = submit_tag 'Remove Checked Services', class: 'tiny button radius'

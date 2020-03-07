@@ -1,4 +1,4 @@
-jQuery ->
+document.addEventListener 'turbolinks:load', ->
   $('#moneyHealth').highcharts
     chart: type: 'bar'
     title: text: 'Money Health'

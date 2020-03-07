@@ -43,13 +43,14 @@
           = render 'shared/address_fields', f: account_f
 
       %h4 Add Services
-      = f.fields_for(:services, @invoice.services) do |service_f|
-        - unless service_f.object.persisted?
-          = render 'invoices/service_fields', f: service_f
+      #services
+        = f.fields_for(:services, @invoice.services) do |service_f|
+          - unless service_f.object.persisted?
+            = render 'invoices/service_fields', f: service_f
 
-      .links
-        = link_to_add_association 'add another service', f, :services
-      %br/
+        .links
+          = link_to_add_association 'add another service', f, :services
+        %br/
 
       .row
         .small-12.columns

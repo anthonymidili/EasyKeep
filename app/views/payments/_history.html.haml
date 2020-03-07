@@ -23,7 +23,7 @@
             - if current_user.is_admin?
               %td.center_cell.hide_on_print
                 = link_to edit_invoice_payment_path(@invoice, payment) do
-                  %i.page.fi-page-edit
+                  %i.fas.fa-edit
               %td.center_cell.hide_on_print
                 = link_to [@invoice, payment], method: :delete, data: { confirm: t(:confirm_delete_payment) } do
-                  %i.general.fi-x
+                  %i.fas.fa-trash

@@ -1,4 +1,4 @@
-jQuery ->
+document.addEventListener 'turbolinks:load', ->
   $(document).on 'click', (e) ->
     # Remove payments/_new partial from invoice show page and show apply payment link.
     $('#newPaymentForm').each ->

@@ -27,4 +27,4 @@
                 %span.large_red_text= number_to_currency(@invoice.balance_due)
 
       - if @invoice.paid_in_full?
-        .center= image_tag('paid_in_full.png')
+        .center= image_pack_tag('paid_in_full.png')

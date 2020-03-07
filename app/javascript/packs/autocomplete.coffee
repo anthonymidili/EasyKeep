@@ -1,4 +1,4 @@
-jQuery ->
+document.addEventListener 'turbolinks:load', ->
   textBox = $('#account_name')
   nameAray = textBox.data('autocomplete-source')
   accountFields = $('.newAccountFields.hidden')

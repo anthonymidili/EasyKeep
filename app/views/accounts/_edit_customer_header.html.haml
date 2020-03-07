@@ -3,13 +3,13 @@
     .float-right
       = link_to edit_account_path(current_account), title: 'Edit Account' do
         Edit ACCT
-        %i.page.fi-page-edit
+        %i.fas.fa-edit
 
       - if current_user.is_owner?
         = link_to current_account, title: 'Delete Account', class: 'pad-left red_link', method: :delete,
         data: { confirm: t(:confirm_delete_account) } do
           Delete ACCT
-          %i.general.fi-x
+          %i.fas.fa-trash
 
 .row
   .small-12.columns

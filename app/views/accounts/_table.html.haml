@@ -18,7 +18,7 @@
           %td= account.user.name
           %td.center_cell
             = link_to '#', data: { open: "contactInfoModal#{account.id}" } do
-              %i.general.fi-mail
+              %i.fas.fa-envelope
           %td{class: "no_action_required_#{account.all_services_invoiced?}"}
             = invoiceable_or_not(account)
           %td{class: "no_action_required_#{account.paid_in_full?}"}
@@ -26,9 +26,9 @@
           %td.center_cell= render 'accounts/user_status', account: account
           %td.center_cell
             = link_to edit_account_path(account) do
-              %i.page.fi-page-edit
+              %i.fas.fa-edit
           - if current_user.is_owner?
             %td.center_cell
               = link_to account, class: 'red_link', method: :delete, data: { confirm: t(:confirm_delete_account) }  do
-                %i.general.fi-x
+                %i.fas.fa-trash
         = render 'accounts/contact_info_modal', account: account

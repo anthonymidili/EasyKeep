@@ -16,8 +16,8 @@
           %td= invoice.account.user.name
           %td.center_cell
             = link_to invoice_path(invoice, account_id: invoice.account_id) do
-              %i.page.fi-page
-                %b= invoice.pre_post_number
+              %i.fas.fa-file
+              %b= invoice.pre_post_number
           %td= invoice.established_at.strftime('%Y-%b-%d')
           %td= number_to_currency(invoice.total_cost)
           %td{class: "no_action_required_#{invoice.paid_in_full?}"}

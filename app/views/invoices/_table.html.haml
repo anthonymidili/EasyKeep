@@ -15,8 +15,8 @@
         %tr{id: "tableRow#{invoice.id}"}
           %td.center_cell
             = link_to invoice_path(invoice) do
-              %i.page.fi-page
-                %b= invoice.pre_post_number
+              %i.fas.fa-file
+              %b= invoice.pre_post_number
           %td= invoice.established_at.strftime('%Y-%b-%d')
           %td= number_to_currency(invoice.total_cost)
           %td{class: "no_action_required_#{invoice.paid_in_full?}"}
@@ -24,8 +24,8 @@
           - if current_user.is_admin?
             %td.center_cell
               = link_to edit_invoice_path(invoice), class: invoice.disable_link_if_archived? do
-                %i.page.fi-page-edit
+                %i.fas.fa-edit
             %td.center_cell
               = link_to invoice, class: "#{invoice.disable_link_if_archived?} red_link", method: :delete,
               data: { confirm: t(:confirm_delete_invoice) } do
-                %i.general.fi-x
+                %i.fas.fa-trash

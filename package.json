@@ -1,0 +1,36 @@
+{
+  "name": "EasyKeep",
+  "version": "3.6.1",
+  "description": "Taking the work out of paperwork.",
+  "main": "index.js",
+  "repository": "easykeep.herokuapp.com",
+  "author": "AMidili <tonywinslow@yahoo.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.1",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "^4.2.2",
+    "cocoon-js": "^0.0.5",
+    "coffee-loader": "^0.9.0",
+    "coffeescript": "1.12.7",
+    "flatpickr": "^4.6.3",
+    "foundation-sites": "^6.5.3",
+    "highcharts": "^8.0.2",
+    "jquery": "^3.4.1",
+    "turbolinks": "^5.2.0",
+    "webpack": "^4.40.2",
+    "webpack-jquery-ui": "^2.0.1",
+    "what-input": "^5.2.3"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.9.0"
+  },
+  "engines": {
+    "node": "13.10.1",
+    "yarn": "1.22.1",
+    "npm": "6.13.7"
+  }
+}

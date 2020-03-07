@@ -33,6 +33,6 @@
                 - if current_user.is_owner?
                   %td.center_cell
                     = link_to delete_user_company_path(user), method: :delete, data: { confirm: t(:confirm_delete_admin) } do
-                      %i.general.fi-x
+                      %i.fas.fa-trash
 
 = render 'roles_explanation'

@@ -2,8 +2,8 @@
   %td
     - if service.invoice_id.present?
       = link_to invoice_path(service.invoice) do
-        %i.page.fi-page
-          %b= service.invoice.pre_post_number
+        %i.fas.fa-file
+        %b= service.invoice.pre_post_number
     - else
       %i not invoiced
   %td= service.performed_on.strftime('%Y-%b-%d')
@@ -12,8 +12,8 @@
   - if current_user.is_admin?
     %td.center_cell
       = link_to edit_service_path(service), class: service.disable_link_if_archived? do
-        %i.page.fi-page-edit
+        %i.fas.fa-edit
     %td.center_cell
       = link_to service, class: "#{service.disable_link_if_archived?} red_link", method: :delete,
       data: { confirm: t(:confirm_delete_service) } do
-        %i.general.fi-x
+        %i.fas.fa-trash

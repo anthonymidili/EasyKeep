@@ -34,10 +34,10 @@
               %td= raw inventory_item.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ')
               %td.center_cell
                 = link_to edit_inventory_item_path(inventory_item) do
-                  %i.page.fi-page-edit
+                  %i.fas.fa-edit
               %td.center_cell
                 = link_to inventory_item, class: 'red_link', method: :delete,
                 data: { confirm: t(:confirm_delete_inventory_item) } do
-                  %i.general.fi-x
+                  %i.fas.fa-trash
 
     = paginate @inventory_items

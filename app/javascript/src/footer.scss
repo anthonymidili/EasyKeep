@@ -2,12 +2,12 @@ html, body {height: 100%;}
 
 #wrap {min-height: 100%;}
 
-#main {padding-bottom: 183px;} /* must be same height as the footer */
+#main {padding-bottom: 147px;} /* must be same height as the footer */
 
 #footer {
   position: relative;
-  margin-top: -183px; /* negative value of footer height */
-  min-height: 183px;
+  margin-top: -147px; /* negative value of footer height */
+  min-height: 147px;
 
   #style_footer {
     border-style: solid;
@@ -21,5 +21,13 @@ html, body {height: 100%;}
 
     a {color: #cccccc;}
     a:hover {color: #f6f6f6;}
+  }
+}
+
+.top-bar {
+  /* make menu icon larger and easier to click */
+  span.menu-icon {
+    padding-left: 3em;
+    margin-right: 0.5em;
   }
 }

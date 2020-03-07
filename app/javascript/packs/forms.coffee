@@ -1,4 +1,4 @@
-jQuery ->
+document.addEventListener 'turbolinks:load', ->
   # /invoices/_change_account_header.html.haml
   $("#change_account_header input[type='submit']").hide()
   $("#change_account_header input[type='checkbox']").change ->
