@@ -1,7 +1,7 @@
-.row
-  / View By Form
-  = form_tag history_search_services_path, id: :view_by_selection, method: :get do
-    .small-12.medium-6.large-6.columns
+= form_tag history_search_services_path, class: :view_by_selection, method: :get do
+  .row
+    / View By Form
+    .small-12.medium-6.columns
       %label Search by:
       %ul.inline-list
         %li
@@ -14,10 +14,10 @@
             Year
         %li= submit_tag 'View By', class: 'tiny button radius', name: nil
 
-  / Active Date Form
-  = form_tag history_search_services_path, method: :get do
-    .small-6.medium-3.large-3.columns
-      = year_or_month_select
+    / Active Date Form
+    = form_tag history_search_services_path, class: :view_by_selection, method: :get do
+      .small-6.medium-3.columns
+        = year_or_month_select
 
-    .small-6.medium-3.large-3.columns
-      = submit_tag "Select #{view_by.to_s.capitalize} to View", class: 'tiny button radius', name: nil
+      .small-6.medium-3.columns
+        = submit_tag "Select #{view_by.to_s.capitalize} to View", class: 'tiny button radius', name: nil

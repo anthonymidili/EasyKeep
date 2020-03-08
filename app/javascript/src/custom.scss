@@ -56,6 +56,11 @@ a.red_link {
   &:hover { color: #b52716; }
 }
 
+button.to_link {
+  color: #2ba6cb;
+  &:hover { color: #1779ba; }
+}
+
 ul.small-text {
   li {
     font-size: 70%;

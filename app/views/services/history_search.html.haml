@@ -5,7 +5,8 @@
     %br/
 
     .outline= render 'accounts/edit_customer_header'
-
+.row
+  .small-12.columns
     .outline
       %h4 Service History Search
       = render 'services/date_bar_forms'
@@ -15,8 +16,9 @@
           %label
             = "Total Cost of Services for the Selected #{view_by.capitalize}:"
             %span.large_red_text= number_to_currency(current_account.sum_services(view_by, active_date))
-
-      = render 'services/history_table'
+      .row
+        .small-12.columns
+          = render 'services/history_table'
 
     %br/
 

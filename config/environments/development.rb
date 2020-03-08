@@ -32,7 +32,7 @@ Rails.application.configure do
   # config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -66,11 +66,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   ActionMailer::Base.smtp_settings = {
-      :address             => ENV['SMTP_ADDRESS'],
-      :port                => ENV['SMTP_PORT'],
-      :authentication      => ENV['SMTP_AUTHENTICATION'],
-      :user_name           => ENV['SMTP_USER_NAME'],
-      :password            => ENV['SMTP_PASSWORD'],
+      :user_name =>           ENV["SENDGRID_USERNAME"],
+      :password =>            ENV["SENDGRID_PASSWORD"],
+      :domain =>              ENV['SENDGRID_DOMAIN'],
+      :address =>             ENV['SENDGRID_ADDRESS'],
+      :port =>                ENV['SMTP_PORT'],
+      :authentication =>      ENV['SMTP_AUTHENTICATION'],
       :openssl_verify_mode => ENV['SMTP_OPENSSL_VERIFY_MODE']
   }
 

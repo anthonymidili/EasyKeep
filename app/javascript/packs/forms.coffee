@@ -6,6 +6,6 @@ document.addEventListener 'turbolinks:load', ->
 
   # /services/_date_bar_forms.html.haml
   # /reports/_select_month_or_year_form.html.haml
-  $("#view_by_selection input[type='submit']").hide()
-  $("#view_by_selection input[type='radio']").click ->
+  $(".view_by_selection input[type='submit']").hide()
+  $(".view_by_selection").change ->
     $(this).closest("form").submit()
