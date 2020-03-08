@@ -1,6 +1,6 @@
 {
   "name": "EasyKeep",
-  "version": "3.6.1",
+  "version": "3.6.2",
   "description": "Taking the work out of paperwork.",
   "main": "index.js",
   "repository": "easykeep.herokuapp.com",
