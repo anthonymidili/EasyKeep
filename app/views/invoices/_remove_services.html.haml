@@ -11,9 +11,9 @@
           %th Service cost
           %th Edit
 
-      - @invoice.services.reverse_order.each do |service|
-        - if service.persisted?
-          %tbody
+      %tbody
+        - @invoice.services.reverse_order.each do |service|
+          - if service.persisted?
             %tr
               %td= check_box_tag 'service_ids[]', service.id
               %td= service.performed_on.strftime('%Y-%b-%d')

@@ -28,14 +28,13 @@ gem 'cocoon', '~> 1.2.12'
 
 gem 'mini_magick', '~> 4.10.1'
 gem 'carrierwave', '~> 2.1.0'
-gem 'fog-aws', '~> 3.5.2'
+gem 'fog-aws', '~> 3.6.2'
 
-gem 'sdoc', '~> 1.0.0', group: :doc
-gem 'rspec-rails', '~> 3.9.0', group: [:development, :test]
+gem 'rspec-rails', '~> 4.0.0', group: [:development, :test]
 
 gem 'bootsnap', '~> 1.4.0'
 
-gem 'webpacker', '~> 4.x'
+gem 'webpacker', '~> 5.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

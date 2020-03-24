@@ -10,10 +10,10 @@
           %th Memo
           %th Service cost
 
-      - @services.by_invoiceable.reverse_order.each do |service|
-        - if service.persisted?
-          %tbody
-            %tr
+      %tbody
+        %tr
+          - @services.by_invoiceable.reverse_order.each do |service|
+            - if service.persisted?
               %td= check_box_tag 'service_ids[]', service.id
               %td= service.performed_on.strftime('%Y-%b-%d')
               %td= service.memo

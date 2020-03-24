@@ -47,9 +47,9 @@
           %th Date performed
           %th Memo
           %th Service cost
-      - @services.reverse_order.each do |service|
-        - if service.persisted?
-          %tbody
+      %tbody
+        - @services.reverse_order.each do |service|
+          - if service.persisted?
             %tr
               %td= service.performed_on.strftime('%Y-%b-%d')
               %td= service.memo
