@@ -13,12 +13,18 @@
     display: none;
   }
 
-  div.panel {
-    border: 1px solid #b5b5b5;
+  .panel {
+    border: 1px solid #000000 !important;
   }
 
   table {
-    border: 1px solid #b5b5b5;
+    border: 1px solid #000000 !important;
     page-break-inside: avoid;
+    thead {
+      border: 0 !important;
+    }
+    tbody {
+      border: 0 !important;
+    }
   }
 }
