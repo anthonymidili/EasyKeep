@@ -14,7 +14,7 @@ gem 'devise_invitable', '~> 2.0.1'
 gem 'haml-rails', '~> 2.0.1'
 
 gem 'bcrypt', '~> 3.1.10'
-gem 'kaminari', '~> 1.2.0'
+gem 'kaminari', '~> 1.2.1'
 gem 'pg', '~> 1.2.2'
 gem 'dynamic_sitemaps', '~> 2.0.0'
 # https://github.com/zurb/foundation-rails
