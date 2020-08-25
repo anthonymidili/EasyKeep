@@ -18,7 +18,7 @@
     "coffeescript": "1.12.7",
     "flatpickr": "^4.6.3",
     "foundation-sites": "^6.5.3",
-    "highcharts": "^8.0.2",
+    "highcharts": "^8.1.1",
     "jquery": "^3.4.1",
     "turbolinks": "^5.2.0",
     "webpack": "^4.40.2",
