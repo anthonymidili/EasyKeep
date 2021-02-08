@@ -27,7 +27,7 @@ gem 'friendly_id', '~> 5.3.0'
 gem 'cocoon', '~> 1.2.12'
 
 gem 'mini_magick', '~> 4.10.1'
-gem 'carrierwave', '~> 2.1.0'
+gem 'carrierwave', '~> 2.1.1'
 gem 'fog-aws', '~> 3.6.2'
 
 gem 'rspec-rails', '~> 4.0.0', group: [:development, :test]
