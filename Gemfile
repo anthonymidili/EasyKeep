@@ -6,7 +6,7 @@ ruby '2.7.1'
 gem 'rails', '~> 6.0.2'
 
 # puma in place of Default Webrick
-gem 'puma', '~> 4.3.3'
+gem 'puma', '~> 4.3.8'
 
 gem 'devise', '~> 4.7.1'
 gem 'devise_invitable', '~> 2.0.1'
